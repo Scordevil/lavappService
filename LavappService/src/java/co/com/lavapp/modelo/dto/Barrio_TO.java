@@ -62,6 +62,12 @@ public class Barrio_TO {
         this.Zona = Zona;
         this.estrato = estrato;
     }
+
+    public Barrio_TO(int idBarrios) {
+        this.idBarrios = idBarrios;
+    }
+    
+    
     
     
     // Getter and Setter

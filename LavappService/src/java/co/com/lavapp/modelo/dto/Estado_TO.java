@@ -40,6 +40,12 @@ public class Estado_TO {
         this.nombre = nombre;
     }
 
+    public Estado_TO(int idEstado) {
+        this.idEstado = idEstado;
+    }
+    
+    
+
     //Getter and Setter
     public int getIdEstado() {
         return idEstado;

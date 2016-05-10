@@ -54,19 +54,38 @@ public class Usuario_TO {
      */
     private Estado_TO estado;
 
+    /**
+     *
+     * Extra idSesion
+     */
+    private Sesion_TO sesion;
+
     //Constructores
     public Usuario_TO() {
     }
 
     //Constructo General
-    public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado) {
+    public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, Sesion_TO sesion) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
         this.barrio = barrio;
         this.rol = rol;
         this.estado = estado;
+        this.sesion = sesion;
     }
+    
+    //Registrar Usuarios
+
+    public Usuario_TO(String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, Sesion_TO sesion) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.barrio = barrio;
+        this.rol = rol;
+        this.estado = estado;
+        this.sesion = sesion;
+    }
+    
 
     //Getter and Setter
     public int getIdUsuario() {
@@ -117,9 +136,17 @@ public class Usuario_TO {
         this.estado = estado;
     }
 
+    public Sesion_TO getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(Sesion_TO sesion) {
+        this.sesion = sesion;
+    }
+
     @Override
     public String toString() {
-        return "Usuario_TO{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", telefono=" + telefono + ", barrio=" + barrio + ", rol=" + rol + ", estado=" + estado + '}';
+        return "Usuario_TO{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", telefono=" + telefono + ", barrio=" + barrio + ", rol=" + rol + ", estado=" + estado + ", sesion=" + sesion + '}';
     }
 
 }

@@ -40,6 +40,12 @@ public class Rol_TO {
         this.nombre = nombre;
     }
 
+    public Rol_TO(int idRol) {
+        this.idRol = idRol;
+    }
+    
+    
+
     //Getter and Setter
     public int getIdRol() {
         return idRol;
