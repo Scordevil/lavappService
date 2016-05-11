@@ -7,12 +7,14 @@ package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
 import co.com.lavapp.config.Config;
+import co.com.lavapp.modelo.dto.Barrio_TO;
+import co.com.lavapp.modelo.dto.Estado_TO;
+import co.com.lavapp.modelo.dto.Rol_TO;
 import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 
 /**
  *
@@ -103,10 +105,10 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
         return user;
     }
-    
-      /**
+
+    /**
      *
-     * METODOS PARA CONSULTAR USUARIO
+     * METODOS PARA CONSULTAR USUARIO SESION
      *
      * @param usuario
      * @return @throws Exception
@@ -131,6 +133,46 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             } catch (Exception e) {
                 user = new Sesion_TO();
+                throw e;
+
+            }
+            ConexionSQL.CerrarConexion();
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+        return user;
+    }
+
+    /**
+     *
+     * METODOS PARA CONSULTAR USUARIO
+     *
+     * @param usuario
+     * @return @throws Exception
+     */
+    @Override
+    public Usuario_TO consultarUsuario(Usuario_TO usuario) throws Exception {
+
+        Usuario_TO user = new Usuario_TO();
+
+        try {
+
+            try {
+                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado " +
+                "  FROM public.usuario where idusuario = '" + usuario.getIdUsuario() + "'; ";
+
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+
+                    user = new Usuario_TO(rs.getInt(1),rs.getString(2),rs.getString(3),new Barrio_TO(rs.getInt(4)),new Rol_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)));
+                }
+
+            } catch (Exception e) {
+                user = new Usuario_TO();
                 throw e;
 
             }

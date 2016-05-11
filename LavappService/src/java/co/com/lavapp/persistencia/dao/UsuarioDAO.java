@@ -19,6 +19,7 @@ public interface UsuarioDAO {
 
     public Usuario_TO registrarUsuarios(Usuario_TO usuario) throws Exception;
     
+     public Usuario_TO consultarUsuario(Usuario_TO usuario) throws Exception;
 
     public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception;
 

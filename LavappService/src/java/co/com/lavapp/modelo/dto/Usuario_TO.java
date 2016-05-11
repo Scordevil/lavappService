@@ -64,7 +64,7 @@ public class Usuario_TO {
     public Usuario_TO() {
     }
 
-    //Constructo General
+    //Constructor General
     public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, Sesion_TO sesion) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -85,6 +85,18 @@ public class Usuario_TO {
         this.estado = estado;
         this.sesion = sesion;
     }
+    
+    //Consultar Usuario
+
+    public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.barrio = barrio;
+        this.rol = rol;
+        this.estado = estado;
+    }
+    
 
     public Usuario_TO(Sesion_TO sesion) {
         this.sesion = sesion;
