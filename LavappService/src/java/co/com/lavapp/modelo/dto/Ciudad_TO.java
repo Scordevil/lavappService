@@ -41,15 +41,18 @@ public class Ciudad_TO {
     }
 
     //Constructor General
-
     public Ciudad_TO(int idCiudad, String nombre, Departamento_TO departamento) {
         this.idCiudad = idCiudad;
         this.nombre = nombre;
         this.departamento = departamento;
     }
-    
-    //Getter and Setter
 
+    // CONSTRUCTOR PARA LOCALIDAD DAO
+    public Ciudad_TO(int idCiudad) {
+        this.idCiudad = idCiudad;
+    }
+
+    //Getter and Setter
     public int getIdCiudad() {
         return idCiudad;
     }
@@ -78,6 +81,5 @@ public class Ciudad_TO {
     public String toString() {
         return "Ciudad_TO{" + "idCiudad=" + idCiudad + ", nombre=" + nombre + ", departamento=" + departamento + '}';
     }
-    
-    
+
 }
