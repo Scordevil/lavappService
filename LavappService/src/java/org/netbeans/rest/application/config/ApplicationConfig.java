@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarLocalidadesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioPorLoginImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioSesionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarUsuarioSesionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarUsuariosImpl.class);
     }

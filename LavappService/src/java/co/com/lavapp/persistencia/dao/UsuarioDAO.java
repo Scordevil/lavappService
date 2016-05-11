@@ -16,11 +16,14 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
  * @author Planit
  */
 public interface UsuarioDAO {
-    
+
     public Usuario_TO registrarUsuarios(Usuario_TO usuario) throws Exception;
     
+
     public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception;
-    
+
+    public Sesion_TO consultarUsuarioSesion(Sesion_TO sesion) throws Exception;
+
     public Sesion_TO registrarUsuarioSesion(Sesion_TO sesion) throws Exception;
-   
+
 }

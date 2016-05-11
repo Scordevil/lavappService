@@ -65,6 +65,12 @@ public class Sesion_TO {
         this.login = login;
         this.contrasena = contrasena;
     }
+
+    public Sesion_TO(int idSesion, int idUsuario) {
+        this.idSesion = idSesion;
+        this.idUsuario = idUsuario;
+    }
+    
     
     
 

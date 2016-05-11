@@ -12,8 +12,7 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *
@@ -92,6 +91,46 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             } catch (Exception e) {
                 user = new Usuario_TO();
+                throw e;
+
+            }
+            ConexionSQL.CerrarConexion();
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+        return user;
+    }
+    
+      /**
+     *
+     * METODOS PARA CONSULTAR USUARIO
+     *
+     * @param usuario
+     * @return @throws Exception
+     */
+    @Override
+    public Sesion_TO consultarUsuarioSesion(Sesion_TO usuario) throws Exception {
+
+        Sesion_TO user = new Sesion_TO();
+
+        try {
+
+            try {
+                String sql = "SELECT idsesion, usuario, contrasena, idusuario "
+                        + "  FROM public.sesion where idusuario = '" + usuario.getIdUsuario() + "'; ";
+
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+
+                    user = new Sesion_TO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                }
+
+            } catch (Exception e) {
+                user = new Sesion_TO();
                 throw e;
 
             }

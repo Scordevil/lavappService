@@ -89,6 +89,12 @@ public class Usuario_TO {
     public Usuario_TO(Sesion_TO sesion) {
         this.sesion = sesion;
     }
+
+    public Usuario_TO(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    
       
 
     //Getter and Setter
