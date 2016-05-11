@@ -5,6 +5,7 @@
  */
 package co.com.lavapp.persistencia.dao;
 
+import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 
 /**
@@ -20,4 +21,6 @@ public interface UsuarioDAO {
     
     public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception;
     
+    public Sesion_TO registrarUsuarioSesion(Sesion_TO sesion) throws Exception;
+   
 }

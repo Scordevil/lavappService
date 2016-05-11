@@ -36,7 +36,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public Usuario_TO registrarUsuarios(Usuario_TO usuario) throws Exception {
 
-        Statement st = ConexionSQL.conexion();
         Usuario_TO user = new Usuario_TO();
 
         try {
@@ -47,7 +46,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             try {
                 String sql = "INSERT INTO public.usuario( "
                         + "   nombre, telefono, idbarrios, idrol, idestado)"
-                        + "    VALUES (" + usuario.getNombre() + "," + usuario.getTelefono() + "," + usuario.getBarrio().getIdBarrios() + ", " + usuario.getRol().getIdRol() + "," + usuario.getEstado().getIdEstado() + ");";
+                        + "    VALUES ('" + usuario.getNombre() + "','" + usuario.getTelefono() + "'," + usuario.getBarrio().getIdBarrios() + ", " + usuario.getRol().getIdRol() + "," + usuario.getEstado().getIdEstado() + ");";
 
                 st.execute(sql);
 
@@ -68,7 +67,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     /**
      *
-     * METODOS PARA REGISTRAR USUARIOS
+     * METODOS PARA CONSULTAR USUARIOS POR LOGIN
      *
      * @param usuario
      * @return @throws Exception
@@ -76,24 +75,59 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception {
 
-        Statement st = ConexionSQL.conexion();
         Usuario_TO user = new Usuario_TO();
 
         try {
 
             try {
                 String sql = "SELECT idsesion, usuario, contrasena, idusuario "
-                        + "  FROM public.sesion where usuario = " + usuario.getSesion().getLogin() + "; ";
+                        + "  FROM public.sesion where usuario = '" + usuario.getSesion().getLogin() + "'; ";
 
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
 
-                    user = new Usuario_TO(new Sesion_TO(rs.getInt(1),rs.getString(2),rs.getString(3)));
+                    user = new Usuario_TO(new Sesion_TO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
                 }
 
             } catch (Exception e) {
                 user = new Usuario_TO();
+                throw e;
+
+            }
+            ConexionSQL.CerrarConexion();
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+        return user;
+    }
+
+    /**
+     *
+     * METODOS PARA REGISTRAR USUARIOS SESION
+     *
+     * @param sesion
+     * @return @throws Exception
+     */
+    @Override
+    public Sesion_TO registrarUsuarioSesion(Sesion_TO sesion) throws Exception {
+
+        Sesion_TO user = new Sesion_TO();
+
+        try {
+
+            try {
+                String sql = "INSERT INTO public.sesion( "
+                        + "   usuario, contrasena, idusuario) "
+                        + "    VALUES ('" + sesion.getLogin() + "','" + sesion.getContrasena() + "', 1 ); ";
+
+                st.executeQuery(sql);
+
+            } catch (Exception e) {
+                user = new Sesion_TO();
                 throw e;
 
             }

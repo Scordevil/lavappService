@@ -8,7 +8,7 @@ package co.com.lavapp.servicio.impl;
 import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.impl.UsuarioDAOImpl;
-import co.com.lavapp.servicio.ConsultarUsuarioPorLogin;
+import co.com.lavapp.servicio.RegistrarUsuarioSesion;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,21 +20,21 @@ import javax.ws.rs.QueryParam;
  * @author Planit
  */
 @Stateless
-@Path("/consultarUsuarioPorLogin")
-public class ConsultarUsuarioPorLoginImpl implements ConsultarUsuarioPorLogin{
-    
+@Path("/registrarUsuarioSesion")
+public class RegistrarUsuarioSesionImpl implements RegistrarUsuarioSesion {
+
     @GET
     @Produces({"application/json"})
 
-    public Usuario_TO consultarUsuarioPorLogin(
-            @QueryParam("login") String login) throws Exception {
+    @Override
+    public Sesion_TO registrarUsuarioSesion(
+            @QueryParam("login") String login, @QueryParam("contrasena") String contrasena,@QueryParam("idUsuario") int idUsuario ) throws Exception {
 
-        Usuario_TO user = new Usuario_TO(new Sesion_TO(login,""));
+        Sesion_TO user = new Sesion_TO(login,contrasena,idUsuario);
 
         UsuarioDAOImpl usuario = new UsuarioDAOImpl();
 
-        return usuario.consultarUsuarioPorLogin(user);
+        return usuario.registrarUsuarioSesion(user);
 
     }
-    
 }

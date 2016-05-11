@@ -36,15 +36,29 @@ public class Sesion_TO {
      */
     private String contrasena;
 
+    /**
+     *
+     * Columna contrasena
+     */
+    private int idUsuario;
+
     //Constructores
     public Sesion_TO() {
     }
 
     //Constructor General
-    public Sesion_TO(int idSesion, String login, String contrasena) {
+    public Sesion_TO(int idSesion, String login, String contrasena, int idUsuario) {
         this.idSesion = idSesion;
         this.login = login;
         this.contrasena = contrasena;
+        this.idUsuario = idUsuario;
+    }
+
+    //Registrar Usuario Sesion
+    public Sesion_TO(String login, String contrasena, int idUsuario) {
+        this.login = login;
+        this.contrasena = contrasena;
+        this.idUsuario = idUsuario;
     }
 
     public Sesion_TO(String login, String contrasena) {
@@ -79,9 +93,17 @@ public class Sesion_TO {
         this.contrasena = contrasena;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     @Override
     public String toString() {
-        return "Sesion_TO{" + "idSesion=" + idSesion + ", login=" + login + ", contrasena=" + contrasena + '}';
+        return "Sesion_TO{" + "idSesion=" + idSesion + ", login=" + login + ", contrasena=" + contrasena + ", idUsuario=" + idUsuario + '}';
     }
 
 }
