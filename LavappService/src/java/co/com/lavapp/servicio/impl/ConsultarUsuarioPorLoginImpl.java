@@ -11,7 +11,6 @@ import co.com.lavapp.modelo.dto.Rol_TO;
 import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.impl.UsuarioDAOImpl;
-import co.com.lavapp.servicio.RegistrarUsuarios;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,25 +22,21 @@ import javax.ws.rs.QueryParam;
  * @author Planit
  */
 @Stateless
-@Path("/registrarUsuarios")
-public class RegistrarUsuariosImpl implements RegistrarUsuarios {
-
+@Path("/consultarUsuarioPorLogin")
+public class ConsultarUsuarioPorLoginImpl {
+    
     @GET
     @Produces({"application/json"})
 
-    @Override
-    public Usuario_TO registrarUsuarios(@QueryParam("nombre") String nombre,
-            @QueryParam("telefono") String telefono, @QueryParam("idbarrios") int idbarrios,
-            @QueryParam("idrol") int idrol, @QueryParam("idestado") int idestado, @QueryParam("usuario") String login,
-            @QueryParam("contrasena") String contrasena) throws Exception {
+    public Usuario_TO consultarUsuarioPorLogin(
+            @QueryParam("login") String login) throws Exception {
 
-        Usuario_TO cliente = new Usuario_TO(nombre, telefono, new Barrio_TO(idbarrios), new Rol_TO(idrol),
-                new Estado_TO(idestado), new Sesion_TO(login, contrasena));
+        Usuario_TO user = new Usuario_TO(new Sesion_TO(login,""));
 
         UsuarioDAOImpl usuario = new UsuarioDAOImpl();
 
-        return usuario.registrarUsuarios(cliente);
+        return usuario.consultarUsuarioPorLogin(user);
 
     }
-
+    
 }

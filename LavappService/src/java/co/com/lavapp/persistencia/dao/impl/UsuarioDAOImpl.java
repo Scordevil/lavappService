@@ -7,9 +7,13 @@ package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
 import co.com.lavapp.config.Config;
+import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.UsuarioDAO;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -45,9 +49,50 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                         + "   nombre, telefono, idbarrios, idrol, idestado)"
                         + "    VALUES (" + usuario.getNombre() + "," + usuario.getTelefono() + "," + usuario.getBarrio().getIdBarrios() + ", " + usuario.getRol().getIdRol() + "," + usuario.getEstado().getIdEstado() + ");";
 
-                 st.execute(sql);
-                 
-             } catch (Exception e) {
+                st.execute(sql);
+
+            } catch (Exception e) {
+                user = new Usuario_TO();
+                throw e;
+
+            }
+            ConexionSQL.CerrarConexion();
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+        return user;
+    }
+
+    /**
+     *
+     * METODOS PARA REGISTRAR USUARIOS
+     *
+     * @param usuario
+     * @return @throws Exception
+     */
+    @Override
+    public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception {
+
+        Statement st = ConexionSQL.conexion();
+        Usuario_TO user = new Usuario_TO();
+
+        try {
+
+            try {
+                String sql = "SELECT idsesion, usuario, contrasena, idusuario "
+                        + "  FROM public.sesion where usuario = " + usuario.getSesion().getLogin() + "; ";
+
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+
+                    user = new Usuario_TO(new Sesion_TO(rs.getInt(1),rs.getString(2),rs.getString(3)));
+                }
+
+            } catch (Exception e) {
                 user = new Usuario_TO();
                 throw e;
 

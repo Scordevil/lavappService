@@ -85,7 +85,11 @@ public class Usuario_TO {
         this.estado = estado;
         this.sesion = sesion;
     }
-    
+
+    public Usuario_TO(Sesion_TO sesion) {
+        this.sesion = sesion;
+    }
+      
 
     //Getter and Setter
     public int getIdUsuario() {
