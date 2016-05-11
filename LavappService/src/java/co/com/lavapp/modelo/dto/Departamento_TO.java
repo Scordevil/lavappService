@@ -47,6 +47,12 @@ public class Departamento_TO {
         this.pais = pais;
     }
 
+    public Departamento_TO(int idDepartamento) {
+        this.idDepartamento = idDepartamento;
+    }
+    
+    
+
     //Getter and Setter
     public int getIdDepartamento() {
         return idDepartamento;
