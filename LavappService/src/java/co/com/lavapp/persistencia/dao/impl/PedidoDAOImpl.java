@@ -36,28 +36,21 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "VALUES ('" + pedido.getUsuario().getIdUsuario() + "', '" + pedido.getFechaInicio() + "', '" + pedido.getHoraInicio().getIdHorario() + "', '" + pedido.getHoraFinal().getIdHorario() + "', '" + pedido.getEstado().getIdEstado() + "');";
 
                 st.executeQuery(sql);
+            } catch (Exception e) {
+                nuevopedido = new Pedido_TO();
+                throw e;
+            }
         } catch (Exception e) {
-            nuevopedido = new Pedido_TO();
             throw e;
-        }
-    }
-    catch (Exception e
-
-    
-        ) {
-            throw e;
-    }
-
-    
-        finally {
+        } finally {
             ConexionSQL.CerrarConexion();
+        }
+        return nuevopedido;
     }
-    return nuevopedido ;
-}
 
-//Metodo eliminar pedido
-@Override
-        public Pedido_TO eliminarPedido(Pedido_TO pedido) throws Exception {
+    //Metodo eliminar pedido
+    @Override
+    public Pedido_TO eliminarPedido(Pedido_TO pedido) throws Exception {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
@@ -78,8 +71,9 @@ public class PedidoDAOImpl implements PedidoDAO {
         return nuevopedido;
     }
 
+    //Metodo consultar pedidos cliente
     @Override
-        public List<Pedido_TO> consultarPedidosCliente(Usuario_TO usuario) throws Exception {
+    public List<Pedido_TO> consultarPedidosCliente(Usuario_TO usuario) throws Exception {
         List<Pedido_TO> pedidos = new ArrayList<>();
         try {
             try {
@@ -99,6 +93,33 @@ public class PedidoDAOImpl implements PedidoDAO {
             ConexionSQL.CerrarConexion();
         }
         return pedidos;
+    }
+
+    //Metodo Consultar un pedido
+    @Override
+    public Pedido_TO consultarPedido(Pedido_TO pedido) throws Exception {
+        Pedido_TO nuevopedido = new Pedido_TO();
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, fechaInicio, horainicio_idhorario, horafinal_idhorario, idestado "
+                        + "from public.pedido as pedido WHERE "
+                        + "pedido.idusuario = '" + pedido.getUsuario().getIdUsuario() + "' and "
+                        + "pedido.fechaInicio = '" + pedido.getFechaInicio() + "' and "
+                        + "pedido.horarioinicio_idhorario = '" + pedido.getHoraInicio().getIdHorario() + "' and "
+                        + "pedido.horariofinal_idhorario = '" + pedido.getHoraFinal().getIdHorario() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevopedido = new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevopedido;
     }
 
 }

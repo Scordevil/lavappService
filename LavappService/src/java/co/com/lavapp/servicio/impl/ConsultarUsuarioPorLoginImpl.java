@@ -26,6 +26,7 @@ public class ConsultarUsuarioPorLoginImpl implements ConsultarUsuarioPorLogin{
     @GET
     @Produces({"application/json"})
 
+    @Override
     public Usuario_TO consultarUsuarioPorLogin(
             @QueryParam("login") String login) throws Exception {
 
