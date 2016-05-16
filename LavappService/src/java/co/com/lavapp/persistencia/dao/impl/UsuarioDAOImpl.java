@@ -159,7 +159,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         Usuario_TO user = new Usuario_TO();
 
         try {
-
             try {
                 String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado " +
                 "  FROM public.usuario where idusuario = '" + usuario.getIdUsuario() + "'; ";
@@ -170,7 +169,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
                     user = new Usuario_TO(rs.getInt(1),rs.getString(2),rs.getString(3),new Barrio_TO(rs.getInt(4)),new Rol_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)));
                 }
-
             } catch (Exception e) {
                 user = new Usuario_TO();
                 throw e;

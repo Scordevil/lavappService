@@ -35,6 +35,12 @@ public class Servicio_TO {
     }
 
     //Constructor General
+
+    public Servicio_TO(int idServicio) {
+        this.idServicio = idServicio;
+    }
+    
+    
     public Servicio_TO(int idServicio, String nombre) {
         this.idServicio = idServicio;
         this.nombre = nombre;

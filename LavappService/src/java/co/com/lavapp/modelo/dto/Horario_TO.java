@@ -47,6 +47,11 @@ public class Horario_TO {
     }
 
     //Constructor General
+
+    public Horario_TO(int idHorario) {
+        this.idHorario = idHorario;
+    }
+            
     public Horario_TO(int idHorario, String horaInicio, String horaFinal, Jornada_TO jornada) {
         this.idHorario = idHorario;
         this.horaInicio = horaInicio;

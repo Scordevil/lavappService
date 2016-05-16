@@ -41,27 +41,47 @@ public class Pedido_TO {
      *
      * Columna horaInicio_idHorario
      */
-    private int idHoraInicio;
+    private Horario_TO horaInicio;
 
     /**
      *
      * Columna horaFinal_idHorario
      */
-    private int idHoraFinal;
+    private Horario_TO horaFinal;
+
+    /**
+     *
+     * Columna horaFinal_idHorario
+     */
+    private Estado_TO estado;
 
     //Constructores
     public Pedido_TO() {
     }
 
     //Constructor General
-    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, int idHoraInicio, int idHoraFinal) {
+    public Pedido_TO(int idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
-        this.idHoraInicio = idHoraInicio;
-        this.idHoraFinal = idHoraFinal;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
     }
 
+    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado) {
+        this.usuario = usuario;
+        this.fechaInicio = fechaInicio;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
+    }
+
+   
     //Getter and Setter
     public int getIdPedido() {
         return idPedido;
@@ -87,25 +107,33 @@ public class Pedido_TO {
         this.fechaInicio = fechaInicio;
     }
 
-    public int getIdHoraInicio() {
-        return idHoraInicio;
+    public Horario_TO getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setIdHoraInicio(int idHoraInicio) {
-        this.idHoraInicio = idHoraInicio;
+    public void setHoraInicio(Horario_TO horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
-    public int getIdHoraFinal() {
-        return idHoraFinal;
+    public Horario_TO getHoraFinal() {
+        return horaFinal;
     }
 
-    public void setIdHoraFinal(int idHoraFinal) {
-        this.idHoraFinal = idHoraFinal;
+    public void setHoraFinal(Horario_TO horaFinal) {
+        this.horaFinal = horaFinal;
+    }
+
+    public Estado_TO getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado_TO estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Pedido_TO{" + "idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", idHoraInicio=" + idHoraInicio + ", idHoraFinal=" + idHoraFinal + '}';
+        return "Pedido_TO{idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", idHoraInicio=" + horaInicio.getIdHorario() + ", idHoraFinal=" + horaFinal.getIdHorario() + ", idEstado=" + estado.getIdEstado() + "}";
     }
 
 }
