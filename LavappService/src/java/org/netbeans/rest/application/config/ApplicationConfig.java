@@ -31,6 +31,8 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.com.lavapp.servicio.impl.ConsultarCantidadDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadesImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarHorariosSegunJornadaImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarJornadasImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarLocalidadesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidosClienteImpl.class);

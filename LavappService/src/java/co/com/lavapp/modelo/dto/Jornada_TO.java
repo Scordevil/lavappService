@@ -35,6 +35,11 @@ public class Jornada_TO {
     }
 
     //Constructor General
+
+    public Jornada_TO(int idJornada) {
+        this.idJornada = idJornada;
+    }
+         
     public Jornada_TO(int idJornada, String nombre) {
         this.idJornada = idJornada;
         this.nombre = nombre;
