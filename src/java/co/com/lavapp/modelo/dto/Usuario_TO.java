@@ -60,8 +60,32 @@ public class Usuario_TO {
      */
     private Sesion_TO sesion;
 
+    /**
+     *
+     * Columna usuario
+     */
+    private String login;
+
+    /**
+     *
+     * Columna contrasena
+     */
+    private String contrasena;
+
+
     //Constructores
     public Usuario_TO() {
+    }
+
+    public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, String login, String contrasena) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.barrio = barrio;
+        this.rol = rol;
+        this.estado = estado;
+        this.login = login;
+        this.contrasena = contrasena;
     }
 
     //Constructor General
@@ -77,13 +101,14 @@ public class Usuario_TO {
     
     //Registrar Usuarios
 
-    public Usuario_TO(String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, Sesion_TO sesion) {
+    public Usuario_TO(String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, String login, String contrasena) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.barrio = barrio;
         this.rol = rol;
         this.estado = estado;
-        this.sesion = sesion;
+        this.login = login;
+        this.contrasena = contrasena;
     }
     
     //Consultar Usuario
@@ -124,6 +149,22 @@ public class Usuario_TO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getTelefono() {

@@ -36,7 +36,7 @@ public class RegistrarUsuariosImpl implements RegistrarUsuarios {
             @QueryParam("contrasena") String contrasena) throws Exception {
 
         Usuario_TO cliente = new Usuario_TO(nombre, telefono, new Barrio_TO(idbarrios), new Rol_TO(idrol),
-                new Estado_TO(idestado), new Sesion_TO(login, contrasena));
+                new Estado_TO(idestado), login,contrasena );
 
         UsuarioDAOImpl usuario = new UsuarioDAOImpl();
 
