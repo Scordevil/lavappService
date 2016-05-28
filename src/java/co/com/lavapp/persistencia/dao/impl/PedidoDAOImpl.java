@@ -54,8 +54,7 @@ public class PedidoDAOImpl implements PedidoDAO {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
-                String sql = "UPDATE public.pedido "
-                        + "SET idestado = ? "
+                String sql = "DELETE FROM public.pedido "
                         + "WHERE idpedido = '" + pedido.getIdPedido() + "';";
 
                 st.executeQuery(sql);
@@ -118,6 +117,26 @@ public class PedidoDAOImpl implements PedidoDAO {
             throw e;
         } finally {
             ConexionSQL.CerrarConexion();
+        }
+        return nuevopedido;
+    }
+
+    @Override
+    public Pedido_TO editarEstadoPedido(Pedido_TO pedido, Estado_TO estado) throws Exception {
+        Pedido_TO nuevopedido = new Pedido_TO();
+        try {
+            try {
+                String sql = "UPDATE public.pedido "
+                        + "SET idestado = '" + estado.getIdEstado() + "' "
+                        + "WHERE idpedido = '" + pedido.getIdPedido() + "';";
+
+                st.executeQuery(sql);
+            } catch (SQLException e) {
+                nuevopedido = new Pedido_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
         }
         return nuevopedido;
     }

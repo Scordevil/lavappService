@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.com.lavapp.servicio.impl.ConsultarCantidadDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadesImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarDescripcionPedidoSegunPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarHorariosSegunJornadaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarJornadasImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarLocalidadesImpl.class);
@@ -39,8 +40,9 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarServiciosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubServiciosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioPorLoginImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioSesionImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarEstadoDescripcionPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarEstadoPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarUsuarioSesionImpl.class);

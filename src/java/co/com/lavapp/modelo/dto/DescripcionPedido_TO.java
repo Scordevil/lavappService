@@ -34,7 +34,7 @@ public class DescripcionPedido_TO {
      *
      * Columna idProducto
      */
-    private Producto_TO producto;
+    private SubProducto_TO subProducto;
 
     /**
      *
@@ -88,11 +88,15 @@ public class DescripcionPedido_TO {
     public DescripcionPedido_TO() {
     }
 
+    public DescripcionPedido_TO(int idDescripcionPedido) {
+        this.idDescripcionPedido = idDescripcionPedido;
+    }      
+
     //Constructor General
-    public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, Producto_TO producto, String descripcion, String observacionAsesor, String observacionAdministrador, byte foto1, byte foto2, byte foto3, Color_TO color, Pedido_TO pedido) {
+    public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, SubProducto_TO subProducto, String descripcion, String observacionAsesor, String observacionAdministrador, byte foto1, byte foto2, byte foto3, Color_TO color, Pedido_TO pedido) {
         this.idDescripcionPedido = idDescripcionPedido;
         this.estado = estado;
-        this.producto = producto;
+        this.subProducto = subProducto;
         this.descripcion = descripcion;
         this.observacionAsesor = observacionAsesor;
         this.observacionAdministrador = observacionAdministrador;
@@ -120,14 +124,14 @@ public class DescripcionPedido_TO {
         this.estado = estado;
     }
 
-    public Producto_TO getProducto() {
-        return producto;
+    public SubProducto_TO getSubProducto() {
+        return subProducto;
     }
 
-    public void setProducto(Producto_TO producto) {
-        this.producto = producto;
+    public void setSubProducto(SubProducto_TO subProducto) {
+        this.subProducto = subProducto;
     }
-
+    
     public String getDescripcion() {
         return descripcion;
     }
@@ -194,7 +198,7 @@ public class DescripcionPedido_TO {
 
     @Override
     public String toString() {
-        return "DescripcionPedido_TO{" + "idDescripcionPedido=" + idDescripcionPedido + ", estado=" + estado + ", producto=" + producto + ", descripcion=" + descripcion + ", observacionAsesor=" + observacionAsesor + ", observacionAdministrador=" + observacionAdministrador + ", foto1=" + foto1 + ", foto2=" + foto2 + ", foto3=" + foto3 + ", color=" + color + ", pedido=" + pedido + '}';
+        return "DescripcionPedido_TO{" + "idDescripcionPedido=" + idDescripcionPedido + ", estado=" + estado + ", subProducto=" + subProducto + ", descripcion=" + descripcion + ", observacionAsesor=" + observacionAsesor + ", observacionAdministrador=" + observacionAdministrador + ", foto1=" + foto1 + ", foto2=" + foto2 + ", foto3=" + foto3 + ", color=" + color + ", pedido=" + pedido + '}';
     }
 
 }

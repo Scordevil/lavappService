@@ -6,18 +6,24 @@
 package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
+import co.com.lavapp.modelo.dto.Color_TO;
+import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
+import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.persistencia.dao.DescripcionPedidoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO{
- 
+public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
+
     private final Statement st = ConexionSQL.conexion();
 
     //Metodo consultar Cantidad de descripciones(productos) agregadas segun pedido
@@ -42,5 +48,62 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO{
             ConexionSQL.CerrarConexion();
         }
         return cantidad;
+    }
+
+    @Override
+    public List<DescripcionPedido_TO> consultarDescripcionPedidoSegunPedido(Pedido_TO pedido) throws Exception {
+        List<DescripcionPedido_TO> descripcionPedidos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT iddescripcionpedido,"
+                        + "idestado, idsubproducto, descripcion, "
+                        + "observacionasesor, observacionadministrador, foto1, "
+                        + "foto2, foto3, idcolor, idpedido FROM "
+                        + "from public.descripcionpedido as descripcionpedido WHERE "
+                        + "descripcionpedido.idpedido = '" + pedido.getIdPedido() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    descripcionPedidos.add(new DescripcionPedido_TO(rs.getInt(1),
+                            new Estado_TO(rs.getInt(2)),
+                            new SubProducto_TO(rs.getInt(3)),
+                            rs.getString(4),
+                            rs.getString(5),
+                            rs.getString(6),
+                            rs.getByte(7),
+                            rs.getByte(8),
+                            rs.getByte(9),
+                            new Color_TO(rs.getInt(10)),
+                            new Pedido_TO(rs.getInt(11))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return descripcionPedidos;
+    }
+
+    @Override
+    public DescripcionPedido_TO EditarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception {
+        DescripcionPedido_TO nuevaDescripcion = new DescripcionPedido_TO();
+        try {
+            try {
+                String sql = "UPDATE public.descripcionpedido as descripcion"
+                        + " SET idestado= '" + estado.getIdEstado() + "'"
+                        + " WHERE descripcion.iddescripcion = '" + descripcion.getIdDescripcionPedido() + "';";
+                ResultSet rs = st.executeQuery(sql);
+            } catch (SQLException e) {
+                nuevaDescripcion = new DescripcionPedido_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaDescripcion;
     }
 }

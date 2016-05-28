@@ -34,7 +34,11 @@ public class Color_TO {
     public Color_TO() {
     }
 
-    //Constructor General
+    public Color_TO(int idColor) {
+        this.idColor = idColor;
+    }
+    
+        //Constructor General
     public Color_TO(int idColor, String nombre) {
         this.idColor = idColor;
         this.nombre = nombre;

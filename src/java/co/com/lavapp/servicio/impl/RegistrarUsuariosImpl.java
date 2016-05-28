@@ -6,6 +6,7 @@
 package co.com.lavapp.servicio.impl;
 
 import co.com.lavapp.modelo.dto.Barrio_TO;
+import co.com.lavapp.modelo.dto.Ciudad_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Rol_TO;
 import co.com.lavapp.modelo.dto.Sesion_TO;
@@ -33,10 +34,11 @@ public class RegistrarUsuariosImpl implements RegistrarUsuarios {
     public Usuario_TO registrarUsuarios(@QueryParam("nombre") String nombre,
             @QueryParam("telefono") String telefono, @QueryParam("idbarrios") int idbarrios,
             @QueryParam("idrol") int idrol, @QueryParam("idestado") int idestado, @QueryParam("usuario") String login,
-            @QueryParam("contrasena") String contrasena) throws Exception {
+            @QueryParam("contrasena") String contrasena, @QueryParam("apellido") String apellido, @QueryParam("genero") String genero,
+            @QueryParam("movil") String movil, @QueryParam("direccion") String direccion, @QueryParam("idCiudad") int idCiudad) throws Exception {
 
         Usuario_TO cliente = new Usuario_TO(nombre, telefono, new Barrio_TO(idbarrios), new Rol_TO(idrol),
-                new Estado_TO(idestado), login,contrasena );
+                new Estado_TO(idestado), login,contrasena,apellido, genero, movil, direccion, new Ciudad_TO(idCiudad));
 
         UsuarioDAOImpl usuario = new UsuarioDAOImpl();
 
