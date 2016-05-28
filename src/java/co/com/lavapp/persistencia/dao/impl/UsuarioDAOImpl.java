@@ -138,11 +138,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 throw e;
 
             }
-            ConexionSQL.CerrarConexion();
+          
 
         } catch (Exception e) {
 
             throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
 
         }
         return user;
@@ -155,36 +158,40 @@ public class UsuarioDAOImpl implements UsuarioDAO {
      * @param usuario
      * @return @throws Exception
      */
-//    @Override
-//    public Usuario_TO consultarUsuario(Usuario_TO usuario) throws Exception {
-//
-//        Usuario_TO user = new Usuario_TO();
-//
-//        try {
-//            try {
-//                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado " +
-//                "  FROM public.usuario where idusuario = '" + usuario.getIdUsuario() + "'; ";
-//
-//                ResultSet rs = st.executeQuery(sql);
-//
-//                while (rs.next()) {
-//
-//                    user = new Usuario_TO(rs.getInt(1),rs.getString(2),rs.getString(3),new Barrio_TO(rs.getInt(4)),new Rol_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)));
-//                }
-//            } catch (Exception e) {
-//                user = new Usuario_TO();
-//                throw e;
-//
-//            }
-//            ConexionSQL.CerrarConexion();
-//
-//        } catch (Exception e) {
-//
-//            throw e;
-//
-//        }
-//        return user;
-//    }
+    @Override
+    public Usuario_TO consultarUsuario(Usuario_TO usuario) throws Exception {
+
+        Usuario_TO user = new Usuario_TO();
+
+        try {
+            try {
+                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado, usuario, contrasena " +
+                "  FROM public.usuario where idusuario = '" + usuario.getIdUsuario() + "'; ";
+
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+
+                    user = new Usuario_TO(rs.getInt(1),rs.getString(2),rs.getString(3),new Barrio_TO(rs.getInt(4)),new Rol_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), rs.getString(7),rs.getString(8));
+                }
+            } catch (Exception e) {
+                user = new Usuario_TO();
+                throw e;
+
+            }
+            
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+         finally {
+            ConexionSQL.CerrarConexion();
+
+        }
+        return user;
+    }
 
     /**
      *
@@ -212,11 +219,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 throw e;
 
             }
-            ConexionSQL.CerrarConexion();
-
+            
         } catch (Exception e) {
 
             throw e;
+
+        }
+         finally {
+            ConexionSQL.CerrarConexion();
 
         }
         return user;

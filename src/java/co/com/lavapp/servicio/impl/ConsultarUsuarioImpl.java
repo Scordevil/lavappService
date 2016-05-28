@@ -34,10 +34,8 @@ public class ConsultarUsuarioImpl implements ConsultarUsuario{
 
         UsuarioDAOImpl usuario = new UsuarioDAOImpl();
 
-      //  return usuario.consultarUsuario(user);
+       return usuario.consultarUsuario(user);
         
-        return null;
-
-    }
+       }
 
 }
