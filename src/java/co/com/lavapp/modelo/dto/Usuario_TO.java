@@ -5,7 +5,6 @@
  */
 package co.com.lavapp.modelo.dto;
 
-import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -234,7 +233,6 @@ public class Usuario_TO {
 
     @Override
     public String toString() {
-        return "Usuario_TO{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", telefono=" + telefono + ", barrio=" + barrio + ", rol=" + rol + ", estado=" + estado + ", usuario=" + login + ", contrasena = " + contrasena + ", apellido = " + apellido + ", genero = " + genero + ", movil = " + movil + ", direccion = " + direccion + ", ciudad = " + ciudad + "}";
+        return "Usuario_TO{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", telefono=" + telefono + ", barrio=" + barrio + ", rol=" + rol + ", estado=" + estado + ", usuario=" + login + ", contrasena = " + contrasena + ", apellido = " + apellido + ", genero = " + genero + ", movil = " + movil + ", direccion = " + direccion + ", ciudad = " + ciudad + '}';
     }
-
 }

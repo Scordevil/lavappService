@@ -29,5 +29,10 @@ public class Pais_TO {
      * Columna nombre
      */
     private String nombre;
+    
+    @Override
+    public String toString() {
+        return "Pais_TO{" + "idPais=" + idPais + ", nombre=" + nombre + '}';
+    }
 
 }

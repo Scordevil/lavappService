@@ -46,6 +46,11 @@ public class Producto_TO {
     public Producto_TO() {
     }
 
+    public Producto_TO(int idProducto) {
+        this.idProducto = idProducto;
+    }
+       
+
     //Constructor General
     public Producto_TO(int idProducto, String nombre, String descripcion, SubServicio_TO subServicio) {
         this.idProducto = idProducto;

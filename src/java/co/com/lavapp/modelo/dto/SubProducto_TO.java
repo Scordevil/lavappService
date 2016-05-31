@@ -62,6 +62,9 @@ public class SubProducto_TO {
         this.producto = producto;
     }
     
-    
+     @Override
+    public String toString() {
+        return "SubProducto_TO{" + "idSubProducto=" + idSubProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", producto=" + producto + '}';
+    }
     
 }

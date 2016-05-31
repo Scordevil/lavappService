@@ -55,7 +55,7 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
         List<DescripcionPedido_TO> descripcionPedidos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT iddescripcionpedido,"
+                String sql = "SELECT iddescripcionpedido, "
                         + "idestado, idsubproducto, descripcion, "
                         + "observacionasesor, observacionadministrador, foto1, "
                         + "foto2, foto3, idcolor, idpedido FROM "

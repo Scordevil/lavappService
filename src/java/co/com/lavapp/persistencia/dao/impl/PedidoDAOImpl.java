@@ -141,4 +141,28 @@ public class PedidoDAOImpl implements PedidoDAO {
         return nuevopedido;
     }
 
+    @Override
+    public List<Pedido_TO> consultarPedidos() throws Exception {
+        List<Pedido_TO> pedidos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horainicio_idhorario, "
+                        + "horafinal_idhorario, idestado "
+                        + "from public.pedido as pedido";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return pedidos;
+    }
+
 }

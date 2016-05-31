@@ -26,6 +26,8 @@ public interface PedidoDAO {
     
     public Pedido_TO editarEstadoPedido(Pedido_TO pedido, Estado_TO estado) throws Exception;
     
+    public List<Pedido_TO> consultarPedidos() throws Exception;
+    
    
     
 }
