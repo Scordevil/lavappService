@@ -13,8 +13,6 @@ import co.com.lavapp.persistencia.dao.PedidoDAO;
 import co.com.lavapp.persistencia.dao.impl.PedidoDAOImpl;
 import co.com.lavapp.servicio.RegistrarPedido;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -43,5 +41,4 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
 
         return pedidoDao.registrarPedido(pedido);
     }
-
 }

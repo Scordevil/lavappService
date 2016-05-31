@@ -62,4 +62,26 @@ public class CiudadDAOImpl implements CiudadDAO {
 
     }
 
+    @Override
+    public List<Ciudad_TO> consultarCiudadesPorDepartamento(Departamento_TO departamento) throws Exception {
+        List<Ciudad_TO> ciudades = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idciudad, nombre, iddepartamento FROM ciudad as ciudad "
+                        + "WHERE ciudad.iddepartamento = '" + departamento.getIdDepartamento() + "'";
+                ResultSet rs = null;
+                rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    ciudades.add(new Ciudad_TO(rs.getInt(1), rs.getString(2), new Departamento_TO(rs.getInt(3))));
+                }
+            } catch (SQLException r) {
+                throw r;
+            } finally {
+                ConexionSQL.CerrarConexion();
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return ciudades;
+    }
 }

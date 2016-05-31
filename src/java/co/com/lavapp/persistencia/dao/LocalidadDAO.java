@@ -20,4 +20,6 @@ public interface LocalidadDAO {
     
     public List<Localidad_TO> consultarLocalidades(Ciudad_TO ciudad)throws Exception;
     
+     public Localidad_TO consultarLocalidad(Localidad_TO localidad) throws Exception;
+    
 }

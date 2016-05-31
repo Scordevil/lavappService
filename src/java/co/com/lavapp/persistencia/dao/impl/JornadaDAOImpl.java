@@ -44,4 +44,25 @@ public class JornadaDAOImpl implements JornadaDAO {
         return jornadas;
     }
 
+    @Override
+    public List<Jornada_TO> consultarJornada(Jornada_TO jornada) throws Exception {
+        List<Jornada_TO> jornadas = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idjornada, nombre FROM public.jornada as jornada"
+                        + "WHERE jornada.idjornada = '" + jornada.getIdJornada() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    jornadas.add(new Jornada_TO(rs.getInt(1), rs.getString(2)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return jornadas;
+    }
 }

@@ -34,6 +34,10 @@ public class Estrato_TO {
     public Estrato_TO() {
     }
 
+    public Estrato_TO(int idEstrato) {
+        this.idEstrato = idEstrato;
+    }
+    
     //Constructor General
     public Estrato_TO(int idEstrato, String nombre) {
         this.idEstrato = idEstrato;

@@ -6,6 +6,7 @@
 package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Ciudad_TO;
+import co.com.lavapp.modelo.dto.Departamento_TO;
 import java.util.List;
 
 /**
@@ -18,5 +19,6 @@ import java.util.List;
 public interface CiudadDAO {
     
     public List<Ciudad_TO> consultarCiudades() throws Exception;
-    
+    public List<Ciudad_TO> consultarCiudadesPorDepartamento(Departamento_TO departamento) throws Exception;
+
 }

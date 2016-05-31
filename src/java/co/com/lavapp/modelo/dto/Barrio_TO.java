@@ -65,10 +65,8 @@ public class Barrio_TO {
 
     public Barrio_TO(int idBarrios) {
         this.idBarrios = idBarrios;
-    }
-    
-    
-    
+    }  
+       
     
     // Getter and Setter
 

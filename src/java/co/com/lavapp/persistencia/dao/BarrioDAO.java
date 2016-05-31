@@ -5,17 +5,15 @@
  */
 package co.com.lavapp.persistencia.dao;
 
-import co.com.lavapp.modelo.dto.Jornada_TO;
+import co.com.lavapp.modelo.dto.Barrio_TO;
+import co.com.lavapp.modelo.dto.Localidad_TO;
 import java.util.List;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface JornadaDAO {
-    
-    public List<Jornada_TO> consultarJornadas() throws Exception;
-    
-     public List<Jornada_TO> consultarJornada(Jornada_TO jornada) throws Exception;
-    
+public interface BarrioDAO {
+   
+    public List<Barrio_TO> consultarBarriosSegunLocalidad(Localidad_TO localidad) throws Exception;
 }

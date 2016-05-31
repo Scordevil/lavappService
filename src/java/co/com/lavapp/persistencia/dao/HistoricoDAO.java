@@ -5,17 +5,14 @@
  */
 package co.com.lavapp.persistencia.dao;
 
-import co.com.lavapp.modelo.dto.Jornada_TO;
-import java.util.List;
+import co.com.lavapp.modelo.dto.Historico_TO;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface JornadaDAO {
+public interface HistoricoDAO {
     
-    public List<Jornada_TO> consultarJornadas() throws Exception;
-    
-     public List<Jornada_TO> consultarJornada(Jornada_TO jornada) throws Exception;
+    public Historico_TO registrarHistorico(Historico_TO historico) throws Exception;
     
 }

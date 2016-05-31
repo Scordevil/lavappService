@@ -41,6 +41,10 @@ public class Localidad_TO {
     public Localidad_TO() {
     }
 
+    public Localidad_TO(int idLocalidad) {
+        this.idLocalidad = idLocalidad;
+    }
+    
     // Constructor General
     public Localidad_TO(int idLocalidad, String nombre, Ciudad_TO ciudad) {
         this.idLocalidad = idLocalidad;

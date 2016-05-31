@@ -35,7 +35,7 @@ public class Historico_TO {
      *
      * Columna estado
      */
-    private int estado;
+    private Estado_TO estado;
 
     /**
      *
@@ -47,14 +47,24 @@ public class Historico_TO {
     public Historico_TO() {
     }
 
-    //Constructor General
-    public Historico_TO(int idHistorico, DescripcionPedido_TO descripcionPedido, int estado, Date fecha) {
+    public Historico_TO(int idHistorico) {
+        this.idHistorico = idHistorico;
+    }    
+
+    public Historico_TO(DescripcionPedido_TO descripcionPedido, Estado_TO estado, Date fecha) {
+        this.descripcionPedido = descripcionPedido;
+        this.estado = estado;
+        this.fecha = fecha;
+    }
+    
+        //Constructor General
+    public Historico_TO(int idHistorico, DescripcionPedido_TO descripcionPedido, Estado_TO estado, Date fecha) {
         this.idHistorico = idHistorico;
         this.descripcionPedido = descripcionPedido;
         this.estado = estado;
         this.fecha = fecha;
     }
-
+       
     //Getter and Setter
     public int getIdHistorico() {
         return idHistorico;
@@ -71,15 +81,15 @@ public class Historico_TO {
     public void setDescripcionPedido(DescripcionPedido_TO descripcionPedido) {
         this.descripcionPedido = descripcionPedido;
     }
-
-    public int getEstado() {
+    
+    public Estado_TO getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Estado_TO estado) {
         this.estado = estado;
     }
-
+  
     public Date getFecha() {
         return fecha;
     }

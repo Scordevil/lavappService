@@ -54,5 +54,27 @@ public class LocalidadDAOImpl implements LocalidadDAO {
         ConexionSQL.CerrarConexion();
         return localidades;
     }
+    
+    @Override
+    public Localidad_TO consultarLocalidad(Localidad_TO localidad) throws Exception {
+        Localidad_TO nuevalocalidad = new Localidad_TO();
+        try {
+            try {
+                String sql = "SELECT idlocalidad, nombre, idciudad FROM public.localidad as localidad "
+                        + "WHERE localidad.idlocalidad = '" + localidad.getIdLocalidad() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevalocalidad = new Localidad_TO(rs.getInt(1), rs.getString(2), new Ciudad_TO(rs.getInt(3)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevalocalidad;
+    }
 
 }
