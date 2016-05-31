@@ -125,6 +125,22 @@ public class Usuario_TO {
         this.ciudad = ciudad;
     }
     
+    //EditarUsuarios
+
+    public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, String contrasena, String apellido, String movil, String direccion, Ciudad_TO ciudad) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.barrio = barrio;
+        this.contrasena = contrasena;
+        this.apellido = apellido;
+        this.movil = movil;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+    }
+    
+    
+    
 
     //Getter and Setter
     public int getIdUsuario() {

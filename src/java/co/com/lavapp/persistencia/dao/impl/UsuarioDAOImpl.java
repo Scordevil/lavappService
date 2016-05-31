@@ -15,6 +15,7 @@ import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.UsuarioDAO;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -230,6 +231,36 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ConexionSQL.CerrarConexion();
 
         }
+        return user;
+    }
+    
+    /**
+     *
+     * @param usuario
+     * @return @throws Exception
+     */
+    @Override
+    public Usuario_TO editarUsuario(Usuario_TO usuario) throws Exception {
+
+         Usuario_TO user = new Usuario_TO();
+
+        try {
+            String sql = "UPDATE public.usuario  "
+                    + "SET nombre='" + usuario.getNombre() + "',apellido='" + usuario.getApellido()+ "' ,telefono='" + usuario.getTelefono()+ "' , idbarrios= " + usuario.getBarrio().getIdBarrios()+ " , contrasena= '" + usuario.getContrasena()+ "' , movil= '" + usuario.getMovil()+ "' , direccion= '" + usuario.getDireccion()+ "' , idciudad= " + usuario.getCiudad().getIdCiudad()+ " "
+                    + "  WHERE idUsuario = " + usuario.getIdUsuario() + " ;";
+
+            st.executeUpdate(sql);
+
+
+        } catch (Exception e) {
+            user = new Usuario_TO();
+            throw e;
+
+        }finally {
+            ConexionSQL.CerrarConexion();
+
+        }
+
         return user;
     }
 
