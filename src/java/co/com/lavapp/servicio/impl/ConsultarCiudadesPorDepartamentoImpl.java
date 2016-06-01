@@ -12,7 +12,9 @@ import co.com.lavapp.persistencia.dao.impl.CiudadDAOImpl;
 import co.com.lavapp.servicio.ConsultarCiudadesPorDepartamento;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 /**
@@ -23,6 +25,8 @@ import javax.ws.rs.QueryParam;
 @Path("/consultarCiudadesPorDepartamento")
 public class ConsultarCiudadesPorDepartamentoImpl implements ConsultarCiudadesPorDepartamento{
 
+    @GET
+    @Produces({"application/json"})
     @Override
     public List<Ciudad_TO> consultarCiudadesPorDepartamento(@QueryParam("idDepartamento") int idDepartamento) throws Exception {
         Departamento_TO departamento = new Departamento_TO(idDepartamento);

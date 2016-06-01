@@ -21,7 +21,7 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("editarEstadoDescripcionPedido")
+@Path("/editarEstadoDescripcionPedido")
 public class EditarEstadoDescripcionPedidoImpl implements EditarEstadoDescripcionPedido {
 
     @GET

@@ -27,7 +27,6 @@ public class ConsultarCantidadDescripcionPedidoImpl implements ConsultarCantidad
     @Produces({"application/json"})
     @Override
     public int consultarCantidadDescripcionPedido(@QueryParam("idPedido") int idPedido) throws Exception {
-
         Pedido_TO pedido = new Pedido_TO(idPedido);
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
         return descripcionDao.consultarCantidadDescripcionPedido(pedido);

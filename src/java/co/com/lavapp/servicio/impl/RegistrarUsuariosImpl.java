@@ -9,7 +9,6 @@ import co.com.lavapp.modelo.dto.Barrio_TO;
 import co.com.lavapp.modelo.dto.Ciudad_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Rol_TO;
-import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.impl.UsuarioDAOImpl;
 import co.com.lavapp.servicio.RegistrarUsuarios;

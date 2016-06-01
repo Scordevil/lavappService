@@ -34,25 +34,32 @@ public class Costo_TO {
      *
      * Columna idCosto
      */
-    private Producto_TO producto;
+    private SubProducto_TO subProducto;
 
     /**
      *
      * Columna idCosto
      */
-    private Estrato_TO estrato;
+    private Zona_TO zona;
 
     //Constructores
     public Costo_TO() {
     }
 
-    //Constructor General
-    public Costo_TO(int idCosto, int valor, Producto_TO producto, Estrato_TO estrato) {
+    public Costo_TO(int valor, SubProducto_TO subProducto, Zona_TO zona) {
+        this.valor = valor;
+        this.subProducto = subProducto;
+        this.zona = zona;
+    }
+
+    public Costo_TO(int idCosto, int valor, SubProducto_TO subProducto, Zona_TO zona) {
         this.idCosto = idCosto;
         this.valor = valor;
-        this.producto = producto;
-        this.estrato = estrato;
+        this.subProducto = subProducto;
+        this.zona = zona;
     }
+
+    
 
     //Getter and Setter
     public int getIdCosto() {
@@ -71,25 +78,26 @@ public class Costo_TO {
         this.valor = valor;
     }
 
-    public Producto_TO getProducto() {
-        return producto;
+    public SubProducto_TO getSubProducto() {
+        return subProducto;
     }
 
-    public void setProducto(Producto_TO producto) {
-        this.producto = producto;
+    public void setSubProducto(SubProducto_TO subProducto) {
+        this.subProducto = subProducto;
+    }
+    
+    public Zona_TO getZona() {
+        return zona;
     }
 
-    public Estrato_TO getEstrato() {
-        return estrato;
+    public void setZona(Zona_TO zona) {
+        this.zona = zona;
     }
-
-    public void setEstrato(Estrato_TO estrato) {
-        this.estrato = estrato;
-    }
+    
 
     @Override
     public String toString() {
-        return "Costo_TO{" + "idCosto=" + idCosto + ", valor=" + valor + ", producto=" + producto + ", estrato=" + estrato + '}';
+        return "Costo_TO{" + "idCosto=" + idCosto + ", valor=" + valor + ", subProducto=" + subProducto + ", zona=" + zona + '}';
     }
 
 }

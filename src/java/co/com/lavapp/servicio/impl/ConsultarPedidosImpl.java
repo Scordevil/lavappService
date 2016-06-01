@@ -10,13 +10,21 @@ import co.com.lavapp.persistencia.dao.PedidoDAO;
 import co.com.lavapp.persistencia.dao.impl.PedidoDAOImpl;
 import co.com.lavapp.servicio.ConsultarPedidos;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 /**
  *
  * @author Desarrollo_Planit
  */
+@Stateless
+@Path("/consultarPedidos")
 public class ConsultarPedidosImpl implements ConsultarPedidos{
 
+    @GET
+    @Produces({"application/json"})
     @Override
     public List<Pedido_TO> consultarPedidos() throws Exception {
         PedidoDAO pedidoDao = new PedidoDAOImpl();
