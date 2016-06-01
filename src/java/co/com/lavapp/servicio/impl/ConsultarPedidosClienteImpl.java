@@ -29,7 +29,7 @@ public class ConsultarPedidosClienteImpl implements ConsultarPedidosCliente{
     @GET
     @Produces({"application/json"})
     @Override
-    public List<Pedido_TO> consultarPedidosCliente(@QueryParam("idUsuario ") int idUsuario) throws Exception {
+    public List<Pedido_TO> consultarPedidosCliente(@QueryParam("idUsuario") int idUsuario) throws Exception {
        Usuario_TO usuario = new Usuario_TO(idUsuario);
        PedidoDAO pedidoDao = new PedidoDAOImpl();
        

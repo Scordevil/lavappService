@@ -30,9 +30,7 @@ public class ConsultarCiudadesImpl implements ConsultarCiudades {
         CiudadDAOImpl ciudadDAO = new CiudadDAOImpl();
         List<Ciudad_TO> ciudades = new ArrayList<>();
         try {
-
             ciudades = ciudadDAO.consultarCiudades();
-
         } catch (Exception e) {
             throw e;
         }

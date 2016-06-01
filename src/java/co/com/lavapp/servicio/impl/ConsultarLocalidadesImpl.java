@@ -27,6 +27,7 @@ public class ConsultarLocalidadesImpl implements ConsultarLocalidades {
 
     @GET
     @Produces({"application/json"})
+    @Override
     public List<Localidad_TO> consultarTodasLocalidades(
             @QueryParam("idCiudad") int idCiudad) throws Exception {
 

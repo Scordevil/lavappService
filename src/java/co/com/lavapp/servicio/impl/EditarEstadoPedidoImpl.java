@@ -27,7 +27,8 @@ public class EditarEstadoPedidoImpl implements EditarEstadoPedido {
     @GET
     @Produces({"application/json"})
     @Override
-    public Pedido_TO editarEstadoPedido(@QueryParam("idPedido") int idPedido, @QueryParam("idEstado") int idEstado) throws Exception {
+    public Pedido_TO editarEstadoPedido(@QueryParam("idPedido") int idPedido, 
+            @QueryParam("idEstado") int idEstado) throws Exception {
         Estado_TO estado = new Estado_TO(idEstado);
         Pedido_TO pedido = new Pedido_TO(idPedido);
         PedidoDAO pedidoDao = new PedidoDAOImpl();

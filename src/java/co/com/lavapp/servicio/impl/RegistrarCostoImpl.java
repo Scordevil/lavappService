@@ -15,6 +15,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 /**
  *
@@ -27,7 +28,9 @@ public class RegistrarCostoImpl implements RegistrarCosto {
     @GET
     @Produces({"application/json"})
     @Override
-    public Costo_TO registrarCosto(int valor, int idSubProducto, int idZona) throws Exception {
+    public Costo_TO registrarCosto(@QueryParam("valor") int valor, 
+            @QueryParam("idSubProducto") int idSubProducto, 
+            @QueryParam("idZona") int idZona) throws Exception {
         Costo_TO costo = new Costo_TO(valor, new SubProducto_TO(idSubProducto), new Zona_TO(idZona));
         CostoDAO costoDao = new CostoDAOImpl();
         return costoDao.RegistrarCosto(costo);
