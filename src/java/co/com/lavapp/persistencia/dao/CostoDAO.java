@@ -6,6 +6,8 @@
 package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Costo_TO;
+import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.SubProducto_TO;
 
 /**
  *
@@ -14,5 +16,9 @@ import co.com.lavapp.modelo.dto.Costo_TO;
 public interface CostoDAO  {
     
     public Costo_TO RegistrarCosto(Costo_TO costo) throws Exception;
+    
+    public int consultarCostoPedido(Pedido_TO pedido) throws Exception;
+    
+    public Costo_TO consultarCostoSubProducto(SubProducto_TO subproducto) throws Exception;
     
 }

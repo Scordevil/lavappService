@@ -46,6 +46,12 @@ public class Calificacion_TO {
     public Calificacion_TO() {
     }
 
+    public Calificacion_TO(int calificacion, String observacion, Pedido_TO pedido) {
+        this.calificacion = calificacion;
+        this.observacion = observacion;
+        this.pedido = pedido;
+    }        
+
     //Constructor General
     public Calificacion_TO(int idCalificacion, int calificacion, String observacion, Pedido_TO pedido) {
         this.idCalificacion = idCalificacion;

@@ -7,6 +7,7 @@ package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.Proveedor_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public interface PedidoDAO {
     public Pedido_TO editarEstadoPedido(Pedido_TO pedido, Estado_TO estado) throws Exception;
     
     public List<Pedido_TO> consultarPedidos() throws Exception;
+    
+    public List<Pedido_TO> consultarPedidosSegunPlanta(Proveedor_TO proveedor) throws Exception;
     
    
     
