@@ -14,5 +14,5 @@ import java.util.Date;
  */
 public interface RegistrarPedido {
     
-    public Pedido_TO registrarPedido(int idUsuario, Date fechaInicio, int idHorarioInicio, int idHorarioFinal, int idEstado) throws Exception;
+    public Pedido_TO registrarPedido(int idUsuario, Date fechaInicio, int idHorarioInicio, int idHorarioFinal, int idEstado, int idProveedor) throws Exception;
 }

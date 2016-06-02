@@ -55,6 +55,12 @@ public class Pedido_TO {
      */
     private Estado_TO estado;
 
+    /**
+     *
+     * Columna idProveedor
+     */
+    private Proveedor_TO proveedor;
+
     //Constructores
     public Pedido_TO() {
     }
@@ -64,24 +70,25 @@ public class Pedido_TO {
         this.idPedido = idPedido;
     }
 
-    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado) {
+    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor) {
+        this.usuario = usuario;
+        this.fechaInicio = fechaInicio;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
+        this.proveedor = proveedor;
+    }
+
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
         this.estado = estado;
+        this.proveedor = proveedor;
     }
 
-    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado) {
-        this.usuario = usuario;
-        this.fechaInicio = fechaInicio;
-        this.horaInicio = horaInicio;
-        this.horaFinal = horaFinal;
-        this.estado = estado;
-    }
-
-   
     //Getter and Setter
     public int getIdPedido() {
         return idPedido;
@@ -131,9 +138,17 @@ public class Pedido_TO {
         this.estado = estado;
     }
 
+    public Proveedor_TO getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor_TO proveedor) {
+        this.proveedor = proveedor;
+    }
+
     @Override
     public String toString() {
-        return "Pedido_TO{idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", idHoraInicio=" + horaInicio.getIdHorario() + ", idHoraFinal=" + horaFinal.getIdHorario() + ", idEstado=" + estado.getIdEstado() + "}";
+        return "Pedido_TO{" + "idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", HoraInicio=" + horaInicio + ", HoraFinal=" + horaFinal + ", Estado=" + estado + ", Proveedor=" + proveedor + '}';
     }
 
 }

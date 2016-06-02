@@ -20,9 +20,9 @@ public class Proveedor_TO {
 
     /**
      *
-     * Columna idJornada
+     * Columna idProveedor
      */
-    private int idJornada;
+    private int idProveedor;
 
     /**
      *
@@ -60,28 +60,47 @@ public class Proveedor_TO {
      */
     private int cupo;
 
+    /**
+     *
+     * Columna zona
+     */
+    private Zona_TO zona;
+
     //Constructores
     public Proveedor_TO() {
     }
 
-    //Constructor General
-    public Proveedor_TO(int idJornada, String razonSocial, String nit, String telefono, String direccion, Usuario_TO usuario, int cupo) {
-        this.idJornada = idJornada;
+    public Proveedor_TO(int idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public Proveedor_TO(int idProveedor, String razonSocial, String nit, String telefono, String direccion, Usuario_TO usuario, int cupo, Zona_TO zona) {
+        this.idProveedor = idProveedor;
         this.razonSocial = razonSocial;
         this.nit = nit;
         this.telefono = telefono;
         this.direccion = direccion;
         this.usuario = usuario;
         this.cupo = cupo;
+        this.zona = zona;
+    }
+
+    //Getter & Setter
+    public int getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public Zona_TO getZona() {
+        return zona;
     }
 
     //Getter and Setter
-    public int getIdJornada() {
-        return idJornada;
-    }
-
-    public void setIdJornada(int idJornada) {
-        this.idJornada = idJornada;
+    public void setZona(Zona_TO zona) {
+        this.zona = zona;
     }
 
     public String getRazonSocial() {
@@ -134,7 +153,7 @@ public class Proveedor_TO {
 
     @Override
     public String toString() {
-        return "Proveedor_TO{" + "idJornada=" + idJornada + ", razonSocial=" + razonSocial + ", nit=" + nit + ", telefono=" + telefono + ", direccion=" + direccion + ", usuario=" + usuario + ", cupo=" + cupo + '}';
+        return "Proveedor_TO{" + "idProveedor=" + idProveedor + ", razonSocial=" + razonSocial + ", nit=" + nit + ", telefono=" + telefono + ", direccion=" + direccion + ", usuario=" + usuario + ", cupo=" + cupo + ", zona=" + zona + '}';
     }
 
 }

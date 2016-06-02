@@ -9,7 +9,9 @@ import co.com.lavapp.conexion.ConexionSQL;
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.Proveedor_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
+import co.com.lavapp.modelo.dto.Zona_TO;
 import co.com.lavapp.persistencia.dao.PedidoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -76,12 +78,12 @@ public class PedidoDAOImpl implements PedidoDAO {
         List<Pedido_TO> pedidos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idpedido, idusuario, fechaInicio, horainicio_idhorario, horafinal_idhorario, idestado "
+                String sql = "SELECT idpedido, idusuario, fechaInicio, horainicio_idhorario, horafinal_idhorario, idestado, idproveedor"
                         + "from public.pedido as pedido WHERE "
                         + "pedido.idusuario = '" + usuario.getIdUsuario() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6))));
+                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7))));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -100,7 +102,7 @@ public class PedidoDAOImpl implements PedidoDAO {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
-                String sql = "SELECT idpedido, idusuario, fechaInicio, horainicio_idhorario, horafinal_idhorario, idestado "
+                String sql = "SELECT idpedido, idusuario, fechaInicio, horainicio_idhorario, horafinal_idhorario, idestado, idproveedor "
                         + "from public.pedido as pedido WHERE "
                         + "pedido.idusuario = '" + pedido.getUsuario().getIdUsuario() + "' and "
                         + "pedido.fechaInicio = '" + pedido.getFechaInicio() + "' and "
@@ -108,7 +110,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "pedido.horariofinal_idhorario = '" + pedido.getHoraFinal().getIdHorario() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    nuevopedido = new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)));
+                    nuevopedido = new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7)));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -148,11 +150,11 @@ public class PedidoDAOImpl implements PedidoDAO {
             try {
                 String sql = "SELECT idpedido, idusuario, "
                         + "fechaInicio, horainicio_idhorario, "
-                        + "horafinal_idhorario, idestado "
+                        + "horafinal_idhorario, idestado, idproveedor "
                         + "from public.pedido as pedido";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6))));
+                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7))));
                 }
             } catch (SQLException e) {
                 throw e;
