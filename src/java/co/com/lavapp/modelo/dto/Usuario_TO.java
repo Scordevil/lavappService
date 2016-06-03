@@ -50,9 +50,9 @@ public class Usuario_TO {
     private Estado_TO estado;
     /**
      *
-     * Columna usuario
+     * Columna email
      */
-    private String login;
+    private String email;
     /**
      *
      * Columna contrasena
@@ -92,14 +92,14 @@ public class Usuario_TO {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, String login, String contrasena, String apellido, String genero, String movil, String direccion, Ciudad_TO ciudad) {
+    public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, String email, String contrasena, String apellido, String genero, String movil, String direccion, Ciudad_TO ciudad) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
         this.barrio = barrio;
         this.rol = rol;
         this.estado = estado;
-        this.login = login;
+        this.email = email;
         this.contrasena = contrasena;
         this.apellido = apellido;
         this.genero = genero;
@@ -109,14 +109,13 @@ public class Usuario_TO {
     }
 
     //Registrar Usuarios
-
-    public Usuario_TO(String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, String login, String contrasena, String apellido, String genero, String movil, String direccion, Ciudad_TO ciudad) {
+    public Usuario_TO(String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, String email, String contrasena, String apellido, String genero, String movil, String direccion, Ciudad_TO ciudad) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.barrio = barrio;
         this.rol = rol;
         this.estado = estado;
-        this.login = login;
+        this.email = email;
         this.contrasena = contrasena;
         this.apellido = apellido;
         this.genero = genero;
@@ -124,9 +123,8 @@ public class Usuario_TO {
         this.direccion = direccion;
         this.ciudad = ciudad;
     }
-    
-    //EditarUsuarios
 
+    //EditarUsuarios
     public Usuario_TO(int idUsuario, String nombre, String telefono, Barrio_TO barrio, String contrasena, String apellido, String movil, String direccion, Ciudad_TO ciudad) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -138,9 +136,6 @@ public class Usuario_TO {
         this.direccion = direccion;
         this.ciudad = ciudad;
     }
-    
-    
-    
 
     //Getter and Setter
     public int getIdUsuario() {
@@ -159,12 +154,12 @@ public class Usuario_TO {
         this.nombre = nombre;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContrasena() {
@@ -249,6 +244,6 @@ public class Usuario_TO {
 
     @Override
     public String toString() {
-        return "Usuario_TO{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", telefono=" + telefono + ", barrio=" + barrio + ", rol=" + rol + ", estado=" + estado + ", usuario=" + login + ", contrasena = " + contrasena + ", apellido = " + apellido + ", genero = " + genero + ", movil = " + movil + ", direccion = " + direccion + ", ciudad = " + ciudad + '}';
+        return "Usuario_TO{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", telefono=" + telefono + ", barrio=" + barrio + ", rol=" + rol + ", estado=" + estado + ", email=" + email + ", contrasena = " + contrasena + ", apellido = " + apellido + ", genero = " + genero + ", movil = " + movil + ", direccion = " + direccion + ", ciudad = " + ciudad + '}';
     }
 }

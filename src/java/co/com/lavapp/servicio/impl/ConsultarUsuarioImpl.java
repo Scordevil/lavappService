@@ -5,7 +5,6 @@
  */
 package co.com.lavapp.servicio.impl;
 
-import co.com.lavapp.modelo.dto.Sesion_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.impl.UsuarioDAOImpl;
 import co.com.lavapp.servicio.ConsultarUsuario;

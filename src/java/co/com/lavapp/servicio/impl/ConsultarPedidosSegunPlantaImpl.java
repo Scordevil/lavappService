@@ -22,7 +22,7 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/consultarPedidiosSegunPlanta")
+@Path("/consultarPedidosSegunPlanta")
 public class ConsultarPedidosSegunPlantaImpl implements ConsultarPedidosSegunPlanta{
 
     @GET
@@ -32,8 +32,6 @@ public class ConsultarPedidosSegunPlantaImpl implements ConsultarPedidosSegunPla
         Proveedor_TO proveedor = new Proveedor_TO(idProveedor);
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         return pedidoDao.consultarPedidosSegunPlanta(proveedor);
-    }
-    
-    
-    
+    }  
+        
 }
