@@ -21,7 +21,7 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/consultarSubProductosSegunProducto")
+@Path("/consultarSubProductos")
 public class ConsultarSubProductosSegunProducto implements co.com.lavapp.servicio.ConsultarSubProductosSegunProducto {
 
     @GET
