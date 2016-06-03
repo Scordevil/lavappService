@@ -9,6 +9,7 @@ import co.com.lavapp.modelo.dto.Producto_TO;
 import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.persistencia.dao.SubProductoDAO;
 import co.com.lavapp.persistencia.dao.impl.SubProductoDAOImpl;
+import co.com.lavapp.servicio.ConsultarSubProductosSegunProducto;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -22,7 +23,7 @@ import javax.ws.rs.QueryParam;
  */
 @Stateless
 @Path("/consultarSubProductos")
-public class ConsultarSubProductosSegunProducto implements co.com.lavapp.servicio.ConsultarSubProductosSegunProducto {
+public class ConsultarSubProductosSegunProductoImpl implements ConsultarSubProductosSegunProducto {
 
     @GET
     @Produces({"application/json"})
