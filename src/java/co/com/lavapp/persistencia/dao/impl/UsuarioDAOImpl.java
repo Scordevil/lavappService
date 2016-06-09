@@ -126,7 +126,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         try {
             try {
-                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado, email, contrasena, genero, movil, direccion, idciudad "
+                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad "
                         + "  FROM public.usuario where idusuario = '" + usuario.getIdUsuario() + "'; ";
 
                 ResultSet rs = st.executeQuery(sql);
@@ -178,6 +178,28 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
 
         return user;
+    }
+
+    @Override
+    public boolean consultarExistenciaUsuario(Usuario_TO usuario) throws Exception {
+        boolean existe = false;
+        try {
+            try {
+                String sql = "SELECT * FROM public.usuario "
+                        + "WHERE email = '" + usuario.getEmail() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                   existe = true;
+                } 
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return existe;
     }
 
 }

@@ -108,6 +108,8 @@ public class Usuario_TO {
         this.ciudad = ciudad;
     }
 
+   
+
     //Registrar Usuarios
     public Usuario_TO(String nombre, String telefono, Barrio_TO barrio, Rol_TO rol, Estado_TO estado, String email, String contrasena, String apellido, String genero, String movil, String direccion, Ciudad_TO ciudad) {
         this.nombre = nombre;
