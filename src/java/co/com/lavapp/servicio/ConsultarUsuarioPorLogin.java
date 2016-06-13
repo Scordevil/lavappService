@@ -13,5 +13,5 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
  */
 public interface ConsultarUsuarioPorLogin {
     
-    public Usuario_TO consultarUsuarioPorLogin(String email, String contrasena) throws Exception;
+    public Usuario_TO consultarUsuarioPorLogin(String email) throws Exception;
 }

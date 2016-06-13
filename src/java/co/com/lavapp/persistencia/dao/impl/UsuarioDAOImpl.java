@@ -84,7 +84,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         try {
             try {
                 String sql = "SELECT idusuario, nombre, telefono, idBarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad"
-                        + " FROM public.usuario as usuario where usuario.email = '" + usuario.getEmail() + "' AND constrasena = '" + funciones.getMD5(usuario.getContrasena()) + "'";
+                        + " FROM public.usuario as usuario where usuario.email = '" + usuario.getEmail() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     user = new Usuario_TO(rs.getInt(1),

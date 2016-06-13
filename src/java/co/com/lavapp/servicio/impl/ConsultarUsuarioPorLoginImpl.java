@@ -15,25 +15,21 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-
-
 /**
  *
  * @author Desarrollo_Planit
  */
-
 @Stateless
 @Path("/consultarUsuarioPorLogin")
-public class ConsultarUsuarioPorLoginImpl implements ConsultarUsuarioPorLogin{
+public class ConsultarUsuarioPorLoginImpl implements ConsultarUsuarioPorLogin {
 
     @GET
     @Produces({"application/json"})
     @Override
-    public Usuario_TO consultarUsuarioPorLogin(@QueryParam("email") String email, @QueryParam("contrasena") String contrasena) throws Exception {
+    public Usuario_TO consultarUsuarioPorLogin(@QueryParam("email") String email) throws Exception {
         Usuario_TO usuario = new Usuario_TO();
         usuario.setEmail(email);
-        usuario.setContrasena(contrasena);
         UsuarioDAO usuarioDao = new UsuarioDAOImpl();
         return usuarioDao.consultarUsuarioPorLogin(usuario);
-    }    
+    }
 }
