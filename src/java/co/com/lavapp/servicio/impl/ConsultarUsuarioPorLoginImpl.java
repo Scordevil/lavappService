@@ -29,9 +29,10 @@ public class ConsultarUsuarioPorLoginImpl implements ConsultarUsuarioPorLogin{
     @GET
     @Produces({"application/json"})
     @Override
-    public Usuario_TO consultarUsuarioPorLogin(@QueryParam("email") String email) throws Exception {
+    public Usuario_TO consultarUsuarioPorLogin(@QueryParam("email") String email, @QueryParam("contrasena") String contrasena) throws Exception {
         Usuario_TO usuario = new Usuario_TO();
         usuario.setEmail(email);
+        usuario.setContrasena(contrasena);
         UsuarioDAO usuarioDao = new UsuarioDAOImpl();
         return usuarioDao.consultarUsuarioPorLogin(usuario);
     }    
