@@ -72,7 +72,7 @@ public class PaisDAOImpl implements PaisDAO {
         try {
             try {
                 String sql = "INSERT INTO public.pais(nombre)"
-                        + " VALUES('" + pais.getNombre() + "')";
+                        + " VALUES ('" + pais.getNombre() + "')";
                 st.execute(sql);
             } catch (Exception e) {
                 nuevopais = new Pais_TO();
@@ -112,8 +112,8 @@ public class PaisDAOImpl implements PaisDAO {
         Pais_TO nuevopais = new Pais_TO();
         try {
             try {
-                String sql = "DELETE FROM public.pais"
-                        + " WHERE idPais = '" + pais.getIdPais() + "'";
+                String sql = "DELETE FROM public.pais as pais"
+                        + " WHERE pais.idPais = '" + pais.getIdPais() + "'";
                 st.execute(sql);
             } catch (Exception e) {
                 nuevopais = new Pais_TO();

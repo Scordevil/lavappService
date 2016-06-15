@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 /**
  *
@@ -25,7 +26,7 @@ public class EliminarPaisImpl implements EliminarPais {
     @GET
     @Produces({"application/json"})
     @Override
-    public Pais_TO eliminarPais(int idPais) throws Exception {
+    public Pais_TO eliminarPais(@QueryParam("idPais") int idPais) throws Exception {
         Pais_TO pais = new Pais_TO(idPais);
         PaisDAO paisDAO = new PaisDAOImpl();
         return paisDAO.eliminarPais(pais);
