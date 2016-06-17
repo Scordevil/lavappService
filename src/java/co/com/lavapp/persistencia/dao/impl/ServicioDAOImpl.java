@@ -46,4 +46,27 @@ public class ServicioDAOImpl implements ServicioDAO {
         return servicios;
     }
 
+    @Override
+    public Servicio_TO registrarServicio(Servicio_TO serv) throws Exception {
+
+        Servicio_TO servicio = new Servicio_TO();
+        try {
+            try {
+
+                String sql = "INSERT INTO public.servicio( nombre ) "
+                        + "    VALUES ('"+ serv.getNombre() +"')";
+                st.execute(sql);
+
+            } catch (Exception e) {
+                servicio = new Servicio_TO();
+                throw e;
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return servicio;
+    }
+
 }

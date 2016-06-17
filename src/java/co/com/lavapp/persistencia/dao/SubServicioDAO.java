@@ -16,5 +16,7 @@ import java.util.List;
 public interface SubServicioDAO {
     
     public List<SubServicio_TO> consultarSubServicios(Servicio_TO servicio) throws Exception;
+    public List<SubServicio_TO> consultarSubServicios() throws Exception;
+    public SubServicio_TO registrarSubServicio(SubServicio_TO subServi) throws Exception;
     
 }

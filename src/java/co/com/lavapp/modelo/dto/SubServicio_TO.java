@@ -35,26 +35,28 @@ public class SubServicio_TO {
      * Columna idServicio
      */
     private Servicio_TO servicio;
-    
-    //Constructores
 
+    //Constructores
     public SubServicio_TO() {
     }
 
     public SubServicio_TO(int idSubServicio) {
         this.idSubServicio = idSubServicio;
     }
-        
-    //Constructor General
 
+    public SubServicio_TO(String nombre, Servicio_TO servicio) {
+        this.nombre = nombre;
+        this.servicio = servicio;
+    }
+
+    //Constructor General
     public SubServicio_TO(int idSubServicio, String nombre, Servicio_TO servicio) {
         this.idSubServicio = idSubServicio;
         this.nombre = nombre;
         this.servicio = servicio;
     }
-    
-    //Getter and Setter
 
+    //Getter and Setter
     public int getIdSubServicio() {
         return idSubServicio;
     }
@@ -83,7 +85,5 @@ public class SubServicio_TO {
     public String toString() {
         return "SubServicio_TO{" + "idSubServicio=" + idSubServicio + ", nombre=" + nombre + ", servicio=" + servicio + '}';
     }
-    
-    
 
 }
