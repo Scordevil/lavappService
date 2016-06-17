@@ -41,6 +41,11 @@ public class Localidad_TO {
     public Localidad_TO() {
     }
 
+    public Localidad_TO(String nombre, Ciudad_TO ciudad) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+    }   
+    
     public Localidad_TO(int idLocalidad) {
         this.idLocalidad = idLocalidad;
     }

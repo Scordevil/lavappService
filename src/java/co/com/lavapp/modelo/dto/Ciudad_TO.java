@@ -40,6 +40,13 @@ public class Ciudad_TO {
     public Ciudad_TO() {
     }
 
+    public Ciudad_TO(String nombre, Departamento_TO departamento) {
+        this.nombre = nombre;
+        this.departamento = departamento;
+    }
+    
+    
+
     //Constructor General
     public Ciudad_TO(int idCiudad, String nombre, Departamento_TO departamento) {
         this.idCiudad = idCiudad;

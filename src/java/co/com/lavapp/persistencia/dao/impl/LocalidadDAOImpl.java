@@ -31,7 +31,6 @@ public class LocalidadDAOImpl implements LocalidadDAO {
 
         List<Localidad_TO> localidades = new ArrayList<>();
         try {
-
             try {
                 String sql = "SELECT localidad.idlocalidad, localidad.nombre, localidad.idciudad "
                         + "  FROM public.localidad , public.ciudad "
@@ -40,11 +39,9 @@ public class LocalidadDAOImpl implements LocalidadDAO {
 
                 ResultSet rs = null;
                 rs = st.executeQuery(sql);
-
                 while (rs.next()) {
                     localidades.add(new Localidad_TO(rs.getInt(1), rs.getString(2), new Ciudad_TO(rs.getInt(3))));
                 }
-
             } catch (SQLException r) {
                 throw r;
             }
@@ -54,7 +51,7 @@ public class LocalidadDAOImpl implements LocalidadDAO {
         ConexionSQL.CerrarConexion();
         return localidades;
     }
-    
+
     @Override
     public Localidad_TO consultarLocalidad(Localidad_TO localidad) throws Exception {
         Localidad_TO nuevalocalidad = new Localidad_TO();
@@ -71,7 +68,70 @@ public class LocalidadDAOImpl implements LocalidadDAO {
             }
         } catch (Exception e) {
             throw e;
-        } finally{
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevalocalidad;
+    }
+
+    @Override
+    public Localidad_TO registrarLocalidad(Localidad_TO localidad) throws Exception {
+        Localidad_TO nuevalocalidad = new Localidad_TO();
+        try {
+            try {
+                String sql = "INSERT INTO public.localidad (idlocalidad, nombre, idciudad)"
+                        + " VALUES ('" + localidad.getIdLocalidad() + "','" + localidad.getNombre() + "','" + localidad.getCiudad().getIdCiudad() + "')";
+                st.execute(sql);
+            } catch (Exception e) {
+                nuevalocalidad = new Localidad_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevalocalidad;
+    }
+
+    @Override
+    public Localidad_TO modificarLocalidad(Localidad_TO localidad) throws Exception {
+        Localidad_TO nuevalocalidad = new Localidad_TO();
+        try {
+            try {
+                String sql = "UPDATE public.localidad SET nombre = '" + localidad.getNombre() + "',"
+                        + " idciudad = '" + localidad.getCiudad().getIdCiudad() + "'"
+                        + " WHERE idlocalidad = '" + localidad.getIdLocalidad() + "'";
+
+                st.execute(sql);
+            } catch (Exception e) {
+                nuevalocalidad = new Localidad_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevalocalidad;
+    }
+
+    @Override
+    public Localidad_TO eliminarLocalidad(Localidad_TO localidad) throws Exception {
+        Localidad_TO nuevalocalidad = new Localidad_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.localidad"
+                        + " WHERE idlocalidad = '" + localidad.getIdLocalidad() + "'";
+
+                st.execute(sql);
+            } catch (Exception e) {
+                nuevalocalidad = new Localidad_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
             ConexionSQL.CerrarConexion();
         }
         return nuevalocalidad;

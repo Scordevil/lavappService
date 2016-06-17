@@ -5,13 +5,14 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.Pais_TO;
+import co.com.lavapp.modelo.dto.Departamento_TO;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface ModificarPais {
+public interface ConsultarDepartamento {
     
-    public Pais_TO modificarPais(int idPais, String nombre) throws Exception;
+    public Departamento_TO consultarDepartamento(int idDepartamento) throws Exception;
+    
 }

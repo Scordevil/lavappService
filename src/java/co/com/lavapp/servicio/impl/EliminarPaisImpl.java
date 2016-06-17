@@ -31,5 +31,4 @@ public class EliminarPaisImpl implements EliminarPais {
         PaisDAO paisDAO = new PaisDAOImpl();
         return paisDAO.eliminarPais(pais);
     }
-
 }

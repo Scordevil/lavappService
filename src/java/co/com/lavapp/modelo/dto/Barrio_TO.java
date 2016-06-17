@@ -54,6 +54,13 @@ public class Barrio_TO {
     public Barrio_TO() {
     }
 
+    public Barrio_TO(String nombre, Localidad_TO localidad, Zona_TO Zona, Estrato_TO estrato) {
+        this.nombre = nombre;
+        this.localidad = localidad;
+        this.Zona = Zona;
+        this.estrato = estrato;
+    }    
+    
     // Constructor General
     public Barrio_TO(int idBarrios, String nombre, Localidad_TO localidad, Zona_TO Zona, Estrato_TO estrato) {
         this.idBarrios = idBarrios;

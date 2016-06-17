@@ -8,7 +8,7 @@ package co.com.lavapp.servicio.impl;
 import co.com.lavapp.modelo.dto.Pais_TO;
 import co.com.lavapp.persistencia.dao.PaisDAO;
 import co.com.lavapp.persistencia.dao.impl.PaisDAOImpl;
-import co.com.lavapp.servicio.ModificarPais;
+import co.com.lavapp.servicio.EditarPais;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,16 +20,15 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/modificarPais")
-public class ModificarPaisImpl implements ModificarPais {
+@Path("/editarPais")
+public class EditarPaisImpl implements EditarPais {
 
     @GET
     @Produces({"application/json"})
     @Override
-    public Pais_TO modificarPais(@QueryParam("idPais") int idPais, @QueryParam("nombre") String nombre) throws Exception {
+    public Pais_TO editarPais(@QueryParam("idPais") int idPais, @QueryParam("nombre") String nombre) throws Exception {
         Pais_TO pais = new Pais_TO(idPais, nombre);
         PaisDAO paisDao = new PaisDAOImpl();
         return paisDao.modificarPais(pais);
     }
-
 }

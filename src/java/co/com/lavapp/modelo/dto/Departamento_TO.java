@@ -40,6 +40,13 @@ public class Departamento_TO {
     public Departamento_TO() {
     }
 
+    public Departamento_TO(String nombre, Pais_TO pais) {
+        this.nombre = nombre;
+        this.pais = pais;
+    }
+    
+    
+
     //Constructor General
     public Departamento_TO(int idDepartamento, String nombre, Pais_TO pais) {
         this.idDepartamento = idDepartamento;

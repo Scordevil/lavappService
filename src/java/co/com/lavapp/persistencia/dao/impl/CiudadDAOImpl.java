@@ -40,7 +40,7 @@ public class CiudadDAOImpl implements CiudadDAO {
             try {
 
                 String sql = "SELECT idciudad, nombre, iddepartamento  FROM ciudad; ";
-                
+
                 ResultSet rs = null;
                 rs = st.executeQuery(sql);
 
@@ -59,7 +59,6 @@ public class CiudadDAOImpl implements CiudadDAO {
             throw e;
         }
         return ciudades;
-
     }
 
     @Override
@@ -83,5 +82,66 @@ public class CiudadDAOImpl implements CiudadDAO {
             throw e;
         }
         return ciudades;
+    }
+
+    @Override
+    public Ciudad_TO registrarCiudad(Ciudad_TO ciudad) throws Exception {
+        Ciudad_TO nuevaciudad = new Ciudad_TO();
+        try {
+            try {
+                String sql = "INSERT INTO public.ciudad(nombre, iddepartmento)"
+                        + " VALUES ('" + ciudad.getNombre() + "', '" + ciudad.getDepartamento().getIdDepartamento() + "')";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevaciudad = new Ciudad_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaciudad;
+    }
+
+    @Override
+    public Ciudad_TO modificarCiudad(Ciudad_TO ciudad) throws Exception {
+        Ciudad_TO nuevaciudad = new Ciudad_TO();
+        try {
+            try {
+                String sql = "UPDATE public.ciudad SET nombre = '" + ciudad.getNombre() + "',"
+                        + " iddepartmento = '" + ciudad.getDepartamento().getIdDepartamento() + "'"
+                        + " WHERE idciudad = '" + ciudad.getIdCiudad() + "'";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevaciudad = new Ciudad_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaciudad;
+    }
+
+    @Override
+    public Ciudad_TO eliminarCiudad(Ciudad_TO ciudad) throws Exception {
+        Ciudad_TO nuevaciudad = new Ciudad_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.ciudad"
+                        + " WHERE idciudad = '" + ciudad.getIdCiudad() + "'";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevaciudad = new Ciudad_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaciudad;
     }
 }
