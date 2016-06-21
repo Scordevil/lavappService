@@ -44,4 +44,48 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         }
         return subProductos;
     }
+
+    @Override
+    public List<SubProducto_TO> consultarSubProducto() throws Exception {
+        List<SubProducto_TO> subProductos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idsubproducto, nombre, descripcion, idproducto\n"
+                        + "  FROM public.subproducto;";
+
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    subProductos.add(new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return subProductos;
+    }
+
+    @Override
+    public SubProducto_TO registrarSubProducto(SubProducto_TO subProduc) throws Exception {
+        SubProducto_TO subProModelo = new SubProducto_TO();
+        try {
+            try {
+                String sql = "INSERT INTO public.subproducto( "
+                        + "            nombre, descripcion, idproducto) "
+                        + "    VALUES ('"+ subProduc.getNombre() +"', '"+ subProduc.getDescripcion() +"', "+ subProduc.getProducto().getIdProducto() +");";
+                st.execute(sql);
+                subProModelo = new SubProducto_TO();
+            } catch (Exception e) {
+                subProModelo = new SubProducto_TO();
+                throw e;
+            }
+        } catch (Exception ex) {
+            subProModelo = new SubProducto_TO();
+            throw ex;
+        }
+        return subProModelo;
+    }
 }

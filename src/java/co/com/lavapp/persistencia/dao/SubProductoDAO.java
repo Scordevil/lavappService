@@ -16,4 +16,6 @@ import java.util.List;
 public interface SubProductoDAO {
     
     public List<SubProducto_TO> consultarSubProductoSegunProducto(Producto_TO producto) throws Exception;
+    public List<SubProducto_TO> consultarSubProducto() throws Exception;
+    public SubProducto_TO registrarSubProducto(SubProducto_TO subProduc) throws Exception;
 }

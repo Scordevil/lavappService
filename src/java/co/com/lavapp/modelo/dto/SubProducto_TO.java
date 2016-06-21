@@ -23,6 +23,14 @@ public class SubProducto_TO {
         this.idSubProducto = idSubProducto;
     }
 
+    public SubProducto_TO(String nombre, String descripcion, Producto_TO producto) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.producto = producto;
+    }
+    
+    
+
     public SubProducto_TO(int idSubProducto, String nombre, String descripcion, Producto_TO producto) {
         this.idSubProducto = idSubProducto;
         this.nombre = nombre;

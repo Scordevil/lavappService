@@ -44,4 +44,27 @@ public class ProductoDAOImpl implements ProductoDAO {
         return productos;
     }
 
+    @Override
+    public Producto_TO registrarProducto(Producto_TO produc) throws Exception {
+        Producto_TO productModelo = new Producto_TO();
+        try {
+            try {
+                String sql = "INSERT INTO public.producto( "
+                        + "             nombre, descripcion, idsubservicio) "
+                        + "    VALUES ( '" + produc.getNombre() + "', '" + produc.getDescripcion() + "', " + produc.getSubServicio().getIdSubServicio() + ");";
+                st.execute(sql);
+                productModelo = new Producto_TO();
+            } catch (Exception e) {
+                productModelo = new Producto_TO();
+                throw e;
+            }
+        } catch (Exception ex) {
+            productModelo = new Producto_TO();
+            throw ex;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return productModelo;
+    }
+
 }
