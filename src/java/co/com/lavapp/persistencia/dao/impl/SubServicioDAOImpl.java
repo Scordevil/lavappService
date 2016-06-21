@@ -86,7 +86,7 @@ public class SubServicioDAOImpl implements SubServicioDAO {
             try {
                 String sql = "INSERT INTO public.subservicio( "
                         + "             nombre, idservicio) "
-                        + "    VALUES ( 'ingreso desde DAO', 2);";
+                        + "    VALUES ( '"+ subServi.getNombre() +"', "+ subServi.getServicio().getIdServicio() +");";
 
                 st.executeQuery(sql);
             } catch (Exception e) {
