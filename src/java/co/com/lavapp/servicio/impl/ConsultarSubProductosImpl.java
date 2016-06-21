@@ -5,33 +5,30 @@
  */
 package co.com.lavapp.servicio.impl;
 
-import co.com.lavapp.modelo.dto.Producto_TO;
 import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.persistencia.dao.SubProductoDAO;
 import co.com.lavapp.persistencia.dao.impl.SubProductoDAOImpl;
-import co.com.lavapp.servicio.ConsultarSubProductosSegunProducto;
+import co.com.lavapp.servicio.ConsultarSubProductos;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 
 /**
  *
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/consultarSubProductosSegunProducto")
-public class ConsultarSubProductosSegunProductoImpl implements ConsultarSubProductosSegunProducto {
+@Path("/consultarSubProductos")
+public class ConsultarSubProductosImpl implements ConsultarSubProductos{
 
     @GET
     @Produces({"application/json"})
     @Override
-    public List<SubProducto_TO> consultarSubProductosSegunProducto(@QueryParam("idProducto") int idProducto) throws Exception {
-        Producto_TO producto = new Producto_TO(idProducto);
+    public List<SubProducto_TO> consultarSubProductos() throws Exception {
         SubProductoDAO subProductoDao = new SubProductoDAOImpl();
-        return subProductoDao.consultarSubProductoSegunProducto(producto);
+        return subProductoDao.consultarSubProductos();
     }
-
+    
 }

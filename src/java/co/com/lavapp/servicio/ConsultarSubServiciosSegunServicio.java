@@ -10,8 +10,10 @@ import java.util.List;
 
 /**
  *
- * @author SISTEMAS
+ * @author Desarrollo_Planit
  */
-public interface ConsultarSubServicios {
-    public List<SubServicio_TO> consultarSubServicios() throws Exception;
+public interface ConsultarSubServiciosSegunServicio {
+    
+    public List<SubServicio_TO> consultarSubServicios(int idServicio) throws Exception;
+    
 }

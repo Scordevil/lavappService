@@ -24,6 +24,7 @@ public class RegistrarServiciosImpl implements RegistrarServicios {
 
     @GET
     @Produces({"application/json"})
+    @Override
     public Servicio_TO registrarServicio(@QueryParam("nombre") String nombre) throws Exception {
 
         Servicio_TO servicio = new Servicio_TO(nombre);

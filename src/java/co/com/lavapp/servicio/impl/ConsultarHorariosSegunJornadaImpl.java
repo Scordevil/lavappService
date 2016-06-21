@@ -22,7 +22,7 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/consultarHoriariosSegunJornada")
+@Path("/consultarHorariosSegunJornada")
 public class ConsultarHorariosSegunJornadaImpl implements ConsultarHorariosSegunJornada{
 
     @GET

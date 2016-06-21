@@ -36,7 +36,6 @@ public class ServicioDAOImpl implements ServicioDAO {
             } catch (SQLException e) {
                 throw e;
             }
-
         } catch (Exception e) {
             throw e;
         } finally {
@@ -57,7 +56,7 @@ public class ServicioDAOImpl implements ServicioDAO {
                         + "    VALUES ('"+ serv.getNombre() +"')";
                 st.execute(sql);
 
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 servicio = new Servicio_TO();
                 throw e;
             }

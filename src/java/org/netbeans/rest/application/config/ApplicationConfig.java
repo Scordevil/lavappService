@@ -56,10 +56,10 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidosSegunPlantaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProductosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarServiciosImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductosSegunProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubServiciosImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.ConsultarSubservicios_SPImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarSubServiciosSegunServicioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioPorLoginImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarBarrioImpl.class);
@@ -87,7 +87,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarServiciosImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.RegistrarSubProdutoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarSubProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarSubServicioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarUsuariosImpl.class);
     }

@@ -25,8 +25,7 @@ public class RegistrarSubServicioImpl implements RegistrarSubServicio {
 
     @GET
     @Produces({"application/json"})
-    @Override
-    
+    @Override    
     public SubServicio_TO registrarSubServicio(@QueryParam("nombre") String nombre,
             @QueryParam("idServicio") int idServicio) throws Exception {
 

@@ -5,14 +5,14 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.Producto_TO;
+import co.com.lavapp.modelo.dto.SubProducto_TO;
+import java.util.List;
 
 /**
  *
  * @author SISTEMAS
  */
 
-public interface RegistrarProducto {
-    
-    public Producto_TO registrarProducto( String nombre , String descripcion, int idSubServicio) throws Exception;
+public interface ConsultarSubProductos {
+    public List<SubProducto_TO> consultarSubProductos() throws Exception;
 }

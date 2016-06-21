@@ -5,18 +5,15 @@
  */
 package co.com.lavapp.servicio.impl;
 
-import co.com.lavapp.modelo.dto.Servicio_TO;
 import co.com.lavapp.modelo.dto.SubServicio_TO;
 import co.com.lavapp.persistencia.dao.SubServicioDAO;
 import co.com.lavapp.persistencia.dao.impl.SubServicioDAOImpl;
 import co.com.lavapp.servicio.ConsultarSubServicios;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 
 /**
  *
@@ -24,22 +21,13 @@ import javax.ws.rs.QueryParam;
  */
 @Stateless
 @Path("/consultarSubServicios")
-public class ConsultarSubServiciosImpl implements ConsultarSubServicios{
+public class ConsultarSubServiciosImpl implements ConsultarSubServicios {
 
     @GET
     @Produces({"application/json"})
     @Override
-    public List<SubServicio_TO> consultarSubServicios(
-            @QueryParam("idServicio") int idServicio) throws Exception {
-        
-        Servicio_TO servicio = new Servicio_TO(idServicio);
-        List<SubServicio_TO> servicios = new ArrayList<>();
-        SubServicioDAO subservicioDao = new SubServicioDAOImpl();
-        try {
-            servicios = subservicioDao.consultarSubServicios(servicio);
-        } catch (Exception e) {
-            throw e;
-        }
-        return servicios;
-    }    
+    public List<SubServicio_TO> consultarSubServicios() throws Exception {
+        SubServicioDAO subServicioDao = new SubServicioDAOImpl();
+        return subServicioDao.consultarSubServicios();
+    }
 }

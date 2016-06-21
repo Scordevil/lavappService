@@ -9,7 +9,6 @@ import co.com.lavapp.modelo.dto.Servicio_TO;
 import co.com.lavapp.persistencia.dao.ServicioDAO;
 import co.com.lavapp.persistencia.dao.impl.ServicioDAOImpl;
 import co.com.lavapp.servicio.ConsultarServicios;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -28,15 +27,7 @@ public class ConsultarServiciosImpl implements ConsultarServicios{
     @Produces({"application/json"})
     @Override
     public List<Servicio_TO> consultarServicios() throws Exception {
-        List<Servicio_TO> servicios = new ArrayList<>();
         ServicioDAO servicioDao = new ServicioDAOImpl();
-        try {
-            servicios = servicioDao.consultarServicios();
-        } catch (Exception e) {
-            throw  e;
-        }
-        return servicios;
-        
-    }
-    
+        return servicioDao.consultarServicios();
+    }    
 }

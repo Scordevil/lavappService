@@ -46,7 +46,7 @@ public class SubProductoDAOImpl implements SubProductoDAO {
     }
 
     @Override
-    public List<SubProducto_TO> consultarSubProducto() throws Exception {
+    public List<SubProducto_TO> consultarSubProductos() throws Exception {
         List<SubProducto_TO> subProductos = new ArrayList<>();
         try {
             try {
