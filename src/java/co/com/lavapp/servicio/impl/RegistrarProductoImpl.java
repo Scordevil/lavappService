@@ -27,6 +27,7 @@ public class RegistrarProductoImpl implements RegistrarProducto{
     @GET
     @Produces({"application/json"})
     @Override
+    
     public Producto_TO registrarProducto(@QueryParam("nombre")String nombre, @QueryParam("desc") String desc, 
             @QueryParam("idSubservicio") int idSubservicio) throws Exception {
         

@@ -11,6 +11,7 @@ import co.com.lavapp.modelo.dto.Producto_TO;
  *
  * @author SISTEMAS
  */
+
 public interface RegistrarProducto {
     
     public Producto_TO registrarProducto( String nombre , String desc, int idSubservicio) throws Exception;

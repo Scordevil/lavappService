@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author SISTEMAS
  */
+
 public interface ConsultarSubProducto {
     public List<SubProducto_TO> consultarSubProducto() throws Exception;
 }
