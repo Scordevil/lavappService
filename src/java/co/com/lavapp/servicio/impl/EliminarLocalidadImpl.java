@@ -8,26 +8,27 @@ package co.com.lavapp.servicio.impl;
 import co.com.lavapp.modelo.dto.Localidad_TO;
 import co.com.lavapp.persistencia.dao.LocalidadDAO;
 import co.com.lavapp.persistencia.dao.impl.LocalidadDAOImpl;
-import co.com.lavapp.servicio.ConsultarLocalidades;
-import java.util.List;
+import co.com.lavapp.servicio.EliminarLocalidad;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 /**
  *
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/consultarLocalidades")
-public class ConsultarLocalidadesImpl implements ConsultarLocalidades {
+@Path("/eliminarLocalidad")
+public class EliminarLocalidadImpl implements EliminarLocalidad{
 
     @GET
     @Produces({"application/json"})
     @Override
-    public List<Localidad_TO> consultarLocalidades() throws Exception {
-        LocalidadDAO localidaDao = new LocalidadDAOImpl();
-        return localidaDao.consultarLocalidades();
-    }
+    public Localidad_TO eliminarLocalidad(@QueryParam("idLocalidad") int idLocalidad) throws Exception {
+        Localidad_TO localidad = new Localidad_TO(idLocalidad);
+        LocalidadDAO localidadDao = new LocalidadDAOImpl();
+        return localidadDao.eliminarLocalidad(localidad);
+    }    
 }

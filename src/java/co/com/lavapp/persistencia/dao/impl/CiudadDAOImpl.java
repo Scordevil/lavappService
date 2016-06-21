@@ -144,4 +144,34 @@ public class CiudadDAOImpl implements CiudadDAO {
         }
         return nuevaciudad;
     }
+
+    @Override
+    public Ciudad_TO consultarCiudad(Ciudad_TO ciudad) throws Exception {
+
+        Ciudad_TO ciudades = new Ciudad_TO();
+        try {
+            try {
+
+                String sql = "SELECT idciudad, nombre, iddepartamento  FROM public.ciudad "
+                        + "WHERE idciudad = '" + ciudad.getIdCiudad() + "'";
+
+                ResultSet rs = null;
+                rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    ciudades = new Ciudad_TO(rs.getInt(1), rs.getString(2), new Departamento_TO(rs.getInt(3)));
+
+                }
+
+            } catch (SQLException r) {
+                throw r;
+            } finally {
+                ConexionSQL.CerrarConexion();
+            }
+
+        } catch (Exception e) {
+            throw e;
+        }
+        return ciudades;
+    }
 }

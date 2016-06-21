@@ -5,15 +5,14 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.Localidad_TO;
-import java.util.List;
+import co.com.lavapp.modelo.dto.Ciudad_TO;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface ConsultarLocalidades {
+public interface ConsultarCiudad {
     
-    public List<Localidad_TO> consultarLocalidades() throws Exception;
-    
+    public Ciudad_TO consultarCiudad(int idCiudad) throws Exception;
+
 }

@@ -18,7 +18,9 @@ import java.util.List;
  */
 public interface LocalidadDAO {
     
-    public List<Localidad_TO> consultarLocalidades(Ciudad_TO ciudad)throws Exception;
+    public List<Localidad_TO> consultarLocalidades() throws Exception;
+    
+    public List<Localidad_TO> consultarLocalidadesSegunCiudad(Ciudad_TO ciudad) throws Exception;
     
     public Localidad_TO consultarLocalidad(Localidad_TO localidad) throws Exception;
      

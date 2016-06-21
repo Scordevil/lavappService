@@ -6,14 +6,12 @@
 package co.com.lavapp.servicio;
 
 import co.com.lavapp.modelo.dto.Localidad_TO;
-import java.util.List;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface ConsultarLocalidades {
+public interface EliminarLocalidad {
     
-    public List<Localidad_TO> consultarLocalidades() throws Exception;
-    
+    public Localidad_TO eliminarLocalidad(int idLocalidad) throws Exception;
 }

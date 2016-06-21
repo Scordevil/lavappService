@@ -27,7 +27,7 @@ public class LocalidadDAOImpl implements LocalidadDAO {
     private final Statement st = ConexionSQL.conexion();
 
     @Override
-    public List<Localidad_TO> consultarLocalidades(Ciudad_TO ciudad) throws Exception {
+    public List<Localidad_TO> consultarLocalidadesSegunCiudad(Ciudad_TO ciudad) throws Exception {
 
         List<Localidad_TO> localidades = new ArrayList<>();
         try {
@@ -135,6 +135,29 @@ public class LocalidadDAOImpl implements LocalidadDAO {
             ConexionSQL.CerrarConexion();
         }
         return nuevalocalidad;
+    }
+
+    @Override
+    public List<Localidad_TO> consultarLocalidades() throws Exception {
+        List<Localidad_TO> localidades = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idlocalidad, nombre, idciudad"
+                        + " FROM public.localidad";
+                ResultSet rs = null;
+                rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    localidades.add(new Localidad_TO(rs.getInt(1), rs.getString(2), new Ciudad_TO(rs.getInt(3))));
+                }
+            } catch (SQLException r) {
+                throw r;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return localidades;
     }
 
 }

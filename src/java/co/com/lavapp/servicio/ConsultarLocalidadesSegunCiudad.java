@@ -10,10 +10,10 @@ import java.util.List;
 
 /**
  *
- * @author Desarrollo_Planit
+ * @author SISTEMAS
  */
-public interface ConsultarLocalidades {
+public interface ConsultarLocalidadesSegunCiudad {
     
-    public List<Localidad_TO> consultarLocalidades() throws Exception;
+    public List<Localidad_TO> consultarTodasLocalidadesSegunCiudad(int idCiudad)throws Exception;
     
 }
