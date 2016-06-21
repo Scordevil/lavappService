@@ -26,12 +26,12 @@ public class RegistrarSubServicioImpl implements RegistrarSubServicio {
     @GET
     @Produces({"application/json"})
     @Override
+    
     public SubServicio_TO registrarSubServicio(@QueryParam("nombre") String nombre,
             @QueryParam("idServicio") int idServicio) throws Exception {
 
         Servicio_TO paramServicio = new Servicio_TO(idServicio);
         SubServicio_TO subServiModel = new SubServicio_TO(nombre, paramServicio);
-
         SubServicioDAOImpl subserviDAO = new SubServicioDAOImpl();
 
         return subserviDAO.registrarSubServicio(subServiModel);

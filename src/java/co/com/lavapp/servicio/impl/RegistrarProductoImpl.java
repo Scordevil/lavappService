@@ -21,6 +21,7 @@ import javax.ws.rs.QueryParam;
  */
 @Stateless
 @Path("/registrarProducto")
+
 public class RegistrarProductoImpl implements RegistrarProducto{
 
     @GET

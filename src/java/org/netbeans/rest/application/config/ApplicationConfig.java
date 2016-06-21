@@ -29,12 +29,17 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(co.com.lavapp.servicio.impl.ConsultarBarrioImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarBarriosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarBarriosSegunLocalidadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCantidadDescripcionPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadesPorDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCostoPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCostoSubProductoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarDepartamentoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarDepartamentosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarDescripcionPedidoSegunPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstadoPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarHorariosSegunJornadaImpl.class);
@@ -42,6 +47,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarJornadasImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarLocalidadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarLocalidadesImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarLocalidadesSegunCiudadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPaisImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPaisesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidoImpl.class);
@@ -50,21 +56,39 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidosSegunPlantaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProductosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarServiciosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductosSegunProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubServiciosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarSubservicios_SPImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarUsuarioPorLoginImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarBarrioImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarCiudadImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarLocalidadImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarPaisImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarUsuarioImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarBarrioImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarCiudadImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarDepartamentoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarLocalidadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarPaisImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarPedidoImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.ModificarPaisImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarBarrioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarCalificacionImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarCiudadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarCostoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarHistoricoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarLocalidadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarPaisImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarProductoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarServiciosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarSubProdutoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarSubServicioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarUsuariosImpl.class);
     }
     
