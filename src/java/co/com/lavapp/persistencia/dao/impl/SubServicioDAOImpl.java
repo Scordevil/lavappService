@@ -88,7 +88,8 @@ public class SubServicioDAOImpl implements SubServicioDAO {
                         + "             nombre, idservicio) "
                         + "    VALUES ( '"+ subServi.getNombre() +"', "+ subServi.getServicio().getIdServicio() +");";
 
-                st.executeQuery(sql);
+                st.execute(sql);
+                subServic = new SubServicio_TO();
             } catch (Exception e) {
                 subServic = new SubServicio_TO();
                 throw e;
