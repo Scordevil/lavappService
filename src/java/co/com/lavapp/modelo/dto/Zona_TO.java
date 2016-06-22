@@ -44,6 +44,13 @@ public class Zona_TO {
     public Zona_TO(int idZona) {
         this.idZona = idZona;
     }
+
+    public Zona_TO(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+    
+    
      
        
     //Constructor general
