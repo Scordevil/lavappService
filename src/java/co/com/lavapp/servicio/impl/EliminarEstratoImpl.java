@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 /**
  *
@@ -25,7 +26,7 @@ public class EliminarEstratoImpl implements EliminarEstrato {
     @GET
     @Produces({"application/json"})
     @Override
-    public Estrato_TO eliminarEstrato(int idEstrato) throws Exception {
+    public Estrato_TO eliminarEstrato(@QueryParam("idEstrato") int idEstrato) throws Exception {
         Estrato_TO estrato = new Estrato_TO(idEstrato);
         EstratoDAO estratoDao = new EstratoDAOImpl();
         return estratoDao.eliminarEstrato(estrato);
