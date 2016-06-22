@@ -34,6 +34,7 @@ public class ConsultarProductosImpl implements ConsultarProductos{
         try {
             listaModelo = productoDao.consultarProductos();
         } catch (Exception e) {
+            throw e;
         }
                 
         return listaModelo;
