@@ -9,6 +9,7 @@ import co.com.lavapp.modelo.dto.Producto_TO;
 import co.com.lavapp.persistencia.dao.ProductoDAO;
 import co.com.lavapp.persistencia.dao.impl.ProductoDAOImpl;
 import co.com.lavapp.servicio.ConsultarProductos;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -27,8 +28,14 @@ public class ConsultarProductosImpl implements ConsultarProductos{
     @Produces({"application/json"})
     @Override
     public List<Producto_TO> consultarProductos() throws Exception {
+        List<Producto_TO> listaModelo = new ArrayList<>();
         ProductoDAO productoDao = new ProductoDAOImpl();
-        return productoDao.consultarProductos();
+        try {
+            listaModelo = productoDao.consultarProductos();
+        } catch (Exception e) {
+        }
+                
+        return listaModelo;
     }
     
 }
