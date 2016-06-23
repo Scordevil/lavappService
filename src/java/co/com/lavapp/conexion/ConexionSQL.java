@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  */
 public class ConexionSQL {
 
- //   static String clave = "yU7eywfXILoZjtaD";
-    static String clave = "root";
+    static String clave = "yU7eywfXILoZjtaD";
+ //   static String clave = "root";
     static Statement ST = null;
     static Connection cn = null;
 
@@ -38,7 +38,8 @@ public class ConexionSQL {
             // RUTA DE LA BASE DE DATOS
           //  149.56.93.6
           //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
-            String url = "jdbc:postgresql://localhost:5432/lavapp";
+          //  String url = "jdbc:postgresql://localhost:5432/lavapp";
+            String url = "jdbc:postgresql://192.168.100.251:5432/lavapp";
             // CONECCION A LA BASE DE DATOS
             cn = DriverManager.getConnection(url, "postgres", clave);
             // TRAE LOS DATOS
