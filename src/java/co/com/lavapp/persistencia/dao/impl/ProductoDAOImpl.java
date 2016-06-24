@@ -67,4 +67,48 @@ public class ProductoDAOImpl implements ProductoDAO {
         return productModelo;
     }
 
+    @Override
+    public Producto_TO modificarProducto(Producto_TO produc) throws Exception {
+        Producto_TO producModelo = new Producto_TO();
+        try {
+            try {
+                String sql = "UPDATE public.producto "
+                        + "   SET  nombre='" + produc.getNombre() + "', descripcion='" + produc.getDescripcion() + "', idsubservicio=" + produc.getSubServicio().getIdSubServicio() + " "
+                        + " WHERE idproducto=" + produc.getIdProducto() + ";";
+                st.execute(sql);
+                producModelo = new Producto_TO();
+            } catch (Exception e) {
+                producModelo = new Producto_TO();
+                throw e;
+            }
+        } catch (Exception ed) {
+            throw ed;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return producModelo;
+    }
+
+    @Override
+    public Producto_TO eliminarProducto(Producto_TO produc) throws Exception {
+        Producto_TO prodctoModelo = new Producto_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.producto "
+                        + " WHERE idproducto = "+ produc.getIdProducto() +";";
+                st.execute(sql);
+                prodctoModelo = new Producto_TO();
+            } catch (Exception e) {
+                prodctoModelo = new Producto_TO();
+                throw e;
+            }
+        } catch (Exception de) {
+            prodctoModelo = new Producto_TO();
+            throw de;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return prodctoModelo;
+    }
+
 }
