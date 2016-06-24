@@ -75,7 +75,7 @@ public class SubProductoDAOImpl implements SubProductoDAO {
             try {
                 String sql = "INSERT INTO public.subproducto( "
                         + "            nombre, descripcion, idproducto) "
-                        + "    VALUES ('"+ subProduc.getNombre() +"', '"+ subProduc.getDescripcion() +"', "+ subProduc.getProducto().getIdProducto() +")";
+                        + "    VALUES ('" + subProduc.getNombre() + "', '" + subProduc.getDescripcion() + "', " + subProduc.getProducto().getIdProducto() + ")";
                 st.execute(sql);
                 subProModelo = new SubProducto_TO();
             } catch (Exception e) {
@@ -85,9 +85,54 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         } catch (Exception ex) {
             subProModelo = new SubProducto_TO();
             throw ex;
-        }finally{
+        } finally {
             ConexionSQL.CerrarConexion();
         }
         return subProModelo;
+    }
+
+    @Override
+    public SubProducto_TO modificarSubProducto(SubProducto_TO subProduc) throws Exception {
+        SubProducto_TO subproModel = new SubProducto_TO();
+        try {
+            try {
+                String sql = "UPDATE public.subproducto "
+                        + "   SET  nombre='" + subProduc.getNombre() + "', descripcion='" + subProduc.getDescripcion() + "', idproducto=" + subProduc.getProducto().getIdProducto() + " "
+                        + " WHERE idsubproducto=" + subProduc.getIdSubProducto() + ";";
+                st.execute(sql);
+                subproModel = new SubProducto_TO();
+            } catch (Exception e) {
+                subproModel = new SubProducto_TO();
+                throw e;
+            }
+        } catch (Exception es) {
+            subproModel = new SubProducto_TO();
+            throw es;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return subproModel;
+    }
+
+    @Override
+    public SubProducto_TO eliminarSubProducto(SubProducto_TO subProduc) throws Exception {
+        SubProducto_TO subProModel = new SubProducto_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.subproducto "
+                        + " WHERE idsubproducto = "+ subProduc.getIdSubProducto() +";";
+                st.execute(sql);
+                subProModel = new SubProducto_TO();
+            } catch (Exception e) {
+                subProModel = new SubProducto_TO();
+                throw e;
+            }
+        } catch (Exception ez) {
+            subProModel = new SubProducto_TO();
+            throw ez;
+        }finally{
+            ConexionSQL.CerrarConexion();
+        }
+        return subProModel;
     }
 }
