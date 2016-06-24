@@ -80,13 +80,13 @@ public class SubServicioDAOImpl implements SubServicioDAO {
 
     @Override
     public SubServicio_TO registrarSubServicio(SubServicio_TO subServi) throws Exception {
-        
+
         SubServicio_TO subServic = new SubServicio_TO();
         try {
             try {
                 String sql = "INSERT INTO public.subservicio( "
                         + "             nombre, idservicio) "
-                        + "    VALUES ( '"+ subServi.getNombre() +"', "+ subServi.getServicio().getIdServicio() +");";
+                        + "    VALUES ( '" + subServi.getNombre() + "', " + subServi.getServicio().getIdServicio() + ");";
 
                 st.execute(sql);
                 subServic = new SubServicio_TO();
@@ -95,13 +95,54 @@ public class SubServicioDAOImpl implements SubServicioDAO {
                 throw e;
             }
         } catch (Exception ec) {
-           
+
             throw ec;
         } finally {
             ConexionSQL.CerrarConexion();
         }
 
         return subServic;
+    }
+
+    @Override
+    public SubServicio_TO modificarSubServicio(SubServicio_TO subServi) throws Exception {
+        SubServicio_TO subServiModelo = new SubServicio_TO();
+        try {
+            try {
+                String sql = "UPDATE public.subservicio "
+                        + "   SET nombre='" + subServi.getNombre() + "', idservicio=" + subServi.getServicio().getIdServicio() + " "
+                        + " WHERE idsubservicio=" + subServi.getIdSubServicio() + ";";
+                st.executeUpdate(sql);
+                subServiModelo = new SubServicio_TO();
+            } catch (Exception e) {
+                subServiModelo = new SubServicio_TO();
+                throw e;
+            }
+        } catch (Exception es) {
+            subServiModelo = new SubServicio_TO();
+            throw es;
+        }
+        return subServiModelo;
+    }
+
+    @Override
+    public SubServicio_TO eliminarSubServicio(SubServicio_TO subServi) throws Exception {
+        SubServicio_TO subServiModelo = new SubServicio_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.subservicio "
+                        + " WHERE idsubservicio = "+ subServi.getIdSubServicio() +";";
+                st.execute(sql);
+                subServiModelo = new SubServicio_TO();
+            } catch (Exception e) {
+                subServiModelo = new SubServicio_TO();
+                throw e;
+            }
+        } catch (Exception se) {
+            subServiModelo = new SubServicio_TO();
+            throw se;
+        }
+        return subServiModelo;
     }
 
 }

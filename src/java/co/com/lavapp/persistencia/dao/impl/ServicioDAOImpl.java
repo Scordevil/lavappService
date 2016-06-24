@@ -53,7 +53,7 @@ public class ServicioDAOImpl implements ServicioDAO {
             try {
 
                 String sql = "INSERT INTO public.servicio( nombre ) "
-                        + "    VALUES ('"+ serv.getNombre() +"')";
+                        + "    VALUES ('" + serv.getNombre() + "')";
                 st.execute(sql);
 
             } catch (SQLException e) {
@@ -66,6 +66,49 @@ public class ServicioDAOImpl implements ServicioDAO {
             ConexionSQL.CerrarConexion();
         }
         return servicio;
+    }
+
+    @Override
+    public Servicio_TO modificarServicio(Servicio_TO serv) throws Exception {
+        Servicio_TO servicioModelo;
+        try {
+            try {
+                String sql = "UPDATE public.servicio "
+                        + "   SET nombre='" + serv.getNombre() + "' "
+                        + " WHERE idservicio=" + serv.getIdServicio() + ";";
+                st.executeUpdate(sql);
+                servicioModelo = new Servicio_TO();
+            } catch (Exception e) {
+                servicioModelo = new Servicio_TO();
+                throw e;
+            }
+        } catch (Exception ec) {
+            servicioModelo = new Servicio_TO();
+            throw ec;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return servicioModelo;
+    }
+
+    @Override
+    public Servicio_TO eliminarServicio(Servicio_TO serv) throws Exception {
+         Servicio_TO servicioModelo;
+        try {
+            try {
+                String sql = "DELETE FROM public.servicio "
+                        + " WHERE idservicio="+ serv.getIdServicio() +";";
+                st.execute(sql);
+                servicioModelo = new Servicio_TO();
+            } catch (Exception e) {
+                servicioModelo = new Servicio_TO();
+                throw e;
+            }
+        } catch (Exception ec) {
+            servicioModelo = new Servicio_TO();
+            throw ec;
+        }
+        return servicioModelo;
     }
 
 }

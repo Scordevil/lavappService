@@ -16,4 +16,6 @@ public interface ServicioDAO {
     
     public List<Servicio_TO> consultarServicios() throws  Exception;
     public Servicio_TO registrarServicio(Servicio_TO serv) throws Exception;
+    public Servicio_TO modificarServicio(Servicio_TO serv)throws Exception;
+    public Servicio_TO eliminarServicio(Servicio_TO serv)throws Exception;
 }

@@ -48,6 +48,7 @@ public class SubServicio_TO {
         this.nombre = nombre;
         this.servicio = servicio;
     }
+    
 
     //Constructor General
     public SubServicio_TO(int idSubServicio, String nombre, Servicio_TO servicio) {
