@@ -92,6 +92,16 @@ public class DescripcionPedido_TO {
         this.idDescripcionPedido = idDescripcionPedido;
     }      
 
+    public DescripcionPedido_TO(Estado_TO estado, SubProducto_TO subProducto, String descripcion, Color_TO color, Pedido_TO pedido) {
+        this.estado = estado;
+        this.subProducto = subProducto;
+        this.descripcion = descripcion;
+        this.color = color;
+        this.pedido = pedido;
+    }
+    
+    
+
     //Constructor General
     public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, SubProducto_TO subProducto, String descripcion, String observacionAsesor, String observacionAdministrador, byte foto1, byte foto2, byte foto3, Color_TO color, Pedido_TO pedido) {
         this.idDescripcionPedido = idDescripcionPedido;

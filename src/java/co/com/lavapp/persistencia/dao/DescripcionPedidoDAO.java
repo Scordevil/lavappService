@@ -22,5 +22,7 @@ public interface DescripcionPedidoDAO {
      
      public DescripcionPedido_TO EditarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception;
      
+     public DescripcionPedido_TO registrarPreedidos(DescripcionPedido_TO descP) throws Exception;
+     
      
 }

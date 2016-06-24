@@ -106,4 +106,29 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
         }
         return nuevaDescripcion;
     }
+
+    @Override
+    public DescripcionPedido_TO registrarPreedidos(DescripcionPedido_TO descP) throws Exception {
+        DescripcionPedido_TO descModelo = new DescripcionPedido_TO();
+        try {
+            try {
+                String sql = "INSERT INTO public.descripcionpedido( "
+                        + "            idestado, descripcion,  idcolor, idpedido,  "
+                        + "            idsubproducto) "
+                        + "    VALUES ( "+ descP.getEstado().getIdEstado() +", '"+ descP.getDescripcion() +"', "+ descP.getColor().getIdColor() +", "+ descP.getPedido().getIdPedido() +", "+ descP.getSubProducto().getIdSubProducto() +") ";
+                
+                st.execute(sql);
+                descModelo = new DescripcionPedido_TO();
+            } catch (Exception e) {
+                descModelo = new DescripcionPedido_TO();
+                throw e;
+            }
+        } catch (Exception ec) {
+            descModelo = new DescripcionPedido_TO();
+            throw ec;
+        }finally{
+            ConexionSQL.CerrarConexion();
+        }
+        return descModelo;
+    }
 }

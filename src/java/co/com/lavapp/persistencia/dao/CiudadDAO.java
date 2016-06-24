@@ -21,7 +21,7 @@ public interface CiudadDAO {
     public List<Ciudad_TO> consultarCiudades() throws Exception;
 
     public List<Ciudad_TO> consultarCiudadesPorDepartamento(Departamento_TO departamento) throws Exception;
-    
+
     public Ciudad_TO consultarCiudad(Ciudad_TO ciudad) throws Exception;
 
     public Ciudad_TO registrarCiudad(Ciudad_TO ciudad) throws Exception;
