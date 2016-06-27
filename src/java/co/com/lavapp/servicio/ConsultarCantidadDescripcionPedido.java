@@ -5,11 +5,13 @@
  */
 package co.com.lavapp.servicio;
 
+import co.com.lavapp.modelo.dto.CantTemp_TO;
+
 /**
  *
  * @author Desarrollo_Planit
  */
 public interface ConsultarCantidadDescripcionPedido {
     
-    public int consultarCantidadDescripcionPedido(int idPedido) throws Exception;
+    public CantTemp_TO consultarCantidadDescripcionPedido(int idPedido) throws Exception;
 }

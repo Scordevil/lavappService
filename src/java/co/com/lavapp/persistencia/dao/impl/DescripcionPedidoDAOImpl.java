@@ -6,6 +6,7 @@
 package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
+import co.com.lavapp.modelo.dto.CantTemp_TO;
 import co.com.lavapp.modelo.dto.Color_TO;
 import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
@@ -28,7 +29,8 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
 
     //Metodo consultar Cantidad de descripciones(productos) agregadas segun pedido
     @Override
-    public int consultarCantidadDescripcionPedido(Pedido_TO pedido) throws Exception {
+    public CantTemp_TO consultarCantidadDescripcionPedido(Pedido_TO pedido) throws Exception {
+        CantTemp_TO cantTemp = new CantTemp_TO();
         int cantidad = 0;
         try {
             try {
@@ -38,7 +40,10 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     cantidad = rs.getInt(1);
+                    
                 }
+                
+                cantTemp.setCantDescripPedido(cantidad);
             } catch (SQLException e) {
                 throw e;
             }
@@ -47,7 +52,7 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
-        return cantidad;
+        return cantTemp;
     }
 
     @Override

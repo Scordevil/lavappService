@@ -5,6 +5,7 @@
  */
 package co.com.lavapp.servicio.impl;
 
+import co.com.lavapp.modelo.dto.CantTemp_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.persistencia.dao.DescripcionPedidoDAO;
 import co.com.lavapp.persistencia.dao.impl.DescripcionPedidoDAOImpl;
@@ -26,7 +27,7 @@ public class ConsultarCantidadDescripcionPedidoImpl implements ConsultarCantidad
     @GET
     @Produces({"application/json"})
     @Override
-    public int consultarCantidadDescripcionPedido(@QueryParam("idPedido") int idPedido) throws Exception {
+    public CantTemp_TO consultarCantidadDescripcionPedido(@QueryParam("idPedido") int idPedido) throws Exception {
         Pedido_TO pedido = new Pedido_TO(idPedido);
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
         return descripcionDao.consultarCantidadDescripcionPedido(pedido);

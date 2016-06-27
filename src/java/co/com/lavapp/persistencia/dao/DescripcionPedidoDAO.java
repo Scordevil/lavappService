@@ -5,6 +5,7 @@
  */
 package co.com.lavapp.persistencia.dao;
 
+import co.com.lavapp.modelo.dto.CantTemp_TO;
 import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public interface DescripcionPedidoDAO {
 
-    public int consultarCantidadDescripcionPedido(Pedido_TO pedido) throws Exception;
+    public CantTemp_TO consultarCantidadDescripcionPedido(Pedido_TO pedido) throws Exception;
 
     public List<DescripcionPedido_TO> consultarDescripcionPedidoSegunPedido(Pedido_TO pedido) throws Exception;
 
