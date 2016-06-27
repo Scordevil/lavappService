@@ -133,19 +133,23 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     }
 
     @Override
-    public DescripcionPedido_TO elimnarPedidos(DescripcionPedido_TO descP) throws Exception {
+    public DescripcionPedido_TO elimnarPedidos(DescripcionPedido_TO descP) throws SQLException, Exception {
         DescripcionPedido_TO descPedi = new DescripcionPedido_TO();
         try {
             try {
-                String sql = "DELETE FROM public.descripcionpedido "
-                        + " WHERE idpedido = "+ descP.getPedido() +";";
+                String sql = " DELETE FROM public.descripcionpedido "
+                        + " WHERE idpedido = "+ descP.getPedido().getIdPedido() +" AND "
+                        + " iddescripcionpedido = "+ descP.getIdDescripcionPedido() +" ; ";
                 st.execute(sql);
                 descPedi = new DescripcionPedido_TO();
-            } catch (Exception e) {
+                
+            } catch (Exception e){
+                
                 descPedi = new DescripcionPedido_TO();
                 throw e;
             }
-        } catch (Exception ec) {
+        } catch (Exception ec){
+            
             descPedi = new DescripcionPedido_TO();
             throw ec;
 

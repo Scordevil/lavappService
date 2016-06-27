@@ -90,7 +90,7 @@ public class DescripcionPedido_TO {
 
     public DescripcionPedido_TO(int idDescripcionPedido) {
         this.idDescripcionPedido = idDescripcionPedido;
-    }      
+    }
 
     public DescripcionPedido_TO(Estado_TO estado, SubProducto_TO subProducto, String descripcion, Color_TO color, Pedido_TO pedido) {
         this.estado = estado;
@@ -99,8 +99,11 @@ public class DescripcionPedido_TO {
         this.color = color;
         this.pedido = pedido;
     }
-    
-    
+
+    public DescripcionPedido_TO(int idDescripcionPedido, Pedido_TO pedido) {
+        this.idDescripcionPedido = idDescripcionPedido;
+        this.pedido = pedido;
+    }
 
     //Constructor General
     public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, SubProducto_TO subProducto, String descripcion, String observacionAsesor, String observacionAdministrador, byte foto1, byte foto2, byte foto3, Color_TO color, Pedido_TO pedido) {
@@ -141,7 +144,7 @@ public class DescripcionPedido_TO {
     public void setSubProducto(SubProducto_TO subProducto) {
         this.subProducto = subProducto;
     }
-    
+
     public String getDescripcion() {
         return descripcion;
     }
