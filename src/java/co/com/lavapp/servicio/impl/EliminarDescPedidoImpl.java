@@ -33,7 +33,7 @@ public class EliminarDescPedidoImpl implements EliminarDescPedido{
         DescripcionPedido_TO descSalida = new DescripcionPedido_TO();
         DescripcionPedidoDAOImpl descDAO = new DescripcionPedidoDAOImpl();
         try {
-            descSalida = descDAO.elimnarPedidos(descPModelo);
+            descSalida = descDAO.elimnarDescPedidos(descPModelo);
             
         } catch (Exception e) {
             throw e;

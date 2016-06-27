@@ -26,6 +26,6 @@ public interface DescripcionPedidoDAO {
 
     public DescripcionPedido_TO registrarPreedidos(DescripcionPedido_TO descP) throws Exception;
 
-    public DescripcionPedido_TO elimnarPedidos(DescripcionPedido_TO descP) throws SQLException, Exception;
+    public DescripcionPedido_TO elimnarDescPedidos(DescripcionPedido_TO descP) throws SQLException, Exception;
 
 }

@@ -23,4 +23,6 @@ public interface PaisDAO {
     public Pais_TO modificarPais(Pais_TO pais) throws Exception;
 
     public Pais_TO eliminarPais(Pais_TO pais) throws Exception;
+    
+    
 }

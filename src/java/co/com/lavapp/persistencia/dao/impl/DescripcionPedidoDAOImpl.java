@@ -138,7 +138,7 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     }
 
     @Override
-    public DescripcionPedido_TO elimnarPedidos(DescripcionPedido_TO descP) throws SQLException, Exception {
+    public DescripcionPedido_TO elimnarDescPedidos(DescripcionPedido_TO descP) throws SQLException, Exception {
         DescripcionPedido_TO descPedi = new DescripcionPedido_TO();
         try {
             try {

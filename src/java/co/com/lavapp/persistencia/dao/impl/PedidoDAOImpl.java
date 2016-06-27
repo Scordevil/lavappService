@@ -178,12 +178,12 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "WHERE pedido.idproveedor = '" + proveedor.getIdProveedor() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    pedidos.add(new Pedido_TO(rs.getInt(1), 
-                            new Usuario_TO(rs.getInt(2)), 
-                            rs.getDate(3), 
-                            new Horario_TO(rs.getInt(4)), 
-                            new Horario_TO(rs.getInt(5)), 
-                            new Estado_TO(rs.getInt(6)), 
+                    pedidos.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
                             new Proveedor_TO(rs.getInt(7))));
                 }
             } catch (SQLException e) {
@@ -195,6 +195,35 @@ public class PedidoDAOImpl implements PedidoDAO {
             ConexionSQL.CerrarConexion();
         }
         return pedidos;
+    }
+
+    @Override
+    public List<Pedido_TO> consultarPedidosASC() throws Exception {
+        List<Pedido_TO> listaModelo = new ArrayList<>();
+        try {
+            try {
+                String sql = " SELECT idpedido, idusuario, fechainicio, horarioinicio_idhorario, horariofinal_idhorario, "
+                        + "       idestado, idproveedor FROM public.pedido "
+                        + " ORDER BY idpedido ASC ";
+                ResultSet rs = st.executeQuery(sql);
+                
+                while (rs.next()) {
+                    listaModelo.add(new Pedido_TO(rs.getInt(1), 
+                            new Usuario_TO(rs.getInt(2)), 
+                            rs.getDate(3),
+                            new Horario_TO(rs.getString(4)) ,
+                            new Horario_TO(rs.getString(5), 1) , 
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7))));
+                    
+                }
+            } catch (Exception e) {
+                throw e;
+            }
+        } catch (Exception ec) {
+            throw ec;
+        }
+        return listaModelo;
     }
 
 }
