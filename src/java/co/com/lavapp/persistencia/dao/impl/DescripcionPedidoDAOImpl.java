@@ -115,8 +115,8 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                 String sql = "INSERT INTO public.descripcionpedido( "
                         + "            idestado, descripcion,  idcolor, idpedido,  "
                         + "            idsubproducto) "
-                        + "    VALUES ( "+ descP.getEstado().getIdEstado() +", '"+ descP.getDescripcion() +"', "+ descP.getColor().getIdColor() +", "+ descP.getPedido().getIdPedido() +", "+ descP.getSubProducto().getIdSubProducto() +") ";
-                
+                        + "    VALUES ( " + descP.getEstado().getIdEstado() + ", '" + descP.getDescripcion() + "', " + descP.getColor().getIdColor() + ", " + descP.getPedido().getIdPedido() + ", " + descP.getSubProducto().getIdSubProducto() + ") ";
+
                 st.execute(sql);
                 descModelo = new DescripcionPedido_TO();
             } catch (Exception e) {
@@ -126,9 +126,32 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
         } catch (Exception ec) {
             descModelo = new DescripcionPedido_TO();
             throw ec;
-        }finally{
+        } finally {
             ConexionSQL.CerrarConexion();
         }
         return descModelo;
+    }
+
+    @Override
+    public DescripcionPedido_TO elimnarPedidos(DescripcionPedido_TO descP) throws Exception {
+        DescripcionPedido_TO descPedi = new DescripcionPedido_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.descripcionpedido "
+                        + " WHERE idpedido = "+ descP.getPedido() +";";
+                st.execute(sql);
+                descPedi = new DescripcionPedido_TO();
+            } catch (Exception e) {
+                descPedi = new DescripcionPedido_TO();
+                throw e;
+            }
+        } catch (Exception ec) {
+            descPedi = new DescripcionPedido_TO();
+            throw ec;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return descPedi;
     }
 }

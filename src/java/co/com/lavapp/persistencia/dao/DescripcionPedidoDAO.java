@@ -15,14 +15,15 @@ import java.util.List;
  * @author Desarrollo_Planit
  */
 public interface DescripcionPedidoDAO {
-    
-     public int consultarCantidadDescripcionPedido(Pedido_TO pedido) throws Exception;
-     
-     public List<DescripcionPedido_TO> consultarDescripcionPedidoSegunPedido(Pedido_TO pedido) throws Exception;
-     
-     public DescripcionPedido_TO EditarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception;
-     
-     public DescripcionPedido_TO registrarPreedidos(DescripcionPedido_TO descP) throws Exception;
-     
-     
+
+    public int consultarCantidadDescripcionPedido(Pedido_TO pedido) throws Exception;
+
+    public List<DescripcionPedido_TO> consultarDescripcionPedidoSegunPedido(Pedido_TO pedido) throws Exception;
+
+    public DescripcionPedido_TO EditarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception;
+
+    public DescripcionPedido_TO registrarPreedidos(DescripcionPedido_TO descP) throws Exception;
+
+    public DescripcionPedido_TO elimnarPedidos(DescripcionPedido_TO descP) throws Exception;
+
 }
