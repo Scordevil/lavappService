@@ -28,7 +28,7 @@ public class EstratoDAOImpl implements EstratoDAO {
         try {
             try {
                 String sql = "SELECT idestrato, nombre FROM public.estrato "
-                        + "WHERE idestrato = '" + estrato.getIdEstrato() + "'";
+                        + "WHERE idestrato = '" + estrato.getIdEstrato() + "' or nombre = '" + estrato.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevoEstrato = new Estrato_TO(rs.getInt(1), rs.getString(2));

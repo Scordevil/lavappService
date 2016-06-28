@@ -13,5 +13,5 @@ import co.com.lavapp.modelo.dto.Estrato_TO;
  */
 public interface ConsultarEstrato {
     
-    public Estrato_TO consultarEstrato(int idEstrato) throws Exception;
+    public Estrato_TO consultarEstrato(int idEstrato, String nombre) throws Exception;
 }

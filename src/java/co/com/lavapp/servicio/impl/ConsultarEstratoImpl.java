@@ -26,8 +26,9 @@ public class ConsultarEstratoImpl implements ConsultarEstrato{
     @GET
     @Produces({"application/json"})
     @Override
-    public Estrato_TO consultarEstrato(@QueryParam("idEstrato") int idEstrato) throws Exception {
+    public Estrato_TO consultarEstrato(@QueryParam("idEstrato") int idEstrato, @QueryParam("nombre") String nombre) throws Exception {
         Estrato_TO estrato = new Estrato_TO(idEstrato);
+        estrato.setNombre(nombre);
         EstratoDAO estratoDao = new EstratoDAOImpl();
         return estratoDao.consultarEstrato(estrato);
     }    
