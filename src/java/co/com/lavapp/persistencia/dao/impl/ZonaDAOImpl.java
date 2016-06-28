@@ -49,7 +49,7 @@ public class ZonaDAOImpl implements ZonaDAO {
         try {
             try {
                 String sql = "SELECT idzona, nombre, descripcion FROM public.zona "
-                        + "WHERE idzona = '" + zona.getIdZona() + "'";
+                        + "WHERE idzona = '" + zona.getIdZona() + "' or nombre = '" + zona.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevaZona = new Zona_TO(rs.getInt(1), rs.getString(2), rs.getString(3));
@@ -111,7 +111,7 @@ public class ZonaDAOImpl implements ZonaDAO {
         try {
             try {
                 String sql = "DELETE FROM public.zona "
-                        + "WHERE idzona = '" + zona.getIdZona() + "'";              
+                        + "WHERE idzona = '" + zona.getIdZona() + "'";
                 st.execute(sql);
             } catch (Exception e) {
                 nuevaZona = new Zona_TO();

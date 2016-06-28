@@ -74,7 +74,7 @@ public class BarrioDAOImpl implements BarrioDAO {
         try {
             try {
                 String sql = "SELECT idbarrios, nombre, idlocalidad, idzona, idestrato FROM public.barrio as barrio"
-                        + " WHERE idbarrios = '" + barrio.getIdBarrios() + "'";
+                        + " WHERE idbarrios = '" + barrio.getIdBarrios() + "' or nombre = '" + barrio.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevoBarrio = new Barrio_TO(rs.getInt(1), rs.getString(2), new Localidad_TO(rs.getInt(3)), new Zona_TO(rs.getInt(4)), new Estrato_TO(rs.getInt(5)));

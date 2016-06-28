@@ -12,6 +12,7 @@ import co.com.lavapp.persistencia.dao.EstadoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  *
@@ -41,6 +42,11 @@ public class EstadoDAOImpl implements EstadoDAO {
             ConexionSQL.CerrarConexion();
         }
         return estado;
+    }
+
+    @Override
+    public List<Estado_TO> consultarEstados() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

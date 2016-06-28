@@ -13,6 +13,6 @@ import co.com.lavapp.modelo.dto.Localidad_TO;
  */
 public interface ConsultarLocalidad {
     
-    public Localidad_TO consultarLocalidad(int idLocalidad) throws Exception;
+    public Localidad_TO consultarLocalidad(int idLocalidad, String nombre) throws Exception;
     
 }

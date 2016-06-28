@@ -26,8 +26,9 @@ public class ConsultarLocalidadImpl implements ConsultarLocalidad{
     @GET
     @Produces({"application/json"})
     @Override
-    public Localidad_TO consultarLocalidad(@QueryParam("idLocalidad") int idLocalidad) throws Exception {
+    public Localidad_TO consultarLocalidad(@QueryParam("idLocalidad") int idLocalidad, @QueryParam("nombre") String nombre) throws Exception {
         Localidad_TO localidad = new Localidad_TO(idLocalidad);
+        localidad.setNombre(nombre);
         LocalidadDAO localidadDao = new LocalidadDAOImpl();
         return localidadDao.consultarLocalidad(localidad);
     }    

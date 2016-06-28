@@ -13,6 +13,6 @@ import co.com.lavapp.modelo.dto.Zona_TO;
  */
 public interface ConsultarZona {
     
-    public Zona_TO consultarZona(int idZona) throws Exception;
+    public Zona_TO consultarZona(int idZona, String nombre) throws Exception;
     
 }

@@ -50,7 +50,7 @@ public class DepartamentoDAOImpl implements DepartamentoDAO {
         try {
             try {
                 String sql = "SELECT iddepartamento, nombre, idpais FROM public.departamento"
-                        + " WHERE iddepartamento = '" + departamento.getIdDepartamento() + "'";
+                        + " WHERE iddepartamento = '" + departamento.getIdDepartamento() + "' or nombre = '" + departamento.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevodepartamento = new Departamento_TO(rs.getInt(1), rs.getString(2), new Pais_TO(rs.getInt(3)));

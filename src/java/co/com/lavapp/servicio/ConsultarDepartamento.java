@@ -13,6 +13,6 @@ import co.com.lavapp.modelo.dto.Departamento_TO;
  */
 public interface ConsultarDepartamento {
     
-    public Departamento_TO consultarDepartamento(int idDepartamento) throws Exception;
+    public Departamento_TO consultarDepartamento(int idDepartamento, String nombre) throws Exception;
     
 }

@@ -15,14 +15,13 @@ import java.util.List;
 public interface PaisDAO {
 
     public Pais_TO consultarPais(Pais_TO pais) throws Exception;
-
+    
     public List<Pais_TO> consultarPaises() throws Exception;
 
     public Pais_TO registrarPais(Pais_TO pais) throws Exception;
 
     public Pais_TO modificarPais(Pais_TO pais) throws Exception;
 
-    public Pais_TO eliminarPais(Pais_TO pais) throws Exception;
-    
+    public Pais_TO eliminarPais(Pais_TO pais) throws Exception;    
     
 }

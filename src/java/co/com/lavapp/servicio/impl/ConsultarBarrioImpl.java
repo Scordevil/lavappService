@@ -26,8 +26,9 @@ public class ConsultarBarrioImpl implements ConsultarBarrio{
     @GET
     @Produces({"application/json"})
     @Override
-    public Barrio_TO consultarBarrio(@QueryParam("idBarrios") int idBarrios) throws Exception {
+    public Barrio_TO consultarBarrio(@QueryParam("idBarrios") int idBarrios, @QueryParam("nombre") String nombre) throws Exception {
         Barrio_TO barrio = new Barrio_TO(idBarrios);
+        barrio.setNombre(nombre);
         BarrioDAO barrioDao = new BarrioDAOImpl();
         return barrioDao.consultarBarrio(barrio);
     }

@@ -26,8 +26,9 @@ public class ConsultarPaisImpl implements ConsultarPais {
     @GET
     @Produces({"application/json"})
     @Override
-    public Pais_TO consultarPais(@QueryParam("idPais") int idPais) throws Exception {
+    public Pais_TO consultarPais(@QueryParam("idPais") int idPais, @QueryParam("nombre") String nombre) throws Exception {
         Pais_TO pais = new Pais_TO(idPais);
+        pais.setNombre(nombre);
         PaisDAO paisDAO = new PaisDAOImpl();
         return paisDAO.consultarPais(pais);
     }

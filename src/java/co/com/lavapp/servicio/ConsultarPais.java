@@ -12,5 +12,5 @@ import co.com.lavapp.modelo.dto.Pais_TO;
  * @author Desarrollo_Planit
  */
 public interface ConsultarPais {
-    public Pais_TO consultarPais(int idPais) throws Exception;
+    public Pais_TO consultarPais(int idPais, String nombre) throws Exception;
 }

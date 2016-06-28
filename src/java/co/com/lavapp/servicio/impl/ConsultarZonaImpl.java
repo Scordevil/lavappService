@@ -26,8 +26,9 @@ public class ConsultarZonaImpl implements ConsultarZona{
     @GET
     @Produces({"application/json"})
     @Override
-    public Zona_TO consultarZona(@QueryParam("idZona") int idZona) throws Exception {
+    public Zona_TO consultarZona(@QueryParam("idZona") int idZona, @QueryParam("nombre") String nombre) throws Exception {
         Zona_TO zona = new Zona_TO(idZona);
+        zona.setNombre(nombre);
         ZonaDAO zonaDao = new ZonaDAOImpl();
         return zonaDao.consultarZona(zona);
     }

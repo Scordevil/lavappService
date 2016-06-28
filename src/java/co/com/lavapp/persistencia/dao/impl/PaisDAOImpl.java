@@ -28,7 +28,7 @@ public class PaisDAOImpl implements PaisDAO {
         try {
             try {
                 String sql = "SELECT idPais, nombre FROM public.pais"
-                        + " WHERE idPais = '" + pais.getIdPais() + "'";
+                        + " WHERE idPais = '" + pais.getIdPais() + "' or nombre = '" + pais.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevopais = new Pais_TO(rs.getInt(1), rs.getString(2));

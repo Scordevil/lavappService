@@ -153,7 +153,7 @@ public class CiudadDAOImpl implements CiudadDAO {
             try {
 
                 String sql = "SELECT idciudad, nombre, iddepartamento  FROM public.ciudad "
-                        + "WHERE idciudad = '" + ciudad.getIdCiudad() + "'";
+                        + "WHERE idciudad = '" + ciudad.getIdCiudad() + "' or nombre = '" + ciudad.getNombre() + "'";
 
                 ResultSet rs = null;
                 rs = st.executeQuery(sql);
@@ -175,5 +175,4 @@ public class CiudadDAOImpl implements CiudadDAO {
         return ciudades;
     }
 
-    
 }

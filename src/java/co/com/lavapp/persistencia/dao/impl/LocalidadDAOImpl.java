@@ -58,7 +58,7 @@ public class LocalidadDAOImpl implements LocalidadDAO {
         try {
             try {
                 String sql = "SELECT idlocalidad, nombre, idciudad FROM public.localidad as localidad "
-                        + "WHERE localidad.idlocalidad = '" + localidad.getIdLocalidad() + "'";
+                        + "WHERE localidad.idlocalidad = '" + localidad.getIdLocalidad() + "' or localidad.nombre = '" + localidad.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevalocalidad = new Localidad_TO(rs.getInt(1), rs.getString(2), new Ciudad_TO(rs.getInt(3)));

@@ -26,8 +26,9 @@ public class ConsultarCiudadImpl implements ConsultarCiudad{
     @GET
     @Produces({"application/json"})
     @Override
-    public Ciudad_TO consultarCiudad(@QueryParam("idCiudad") int idCiudad) throws Exception {
+    public Ciudad_TO consultarCiudad(@QueryParam("idCiudad") int idCiudad, @QueryParam("nombre") String nombre) throws Exception {
         Ciudad_TO ciudad = new Ciudad_TO(idCiudad);
+        ciudad.setNombre(nombre);
         CiudadDAO ciudadDao = new CiudadDAOImpl();
         return ciudadDao.consultarCiudad(ciudad);
         }

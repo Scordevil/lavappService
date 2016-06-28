@@ -13,5 +13,5 @@ import co.com.lavapp.modelo.dto.Barrio_TO;
  */
 public interface ConsultarBarrio {
  
-    public Barrio_TO consultarBarrio(int idBarrios) throws Exception;
+    public Barrio_TO consultarBarrio(int idBarrios, String nombre) throws Exception;
 }

@@ -26,8 +26,9 @@ public class ConsultarDepartamentoImpl implements ConsultarDepartamento{
     @GET
     @Produces({"application/json"})
     @Override
-    public Departamento_TO consultarDepartamento(@QueryParam("idDepartamento") int idDepartamento) throws Exception {
+    public Departamento_TO consultarDepartamento(@QueryParam("idDepartamento") int idDepartamento, @QueryParam("nombre") String nombre) throws Exception {
         Departamento_TO departamento = new Departamento_TO(idDepartamento);
+        departamento.setNombre(nombre);
         DepartamentoDAO departamentoDao = new DepartamentoDAOImpl();
         return departamentoDao.consultarDepartamento(departamento);
     }    
