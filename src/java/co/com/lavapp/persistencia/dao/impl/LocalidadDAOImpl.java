@@ -79,8 +79,8 @@ public class LocalidadDAOImpl implements LocalidadDAO {
         Localidad_TO nuevalocalidad = new Localidad_TO();
         try {
             try {
-                String sql = "INSERT INTO public.localidad (idlocalidad, nombre, idciudad)"
-                        + " VALUES ('" + localidad.getIdLocalidad() + "','" + localidad.getNombre() + "','" + localidad.getCiudad().getIdCiudad() + "')";
+                String sql = "INSERT INTO public.localidad (nombre, idciudad)"
+                        + " VALUES ('" + localidad.getNombre() + "','" + localidad.getCiudad().getIdCiudad() + "')";
                 st.execute(sql);
             } catch (Exception e) {
                 nuevalocalidad = new Localidad_TO();

@@ -89,7 +89,7 @@ public class CiudadDAOImpl implements CiudadDAO {
         Ciudad_TO nuevaciudad = new Ciudad_TO();
         try {
             try {
-                String sql = "INSERT INTO public.ciudad(nombre, iddepartmento)"
+                String sql = "INSERT INTO public.ciudad(nombre, iddepartamento)"
                         + " VALUES ('" + ciudad.getNombre() + "', '" + ciudad.getDepartamento().getIdDepartamento() + "')";
                 st.execute(sql);
             } catch (SQLException e) {
@@ -110,7 +110,7 @@ public class CiudadDAOImpl implements CiudadDAO {
         try {
             try {
                 String sql = "UPDATE public.ciudad SET nombre = '" + ciudad.getNombre() + "',"
-                        + " iddepartmento = '" + ciudad.getDepartamento().getIdDepartamento() + "'"
+                        + " iddepartamento = '" + ciudad.getDepartamento().getIdDepartamento() + "'"
                         + " WHERE idciudad = '" + ciudad.getIdCiudad() + "'";
                 st.execute(sql);
             } catch (SQLException e) {

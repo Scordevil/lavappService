@@ -25,7 +25,7 @@ import javax.ws.rs.QueryParam;
 public class RegistrarLocalidadImpl implements RegistrarLocalidad{
 
     @GET
-    @Produces
+    @Produces({"application/json"})
     @Override
     public Localidad_TO RegistrarLocalidad(@QueryParam("nombre") String nombre, 
             @QueryParam("idCiudad") int idCiudad) throws Exception {

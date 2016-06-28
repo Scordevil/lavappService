@@ -24,12 +24,11 @@ import javax.ws.rs.QueryParam;
 public class EliminarCiudadImpl implements EliminarCiudad{
 
     @GET
-    @Produces
+    @Produces({"application/json"})
     @Override
     public Ciudad_TO eliminarCiudad(@QueryParam("idCiudad") int idCiudad) throws Exception {
         Ciudad_TO ciudad = new Ciudad_TO(idCiudad);
         CiudadDAO ciudadDao = new CiudadDAOImpl();
         return ciudadDao.eliminarCiudad(ciudad);
-    }
-    
+    }    
 }
