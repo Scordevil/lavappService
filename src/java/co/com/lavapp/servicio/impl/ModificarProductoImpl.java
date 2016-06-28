@@ -28,9 +28,14 @@ public class ModificarProductoImpl implements ModificarProducto{
     @Produces({"application/json"})
     public Producto_TO modificarProducto(@QueryParam("idProducto")int idProducto,
             @QueryParam("nombre") String nombre,@QueryParam("desc") String desc,
-            @QueryParam("idSubServ") int idSubServ) throws Exception {
+            @QueryParam("idSubServ") int idSubServ , 
+            @QueryParam("rutaImagen") String rutaImagen) throws Exception {
         
-        Producto_TO produModel = new Producto_TO(idProducto, nombre, desc, new SubServicio_TO(idSubServ));
+        Producto_TO produModel = new Producto_TO(idProducto,
+                nombre, 
+                desc, 
+                new SubServicio_TO(idSubServ),
+                rutaImagen);
         Producto_TO producSalida = new Producto_TO();
         ProductoDAOImpl producDAO = new ProductoDAOImpl();
         try {

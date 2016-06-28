@@ -12,5 +12,5 @@ import co.com.lavapp.modelo.dto.Producto_TO;
  * @author SISTEMAS
  */
 public interface ModificarProducto {
-    public Producto_TO modificarProducto(int idProducto, String nombre, String desc, int idSubServ)throws Exception;
+    public Producto_TO modificarProducto(int idProducto, String nombre, String desc, int idSubServ , String rutaImagen)throws Exception;
 }

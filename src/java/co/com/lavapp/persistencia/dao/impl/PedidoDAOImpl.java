@@ -204,7 +204,7 @@ public class PedidoDAOImpl implements PedidoDAO {
             try {
                 String sql = " SELECT idpedido, idusuario, fechainicio, horarioinicio_idhorario, horariofinal_idhorario, "
                         + "       idestado, idproveedor FROM public.pedido "
-                        + " ORDER BY idpedido ASC ";
+                        + " ORDER BY idpedido DESC ";
                 ResultSet rs = st.executeQuery(sql);
                 
                 while (rs.next()) {

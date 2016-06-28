@@ -12,5 +12,5 @@ import co.com.lavapp.modelo.dto.SubProducto_TO;
  * @author SISTEMAS
  */
 public interface ModificarSubProdcutos {
-    public SubProducto_TO modificarSubProductos(int idSubProductos, String nombre, String desc,int idProducto)throws Exception;
+    public SubProducto_TO modificarSubProductos(int idSubProductos, String nombre, String desc,int idProducto, String rutaImagen)throws Exception;
 }

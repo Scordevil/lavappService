@@ -28,10 +28,11 @@ public class ProductoDAOImpl implements ProductoDAO {
         List<Producto_TO> productos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idproducto, nombre, descripcion, idsubservicio FROM public.producto";
+                String sql = "SELECT idproducto, nombre, descripcion, idsubservicio, rutaimagen "
+                        + "  FROM public.producto;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    productos.add(new Producto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new SubServicio_TO(rs.getInt(4))));
+                    productos.add(new Producto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new SubServicio_TO(rs.getInt(4)), rs.getString(5)));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -50,8 +51,8 @@ public class ProductoDAOImpl implements ProductoDAO {
         try {
             try {
                 String sql = "INSERT INTO public.producto( "
-                        + "             nombre, descripcion, idsubservicio) "
-                        + "    VALUES ( '" + produc.getNombre() + "', '" + produc.getDescripcion() + "', " + produc.getSubServicio().getIdSubServicio() + ");";
+                        + "             nombre, descripcion, idsubservicio , rutaimagen) "
+                        + "    VALUES ( '" + produc.getNombre() + "', '" + produc.getDescripcion() + "', " + produc.getSubServicio().getIdSubServicio() + " , '"+  produc.getRutaImagen()+"');";
                 st.execute(sql);
                 productModelo = new Producto_TO();
             } catch (Exception e) {
@@ -73,7 +74,7 @@ public class ProductoDAOImpl implements ProductoDAO {
         try {
             try {
                 String sql = "UPDATE public.producto "
-                        + "   SET  nombre='" + produc.getNombre() + "', descripcion='" + produc.getDescripcion() + "', idsubservicio=" + produc.getSubServicio().getIdSubServicio() + " "
+                        + "   SET  nombre='" + produc.getNombre() + "', descripcion='" + produc.getDescripcion() + "', idsubservicio=" + produc.getSubServicio().getIdSubServicio() + " , rutaimagen='"+  produc.getRutaImagen()+"' "
                         + " WHERE idproducto=" + produc.getIdProducto() + ";";
                 st.execute(sql);
                 producModelo = new Producto_TO();
@@ -95,7 +96,7 @@ public class ProductoDAOImpl implements ProductoDAO {
         try {
             try {
                 String sql = "DELETE FROM public.producto "
-                        + " WHERE idproducto = "+ produc.getIdProducto() +";";
+                        + " WHERE idproducto = " + produc.getIdProducto() + ";";
                 st.execute(sql);
                 prodctoModelo = new Producto_TO();
             } catch (Exception e) {

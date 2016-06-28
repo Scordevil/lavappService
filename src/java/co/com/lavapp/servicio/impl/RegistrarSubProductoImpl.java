@@ -27,10 +27,12 @@ public class RegistrarSubProductoImpl implements RegistrarSubProducto {
     @Produces({"application/json"})
     @Override
     public SubProducto_TO registrarSubProducto(@QueryParam("nombre") String nombre,
-            @QueryParam("descripcion") String desc, @QueryParam("idProducto") int idProduc) throws Exception {
+            @QueryParam("descripcion") String desc, 
+            @QueryParam("idProducto") int idProduc ,
+            @QueryParam("rutaImagen") String rutaImagen) throws Exception {
 
         Producto_TO idProd = new Producto_TO(idProduc);
-        SubProducto_TO subProductModel = new SubProducto_TO(nombre, desc, idProd);
+        SubProducto_TO subProductModel = new SubProducto_TO(nombre, desc, idProd, rutaImagen);
         SubProductoDAOImpl subProDAO = new SubProductoDAOImpl();
 
         return subProDAO.registrarSubProducto(subProductModel);

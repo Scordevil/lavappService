@@ -42,6 +42,12 @@ public class Producto_TO {
      */
     private SubServicio_TO subServicio;
 
+    /**
+     *
+     * Columna RutaImagen
+     */
+    private String rutaImagen;
+
     //Constructores
     public Producto_TO() {
     }
@@ -50,20 +56,20 @@ public class Producto_TO {
         this.idProducto = idProducto;
     }
 
-    public Producto_TO(String nombre, String descripcion, SubServicio_TO subServicio) {
+    public Producto_TO(String nombre, String descripcion, SubServicio_TO subServicio, String rutaImagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.subServicio = subServicio;
+        this.rutaImagen = rutaImagen;
     }
-    
-       
 
     //Constructor General
-    public Producto_TO(int idProducto, String nombre, String descripcion, SubServicio_TO subServicio) {
+    public Producto_TO(int idProducto, String nombre, String descripcion, SubServicio_TO subServicio, String rutaImagen) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.subServicio = subServicio;
+        this.rutaImagen = rutaImagen;
     }
 
     //Getter and Setter
@@ -99,9 +105,17 @@ public class Producto_TO {
         this.subServicio = subServicio;
     }
 
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
     @Override
     public String toString() {
-        return "Producto_TO{" + "idProducto=" + idProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", subServicio=" + subServicio + '}';
+        return "Producto_TO{" + "idProducto=" + idProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", subServicio=" + subServicio + ", rutaImagen=" + rutaImagen + '}';
     }
 
 }

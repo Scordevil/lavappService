@@ -28,11 +28,11 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         List<SubProducto_TO> subProductos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idsubproducto, nombre, descripcion, idproducto FROM public.subproducto AS subproducto "
+                String sql = "SELECT idsubproducto, nombre, descripcion, idproducto , rutaimagen FROM public.subproducto AS subproducto "
                         + "WHERE subproducto.idproducto = '" + producto.getIdProducto() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    subProductos.add(new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4))));
+                    subProductos.add(new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4)), rs.getString(5)));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -50,12 +50,12 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         List<SubProducto_TO> subProductos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idsubproducto, nombre, descripcion, idproducto\n"
+                String sql = "SELECT idsubproducto, nombre, descripcion, idproducto, rutaimagen"
                         + "  FROM public.subproducto;";
 
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    subProductos.add(new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4))));
+                    subProductos.add(new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4)), rs.getString(5)));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -74,8 +74,9 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         try {
             try {
                 String sql = "INSERT INTO public.subproducto( "
-                        + "            nombre, descripcion, idproducto) "
-                        + "    VALUES ('" + subProduc.getNombre() + "', '" + subProduc.getDescripcion() + "', " + subProduc.getProducto().getIdProducto() + ")";
+                        + "            nombre, descripcion, idproducto, rutaimagen) "
+                        + "    VALUES ('" + subProduc.getNombre() + "', '" + subProduc.getDescripcion() + "', " 
+                        + subProduc.getProducto().getIdProducto() + " , '"+ subProduc.getRutaImagen() +"') " ; 
                 st.execute(sql);
                 subProModelo = new SubProducto_TO();
             } catch (Exception e) {
@@ -97,7 +98,7 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         try {
             try {
                 String sql = "UPDATE public.subproducto "
-                        + "   SET  nombre='" + subProduc.getNombre() + "', descripcion='" + subProduc.getDescripcion() + "', idproducto=" + subProduc.getProducto().getIdProducto() + " "
+                        + "   SET  nombre='" + subProduc.getNombre() + "', descripcion='" + subProduc.getDescripcion() + "', idproducto=" + subProduc.getProducto().getIdProducto() + " , rutaimagen='"+ subProduc.getRutaImagen() +"' "
                         + " WHERE idsubproducto=" + subProduc.getIdSubProducto() + ";";
                 st.execute(sql);
                 subproModel = new SubProducto_TO();

@@ -27,9 +27,11 @@ public class ModificarSubProdcutosImpl implements ModificarSubProdcutos{
     @GET
     @Produces({"application/json"})
     public SubProducto_TO modificarSubProductos(@QueryParam("idSubProductos")int idSubProductos,
-            @QueryParam("nombre") String nombre,@QueryParam("desc") String desc,
-            @QueryParam("idProducto") int idProducto) throws Exception {
-        SubProducto_TO subpModel = new SubProducto_TO(idSubProductos, nombre, desc, new Producto_TO(idProducto));
+            @QueryParam("nombre") String nombre,
+            @QueryParam("desc") String desc,
+            @QueryParam("idProducto") int idProducto,
+            @QueryParam("rutaImagen") String rutaImagen) throws Exception {
+        SubProducto_TO subpModel = new SubProducto_TO(idSubProductos, nombre, desc, new Producto_TO(idProducto), rutaImagen);
         SubProducto_TO subPSalida = new SubProducto_TO();
         SubProductoDAOImpl subPDAO = new SubProductoDAOImpl();
         try {
