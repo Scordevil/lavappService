@@ -74,6 +74,18 @@ public class Proveedor_TO {
         this.idProveedor = idProveedor;
     }
 
+    public Proveedor_TO(String razonSocial, String nit, String telefono, String direccion, Usuario_TO usuario, int cupo, Zona_TO zona) {
+        this.razonSocial = razonSocial;
+        this.nit = nit;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.usuario = usuario;
+        this.cupo = cupo;
+        this.zona = zona;
+    }
+    
+    
+
     public Proveedor_TO(int idProveedor, String razonSocial, String nit, String telefono, String direccion, Usuario_TO usuario, int cupo, Zona_TO zona) {
         this.idProveedor = idProveedor;
         this.razonSocial = razonSocial;
