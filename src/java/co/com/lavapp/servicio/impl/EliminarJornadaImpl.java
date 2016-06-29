@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 /**
  *
@@ -25,7 +26,7 @@ public class EliminarJornadaImpl implements EliminarJornada{
     @GET
     @Produces({"application/json"})
     @Override
-    public Jornada_TO eliminarJornada(int idJornada) throws Exception {
+    public Jornada_TO eliminarJornada(@QueryParam("idJornada") int idJornada) throws Exception {
         Jornada_TO jornada = new Jornada_TO(idJornada);
         JornadaDAO jornadaDao = new JornadaDAOImpl();
         return jornadaDao.eliminarJornada(jornada);
