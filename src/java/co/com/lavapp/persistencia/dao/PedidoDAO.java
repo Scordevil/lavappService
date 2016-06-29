@@ -31,6 +31,6 @@ public interface PedidoDAO {
 
     public List<Pedido_TO> consultarPedidosSegunPlanta(Proveedor_TO proveedor) throws Exception;
 
-    public List<Pedido_TO> consultarPedidosASC() throws Exception;
+    public Pedido_TO consultarUltimoPedido(Usuario_TO usuario) throws Exception;
 
 }

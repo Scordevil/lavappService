@@ -198,24 +198,17 @@ public class PedidoDAOImpl implements PedidoDAO {
     }
 
     @Override
-    public List<Pedido_TO> consultarPedidosASC() throws Exception {
-        List<Pedido_TO> listaModelo = new ArrayList<>();
+    public Pedido_TO consultarUltimoPedido(Usuario_TO usuario) throws Exception {
+        Pedido_TO ultimoPedido = new Pedido_TO();
         try {
             try {
-                String sql = " SELECT idpedido, idusuario, fechainicio, horarioinicio_idhorario, horariofinal_idhorario, "
-                        + "       idestado, idproveedor FROM public.pedido "
-                        + " ORDER BY idpedido DESC ";
+                String sql = " SELECT MAX(idpedido) FROM public.pedido "
+                        + "WHERE idusuario = '" + usuario.getIdUsuario() + "'";
+                      
                 ResultSet rs = st.executeQuery(sql);
-                
+
                 while (rs.next()) {
-                    listaModelo.add(new Pedido_TO(rs.getInt(1), 
-                            new Usuario_TO(rs.getInt(2)), 
-                            rs.getDate(3),
-                            new Horario_TO(rs.getString(4)) ,
-                            new Horario_TO(rs.getString(5), 1) , 
-                            new Estado_TO(rs.getInt(6)),
-                            new Proveedor_TO(rs.getInt(7))));
-                    
+                    ultimoPedido = new Pedido_TO(rs.getInt(1));
                 }
             } catch (Exception e) {
                 throw e;
@@ -223,7 +216,7 @@ public class PedidoDAOImpl implements PedidoDAO {
         } catch (Exception ec) {
             throw ec;
         }
-        return listaModelo;
+        return ultimoPedido;
     }
 
 }
