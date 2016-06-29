@@ -50,7 +50,7 @@ public class JornadaDAOImpl implements JornadaDAO {
         try {
             try {
                 String sql = "SELECT idjornada, nombre FROM public.jornada as jornada"
-                        + "WHERE jornada.idjornada = '" + jornada.getIdJornada() + "'";
+                        + "WHERE jornada.idjornada = '" + jornada.getIdJornada() + "' or jornada.nombre = '"+jornada.getNombre()+"'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     jornadas.add(new Jornada_TO(rs.getInt(1), rs.getString(2)));

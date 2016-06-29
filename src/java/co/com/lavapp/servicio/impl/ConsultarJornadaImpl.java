@@ -27,12 +27,10 @@ public class ConsultarJornadaImpl implements ConsultarJornada{
     @GET
     @Produces({"application/json"})
     @Override
-    public List<Jornada_TO> consultarJornada(@QueryParam("idJornada") int idJornada) throws Exception {
-        Jornada_TO jornada = new Jornada_TO(idJornada);
+    public List<Jornada_TO> consultarJornada(@QueryParam("idJornada") int idJornada, @QueryParam("nombre") String nombre) throws Exception {
+        Jornada_TO jornada = new Jornada_TO(idJornada, nombre);
         JornadaDAO jornadaDao = new JornadaDAOImpl();
         return jornadaDao.consultarJornada(jornada);             
-    }
-    
-    
-    
+    }  
+       
 }

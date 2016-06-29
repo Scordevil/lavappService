@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ConsultarJornada {
     
-    public List<Jornada_TO> consultarJornada(int idJornada) throws Exception;
+    public List<Jornada_TO> consultarJornada(int idJornada, String jornada) throws Exception;
     
     
 }
