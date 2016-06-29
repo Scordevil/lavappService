@@ -34,7 +34,7 @@ public class JornadaDAOImpl implements JornadaDAO {
                     jornadas.add(new Jornada_TO(rs.getInt(1), rs.getString(2)));
                 }
             } catch (SQLException e) {
-                throw  e;
+                throw e;
             }
         } catch (Exception e) {
             throw e;
@@ -68,16 +68,61 @@ public class JornadaDAOImpl implements JornadaDAO {
 
     @Override
     public Jornada_TO registraJornada(Jornada_TO jornada) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Jornada_TO nuevajornada = new Jornada_TO();
+        try {
+            try {
+                String sql = "INSERT INTO public.jornada(nombre) "
+                        + "VALUES('" + jornada.getNombre() + "')";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevajornada = new Jornada_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevajornada;
     }
 
     @Override
     public Jornada_TO modificarJornada(Jornada_TO jornada) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Jornada_TO nuevajornada = new Jornada_TO();
+        try {
+            try {
+                String sql = "UPDATE public.jornada SET nombre = '" + jornada.getNombre() + "' "
+                        + "WHERE idjornada = '" + jornada.getIdJornada() + "'";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevajornada = new Jornada_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevajornada;
     }
 
     @Override
     public Jornada_TO eliminarJornada(Jornada_TO jornada) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Jornada_TO nuevajornada = new Jornada_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.jornada "
+                        + "WHERE idjornada = '" + jornada.getIdJornada() + "'";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevajornada = new Jornada_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevajornada;
     }
 }
