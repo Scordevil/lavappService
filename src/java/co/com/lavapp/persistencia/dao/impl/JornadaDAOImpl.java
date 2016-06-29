@@ -65,4 +65,19 @@ public class JornadaDAOImpl implements JornadaDAO {
         }
         return jornadas;
     }
+
+    @Override
+    public Jornada_TO registraJornada(Jornada_TO jornada) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Jornada_TO modificarJornada(Jornada_TO jornada) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Jornada_TO eliminarJornada(Jornada_TO jornada) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
