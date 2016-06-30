@@ -5,14 +5,13 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.Pedido_TO;
-import java.util.Date;
+import co.com.lavapp.modelo.dto.Usuario_TO;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface RegistrarPedido {
+public interface ConsultarUsuarioSegunIdentificacion {
     
-    public Pedido_TO registrarPedido(int idUsuario, String fechaInicio, int idHorarioInicio, int idHorarioFinal, int idEstado, int idProveedor) throws Exception;
+    public Usuario_TO consultarUsuarioSegunIdentificacion(String identificacion) throws Exception;
 }
