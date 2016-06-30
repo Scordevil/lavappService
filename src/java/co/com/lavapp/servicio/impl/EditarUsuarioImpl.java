@@ -28,22 +28,14 @@ public class EditarUsuarioImpl implements EditarUsuario {
     @Produces({"application/json"})
 
     @Override
-    public Usuario_TO editarUsuario(@QueryParam("idUsuario") int idUsuario, @QueryParam("nombre") String nombre, @QueryParam("apellido") String apellido, @QueryParam("telefono") String telefono, @QueryParam("idbarrios") int idbarrios, @QueryParam("contrasena") String contrasena,
-            @QueryParam("movil") String movil, @QueryParam("direccion") String direccion, @QueryParam("idciudad") int idciudad) throws Exception {
+    public Usuario_TO editarUsuario(@QueryParam("idUsuario") int idUsuario, @QueryParam("nombre") String nombre, @QueryParam("apellido") String apellido, @QueryParam("telefono") String telefono, @QueryParam("idbarrios") int idbarrios,
+            @QueryParam("movil") String movil, @QueryParam("direccion") String direccion, @QueryParam("idciudad") int idciudad, @QueryParam("identificacion") String identificacion) throws Exception {
 
-        Usuario_TO user = new Usuario_TO(idUsuario
-        ,nombre, telefono
-        ,  new Barrio_TO(idbarrios), contrasena
-        , apellido, movil
-        , direccion, new Ciudad_TO(idciudad)
-        );
+        Usuario_TO usuario = new Usuario_TO(idUsuario, nombre, telefono, new Barrio_TO(idbarrios), apellido, telefono, movil, direccion, new Ciudad_TO(idciudad), identificacion);
 
-        UsuarioDAOImpl usuario = new UsuarioDAOImpl();
+        UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
 
-        Usuario_TO usu = new Usuario_TO();
-        usu = usuario.editarUsuario(user);
-
-        return usu;
+        return usuarioDao.editarUsuario(usuario);
     }
 
 }

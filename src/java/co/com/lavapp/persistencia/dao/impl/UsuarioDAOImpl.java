@@ -47,7 +47,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             usuario.setContrasena(md5.getMD5(usuario.getContrasena()));
             try {
                 String sql = "INSERT INTO public.usuario( "
-                        + "   nombre, telefono, idbarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad)"
+                        + "   nombre, telefono, idbarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad, identificacion)"
                         + "    VALUES ('" + usuario.getNombre() + "', "
                         + "'" + usuario.getTelefono() + "', "
                         + "" + usuario.getBarrio().getIdBarrios() + ", "
@@ -59,7 +59,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                         + "'" + usuario.getGenero() + "', "
                         + "'" + usuario.getMovil() + "', "
                         + "'" + usuario.getDireccion() + "', "
-                        + "'" + usuario.getCiudad().getIdCiudad() + "');";
+                        + "'" + usuario.getCiudad().getIdCiudad() + "', "
+                        + "'" + usuario.getIdentificacion() + "');";
 
                 st.execute(sql);
 
@@ -94,7 +95,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         Config funciones = new Config();
         try {
             try {
-                String sql = "SELECT idusuario, nombre, telefono, idBarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad"
+                String sql = "SELECT idusuario, nombre, telefono, idBarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad, identificacion"
                         + " FROM public.usuario as usuario where usuario.email = '" + usuario.getEmail() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
@@ -110,7 +111,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                             rs.getString(10),
                             rs.getString(11),
                             rs.getString(12),
-                            new Ciudad_TO(rs.getInt(13)));
+                            new Ciudad_TO(rs.getInt(13)),
+                            rs.getString(14));
                 }
             } catch (SQLException e) {
                 user = new Usuario_TO();
@@ -138,13 +140,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         try {
             try {
-                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad "
+                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado, email, contrasena, apellido, genero, movil, direccion, idciudad, identificacion "
                         + "  FROM public.usuario where idusuario = '" + usuario.getIdUsuario() + "'; ";
 
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-                    user = new Usuario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Barrio_TO(rs.getInt(4)), new Rol_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), new Ciudad_TO(rs.getInt(13)));
+                    user = new Usuario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Barrio_TO(rs.getInt(4)), new Rol_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), new Ciudad_TO(rs.getInt(13)), rs.getString(14));
                 }
             } catch (Exception e) {
                 user = new Usuario_TO();
@@ -175,8 +177,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         try {
             String sql = "UPDATE public.usuario  "
-                    + "SET nombre='" + usuario.getNombre() + "',apellido='" + usuario.getApellido() + "' ,telefono='" + usuario.getTelefono() + "' , idbarrios= " + usuario.getBarrio().getIdBarrios() + " , contrasena= '" + usuario.getContrasena() + "' , movil= '" + usuario.getMovil() + "' , direccion= '" + usuario.getDireccion() + "' , idciudad= " + usuario.getCiudad().getIdCiudad() + " "
-                    + "  WHERE idUsuario = " + usuario.getIdUsuario() + " ;";
+                    + "SET nombre='" + usuario.getNombre() + "',apellido='" + usuario.getApellido() + "' ,telefono='" + usuario.getTelefono() + "' , idbarrios= " + usuario.getBarrio().getIdBarrios() + " , movil= '" + usuario.getMovil() + "' , direccion= '" + usuario.getDireccion() + "' , idciudad= " + usuario.getCiudad().getIdCiudad() + ", identificacion = '" + usuario.getIdentificacion() + "' "
+                    + "WHERE idUsuario = " + usuario.getIdUsuario() + " ;";
             st.executeUpdate(sql);
         } catch (Exception e) {
             user = new Usuario_TO();
@@ -188,4 +190,23 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return user;
     }
 
+    @Override
+    public Usuario_TO eliminarUsuario(Usuario_TO usuario) throws Exception {
+        Usuario_TO nuevoUsuario = new Usuario_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.usuario "
+                        + "WHERE idusuario = '" + usuario.getIdUsuario() + "'";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevoUsuario = new Usuario_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevoUsuario;
+    }
 }

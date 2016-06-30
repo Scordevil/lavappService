@@ -9,11 +9,10 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
 
 /**
  *
- * @author Sistemas
+ * @author Desarrollo_Planit
  */
-public interface EditarUsuario {
+public interface EliminarUsuario {
     
-        public Usuario_TO editarUsuario (int idUsuario, String nombre, String apellido, String telefono, int idbarrios,
-             String movil, String direccion, int idciudad, String identificacion) throws Exception;
+    public Usuario_TO eliminarUsuario(int idUsuario) throws Exception;
     
 }
