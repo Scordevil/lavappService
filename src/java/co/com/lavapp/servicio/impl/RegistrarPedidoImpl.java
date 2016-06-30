@@ -48,7 +48,7 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
             e.printStackTrace();
         }
         
-         Pedido_TO pedido = new Pedido_TO(new Usuario_TO(idUsuario), f, new Horario_TO(idHorarioInicio), new Horario_TO(idHorarioFinal), new Estado_TO(idEstado), new Proveedor_TO(idProveedor));
+        Pedido_TO pedido = new Pedido_TO(new Usuario_TO(idUsuario), f, new Horario_TO(idHorarioInicio), new Horario_TO(idHorarioFinal), new Estado_TO(idEstado), new Proveedor_TO(idProveedor));
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         
         return pedidoDao.registrarPedido(pedido);
