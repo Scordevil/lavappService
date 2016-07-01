@@ -32,11 +32,10 @@ public class PedidoDAOImpl implements PedidoDAO {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
-                String sql = "INSERT INTO public.pedido("
-                        + "idusuario, fechainicio, horarioinicio_idhorario, horariofinal_idhorario, idestado) "
-                        + "VALUES ('" + pedido.getUsuario().getIdUsuario() + "', '" + pedido.getFechaInicio() + "', '" + pedido.getHoraInicio().getIdHorario() + "', '" + pedido.getHoraFinal().getIdHorario() + "', '" + pedido.getEstado().getIdEstado() + "');";
+                String sql = "INSERT INTO public.pedido(idusuario, fechainicio, horarioinicio_idhorario, horariofinal_idhorario, idestado)"
+                        + " VALUES ('" + pedido.getUsuario().getIdUsuario() + "', '" + pedido.getFechaInicio().toString() + "', '" + pedido.getHoraInicio().getIdHorario() + "', '" + pedido.getHoraFinal().getIdHorario() + "', '" + pedido.getEstado().getIdEstado() + "')";
 
-                st.executeQuery(sql);
+                st.execute(sql);
             } catch (Exception e) {
                 nuevopedido = new Pedido_TO();
                 throw e;
@@ -58,7 +57,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                 String sql = "DELETE FROM public.pedido "
                         + "WHERE idpedido = '" + pedido.getIdPedido() + "';";
 
-                st.executeQuery(sql);
+                st.execute(sql);
             } catch (Exception e) {
                 nuevopedido = new Pedido_TO();
                 throw e;
@@ -131,7 +130,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "SET idestado = '" + estado.getIdEstado() + "' "
                         + "WHERE idpedido = '" + pedido.getIdPedido() + "';";
 
-                st.executeQuery(sql);
+                st.execute(sql);
             } catch (SQLException e) {
                 nuevopedido = new Pedido_TO();
                 throw e;

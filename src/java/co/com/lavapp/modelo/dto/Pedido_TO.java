@@ -70,6 +70,15 @@ public class Pedido_TO {
         this.idPedido = idPedido;
     }
 
+    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado) {
+        this.usuario = usuario;
+        this.fechaInicio = fechaInicio;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
+    }
+
+    
     public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor) {
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;

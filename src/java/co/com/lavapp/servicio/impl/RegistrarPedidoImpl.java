@@ -36,9 +36,8 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
     public Pedido_TO registrarPedido(@QueryParam("idUsuario") int idUsuario,
             @QueryParam("fechaInicio") String fechaInicio,
             @QueryParam("idHorario") int idHorarioInicio,
-            @QueryParam("idHorario") int idHorarioFinal,
-            @QueryParam("idEstado") int idEstado,
-            @QueryParam("idProveedor") int idProveedor) throws Exception {
+            @QueryParam("idHorarioFinal") int idHorarioFinal,
+            @QueryParam("idEstado") int idEstado) throws Exception {
        
         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
         Date f = new Date();
@@ -48,7 +47,7 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
             e.printStackTrace();
         }
         
-        Pedido_TO pedido = new Pedido_TO(new Usuario_TO(idUsuario), f, new Horario_TO(idHorarioInicio), new Horario_TO(idHorarioFinal), new Estado_TO(idEstado), new Proveedor_TO(idProveedor));
+        Pedido_TO pedido = new Pedido_TO(new Usuario_TO(idUsuario), f, new Horario_TO(idHorarioInicio), new Horario_TO(idHorarioFinal), new Estado_TO(idEstado));
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         
         return pedidoDao.registrarPedido(pedido);

@@ -6,7 +6,6 @@
 package co.com.lavapp.servicio;
 
 import co.com.lavapp.modelo.dto.Pedido_TO;
-import java.util.Date;
 
 /**
  *
@@ -14,5 +13,5 @@ import java.util.Date;
  */
 public interface RegistrarPedido {
     
-    public Pedido_TO registrarPedido(int idUsuario, String fechaInicio, int idHorarioInicio, int idHorarioFinal, int idEstado, int idProveedor) throws Exception;
+    public Pedido_TO registrarPedido(int idUsuario, String fechaInicio, int idHorarioInicio, int idHorarioFinal, int idEstado) throws Exception;
 }
