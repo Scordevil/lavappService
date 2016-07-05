@@ -60,16 +60,16 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
         List<DescripcionPedido_TO> descripcionPedidos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT iddescripcionpedido, "
-                        + "idestado, idsubproducto, descripcion, "
-                        + "observacionasesor, observacionadministrador, foto1, "
-                        + "foto2, foto3, idcolor, idpedido FROM "
-                        + "from public.descripcionpedido as descripcionpedido WHERE "
-                        + "descripcionpedido.idpedido = '" + pedido.getIdPedido() + "'";
+                String sql = "SELECT iddescripcionpedido, "+
+"                        dp.idestado, dp.idsubproducto, dp.descripcion, " +
+"                        dp.observacionasesor, dp.observacionadministrador, dp.foto1, " +
+"                        dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, e.nombre " +
+"                        from public.descripcionpedido as dp, public.estado as e WHERE " +
+"                        dp.idpedido = "+pedido.getIdPedido()+" and dp.idestado = e.idestado;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     descripcionPedidos.add(new DescripcionPedido_TO(rs.getInt(1),
-                            new Estado_TO(rs.getInt(2)),
+                            new Estado_TO(rs.getInt(2),rs.getString(12)),
                             new SubProducto_TO(rs.getInt(3)),
                             rs.getString(4),
                             rs.getString(5),
