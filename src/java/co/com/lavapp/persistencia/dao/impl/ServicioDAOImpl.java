@@ -111,4 +111,27 @@ public class ServicioDAOImpl implements ServicioDAO {
         return servicioModelo;
     }
 
+    @Override
+    public Servicio_TO consultarServicio(Servicio_TO servicio) throws Exception {
+        Servicio_TO nuevoservicio = new Servicio_TO();
+        try {
+            try {
+                String sql = "SELECT idservicio, nombre FROM servicio "
+                        + "WHERE idservicio = '"+servicio.getIdServicio()+"' or nombre = '"+servicio.getNombre()+"'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevoservicio = new Servicio_TO(rs.getInt(1), rs.getString(2));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+
+        }
+        return nuevoservicio;
+    }
+
 }
