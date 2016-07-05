@@ -81,7 +81,14 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "pedido.idusuario = '" + usuario.getIdUsuario() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7))));
+                    
+                    String[] Fecha = null;                    
+                                
+                    Fecha = rs.getDate(3).toString().split("T");
+
+                      String fechaInicioS = Fecha[0].toString();
+                    
+                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), fechaInicioS,  new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7))));
                 }
             } catch (SQLException e) {
                 throw e;
