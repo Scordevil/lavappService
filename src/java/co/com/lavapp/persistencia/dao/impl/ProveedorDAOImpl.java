@@ -115,14 +115,14 @@ public class ProveedorDAOImpl implements ProveedorDAO {
         try {
             try {
                 String sql = "UPDATE public.proveedor SET "
-                        + "razonsocial = '" + proveedor + "', "
+                        + "razonsocial = '" + proveedor.getRazonSocial() + "', "
                         + "nit = '" + proveedor.getNit() + "', "
                         + "telefono = '" + proveedor.getTelefono() + "', "
                         + "direccion = '" + proveedor.getDireccion() + "', "
                         + "idusuario = '" + proveedor.getUsuario().getIdUsuario() + "', "
-                        + "cupo = '" + proveedor.getCupo() + "', "
-                        + "idzona = '" + proveedor.getZona().getIdZona() + "' "
-                        + "WHERE idproveedor = '" + proveedor.getIdProveedor() + "'";
+                        + "cupo = " + proveedor.getCupo() + ", "
+                        + "idzona = " + proveedor.getZona().getIdZona() + " "
+                        + "WHERE idproveedor = " + proveedor.getIdProveedor() + "";
                 st.execute(sql);
             } catch (SQLException e) {
                 nuevoProveedor = new Proveedor_TO();
