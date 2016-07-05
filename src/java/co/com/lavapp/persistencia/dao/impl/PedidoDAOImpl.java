@@ -76,9 +76,9 @@ public class PedidoDAOImpl implements PedidoDAO {
         List<Pedido_TO> pedidos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idpedido, idusuario, fechaInicio, horarioinicio_idhorario, horariofinal_idhorario, idestado, idproveedor "
-                        + "from public.pedido as pedido WHERE "
-                        + "pedido.idusuario = '" + usuario.getIdUsuario() + "'";
+                String sql = "SELECT pedido.idpedido, pedido.idusuario, pedido.fechaInicio, pedido.horarioinicio_idhorario, pedido.horariofinal_idhorario, pedido.idestado, estado.nombre, pedido.idproveedor " +
+                   " from public.pedido as pedido, public.estado as estado WHERE " +
+                    "   pedido.idusuario = "+usuario.getIdUsuario()+" and estado.idestado = pedido.idestado;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     
@@ -88,7 +88,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 
                       String fechaInicioS = Fecha[0].toString();
                     
-                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), fechaInicioS,  new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7))));
+                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), fechaInicioS,  new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6),rs.getString(7)), new Proveedor_TO(rs.getInt(8))));
                 }
             } catch (SQLException e) {
                 throw e;
