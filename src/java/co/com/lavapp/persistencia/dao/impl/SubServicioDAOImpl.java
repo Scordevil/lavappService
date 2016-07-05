@@ -131,7 +131,7 @@ public class SubServicioDAOImpl implements SubServicioDAO {
         try {
             try {
                 String sql = "DELETE FROM public.subservicio "
-                        + " WHERE idsubservicio = "+ subServi.getIdSubServicio() +";";
+                        + " WHERE idsubservicio = " + subServi.getIdSubServicio() + ";";
                 st.execute(sql);
                 subServiModelo = new SubServicio_TO();
             } catch (Exception e) {
@@ -143,6 +143,34 @@ public class SubServicioDAOImpl implements SubServicioDAO {
             throw se;
         }
         return subServiModelo;
+    }
+
+    @Override
+    public SubServicio_TO consultarSubServicio(SubServicio_TO subservicio) throws Exception {
+        SubServicio_TO nuevoSubservicio = new SubServicio_TO();
+        try {
+            try {
+                String sql = "SELECT subservicio.idsubservicio, subservicio.nombre, subservicio.idservicio FROM "
+                        + "subservicio as subservicio where "
+                        + "'" + subservicio.getIdSubServicio() + "' = subservicio.idsubservicio or "
+                        + "nombre = '" + subservicio.toString() + "' ";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    nuevoSubservicio = new SubServicio_TO(rs.getInt(1),
+                            rs.getString(2),
+                            new Servicio_TO(rs.getInt(3)));
+                }
+
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return subservicio;
     }
 
 }
