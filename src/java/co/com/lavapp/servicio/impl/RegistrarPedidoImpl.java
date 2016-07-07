@@ -33,7 +33,7 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
     @GET
     @Produces({"application/json"})
     @Override
-    public Pedido_TO registrarPedido(@QueryParam("idUsuario") int idUsuario,
+    public Pedido_TO registrarPedido(
             @QueryParam("fechaInicio") String fechaInicio,
             @QueryParam("idHorario") int idHorarioInicio,
             @QueryParam("idHorarioFinal") int idHorarioFinal,
@@ -47,7 +47,7 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
             e.printStackTrace();
         }
         
-        Pedido_TO pedido = new Pedido_TO(new Usuario_TO(idUsuario), f, new Horario_TO(idHorarioInicio), new Horario_TO(idHorarioFinal), new Estado_TO(idEstado));
+        Pedido_TO pedido = new Pedido_TO( f, new Horario_TO(idHorarioInicio), new Horario_TO(idHorarioFinal), new Estado_TO(idEstado));
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         
         return pedidoDao.registrarPedido(pedido);

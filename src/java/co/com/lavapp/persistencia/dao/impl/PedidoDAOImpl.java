@@ -32,8 +32,8 @@ public class PedidoDAOImpl implements PedidoDAO {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
-                String sql = "INSERT INTO public.pedido(idusuario, fechainicio, horarioinicio_idhorario, horariofinal_idhorario, idestado)"
-                        + " VALUES ('" + pedido.getUsuario().getIdUsuario() + "', '" + pedido.getFechaInicio().toString() + "', '" + pedido.getHoraInicio().getIdHorario() + "', '" + pedido.getHoraFinal().getIdHorario() + "', '" + pedido.getEstado().getIdEstado() + "')";
+                String sql = "INSERT INTO public.pedido(fechainicio, horarioinicio_idhorario, horariofinal_idhorario, idestado)"
+                        + " VALUES ('" + pedido.getFechaInicio().toString() + "', '" + pedido.getHoraInicio().getIdHorario() + "', '" + pedido.getHoraFinal().getIdHorario() + "', '" + pedido.getEstado().getIdEstado() + "')";
 
                 st.execute(sql);
             } catch (Exception e) {
