@@ -8,7 +8,7 @@ package co.com.lavapp.servicio.impl;
 import co.com.lavapp.modelo.dto.Producto_TO;
 import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.persistencia.dao.impl.SubProductoDAOImpl;
-import co.com.lavapp.servicio.ModificarSubProdcutos;
+import co.com.lavapp.servicio.ModificarSubProductos;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,7 +21,7 @@ import javax.ws.rs.QueryParam;
  */
 @Stateless
 @Path("/modificarSubProductos")
-public class ModificarSubProdcutosImpl implements ModificarSubProdcutos{
+public class ModificarSubProdcutosImpl implements ModificarSubProductos{
 
     @Override
     @GET

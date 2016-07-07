@@ -52,7 +52,7 @@ public class ProductoDAOImpl implements ProductoDAO {
             try {
                 String sql = "INSERT INTO public.producto( "
                         + "             nombre, descripcion, idsubservicio , rutaimagen) "
-                        + "    VALUES ( '" + produc.getNombre() + "', '" + produc.getDescripcion() + "', " + produc.getSubServicio().getIdSubServicio() + " , '"+  produc.getRutaImagen()+"');";
+                        + "    VALUES ( '" + produc.getNombre() + "', '" + produc.getDescripcion() + "', " + produc.getSubServicio().getIdSubServicio() + " , '" + produc.getRutaImagen() + "');";
                 st.execute(sql);
                 productModelo = new Producto_TO();
             } catch (Exception e) {
@@ -74,8 +74,8 @@ public class ProductoDAOImpl implements ProductoDAO {
         try {
             try {
                 String sql = "UPDATE public.producto "
-                        + "   SET  nombre='" + produc.getNombre() + "', descripcion='" + produc.getDescripcion() + "', idsubservicio=" + produc.getSubServicio().getIdSubServicio() + " , rutaimagen='"+  produc.getRutaImagen()+"' "
-                        + " WHERE idproducto=" + produc.getIdProducto() + ";";
+                        + "SET  nombre='" + produc.getNombre() + "', descripcion='" + produc.getDescripcion() + "', idsubservicio=" + produc.getSubServicio().getIdSubServicio() + " , rutaimagen='" + produc.getRutaImagen() + "' "
+                        + "WHERE idproducto = " + produc.getIdProducto() + ";";
                 st.execute(sql);
                 producModelo = new Producto_TO();
             } catch (Exception e) {

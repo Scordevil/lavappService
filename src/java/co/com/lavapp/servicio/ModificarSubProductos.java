@@ -5,12 +5,12 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.Producto_TO;
+import co.com.lavapp.modelo.dto.SubProducto_TO;
 
 /**
  *
  * @author SISTEMAS
  */
-public interface ModificarProducto {
-    public Producto_TO modificarProducto(int idProducto, String nombre, String desc, int idSubServ , String rutaImagen) throws Exception;
+public interface ModificarSubProductos {
+    public SubProducto_TO modificarSubProductos(int idSubProductos, String nombre, String desc,int idProducto, String rutaImagen)throws Exception;
 }

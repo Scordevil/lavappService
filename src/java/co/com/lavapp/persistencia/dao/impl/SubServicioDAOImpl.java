@@ -150,18 +150,15 @@ public class SubServicioDAOImpl implements SubServicioDAO {
         SubServicio_TO nuevoSubservicio = new SubServicio_TO();
         try {
             try {
-                String sql = "SELECT subservicio.idsubservicio, subservicio.nombre, subservicio.idservicio FROM "
-                        + "subservicio as subservicio where "
-                        + "'" + subservicio.getIdSubServicio() + "' = subservicio.idsubservicio or "
-                        + "nombre = '" + subservicio.toString() + "' ";
+                String sql = "SELECT idsubservicio, nombre, idservicio FROM "
+                        + "public.subservicio "
+                        + "where idsubservicio = '" + subservicio.getIdSubServicio() + "' or nombre = '" + subservicio.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
-
                 while (rs.next()) {
                     nuevoSubservicio = new SubServicio_TO(rs.getInt(1),
                             rs.getString(2),
                             new Servicio_TO(rs.getInt(3)));
                 }
-
             } catch (SQLException e) {
                 throw e;
             }
@@ -170,7 +167,7 @@ public class SubServicioDAOImpl implements SubServicioDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
-        return subservicio;
+        return nuevoSubservicio;
     }
 
 }

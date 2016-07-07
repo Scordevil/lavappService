@@ -36,14 +36,9 @@ public class ModificarProductoImpl implements ModificarProducto{
                 desc, 
                 new SubServicio_TO(idSubServ),
                 rutaImagen);
-        Producto_TO producSalida = new Producto_TO();
+      
         ProductoDAOImpl producDAO = new ProductoDAOImpl();
-        try {
-            producSalida = producDAO.modificarProducto(produModel);
-        } catch (Exception e) {
-            throw e;
-        }
-        return producSalida;
+        return producDAO.modificarProducto(produModel);
     }
     
 }

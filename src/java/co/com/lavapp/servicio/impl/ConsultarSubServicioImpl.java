@@ -29,6 +29,8 @@ public class ConsultarSubServicioImpl implements ConsultarSubServicio{
     @Override
     public SubServicio_TO consultarSubServicio(@QueryParam("idSubServicio") int idSubServicio,@QueryParam("nombre") String nombre) throws Exception {
         SubServicio_TO subservicio = new SubServicio_TO();
+        subservicio.setIdSubServicio(idSubServicio);
+        subservicio.setNombre(nombre);
         SubServicioDAO subservicioDao = new SubServicioDAOImpl();
         return subservicioDao.consultarSubServicio(subservicio);
                 
