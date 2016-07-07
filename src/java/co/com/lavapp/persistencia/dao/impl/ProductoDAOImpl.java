@@ -112,4 +112,27 @@ public class ProductoDAOImpl implements ProductoDAO {
         return prodctoModelo;
     }
 
+    @Override
+    public Producto_TO consultarProducto(Producto_TO produc) throws Exception {
+        Producto_TO nuevoProducto = new Producto_TO();
+        try {
+            try {
+                String sql = "SELECT idproducto, nombre, descripcion, idsubservicio, rutaimagen "
+                        + "FROM public.producto "
+                        + "WHERE idproducto  = '" + produc.getIdProducto() + "' or nombre = '" + produc.getNombre() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevoProducto = new Producto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new SubServicio_TO(rs.getInt(4)), rs.getString(5));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevoProducto;
+    }
+
 }
