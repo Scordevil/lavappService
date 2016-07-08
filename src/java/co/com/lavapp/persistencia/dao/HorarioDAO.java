@@ -14,8 +14,14 @@ import java.util.List;
  * @author Desarrollo_Planit
  */
 public interface HorarioDAO {
-    
-   public List<Horario_TO> consultarHorariosSegunJornada(Jornada_TO jornada) throws Exception;
-   
-    
+
+    public List<Horario_TO> consultarHorariosSegunJornada(Jornada_TO jornada) throws Exception;
+
+    public Horario_TO consultarHorario(Horario_TO horario) throws Exception;
+
+    public Horario_TO registrarHorario(Horario_TO horario) throws Exception;
+
+    public Horario_TO modificarHorario(Horario_TO horario) throws Exception;
+
+    public Horario_TO eliminarHorario(Horario_TO horario) throws Exception;
 }
