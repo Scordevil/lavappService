@@ -20,4 +20,5 @@ public interface SubProductoDAO {
     public SubProducto_TO registrarSubProducto(SubProducto_TO subProduc) throws Exception;
     public SubProducto_TO modificarSubProducto(SubProducto_TO subProduc) throws Exception;
     public SubProducto_TO eliminarSubProducto(SubProducto_TO subProduc) throws Exception;
+    public List<SubProducto_TO> consultarSubProductosMasCosto(Producto_TO producto) throws Exception;
 }

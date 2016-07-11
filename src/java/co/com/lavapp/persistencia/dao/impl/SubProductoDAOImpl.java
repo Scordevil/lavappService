@@ -6,8 +6,10 @@
 package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
+import co.com.lavapp.modelo.dto.Costo_TO;
 import co.com.lavapp.modelo.dto.Producto_TO;
 import co.com.lavapp.modelo.dto.SubProducto_TO;
+import co.com.lavapp.modelo.dto.Zona_TO;
 import co.com.lavapp.persistencia.dao.SubProductoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -136,4 +138,30 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         }
         return subProModel;
     }
-}
+    
+    @Override
+    public List<SubProducto_TO> consultarSubProductosMasCosto(Producto_TO producto) throws Exception {
+         List<SubProducto_TO> subProModel = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT sp.idsubproducto, sp.nombre, sp.descripcion, sp.idproducto, sp.rutaimagen,c.idcosto,  c.valor,  c.idzona " +
+"                        FROM public.subproducto as sp, public.costo c where c.idsubproducto = sp.idsubproducto and sp.idproducto = "+ producto.getIdProducto()+";";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    subProModel.add(new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4)), rs.getString(5),new Costo_TO(rs.getInt(6), rs.getInt(7), new Zona_TO(rs.getInt(8)))));
+                }
+             
+            } catch (Exception e) {
+                subProModel = new ArrayList<>();
+                throw e;
+            }
+        } catch (Exception ez) {
+            subProModel = new ArrayList<>();
+            throw ez;
+        }finally{
+            ConexionSQL.CerrarConexion();
+        }
+        return subProModel;
+    }
+    
+ }

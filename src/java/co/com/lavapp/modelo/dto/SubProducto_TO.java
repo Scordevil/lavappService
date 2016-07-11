@@ -16,6 +16,7 @@ public class SubProducto_TO {
     private String descripcion;
     private Producto_TO producto;
     private String rutaImagen;
+    private Costo_TO costo;
 
     public SubProducto_TO() {
     }
@@ -30,7 +31,7 @@ public class SubProducto_TO {
         this.producto = producto;
         this.rutaImagen = rutaImagen;
     }
-
+    
     public SubProducto_TO(int idSubProducto, String nombre, String descripcion, Producto_TO producto, String rutaImagen) {
         this.idSubProducto = idSubProducto;
         this.nombre = nombre;
@@ -38,6 +39,17 @@ public class SubProducto_TO {
         this.producto = producto;
         this.rutaImagen = rutaImagen;
     }
+
+    public SubProducto_TO(int idSubProducto, String nombre, String descripcion, Producto_TO producto, String rutaImagen, Costo_TO costo) {
+        this.idSubProducto = idSubProducto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.producto = producto;
+        this.rutaImagen = rutaImagen;
+        this.costo = costo;
+    }
+    
+    
 
     public int getIdSubProducto() {
         return idSubProducto;
@@ -79,9 +91,19 @@ public class SubProducto_TO {
         this.rutaImagen = rutaImagen;
     }
 
+    public Costo_TO getCosto() {
+        return costo;
+    }
+
+    public void setCosto(Costo_TO costo) {
+        this.costo = costo;
+    }
+
     @Override
     public String toString() {
-        return "SubProducto_TO{" + "idSubProducto=" + idSubProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", producto=" + producto + ", rutaImagen=" + rutaImagen + '}';
+        return "SubProducto_TO{" + "idSubProducto=" + idSubProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", producto=" + producto + ", rutaImagen=" + rutaImagen + ", costo=" + costo + '}';
     }
+     
+    
 
 }
