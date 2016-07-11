@@ -45,6 +45,7 @@ public class HorarioDaoImpl implements HorarioDAO {
         }
         return horarios;
     }
+      
 
     @Override
     public Horario_TO consultarHorario(Horario_TO horario) throws Exception {
@@ -131,6 +132,27 @@ public class HorarioDaoImpl implements HorarioDAO {
             ConexionSQL.CerrarConexion();
         }
         return nuevoHorario;
+    }
+
+    @Override
+    public List<Horario_TO> consultarHorarios() throws Exception {
+        List<Horario_TO> horarios = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idhorario, horaInicio, horaFinal, idjornada, horario from public.horario";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    horarios.add(new Horario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Jornada_TO(rs.getInt(4)), rs.getString(5)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return horarios;
     }
 
 }
