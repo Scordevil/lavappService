@@ -45,15 +45,15 @@ public class JornadaDAOImpl implements JornadaDAO {
     }
 
     @Override
-    public List<Jornada_TO> consultarJornada(Jornada_TO jornada) throws Exception {
-        List<Jornada_TO> jornadas = new ArrayList<>();
+    public Jornada_TO consultarJornada(Jornada_TO jornada) throws Exception {
+        Jornada_TO jornadas = new Jornada_TO();
         try {
             try {
-                String sql = "SELECT idjornada, nombre FROM public.jornada as jornada"
-                        + "WHERE jornada.idjornada = '" + jornada.getIdJornada() + "' or jornada.nombre = '"+jornada.getNombre()+"'";
+                String sql = "SELECT idjornada, nombre FROM public.jornada "
+                        + "WHERE idjornada = '" + jornada.getIdJornada() + "' or nombre = '"+jornada.getNombre()+"'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    jornadas.add(new Jornada_TO(rs.getInt(1), rs.getString(2)));
+                    jornadas = new Jornada_TO(rs.getInt(1), rs.getString(2));
                 }
             } catch (SQLException e) {
                 throw e;

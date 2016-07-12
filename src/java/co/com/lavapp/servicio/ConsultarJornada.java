@@ -6,7 +6,6 @@
 package co.com.lavapp.servicio;
 
 import co.com.lavapp.modelo.dto.Jornada_TO;
-import java.util.List;
 
 /**
  *
@@ -14,7 +13,6 @@ import java.util.List;
  */
 public interface ConsultarJornada {
     
-    public List<Jornada_TO> consultarJornada(int idJornada, String jornada) throws Exception;
-    
+    public Jornada_TO consultarJornada(int idJornada, String nombre) throws Exception;    
     
 }

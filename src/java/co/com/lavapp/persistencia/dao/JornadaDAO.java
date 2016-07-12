@@ -16,7 +16,7 @@ public interface JornadaDAO {
     
     public List<Jornada_TO> consultarJornadas() throws Exception;
     
-    public List<Jornada_TO> consultarJornada(Jornada_TO jornada) throws Exception;
+    public Jornada_TO consultarJornada(Jornada_TO jornada) throws Exception;
     
     public Jornada_TO registraJornada(Jornada_TO jornada) throws Exception;
     
