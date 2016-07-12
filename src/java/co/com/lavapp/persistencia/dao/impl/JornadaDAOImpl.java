@@ -91,7 +91,7 @@ public class JornadaDAOImpl implements JornadaDAO {
         Jornada_TO nuevajornada = new Jornada_TO();
         try {
             try {
-                String sql = "UPDATE public.jornada SET nombre = '" + jornada.getNombre() + "' "
+                String sql = " UPDATE public.jornada SET nombre = '" + jornada.getNombre() + "' "
                         + "WHERE idjornada = '" + jornada.getIdJornada() + "'";
                 st.execute(sql);
             } catch (SQLException e) {
