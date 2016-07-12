@@ -22,6 +22,7 @@ public class EstadoDAOImpl implements EstadoDAO {
 
     private final Statement st = ConexionSQL.conexion();
 
+    
     @Override
     public Estado_TO consultarEstadoPedido(Pedido_TO pedido) throws Exception {
         Estado_TO estado = new Estado_TO();
@@ -44,11 +45,14 @@ public class EstadoDAOImpl implements EstadoDAO {
         return estado;
     }
 
+    
     @Override
     public List<Estado_TO> consultarEstados() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
+        //To change body of generated methods, choose Tools | Templates.
     }
 
+    
     @Override
     public Estado_TO consultarEstado(Estado_TO estado) throws Exception {
         Estado_TO estadoModelo = new Estado_TO();
