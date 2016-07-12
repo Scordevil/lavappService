@@ -13,6 +13,7 @@ import co.com.lavapp.modelo.dto.Calificacion_TO;
  */
 public interface RegistrarCalificacion {
     
+    
     public Calificacion_TO registrarCalificacion(int calificacion, String observacion, int idPedido) throws Exception;
     
 }

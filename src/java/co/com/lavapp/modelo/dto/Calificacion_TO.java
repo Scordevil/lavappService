@@ -46,6 +46,7 @@ public class Calificacion_TO {
     public Calificacion_TO() {
     }
 
+    
     public Calificacion_TO(int idCalificacion) {
         this.idCalificacion = idCalificacion;
     }

@@ -12,5 +12,7 @@ import co.com.lavapp.modelo.dto.Calificacion_TO;
  * @author SISTEMAS
  */
 public interface EliminarCalificacion {
+    
     public Calificacion_TO eliminarCalificacion(int idCalificacion) throws Exception;
+    
 }

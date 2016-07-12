@@ -32,6 +32,8 @@ public class RegistrarCalificacionImpl implements RegistrarCalificacion{
             @QueryParam("idPedido") int idPedido) throws Exception {
         Calificacion_TO nuevacalificacion = new Calificacion_TO(calificacion, observacion, new Pedido_TO(idPedido));
         CalificacionDAO calificacionDao = new CalificacionDAOImpl();
+        
         return calificacionDao.registrarCalificacion(nuevacalificacion);
+        
     }    
 }

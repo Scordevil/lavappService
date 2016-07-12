@@ -28,7 +28,9 @@ public class EliminarCalificacionImpl implements EliminarCalificacion{
     public Calificacion_TO eliminarCalificacion(@QueryParam("idCalificacion")int idCalificacion) throws Exception {
         Calificacion_TO caliModel = new Calificacion_TO(idCalificacion);
         CalificacionDAOImpl caliDAO = new CalificacionDAOImpl();
+        
         return caliDAO.eliminarCalificacion(caliModel);
+        
     }
     
 }
