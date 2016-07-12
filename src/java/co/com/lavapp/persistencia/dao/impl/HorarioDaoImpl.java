@@ -76,7 +76,7 @@ public class HorarioDaoImpl implements HorarioDAO {
         try {
             try {
                 String sql = "INSERT INTO public.horario (horainicio, horafinal, idjornada, horario) "
-                        + "VALUES('" + horario.getHoraInicio() + "','" + horario.getHoraFinal() + "','" + horario.getJornada().getIdJornada() + "','" + horario.getIdHorario() + "')";
+                        + "VALUES('" + horario.getHoraInicio() + "','" + horario.getHoraFinal() + "','" + horario.getJornada().getIdJornada() + "','" + horario.getHorario() + "')";
                 st.execute(sql);
             } catch (SQLException e) {
                 nuevoHorario = new Horario_TO();

@@ -36,8 +36,8 @@ public class Pedido_TO {
      * Columna fechaInicio
      */
     private Date fechaInicio;
-    
-        /**
+
+    /**
      *
      * Columna fechaInicio
      */
@@ -83,15 +83,14 @@ public class Pedido_TO {
         this.horaFinal = horaFinal;
         this.estado = estado;
     }
-    
-        public Pedido_TO( Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado) {
+
+    public Pedido_TO(Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado) {
         this.fechaInicio = fechaInicio;
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
         this.estado = estado;
     }
 
-    
     public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor) {
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
@@ -120,13 +119,7 @@ public class Pedido_TO {
         this.estado = estado;
         this.proveedor = proveedor;
     }
-    
-    
-    
-    
-    
-    
-    
+
     public String getFechaInicioSting() {
         return fechaInicioSting;
     }
@@ -196,7 +189,5 @@ public class Pedido_TO {
     public String toString() {
         return "Pedido_TO{" + "idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", fechaInicioSting=" + fechaInicioSting + ", horaInicio=" + horaInicio + ", horaFinal=" + horaFinal + ", estado=" + estado + ", proveedor=" + proveedor + '}';
     }
-
-
 
 }

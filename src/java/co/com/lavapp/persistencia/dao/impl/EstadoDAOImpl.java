@@ -49,4 +49,31 @@ public class EstadoDAOImpl implements EstadoDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public Estado_TO consultarEstado(Estado_TO estado) throws Exception {
+        Estado_TO estadoModelo = new Estado_TO();
+        try {
+            try {
+                String sql = "SELECT idestado, nombre "
+                        + "  FROM public.estado "
+                        + "  WHERE idestado = " + estado.getIdEstado() + " OR nombre = '" + estado.getNombre() + "'";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    estadoModelo = new Estado_TO(rs.getInt(1), rs.getString(2));
+                }
+            } catch (Exception e) {
+                estadoModelo = new Estado_TO();
+                throw e;
+            }
+        } catch (Exception es) {
+            estadoModelo = new Estado_TO();
+            throw es;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return estadoModelo;
+    }
+
 }
