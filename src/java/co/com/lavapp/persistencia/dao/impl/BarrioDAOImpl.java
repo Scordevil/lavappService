@@ -52,7 +52,7 @@ public class BarrioDAOImpl implements BarrioDAO {
         List<Barrio_TO> barrios = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idbarrios, nombre, idlocalidad, idzona, idestrato FROM public.barrio as barrio";
+                String sql = "SELECT idbarrios, nombre, idlocalidad, idzona, idestrato FROM public.barrio as barrio ORDER BY nombre ASC";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     barrios.add(new Barrio_TO(rs.getInt(1), rs.getString(2), new Localidad_TO(rs.getInt(3)), new Zona_TO(rs.getInt(4)), new Estrato_TO(rs.getInt(5))));
