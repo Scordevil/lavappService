@@ -118,6 +118,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                     nuevopedido = new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7)));
                 }
             } catch (SQLException e) {
+                System.out.println("error en sentencia de SQL y en insercion de datos del SQL al objeto List: " + e.getMessage());
                 throw e;
             }
         } catch (Exception e) {

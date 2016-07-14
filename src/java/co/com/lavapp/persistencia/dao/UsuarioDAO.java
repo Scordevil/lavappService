@@ -6,6 +6,7 @@
 package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Usuario_TO;
+import java.util.List;
 
 /**
  *
@@ -27,5 +28,7 @@ public interface UsuarioDAO {
     public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception;
     
     public Usuario_TO consultarUsuarioPorIdentificacion(Usuario_TO usuario) throws Exception;
+    
+    public List<Usuario_TO> consultarUsuarioClientes() throws Exception;
 
 }

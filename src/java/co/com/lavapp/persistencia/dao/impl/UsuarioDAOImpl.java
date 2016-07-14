@@ -16,6 +16,8 @@ import co.com.lavapp.persistencia.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -242,5 +244,49 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ConexionSQL.CerrarConexion();
         }
         return user;
+    }
+
+    @Override
+    public List<Usuario_TO> consultarUsuarioClientes() throws Exception {
+
+        List<Usuario_TO> listaCLientesModel = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado, email,  "
+                        + "       contrasena, apellido, genero, movil, direccion, idciudad, identificacion  "
+                        + "  FROM public.usuario "
+                        + "  WHERE idrol = 4 ";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    listaCLientesModel.add(new Usuario_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            new Barrio_TO(rs.getInt(4)),
+                            new Rol_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            new Ciudad_TO(rs.getInt(13)),
+                            rs.getString(14)));
+
+                }
+
+            } catch (Exception e) {
+                listaCLientesModel = new ArrayList<>();
+                System.out.println("Error en sentencia SQL o en insercion de datos en lista Modelo: " + e.getMessage());
+                throw e;
+            }
+        } catch (Exception ef) {
+            listaCLientesModel = new ArrayList<>();
+            throw ef;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return listaCLientesModel;
     }
 }
