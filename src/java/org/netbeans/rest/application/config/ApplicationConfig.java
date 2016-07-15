@@ -38,6 +38,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadesPorDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarClientesImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCostoPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCostoSubProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarDepartamentoImpl.class);
@@ -83,6 +84,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarZonasImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarBarrioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarCiudadImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoPedidoImpl.class);
@@ -98,6 +100,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EliminarBarrioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarCalificacionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarCiudadImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarDescPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarEstratoImpl.class);

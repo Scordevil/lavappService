@@ -24,7 +24,7 @@ public class CostoDAOImpl implements CostoDAO {
     private final Statement st = ConexionSQL.conexion();
 
     @Override
-    public Costo_TO RegistrarCosto(Costo_TO costo) throws Exception {
+    public Costo_TO registrarCosto(Costo_TO costo) throws Exception {
         Costo_TO nuevocosto = new Costo_TO();
         try {
             try {
@@ -92,6 +92,70 @@ public class CostoDAOImpl implements CostoDAO {
             ConexionSQL.CerrarConexion();
         }
         return costo;
+    }
+
+    @Override
+    public Costo_TO consultarCosto(Costo_TO costo) throws Exception {
+        Costo_TO nuevocosto = new Costo_TO();
+        try {
+            try {
+                String sql = "SELECT idcosto, valor, idsubproducto, idzona FROM public.costo as costo"
+                        + " WHERE costo.idCosto = " + costo.getIdCosto() + "";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevocosto = new Costo_TO(rs.getInt(1), rs.getInt(2), new SubProducto_TO(rs.getInt(3)), new Zona_TO(rs.getInt(4)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevocosto;
+    }
+
+    @Override
+    public Costo_TO modificarCosto(Costo_TO costo) throws Exception {
+        Costo_TO nuevocosto = new Costo_TO();
+        try {
+            try {
+                String sql = "UPDATE public.costo SET valor = '" + +costo.getValor() + "', "
+                        + "idsubproducto = " + costo.getSubProducto().getIdSubProducto() + ", "
+                        + "idzona = " + costo.getZona().getIdZona() + " "
+                        + "where idcosto = '" + costo.getIdCosto() + "'";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevocosto = new Costo_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevocosto;
+    }
+
+    @Override
+    public Costo_TO eliminarCosto(Costo_TO costo) throws Exception {
+        Costo_TO nuevocosto = new Costo_TO();
+        try {
+            try {
+                String sql = "DELETE from public.costo "
+                        + "WHERE idcosto = '" + costo.getIdCosto() + "'";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevocosto = new Costo_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevocosto;
     }
 
 }

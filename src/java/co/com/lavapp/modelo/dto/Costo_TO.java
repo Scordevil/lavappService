@@ -46,6 +46,10 @@ public class Costo_TO {
     public Costo_TO() {
     }
 
+    public Costo_TO(int idCosto) {
+        this.idCosto = idCosto;
+    }
+        
     public Costo_TO(int valor, SubProducto_TO subProducto, Zona_TO zona) {
         this.valor = valor;
         this.subProducto = subProducto;

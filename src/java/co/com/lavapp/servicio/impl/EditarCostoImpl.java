@@ -10,7 +10,7 @@ import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.modelo.dto.Zona_TO;
 import co.com.lavapp.persistencia.dao.CostoDAO;
 import co.com.lavapp.persistencia.dao.impl.CostoDAOImpl;
-import co.com.lavapp.servicio.RegistrarCosto;
+import co.com.lavapp.servicio.EditarCosto;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,17 +22,18 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/registrarCosto")
-public class RegistrarCostoImpl implements RegistrarCosto {
+@Path("/editarCosto")
+public class EditarCostoImpl implements EditarCosto{
 
     @GET
-    @Produces({"application/json"})
+    @Produces
     @Override
-    public Costo_TO registrarCosto(@QueryParam("valor") int valor, 
+    public Costo_TO editarCosto(@QueryParam("idCosto") int idCosto,
+            @QueryParam("valor") int valor,
             @QueryParam("idSubProducto") int idSubProducto, 
             @QueryParam("idZona") int idZona) throws Exception {
-        Costo_TO costo = new Costo_TO(valor, new SubProducto_TO(idSubProducto), new Zona_TO(idZona));
+        Costo_TO costo = new Costo_TO(idCosto, valor, new SubProducto_TO(idSubProducto), new Zona_TO(idZona));
         CostoDAO costoDao = new CostoDAOImpl();
-        return costoDao.registrarCosto(costo);
-    }
+        return costoDao.modificarCosto(costo);
+    }    
 }

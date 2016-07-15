@@ -13,12 +13,18 @@ import co.com.lavapp.modelo.dto.SubProducto_TO;
  *
  * @author Desarrollo_Planit
  */
-public interface CostoDAO  {
-    
-    public Costo_TO RegistrarCosto(Costo_TO costo) throws Exception;
-    
+public interface CostoDAO {
+
+    public Costo_TO registrarCosto(Costo_TO costo) throws Exception;
+
+    public Costo_TO modificarCosto(Costo_TO costo) throws Exception;
+
+    public Costo_TO eliminarCosto(Costo_TO costo) throws Exception;
+
+    public Costo_TO consultarCosto(Costo_TO costo) throws Exception;
+
     public int consultarCostoPedido(Pedido_TO pedido) throws Exception;
-    
+
     public Costo_TO consultarCostoSubProducto(SubProducto_TO subproducto) throws Exception;
-    
+
 }
