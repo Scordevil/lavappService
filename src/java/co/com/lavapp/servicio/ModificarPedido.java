@@ -13,7 +13,20 @@ import co.com.lavapp.modelo.dto.Pedido_TO;
  */
 public interface ModificarPedido {
     
-    public Pedido_TO modificarPedido(int idPedido, int idUsuario, String fechaInicio, int horainiIdhorario, 
-            int horafinIdHorario, int idEstado, int idProveedor) throws Exception;
+    public Pedido_TO modificarPedido(int idPedido, 
+            int idUsuario, 
+            String fechaInicio, 
+            int horainiIdhorario, 
+            int horafinIdHorario, 
+            int idEstado, 
+            int idProveedor,
+            String fechaEntrega,
+            String direccionRecogida,
+            String direccionEntrega, 
+            String fechaRecogida,
+            String quienentrega, 
+            String quienrecibe, 
+            int idBarriosRecogida, 
+            int idBarriosEntrega) throws Exception;
     
 }

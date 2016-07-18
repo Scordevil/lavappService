@@ -6,6 +6,7 @@
 package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
+import co.com.lavapp.modelo.dto.Barrio_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
@@ -32,7 +33,10 @@ public class PedidoDAOImpl implements PedidoDAO {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
-                String sql = "INSERT INTO public.pedido(fechainicio, horarioinicio_idhorario, horariofinal_idhorario, idestado)"
+                String sql = "INSERT INTO public.pedido(fechainicio,"
+                        + " horarioinicio_idhorario,"
+                        + " horariofinal_idhorario,"
+                        + " idestado)"
                         + " VALUES ('" + pedido.getFechaInicio().toString() + "', '" + pedido.getHoraInicio().getIdHorario() + "', '" + pedido.getHoraFinal().getIdHorario() + "', '" + pedido.getEstado().getIdEstado() + "')";
 
                 st.execute(sql);
@@ -76,9 +80,14 @@ public class PedidoDAOImpl implements PedidoDAO {
         List<Pedido_TO> pedidos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT pedido.idpedido, pedido.idusuario, pedido.fechaInicio, pedido.horarioinicio_idhorario, pedido.horariofinal_idhorario, pedido.idestado, estado.nombre, pedido.idproveedor "
-                        + " from public.pedido as pedido, public.estado as estado WHERE "
-                        + "   pedido.idusuario = " + usuario.getIdUsuario() + " and estado.idestado = pedido.idestado;";
+                String sql ="SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
+                        + "from public.pedido as pedido, public.estado as estado WHERE "
+                        + "pedido.idusuario = " + usuario.getIdUsuario() + " and estado.idestado = pedido.idestado;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
 
@@ -88,7 +97,21 @@ public class PedidoDAOImpl implements PedidoDAO {
 
                     String fechaInicioS = Fecha[0].toString();
 
-                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), fechaInicioS, new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6), rs.getString(7)), new Proveedor_TO(rs.getInt(8))));
+                    pedidos.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -107,7 +130,12 @@ public class PedidoDAOImpl implements PedidoDAO {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
-                String sql = "SELECT idpedido, idusuario, fechaInicio, horarioinicio_idhorario, horariofinal_idhorario, idestado, idproveedor "
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
                         + "from public.pedido as pedido WHERE "
                         + "pedido.idusuario = '" + pedido.getUsuario().getIdUsuario() + "' and "
                         + "pedido.fechaInicio = '" + pedido.getFechaInicio() + "' and "
@@ -115,7 +143,21 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "pedido.horariofinal_idhorario = '" + pedido.getHoraFinal().getIdHorario() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    nuevopedido = new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7)));
+                    nuevopedido = new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15)));
                 }
             } catch (SQLException e) {
                 System.out.println("error en sentencia de SQL y en insercion de datos del SQL al objeto List: " + e.getMessage());
@@ -156,11 +198,28 @@ public class PedidoDAOImpl implements PedidoDAO {
             try {
                 String sql = "SELECT idpedido, idusuario, "
                         + "fechaInicio, horarioinicio_idhorario, "
-                        + "horariofinal_idhorario, idestado, idproveedor "
-                        + "from public.pedido as pedido";
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
+                        + "FROM public.pedido";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    pedidos.add(new Pedido_TO(rs.getInt(1), new Usuario_TO(rs.getInt(2)), rs.getDate(3), new Horario_TO(rs.getInt(4)), new Horario_TO(rs.getInt(5)), new Estado_TO(rs.getInt(6)), new Proveedor_TO(rs.getInt(7))));
+                    pedidos.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -180,7 +239,10 @@ public class PedidoDAOImpl implements PedidoDAO {
             try {
                 String sql = "SELECT idpedido, idusuario, "
                         + "fechaInicio, horarioinicio_idhorario, "
-                        + "horariofinal_idhorario, idestado, idproveedor "
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
                         + "FROM public.pedido as pedido "
                         + "WHERE pedido.idproveedor = '" + proveedor.getIdProveedor() + "'";
                 ResultSet rs = st.executeQuery(sql);
@@ -191,7 +253,15 @@ public class PedidoDAOImpl implements PedidoDAO {
                             new Horario_TO(rs.getInt(4)),
                             new Horario_TO(rs.getInt(5)),
                             new Estado_TO(rs.getInt(6)),
-                            new Proveedor_TO(rs.getInt(7))));
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -232,12 +302,20 @@ public class PedidoDAOImpl implements PedidoDAO {
         try {
             try {
                 String sql = "UPDATE public.pedido "
-                        + "   SET  idusuario= " + pedido.getUsuario().getIdUsuario() + ", "
-                        + "        fechainicio='" + pedido.getFechaInicioSting() + "', "
-                        + "        horarioinicio_idhorario = " + pedido.getHoraInicio().getIdHorario() + " ,  "
-                        + "        horariofinal_idhorario = " + pedido.getHoraFinal().getIdHorario() + ", "
-                        + "        idestado = " + pedido.getEstado().getIdEstado() + ", "
-                        + "        idproveedor = " + pedido.getProveedor().getIdProveedor() + " "
+                        + " SET  idusuario= " + pedido.getUsuario().getIdUsuario() + ", "
+                        + " fechainicio= '" + pedido.getFechaInicio() + "', "
+                        + " horarioinicio_idhorario = " + pedido.getHoraInicio().getIdHorario() + " ,  "
+                        + " horariofinal_idhorario = " + pedido.getHoraFinal().getIdHorario() + ", "
+                        + " idestado = " + pedido.getEstado().getIdEstado() + ", "
+                        + " idproveedor = " + pedido.getProveedor().getIdProveedor() + ","
+                        + " fechaentrega =  '" + pedido.getFechaEntrega() + "',"
+                        + " direccionrecogida = '" + pedido.getDireccionRecogida() + "',"
+                        + " direccionentrega = '" + pedido.getDireccionEntrega() + "',"
+                        + " fecharecogida = '" + pedido.getFechaRecogida() + ","
+                        + " quienentrega = '" + pedido.getQuienEntrega() + "',"
+                        + " quienrecibe = '" + pedido.getQuienRecibe() + "',"
+                        + " idbarrios_recogida = '" + pedido.getBarrioRecogida().getIdBarrios() + "',"
+                        + " idbarrios_entrega = '" + pedido.getBarrioEntrega().getIdBarrios() + "' "
                         + " WHERE idpedido = " + pedido.getIdPedido() + " ;";
                 st.execute(sql);
             } catch (Exception e) {
@@ -252,7 +330,51 @@ public class PedidoDAOImpl implements PedidoDAO {
         }
 
         return pedidoModelo;
+    }
 
+    @Override
+    public Pedido_TO registrarPedidoWeb(Pedido_TO pedido) throws Exception {
+        Pedido_TO nuevopedido = new Pedido_TO();
+        try {
+            try {
+                String sql = "INSERT INTO public.pedido(idusuario,"
+                        + " fechainicio,"
+                        + " horarioinicio_idhorario,"
+                        + " horariofinal_idhorario,"
+                        + " idestado,"
+                        + " fechaentrega,"
+                        + " direccionrecogida,"
+                        + " direccionentrega,"
+                        + " fecharecogida,"
+                        + " quienentrega,"
+                        + " quienrecibe,"
+                        + " idbarrios_recogida, "
+                        + " idbarrios_entrega)"
+                        + " VALUES ('" + pedido.getUsuario().getIdUsuario() + "',"
+                        + " '" + pedido.getFechaInicio() + "',"
+                        + " '" + pedido.getHoraInicio().getIdHorario() + "',"
+                        + " '" + pedido.getHoraFinal().getIdHorario() + "',"
+                        + " '" + pedido.getEstado().getIdEstado() + "',"
+                        + " '" + pedido.getFechaEntrega() + "',"
+                        + " '" + pedido.getDireccionRecogida() + "',"
+                        + " '" + pedido.getDireccionEntrega() + "',"
+                        + " '" + pedido.getFechaRecogida() + "',"
+                        + " '" + pedido.getQuienEntrega() + "',"
+                        + " '" + pedido.getQuienRecibe() + "',"
+                        + " '" + pedido.getBarrioRecogida().getIdBarrios() + "',"
+                        + " '" + pedido.getBarrioEntrega().getIdBarrios() + "')";
+
+                st.execute(sql);
+            } catch (Exception e) {
+                nuevopedido = new Pedido_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevopedido;
     }
 
 }

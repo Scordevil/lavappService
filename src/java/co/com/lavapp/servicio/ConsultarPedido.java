@@ -6,12 +6,11 @@
 package co.com.lavapp.servicio;
 
 import co.com.lavapp.modelo.dto.Pedido_TO;
-import java.util.Date;
 
 /**
  *
  * @author Desarrollo_Planit
  */
 public interface ConsultarPedido {    
-    public Pedido_TO consultarPedido(int idUsuario, Date fechaInicio, int idHorarioInicio, int idHorarioFinal) throws Exception;
+    public Pedido_TO consultarPedido(int idUsuario, String fechaInicio, int idHorarioInicio, int idHorarioFinal) throws Exception;
 }

@@ -9,10 +9,9 @@ import co.com.lavapp.modelo.dto.Barrio_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
-import co.com.lavapp.modelo.dto.Proveedor_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.impl.PedidoDAOImpl;
-import co.com.lavapp.servicio.ModificarPedido;
+import co.com.lavapp.servicio.RegistrarPedidoWeb;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,32 +23,28 @@ import javax.ws.rs.QueryParam;
 
 /**
  *
- * @author SISTEMAS
+ * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/modificarPedidoCompleto")
-public class ModificarPedidoImpl implements ModificarPedido {
-    
+@Path("/registrarPedidoCompleto")
+public class RegistrarPedidoWebImpl implements RegistrarPedidoWeb {
+
     @GET
     @Produces({"application/json"})
     @Override
-    public Pedido_TO modificarPedido(@QueryParam("idPedido") int idPedido,
-            @QueryParam("idUsuario") int idUsuario,
+    public Pedido_TO registrarPedidoWeb(@QueryParam("idUsuario") int idUsuario,
             @QueryParam("fechaInicio") String fechaInicio,
-            @QueryParam("horainiIdhorario") int horainiIdhorario,
-            @QueryParam("horafinIdHorario") int horafinIdHorario,
-            @QueryParam("idEstado") int idEstado,
-            @QueryParam("idProveedor") int idProveedor,
+            @QueryParam("idHoraInicio") int idHoraInicio,
+            @QueryParam("idHoraFinal") int idHoraFinal,
+            @QueryParam("idEstado") int idEstado,            
             @QueryParam("fechaEntrega") String fechaEntrega,
-            @QueryParam("direccionRecogida") String direccionRecogida,
             @QueryParam("direccionEntrega") String direccionEntrega,
+            @QueryParam("direccionRecogida") String direccionRecogida,
             @QueryParam("fechaRecogida") String fechaRecogida,
             @QueryParam("quienEntrega") String quienEntrega,
             @QueryParam("quienRecibe") String quienRecibe,
-            @QueryParam("idBarrios_recogida") int idBarriosRecogida,
-            @QueryParam("idBarrios_entrega") int idBarriosEntrega
-    ) throws Exception {
-        
+            @QueryParam("idBarrioRecogida") int idBarrioRecogida,
+            @QueryParam("idBarrioEntrega") int idBarrioEntrega) throws Exception {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         PedidoDAOImpl pedidoDAO = new PedidoDAOImpl();
         Date fecha = new Date();
@@ -62,25 +57,20 @@ public class ModificarPedidoImpl implements ModificarPedido {
         } catch (ParseException e) {
             e.getMessage();
         }
-        
-        Pedido_TO pedidoModelo = new Pedido_TO(idPedido,
-                new Usuario_TO(idUsuario),
+
+        Pedido_TO pedido = new Pedido_TO(new Usuario_TO(idUsuario),
                 fecha,
-                new Horario_TO(horainiIdhorario),
-                new Horario_TO(horafinIdHorario),
-                new Estado_TO(idEstado),
-                new Proveedor_TO(idProveedor),
+                new Horario_TO(idHoraInicio),
+                new Horario_TO(idHoraFinal),
+                new Estado_TO(idEstado),               
                 fechaentrega,
                 direccionEntrega,
                 direccionRecogida,
                 fecharecogida,
                 quienEntrega,
                 quienRecibe,
-                new Barrio_TO(idBarriosRecogida),
-                new Barrio_TO(idBarriosEntrega));
-        
-        return pedidoDAO.modificarPedido(pedidoModelo);
-        
+                new Barrio_TO(idBarrioRecogida),
+                new Barrio_TO(idBarrioEntrega));
+        return pedidoDAO.registrarPedidoWeb(pedido);
     }
-    
 }
