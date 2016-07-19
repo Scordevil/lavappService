@@ -6,10 +6,10 @@
 package co.com.lavapp.servicio.impl;
 
 import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
-import co.com.lavapp.modelo.dto.Estado_TO;
+import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.persistencia.dao.DescripcionPedidoDAO;
 import co.com.lavapp.persistencia.dao.impl.DescripcionPedidoDAOImpl;
-import co.com.lavapp.servicio.EditarEstadoDescripcionPedido;
+import co.com.lavapp.servicio.EliminarDescripcionesSegunPedido;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,17 +21,16 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/editarEstadoDescripcionPedido")
-public class EditarEstadoDescripcionPedidoImpl implements EditarEstadoDescripcionPedido {
+@Path("/eliminarDescripcionesSegunPedido")
+public class EliminarDescripcionesSegunPedidoImpl implements EliminarDescripcionesSegunPedido{
 
     @GET
     @Produces({"application/json"})
     @Override
-    public DescripcionPedido_TO EditarEstadoDescripcionPedido(@QueryParam("idDescripcionPedido") int idDescripcionPedido, @QueryParam("idEstado") int idEstado) throws Exception {
-        DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(idDescripcionPedido);
-        Estado_TO estado = new Estado_TO(idEstado);
+    public DescripcionPedido_TO eliminarDescripcionesSegunPedido(@QueryParam("idPedido") int idPedido) throws Exception {
+        Pedido_TO pedido = new Pedido_TO(idPedido);
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
-        return descripcionDao.editarEstadoDescripcionPedido(descripcionPedido, estado);
+        return descripcionDao.eliminarDescripcionesSegunPedido(pedido);
     }
-
+    
 }

@@ -5,12 +5,14 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
 
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface ConsultarPedido {    
-    public Pedido_TO consultarPedido(int idPedido) throws Exception;
+public interface EliminarDescripcionesSegunPedido {
+    
+    public DescripcionPedido_TO eliminarDescripcionesSegunPedido(int idPedido) throws Exception;
+    
 }

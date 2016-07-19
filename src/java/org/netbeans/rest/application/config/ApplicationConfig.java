@@ -102,7 +102,8 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EliminarCiudadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarDepartamentoImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.EliminarDescPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarDescripcionPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarDescripcionesSegunPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarEstratoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarHorarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarJornadaImpl.class);
@@ -128,7 +129,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.RegistrarCiudadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarDepartamentoImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.RegistrarDescPedidosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarEstratoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarHistoricoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarHorarioImpl.class);

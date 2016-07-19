@@ -40,9 +40,9 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     cantidad = rs.getInt(1);
-                    
+
                 }
-                
+
                 cantTemp.setCantDescripPedido(cantidad);
             } catch (SQLException e) {
                 throw e;
@@ -60,16 +60,16 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
         List<DescripcionPedido_TO> descripcionPedidos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT iddescripcionpedido, "+
-"                        dp.idestado, dp.idsubproducto, dp.descripcion, " +
-"                        dp.observacionasesor, dp.observacionadministrador, dp.foto1, " +
-"                        dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, e.nombre " +
-"                        from public.descripcionpedido as dp, public.estado as e WHERE " +
-"                        dp.idpedido = "+pedido.getIdPedido()+" and dp.idestado = e.idestado;";
+                String sql = "SELECT dp.iddescripcionpedido, "
+                        + " dp.idestado, dp.idsubproducto, dp.descripcion, "
+                        + " dp.observacionasesor, dp.observacionadministrador, dp.foto1, "
+                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, e.nombre "
+                        + " from public.descripcionpedido as dp WHERE "
+                        + " dp.idpedido = " + pedido.getIdPedido() + "";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     descripcionPedidos.add(new DescripcionPedido_TO(rs.getInt(1),
-                            new Estado_TO(rs.getInt(2),rs.getString(12)),
+                            new Estado_TO(rs.getInt(2), rs.getString(12)),
                             new SubProducto_TO(rs.getInt(3)),
                             rs.getString(4),
                             rs.getString(5),
@@ -92,7 +92,7 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     }
 
     @Override
-    public DescripcionPedido_TO EditarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception {
+    public DescripcionPedido_TO editarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception {
         DescripcionPedido_TO nuevaDescripcion = new DescripcionPedido_TO();
         try {
             try {
@@ -113,18 +113,16 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     }
 
     @Override
-    public DescripcionPedido_TO registrarPreedidos(DescripcionPedido_TO descP) throws Exception {
+    public DescripcionPedido_TO registrarDescripcion(DescripcionPedido_TO descP) throws Exception {
         DescripcionPedido_TO descModelo = new DescripcionPedido_TO();
         try {
             try {
-                String sql = "INSERT INTO public.descripcionpedido( "
-                        + "            idestado, descripcion,  idcolor, idpedido,  "
-                        + "            idsubproducto) "
-                        + "    VALUES ( " + descP.getEstado().getIdEstado() + ", '" + descP.getDescripcion() + "', " + descP.getColor().getIdColor() + ", " + descP.getPedido().getIdPedido() + ", " + descP.getSubProducto().getIdSubProducto() + ") ";
+                String sql = "INSERT INTO public.descripcionpedido(idestado, idpedido, idsubproducto) "
+                        + " VALUES ( " + descP.getEstado().getIdEstado() + ", " + descP.getPedido().getIdPedido() + ", " + descP.getSubProducto().getIdSubProducto() + ") ";
 
                 st.execute(sql);
                 descModelo = new DescripcionPedido_TO();
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 descModelo = new DescripcionPedido_TO();
                 throw e;
             }
@@ -138,23 +136,78 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     }
 
     @Override
-    public DescripcionPedido_TO elimnarDescPedidos(DescripcionPedido_TO descP) throws SQLException, Exception {
+    public DescripcionPedido_TO eliminarDescripcion(DescripcionPedido_TO descP) throws SQLException, Exception {
         DescripcionPedido_TO descPedi = new DescripcionPedido_TO();
         try {
             try {
                 String sql = " DELETE FROM public.descripcionpedido "
-                        + " WHERE idpedido = "+ descP.getPedido().getIdPedido() +" AND "
-                        + " iddescripcionpedido = "+ descP.getIdDescripcionPedido() +" ; ";
+                        + " WHERE iddescripcionpedido = " + descP.getIdDescripcionPedido() + "";
                 st.execute(sql);
                 descPedi = new DescripcionPedido_TO();
-                
-            } catch (Exception e){
-                
+
+            } catch (SQLException e) {
+
                 descPedi = new DescripcionPedido_TO();
                 throw e;
             }
-        } catch (Exception ec){
-            
+        } catch (Exception ec) {
+
+            descPedi = new DescripcionPedido_TO();
+            throw ec;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return descPedi;
+    }
+
+    @Override
+    public DescripcionPedido_TO editarDescripcion(DescripcionPedido_TO descripcion) throws Exception {
+        DescripcionPedido_TO nuevaDescripcion = new DescripcionPedido_TO();
+        try {
+            try {
+                String sql = "UPDATE public.descripcionpedido "
+                        + " SET idestado= '" + descripcion.getEstado().getIdEstado() + "',"
+                        + " descripcion = '" + descripcion.getDescripcion() + "',"
+                        + " observacionasesor = '" + descripcion.getObservacionAsesor() + "',"
+                        + " observacionadministrador = '" + descripcion.getObservacionAdministrador() + "',"
+                        + " foto1 = '" + descripcion.getFoto1() + "',"
+                        + " foto2 = '" + descripcion.getFoto2() + "',"
+                        + " foto3 = '" + descripcion.getFoto3() + "',"
+                        + " idcolor = '" + descripcion.getColor().getIdColor() + "',"
+                        + " idpedido = '" + descripcion.getPedido().getIdPedido() + "',"
+                        + " idsubproducto = '" + descripcion.getSubProducto().getIdSubProducto() + "'"
+                        + " WHERE descripcion.iddescripcionpedido = '" + descripcion.getIdDescripcionPedido() + "'";
+                ResultSet rs = st.executeQuery(sql);
+            } catch (SQLException e) {
+                nuevaDescripcion = new DescripcionPedido_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaDescripcion;
+    }
+
+    @Override
+    public DescripcionPedido_TO eliminarDescripcionesSegunPedido(Pedido_TO pedido) throws Exception {
+        DescripcionPedido_TO descPedi = new DescripcionPedido_TO();
+        try {
+            try {
+                String sql = " DELETE FROM public.descripcionpedido "
+                        + " WHERE idpedido = " + pedido.getIdPedido() + "";
+                st.execute(sql);
+                descPedi = new DescripcionPedido_TO();
+
+            } catch (SQLException e) {
+
+                descPedi = new DescripcionPedido_TO();
+                throw e;
+            }
+        } catch (Exception ec) {
+
             descPedi = new DescripcionPedido_TO();
             throw ec;
 

@@ -33,26 +33,10 @@ public class ConsultarPedidoImpl implements ConsultarPedido {
     @GET
     @Produces({"application/json"})
     @Override
-    public Pedido_TO consultarPedido(@QueryParam("idUsuario") int idUsuario,
-            @QueryParam("fechaInicio") String fechaInicio,
-            @QueryParam("idHorario") int idHorarioInicio,
-            @QueryParam("idHorario") int idHorarioFinal) throws Exception {
+    public Pedido_TO consultarPedido(@QueryParam("idPedido") int idPedido) throws Exception {
 
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fecha = new Date();
+        Pedido_TO pedido = new Pedido_TO(idPedido);
 
-        try {
-            fecha = formato.parse(fechaInicio);
-        } catch (ParseException e) {
-            e.getMessage();
-        }
-
-        Pedido_TO pedido = new Pedido_TO();
-        pedido.setUsuario(new Usuario_TO(idUsuario));
-        pedido.setFechaInicio(fecha);        
-        pedido.setHoraInicio(new Horario_TO(idHorarioInicio));
-        pedido.setHoraFinal(new Horario_TO(idHorarioFinal));
-       
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         return pedidoDao.consultarPedido(pedido);
     }

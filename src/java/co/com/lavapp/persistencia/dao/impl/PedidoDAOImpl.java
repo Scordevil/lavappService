@@ -137,10 +137,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "fecharecogida, quienentrega, quienrecibe, "
                         + "idbarrios_recogida, idbarrios_entrega "
                         + "from public.pedido as pedido WHERE "
-                        + "pedido.idusuario = '" + pedido.getUsuario().getIdUsuario() + "' and "
-                        + "pedido.fechaInicio = '" + pedido.getFechaInicio() + "' and "
-                        + "pedido.horarioinicio_idhorario = '" + pedido.getHoraInicio().getIdHorario() + "' and "
-                        + "pedido.horariofinal_idhorario = '" + pedido.getHoraFinal().getIdHorario() + "'";
+                        + "pedido.idpedido = '" + pedido.getIdPedido() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevopedido = new Pedido_TO(rs.getInt(1),
