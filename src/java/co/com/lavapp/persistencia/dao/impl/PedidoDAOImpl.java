@@ -80,7 +80,7 @@ public class PedidoDAOImpl implements PedidoDAO {
         List<Pedido_TO> pedidos = new ArrayList<>();
         try {
             try {
-                String sql ="SELECT idpedido, idusuario, "
+                String sql = "SELECT idpedido, idusuario, "
                         + "fechaInicio, horarioinicio_idhorario, "
                         + "horariofinal_idhorario, pedido.idestado, idproveedor, "
                         + "fechaentrega, direccionrecogida, direccionentrega, "
@@ -91,23 +91,33 @@ public class PedidoDAOImpl implements PedidoDAO {
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
 
-                    String[] Fecha = null;
+                    String[] fechaInicio = null, fechaEntrega = null, fechaRecogida = null;
 
-                    Fecha = rs.getDate(3).toString().split("T");
+                    fechaInicio = rs.getDate(3).toString().split("T");
 
-                    String fechaInicioS = Fecha[0].toString();
+                    String fechaInicioS = fechaInicio[0];
+
+
+                    fechaEntrega = rs.getDate(3).toString().split("T");
+
+                    String fechaEntregaS = fechaEntrega[0];
+
+
+                    fechaRecogida = rs.getDate(3).toString().split("T");
+
+                    String fechaRecogidaS = fechaRecogida[0];
 
                     pedidos.add(new Pedido_TO(rs.getInt(1),
                             new Usuario_TO(rs.getInt(2)),
-                            rs.getDate(3),
+                            fechaInicioS,
                             new Horario_TO(rs.getInt(4)),
                             new Horario_TO(rs.getInt(5)),
                             new Estado_TO(rs.getInt(6)),
                             new Proveedor_TO(rs.getInt(7)),
-                            rs.getDate(8),
+                            fechaEntregaS,
                             rs.getString(9),
                             rs.getString(10),
-                            rs.getDate(11),
+                            fechaRecogidaS,
                             rs.getString(12),
                             rs.getString(13),
                             new Barrio_TO(rs.getInt(14)),

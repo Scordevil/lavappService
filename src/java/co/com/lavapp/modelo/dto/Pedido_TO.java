@@ -36,7 +36,13 @@ public class Pedido_TO {
      * Columna fechaInicio
      */
     private Date fechaInicio;
-    
+
+    /**
+     *
+     * Columna fechaInicio
+     */
+    private String fechaInicioString;
+
     /**
      *
      * Columna horaInicio_idHorario
@@ -69,6 +75,12 @@ public class Pedido_TO {
 
     /**
      *
+     * Columna fechaEntrega
+     */
+    private String fechaEntregaString;
+
+    /**
+     *
      * Columna direccionrecogida
      */
     private String direccionEntrega;
@@ -78,6 +90,12 @@ public class Pedido_TO {
      * Columna direccionentrega
      */
     private String direccionRecogida;
+
+    /**
+     *
+     * Columna fechaRecogida
+     */
+    private String fechaRecogidaString;
 
     /**
      *
@@ -96,13 +114,13 @@ public class Pedido_TO {
      * Columna quienrecibe
      */
     private String quienRecibe;
-    
+
     /**
      *
      * Columna idbarrios_recogida
      */
     private Barrio_TO barrioRecogida;
-    
+
     /**
      *
      * Columna idbarrios_entrega
@@ -121,7 +139,7 @@ public class Pedido_TO {
     public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
         this.idPedido = idPedido;
         this.usuario = usuario;
-        this.fechaInicio = fechaInicio;      
+        this.fechaInicio = fechaInicio;
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
         this.estado = estado;
@@ -135,10 +153,30 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
     }
+    
+    // Constructor con fecha en String
+        public Pedido_TO(int idPedido, Usuario_TO usuario, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
+        this.idPedido = idPedido;
+        this.usuario = usuario;
+        this.fechaInicioString = fechaInicioString;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
+        this.proveedor = proveedor;
+        this.fechaEntregaString = fechaEntregaString;
+        this.direccionEntrega = direccionEntrega;
+        this.direccionRecogida = direccionRecogida;
+        this.fechaRecogidaString = fechaRecogidaString;
+        this.quienEntrega = quienEntrega;
+        this.quienRecibe = quienRecibe;
+        this.barrioRecogida = barrioRecogida;
+        this.barrioEntrega = barrioEntrega;
+    }
+    
 
     public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
         this.usuario = usuario;
-        this.fechaInicio = fechaInicio;       
+        this.fechaInicio = fechaInicio;
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
         this.estado = estado;
@@ -168,8 +206,6 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
     }
-  
-    
 
     //Getter and Setter
     public int getIdPedido() {
@@ -226,7 +262,7 @@ public class Pedido_TO {
 
     public void setProveedor(Proveedor_TO proveedor) {
         this.proveedor = proveedor;
-    }   
+    }
 
     public Date getFechaEntrega() {
         return fechaEntrega;
@@ -274,7 +310,7 @@ public class Pedido_TO {
 
     public void setQuienRecibe(String quienRecibe) {
         this.quienRecibe = quienRecibe;
-    }   
+    }
 
     public Barrio_TO getBarrioRecogida() {
         return barrioRecogida;
@@ -292,10 +328,37 @@ public class Pedido_TO {
         this.barrioEntrega = barrioEntrega;
     }
 
+    public String getFechaInicioString() {
+        return fechaInicioString;
+    }
+
+    public void setFechaInicioString(String fechaInicioString) {
+        this.fechaInicioString = fechaInicioString;
+    }
+
+    public String getFechaEntregaString() {
+        return fechaEntregaString;
+    }
+
+    public void setFechaEntregaString(String fechaEntregaString) {
+        this.fechaEntregaString = fechaEntregaString;
+    }
+
+    public String getFechaRecogidaString() {
+        return fechaRecogidaString;
+    }
+
+    public void setFechaRecogidaString(String fechaRecogidaString) {
+        this.fechaRecogidaString = fechaRecogidaString;
+    }
+
     @Override
     public String toString() {
-        return "Pedido_TO{" + "idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", horaInicio=" + horaInicio + ", horaFinal=" + horaFinal + ", estado=" + estado + ", proveedor=" + proveedor + ", fechaEntrega=" + fechaEntrega + ", direccionEntrega=" + direccionEntrega + ", direccionRecogida=" + direccionRecogida + ", fechaRecogida=" + fechaRecogida + ", quienEntrega=" + quienEntrega + ", quienRecibe=" + quienRecibe + ", barrioRecogida=" + barrioRecogida + ", barrioEntrega=" + barrioEntrega + '}';
+        return "Pedido_TO{" + "idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", fechaInicioString=" + fechaInicioString + ", horaInicio=" + horaInicio + ", horaFinal=" + horaFinal + ", estado=" + estado + ", proveedor=" + proveedor + ", fechaEntrega=" + fechaEntrega + ", fechaEntregaString=" + fechaEntregaString + ", direccionEntrega=" + direccionEntrega + ", direccionRecogida=" + direccionRecogida + ", fechaRecogidaString=" + fechaRecogidaString + ", fechaRecogida=" + fechaRecogida + ", quienEntrega=" + quienEntrega + ", quienRecibe=" + quienRecibe + ", barrioRecogida=" + barrioRecogida + ", barrioEntrega=" + barrioEntrega + '}';
     }
+    
+    
+
 
 
 }
