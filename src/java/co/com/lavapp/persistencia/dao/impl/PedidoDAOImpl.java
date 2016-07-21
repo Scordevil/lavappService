@@ -82,12 +82,12 @@ public class PedidoDAOImpl implements PedidoDAO {
             try {
                 String sql = "SELECT idpedido, idusuario, "
                         + "fechaInicio, horarioinicio_idhorario, "
-                        + "horariofinal_idhorario, pedido.idestado, idproveedor, "
+                        + "horariofinal_idhorario, p.idestado, idproveedor, "
                         + "fechaentrega, direccionrecogida, direccionentrega, "
                         + "fecharecogida, quienentrega, quienrecibe, "
-                        + "idbarrios_recogida, idbarrios_entrega "
-                        + "from public.pedido as pedido, public.estado as estado WHERE "
-                        + "pedido.idusuario = " + usuario.getIdUsuario() + " and estado.idestado = pedido.idestado;";
+                        + "idbarrios_recogida, idbarrios_entrega, e.nombre "
+                        + "from public.pedido as p, public.estado as e WHERE "
+                        + "p.idusuario = " + usuario.getIdUsuario() + " and e.idestado = p.idestado;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
 
@@ -112,7 +112,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                             fechaInicioS,
                             new Horario_TO(rs.getInt(4)),
                             new Horario_TO(rs.getInt(5)),
-                            new Estado_TO(rs.getInt(6)),
+                            new Estado_TO(rs.getInt(6),rs.getString(16)),
                             new Proveedor_TO(rs.getInt(7)),
                             fechaEntregaS,
                             rs.getString(9),
