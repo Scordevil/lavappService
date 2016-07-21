@@ -82,7 +82,7 @@ public class PedidoDAOImpl implements PedidoDAO {
             try {
                 String sql ="SELECT idpedido, idusuario, "
                         + "fechaInicio, horarioinicio_idhorario, "
-                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "horariofinal_idhorario, pedido.idestado, idproveedor, "
                         + "fechaentrega, direccionrecogida, direccionentrega, "
                         + "fecharecogida, quienentrega, quienrecibe, "
                         + "idbarrios_recogida, idbarrios_entrega "
