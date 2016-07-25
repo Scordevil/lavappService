@@ -9,7 +9,7 @@ import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.PedidoDAO;
 import co.com.lavapp.persistencia.dao.impl.PedidoDAOImpl;
-import co.com.lavapp.servicio.ConsultarPedidosCliente;
+import co.com.lavapp.servicio.ConsultarPedidosAsesorEntrega;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -23,13 +23,13 @@ import javax.ws.rs.QueryParam;
  */
 @Stateless
 @Path("/consultarPedidosAsesorEntrega")
-public class ConsultarPedidosAsesorEntregaImpl implements ConsultarPedidosCliente{
+public class ConsultarPedidosAsesorEntregaImpl implements ConsultarPedidosAsesorEntrega{
     
     
     @GET
     @Produces({"application/json"})
     @Override
-    public List<Pedido_TO> consultarPedidosCliente(@QueryParam("idUsuario") int idUsuario) throws Exception {
+    public List<Pedido_TO> consultarPedidosAsesorEntrega(@QueryParam("idUsuario") int idUsuario) throws Exception {
        Usuario_TO usuario = new Usuario_TO(idUsuario);
        PedidoDAO pedidoDao = new PedidoDAOImpl();
        

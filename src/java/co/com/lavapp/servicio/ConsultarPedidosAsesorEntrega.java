@@ -13,5 +13,5 @@ import java.util.List;
  * @author Desarrollo_Planit
  */
 public interface ConsultarPedidosAsesorEntrega {
-   public List<Pedido_TO> consultarPedidosAsesor(int idUsuario) throws Exception; 
+   public List<Pedido_TO> consultarPedidosAsesorEntrega(int idUsuario) throws Exception; 
 }

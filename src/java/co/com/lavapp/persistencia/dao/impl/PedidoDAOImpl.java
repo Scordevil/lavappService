@@ -147,7 +147,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "fecharecogida, quienentrega, quienrecibe, "
                         + "idbarrios_recogida, idbarrios_entrega, e.nombre "
                         + "from public.pedido as p, public.estado as e WHERE "
-                        + "p.idasesor = " + usuario.getIdUsuario() + " and e.idestado = p.idestado;";
+                        + "p.idasesor = " + usuario.getIdUsuario() + " and p.idestado = 3 and e.idestado = p.idestado;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
 

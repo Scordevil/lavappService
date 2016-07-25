@@ -5,10 +5,14 @@
  */
 package co.com.lavapp.servicio;
 
+import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
+
 /**
  *
  * @author Desarrollo_Planit
  */
-public interface EditarDescripcionPedido {
+public interface ConsultarDescripcionPedidoSegunProducto {
+    
+    public DescripcionPedido_TO consultarDescripcionPedidoSegunProducto(int idDescripcionPedido) throws Exception;
     
 }
