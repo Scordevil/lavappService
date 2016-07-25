@@ -52,6 +52,7 @@ public class RolDAOImpl implements RolDAO {
                         + "WHERE idrol = '" + rol.getIdRol() + "' or nombre = '" + rol.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
+                    nuevoRol = new Rol_TO(rs.getInt(1), rs.getString(2));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -61,8 +62,7 @@ public class RolDAOImpl implements RolDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
-        return rol;
-
+        return nuevoRol;
     }
 
     @Override
