@@ -133,6 +133,126 @@ public class PedidoDAOImpl implements PedidoDAO {
         }
         return pedidos;
     }
+    
+     //Metodo consultar pedidos Asesor
+    @Override
+    public List<Pedido_TO> consultarPedidosAsesor(Usuario_TO usuario) throws Exception {
+        List<Pedido_TO> pedidos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, p.idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega, e.nombre "
+                        + "from public.pedido as p, public.estado as e WHERE "
+                        + "p.idasesor = " + usuario.getIdUsuario() + " and e.idestado = p.idestado;";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+
+                    String[] fechaInicio = null, fechaEntrega = null, fechaRecogida = null;
+
+                    fechaInicio = rs.getDate(3).toString().split("T");
+
+                    String fechaInicioS = fechaInicio[0];
+
+
+                    fechaEntrega = rs.getDate(3).toString().split("T");
+
+                    String fechaEntregaS = fechaEntrega[0];
+
+
+                    fechaRecogida = rs.getDate(3).toString().split("T");
+
+                    String fechaRecogidaS = fechaRecogida[0];
+
+                    pedidos.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            fechaInicioS,
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6),rs.getString(16)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            fechaEntregaS,
+                            rs.getString(9),
+                            rs.getString(10),
+                            fechaRecogidaS,
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return pedidos;
+    }
+    
+    //Metodo consultar pedidos Asesor Entrega
+    @Override
+    public List<Pedido_TO> consultarPedidosAsesorEntrega(Usuario_TO usuario) throws Exception {
+        List<Pedido_TO> pedidos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, p.idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega, e.nombre "
+                        + "from public.pedido as p, public.estado as e WHERE "
+                        + "p.idasesor = " + usuario.getIdUsuario() + " and p.idestado = 7 and e.idestado = p.idestado;";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+
+                    String[] fechaInicio = null, fechaEntrega = null, fechaRecogida = null;
+
+                    fechaInicio = rs.getDate(3).toString().split("T");
+
+                    String fechaInicioS = fechaInicio[0];
+
+
+                    fechaEntrega = rs.getDate(3).toString().split("T");
+
+                    String fechaEntregaS = fechaEntrega[0];
+
+
+                    fechaRecogida = rs.getDate(3).toString().split("T");
+
+                    String fechaRecogidaS = fechaRecogida[0];
+
+                    pedidos.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            fechaInicioS,
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6),rs.getString(16)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            fechaEntregaS,
+                            rs.getString(9),
+                            rs.getString(10),
+                            fechaRecogidaS,
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return pedidos;
+    }
 
     //Metodo Consultar un pedido
     @Override
