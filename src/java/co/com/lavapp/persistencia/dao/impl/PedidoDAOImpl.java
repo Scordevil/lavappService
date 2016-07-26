@@ -218,12 +218,12 @@ public class PedidoDAOImpl implements PedidoDAO {
                     String fechaInicioS = fechaInicio[0];
 
 
-                    fechaEntrega = rs.getDate(3).toString().split("T");
+                    fechaEntrega = rs.getDate(8).toString().split("T");
 
                     String fechaEntregaS = fechaEntrega[0];
 
 
-                    fechaRecogida = rs.getDate(3).toString().split("T");
+                    fechaRecogida = rs.getDate(11).toString().split("T");
 
                     String fechaRecogidaS = fechaRecogida[0];
 
@@ -260,27 +260,45 @@ public class PedidoDAOImpl implements PedidoDAO {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
-                String sql = "SELECT idpedido, idusuario, "
-                        + "fechaInicio, horarioinicio_idhorario, "
-                        + "horariofinal_idhorario, idestado, idproveedor, "
-                        + "fechaentrega, direccionrecogida, direccionentrega, "
-                        + "fecharecogida, quienentrega, quienrecibe, "
-                        + "idbarrios_recogida, idbarrios_entrega "
-                        + "from public.pedido as pedido WHERE "
-                        + "pedido.idpedido = '" + pedido.getIdPedido() + "'";
+                String sql = "SELECT p.idpedido, p.idusuario, "
+                        + "p.fechaInicio, p.horarioinicio_idhorario, "
+                        + "p.horariofinal_idhorario, p.idestado, p.idproveedor, "
+                        + "p.fechaentrega, p.direccionrecogida, p.direccionentrega, "
+                        + "p.fecharecogida, p.quienentrega, p.quienrecibe, "
+                        + "p.idbarrios_recogida, p.idbarrios_entrega, h.horario "
+                        + "from public.pedido as p, public.horario as h WHERE "
+                        + "p.idpedido = '" + pedido.getIdPedido() + "' and p.horarioinicio_idhorario = h.idhorario";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
+                    
+                    String[] fechaInicio = null, fechaEntrega = null, fechaRecogida = null;
+
+                    fechaInicio = rs.getDate(3).toString().split("T");
+
+                    String fechaInicioS = fechaInicio[0];
+
+
+                    fechaEntrega = rs.getDate(8).toString().split("T");
+
+                    String fechaEntregaS = fechaEntrega[0];
+
+
+                    fechaRecogida = rs.getDate(11).toString().split("T");
+
+                    String fechaRecogidaS = fechaRecogida[0];
+
+                    
                     nuevopedido = new Pedido_TO(rs.getInt(1),
                             new Usuario_TO(rs.getInt(2)),
-                            rs.getDate(3),
-                            new Horario_TO(rs.getInt(4)),
+                            fechaInicioS,
+                            new Horario_TO(rs.getInt(4),rs.getString(16)),
                             new Horario_TO(rs.getInt(5)),
                             new Estado_TO(rs.getInt(6)),
                             new Proveedor_TO(rs.getInt(7)),
-                            rs.getDate(8),
+                            fechaEntregaS,
                             rs.getString(9),
                             rs.getString(10),
-                            rs.getDate(11),
+                            fechaRecogidaS,
                             rs.getString(12),
                             rs.getString(13),
                             new Barrio_TO(rs.getInt(14)),

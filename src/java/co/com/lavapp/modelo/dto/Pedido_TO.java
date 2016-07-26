@@ -172,8 +172,7 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
     }
-    
-
+               
     public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;

@@ -54,8 +54,9 @@ public class Horario_TO {
         this.idHorario = idHorario;
     }
 
-    public Horario_TO(String horaInicio) {
+    public Horario_TO(int idHorario, String horaInicio) {
         this.horaInicio = horaInicio;
+        this.idHorario = idHorario;
     }
 
     public Horario_TO(String horaFinal, int quemado) {
