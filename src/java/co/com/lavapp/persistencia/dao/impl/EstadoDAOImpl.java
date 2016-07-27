@@ -12,6 +12,7 @@ import co.com.lavapp.persistencia.dao.EstadoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +23,6 @@ public class EstadoDAOImpl implements EstadoDAO {
 
     private final Statement st = ConexionSQL.conexion();
 
-    
     @Override
     public Estado_TO consultarEstadoPedido(Pedido_TO pedido) throws Exception {
         Estado_TO estado = new Estado_TO();
@@ -45,14 +45,12 @@ public class EstadoDAOImpl implements EstadoDAO {
         return estado;
     }
 
-    
     @Override
     public List<Estado_TO> consultarEstados() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
         //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     @Override
     public Estado_TO consultarEstado(Estado_TO estado) throws Exception {
         Estado_TO estadoModelo = new Estado_TO();
@@ -72,6 +70,33 @@ public class EstadoDAOImpl implements EstadoDAO {
             }
         } catch (Exception es) {
             estadoModelo = new Estado_TO();
+            throw es;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return estadoModelo;
+    }
+
+    @Override
+    public List<Estado_TO> consultarEstadosProducto() throws Exception {
+        List<Estado_TO> estadoModelo = new ArrayList<Estado_TO>();
+        try {
+            try {
+                String sql = "SELECT idestado, nombre "
+                        + "  FROM public.estado "
+                        + "  WHERE idestado >= 3 " ;
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    estadoModelo.add(new Estado_TO(rs.getInt(1), rs.getString(2)));
+                }
+            } catch (Exception e) {
+               estadoModelo = new ArrayList<Estado_TO>();
+                throw e;
+            }
+        } catch (Exception es) {
+           estadoModelo = new ArrayList<Estado_TO>();
             throw es;
         } finally {
             ConexionSQL.CerrarConexion();
