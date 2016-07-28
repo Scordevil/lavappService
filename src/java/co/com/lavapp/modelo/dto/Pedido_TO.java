@@ -127,6 +127,11 @@ public class Pedido_TO {
      */
     private Barrio_TO barrioEntrega;
 
+    /**
+     *
+     * Columna idasesor
+     */
+    private Usuario_TO asesor;
     //Constructores
     public Pedido_TO() {
     }
@@ -350,6 +355,8 @@ public class Pedido_TO {
     public void setFechaRecogidaString(String fechaRecogidaString) {
         this.fechaRecogidaString = fechaRecogidaString;
     }
+    
+    
 
     @Override
     public String toString() {
