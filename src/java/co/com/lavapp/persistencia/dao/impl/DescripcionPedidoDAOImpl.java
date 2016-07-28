@@ -63,7 +63,7 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                 String sql = "SELECT dp.iddescripcionpedido, "
                         + " dp.idestado, dp.idsubproducto, dp.descripcion, "
                         + " dp.observacionasesor, dp.observacionadministrador, dp.foto1, "
-                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, e.nombre, e.nombre "
+                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, e.nombre, sp.nombre"
                         + " from public.descripcionpedido as dp, public.subproducto as sp, public.estado as e WHERE "
                         + " dp.idpedido = " + pedido.getIdPedido() + " and sp.idsubproducto = dp.idsubproducto and dp.idestado = e.idestado ";
                 ResultSet rs = st.executeQuery(sql);
