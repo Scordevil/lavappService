@@ -114,7 +114,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                             rs.getString(12),
                             new Ciudad_TO(rs.getInt(13)),
                             rs.getString(14),
-                            rs.getString(16));
+                            rs.getString(15));
                 }
             } catch (SQLException e) {
                 user = new Usuario_TO();
