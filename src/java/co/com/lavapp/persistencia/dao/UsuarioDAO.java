@@ -22,7 +22,11 @@ public interface UsuarioDAO {
     public Usuario_TO registrarUsuarios(Usuario_TO usuario) throws Exception;
 
     public Usuario_TO editarUsuario(Usuario_TO usuario) throws Exception;
+    
+    public Usuario_TO editarCorreoSesion(Usuario_TO usuario) throws Exception;
 
+    public Usuario_TO editarContrasenaSesion(Usuario_TO usuario) throws Exception;
+    
     public Usuario_TO eliminarUsuario(Usuario_TO usuario) throws Exception;
     
     public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception;
