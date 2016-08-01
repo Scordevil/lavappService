@@ -36,9 +36,10 @@ public class EditarUsuarioImpl implements EditarUsuario {
             @QueryParam("movil") String movil,
             @QueryParam("direccion") String direccion, 
             @QueryParam("idciudad") int idciudad, 
-            @QueryParam("identificacion") String identificacion) throws Exception {
+            @QueryParam("identificacion") String identificacion,
+            @QueryParam("rutaImagen") String rutaImagen) throws Exception {
 
-        Usuario_TO usuario = new Usuario_TO(idUsuario, nombre, telefono, new Barrio_TO(idbarrios), apellido, genero, movil, direccion, new Ciudad_TO(idciudad), identificacion);
+        Usuario_TO usuario = new Usuario_TO(idUsuario, nombre, telefono, new Barrio_TO(idbarrios), apellido, genero, movil, direccion, new Ciudad_TO(idciudad), identificacion, rutaImagen);
         UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
         return usuarioDao.editarUsuario(usuario);
     }

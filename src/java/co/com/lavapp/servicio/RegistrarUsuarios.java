@@ -13,6 +13,6 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
  */
 public interface RegistrarUsuarios {
     
-    public Usuario_TO registrarUsuarios(String nombre, String telefono,int idbarrios,int idrol, int idestado, String login, String contrasena, String apellido, String genero, String movil, String direccion, int idCiudad, String identificacion) throws Exception;
+    public Usuario_TO registrarUsuarios(String nombre, String telefono,int idbarrios,int idrol, int idestado, String login, String contrasena, String apellido, String genero, String movil, String direccion, int idCiudad, String identificacion, String rutaImagen) throws Exception;
     
 }
