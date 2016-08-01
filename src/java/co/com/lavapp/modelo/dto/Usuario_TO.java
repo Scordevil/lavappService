@@ -138,7 +138,7 @@ public class Usuario_TO {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
-        this.barrio = barrio;       
+        this.barrio = barrio;
         this.apellido = apellido;
         this.genero = genero;
         this.movil = movil;
@@ -146,6 +146,10 @@ public class Usuario_TO {
         this.ciudad = ciudad;
         this.identificacion = identificacion;
     }
+
+    
+
+    
    
 
     //Getter and Setter

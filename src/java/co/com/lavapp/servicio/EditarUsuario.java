@@ -13,7 +13,7 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
  */
 public interface EditarUsuario {
     
-        public Usuario_TO editarUsuario (int idUsuario, String nombre, String apellido, String telefono, int idbarrios,
+        public Usuario_TO editarUsuario (int idUsuario, String nombre, String apellido, String genero , String telefono, int idbarrios,
              String movil, String direccion, int idciudad, String identificacion) throws Exception;
     
 }

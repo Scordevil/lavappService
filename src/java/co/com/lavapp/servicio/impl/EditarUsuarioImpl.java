@@ -26,11 +26,11 @@ public class EditarUsuarioImpl implements EditarUsuario {
 
     @GET
     @Produces({"application/json"})
-
     @Override
     public Usuario_TO editarUsuario(@QueryParam("idUsuario") int idUsuario, 
             @QueryParam("nombre") String nombre, 
             @QueryParam("apellido") String apellido,
+            @QueryParam("genero") String genero,
             @QueryParam("telefono") String telefono, 
             @QueryParam("idbarrios") int idbarrios,
             @QueryParam("movil") String movil,
@@ -38,10 +38,8 @@ public class EditarUsuarioImpl implements EditarUsuario {
             @QueryParam("idciudad") int idciudad, 
             @QueryParam("identificacion") String identificacion) throws Exception {
 
-        Usuario_TO usuario = new Usuario_TO(idUsuario, nombre, telefono, new Barrio_TO(idbarrios), apellido, telefono, movil, direccion, new Ciudad_TO(idciudad), identificacion);
-
+        Usuario_TO usuario = new Usuario_TO(idUsuario, nombre, telefono, new Barrio_TO(idbarrios), apellido, genero, movil, direccion, new Ciudad_TO(idciudad), identificacion);
         UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
-
         return usuarioDao.editarUsuario(usuario);
     }
 

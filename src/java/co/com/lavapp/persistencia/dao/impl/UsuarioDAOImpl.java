@@ -177,7 +177,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         try {
             String sql = "UPDATE public.usuario  "
-                    + "SET nombre='" + usuario.getNombre() + "',apellido='" + usuario.getApellido() + "' ,telefono='" + usuario.getTelefono() + "' , idbarrios= " + usuario.getBarrio().getIdBarrios() + " , movil= '" + usuario.getMovil() + "' , direccion= '" + usuario.getDireccion() + "' , idciudad= " + usuario.getCiudad().getIdCiudad() + ", identificacion = '" + usuario.getIdentificacion() + "' "
+                    + "SET nombre='" + usuario.getNombre() + "',apellido='" + usuario.getApellido() + "' ,telefono='" + usuario.getTelefono() + "' , idbarrios= " + usuario.getBarrio().getIdBarrios() + " , movil= '" + usuario.getMovil() + "' , direccion= '" + usuario.getDireccion() + "' , idciudad= " + usuario.getCiudad().getIdCiudad() + ", identificacion = '" + usuario.getIdentificacion() + "', genero = '" + usuario.getGenero() + "' "
                     + "WHERE idUsuario = " + usuario.getIdUsuario() + " ;";
             st.executeUpdate(sql);
         } catch (Exception e) {
