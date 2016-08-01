@@ -20,7 +20,7 @@ import javax.ws.rs.QueryParam;
  * @author Desarrollo_Planit
  */
 @Stateless
-@Path("/editarContrasenaCorreo")
+@Path("/editarContrasenaSesion")
 public class EditarContrasenaSesionImpl implements EditarContrasenaSesion{
 
     @GET
