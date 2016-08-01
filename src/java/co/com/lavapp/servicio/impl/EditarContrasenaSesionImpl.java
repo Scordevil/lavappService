@@ -26,8 +26,8 @@ public class EditarContrasenaSesionImpl implements EditarContrasenaSesion{
     @GET
     @Produces({"application/json"})
     @Override
-    public Usuario_TO editarContrasenaSesion(@QueryParam("contrasena") String contrasena) throws Exception {
-        Usuario_TO usuario = new Usuario_TO();
+    public Usuario_TO editarContrasenaSesion(@QueryParam("idUsuario") int idUsuario, @QueryParam("contrasena") String contrasena) throws Exception {
+        Usuario_TO usuario = new Usuario_TO(idUsuario);
         usuario.setContrasena(contrasena);
         UsuarioDAO usuarioDao = new UsuarioDAOImpl();
         return usuarioDao.editarContrasenaSesion(usuario);  

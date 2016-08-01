@@ -13,5 +13,5 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
  */
 public interface EditarContrasenaSesion {
     
-    public Usuario_TO editarContrasenaSesion(String contrasena) throws Exception;
+    public Usuario_TO editarContrasenaSesion(int idUsuario, String contrasena) throws Exception;
 }

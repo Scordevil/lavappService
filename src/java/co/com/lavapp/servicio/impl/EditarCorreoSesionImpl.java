@@ -26,8 +26,8 @@ public class EditarCorreoSesionImpl implements EditarCorreoSesion {
     @GET
     @Produces({"application/json"})
     @Override
-    public Usuario_TO editarCorreoSesion(@QueryParam("email") String email) throws Exception {
-        Usuario_TO usuario = new Usuario_TO();
+    public Usuario_TO editarCorreoSesion(@QueryParam("idUsuario") int idUsuario ,@QueryParam("email") String email) throws Exception {
+        Usuario_TO usuario = new Usuario_TO(idUsuario);
         usuario.setEmail(email);
         UsuarioDAO usuarioDao = new UsuarioDAOImpl();
         return usuarioDao.editarCorreoSesion(usuario);

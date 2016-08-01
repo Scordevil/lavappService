@@ -13,6 +13,6 @@ import co.com.lavapp.modelo.dto.Usuario_TO;
  */
 public interface EditarCorreoSesion {
     
-    public Usuario_TO editarCorreoSesion(String email) throws Exception;
+    public Usuario_TO editarCorreoSesion(int idUsuario, String email) throws Exception;
     
 }
