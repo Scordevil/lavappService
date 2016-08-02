@@ -254,7 +254,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public List<Usuario_TO> consultarUsuarioClientes() throws Exception {
+    public List<Usuario_TO> consultarUsuariosPorRol(Rol_TO rol) throws Exception {
 
         List<Usuario_TO> listaCLientesModel = new ArrayList<>();
         try {
@@ -262,7 +262,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 String sql = "SELECT idusuario, nombre, telefono, idbarrios, idrol, idestado, email,  "
                         + "       contrasena, apellido, genero, movil, direccion, idciudad, identificacion, rutaimagen  "
                         + "  FROM public.usuario "
-                        + "  WHERE idrol = 4 ";
+                        + "  WHERE idrol = '" + rol.getIdRol() + "' ";
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
@@ -323,7 +323,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         try {
             String sql = "UPDATE public.usuario"
-                    + " SET contrasena = md5('"+usuario.getContrasena()+"')"
+                    + " SET contrasena = md5('" + usuario.getContrasena() + "')"
                     + " WHERE idUsuario = " + usuario.getIdUsuario() + ";";
             st.executeUpdate(sql);
         } catch (Exception e) {
@@ -333,5 +333,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ConexionSQL.CerrarConexion();
         }
 
-        return user;}
+        return user;
+    }
 }
