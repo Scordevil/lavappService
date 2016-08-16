@@ -6,6 +6,7 @@
 package co.com.lavapp.modelo.dto;
 
 import java.util.Date;
+import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -71,9 +72,23 @@ public class Factura_TO {
     public Factura_TO() {
     }
 
+    public Factura_TO(int idFactura) {
+        this.idFactura = idFactura;
+    }
+
     //Constructor General
     public Factura_TO(int idFactura, double total, double subTotal, double neto, double iva, double descuento, Date fecha, Pedido_TO pedido) {
         this.idFactura = idFactura;
+        this.total = total;
+        this.subTotal = subTotal;
+        this.neto = neto;
+        this.iva = iva;
+        this.descuento = descuento;
+        this.fecha = fecha;
+        this.pedido = pedido;
+    }
+
+    public Factura_TO(double total, double subTotal, double neto, double iva, double descuento, Date fecha, Pedido_TO pedido) {
         this.total = total;
         this.subTotal = subTotal;
         this.neto = neto;

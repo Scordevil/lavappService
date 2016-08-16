@@ -29,9 +29,11 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
      private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(co.com.lavapp.servicio.impl.AsignarAsesorPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarBarrioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarBarriosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarBarriosSegunLocalidadImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarCalificacionPorPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCalificacionesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCantidadDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarCiudadImpl.class);
@@ -44,6 +46,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarCostoSubProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarDepartamentosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarDescripcionPedidoSegunPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarDescripcionPedidoSegunProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstadoImpl.class);
@@ -51,6 +54,10 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstadosProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstratoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstratosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarFacturaPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarFacturasImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarHistoricoDescripcionImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarHistoricoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarHorarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarHorariosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarHorariosSegunJornadaImpl.class);
@@ -95,6 +102,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EditarCorreoSesionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarDepartamentoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstratoImpl.class);
@@ -114,6 +122,8 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EliminarDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarDescripcionesSegunPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarEstratoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarFacturaImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarHistoricoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarHorarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarJornadaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarLocalidadImpl.class);
@@ -140,6 +150,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.RegistrarDepartamentoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarEstratoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarFacturaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarHistoricoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarHorarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarJornadaImpl.class);

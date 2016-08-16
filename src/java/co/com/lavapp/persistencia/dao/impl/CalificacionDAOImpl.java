@@ -48,7 +48,7 @@ public class CalificacionDAOImpl implements CalificacionDAO {
     }
 
     @Override
-    public List<Calificacion_TO> consultarCalificacion() throws Exception {
+    public List<Calificacion_TO> consultarCalificaciones() throws Exception {
         List<Calificacion_TO> califications = new ArrayList<>();
         try {
             try {
@@ -113,6 +113,32 @@ public class CalificacionDAOImpl implements CalificacionDAO {
             throw ed;
         }
         return caliModelo;
+    }
+
+    @Override
+    public Calificacion_TO consultarCalificacionPorPedido(Pedido_TO pedido) throws Exception {
+        Calificacion_TO nuevaCalificacion = new Calificacion_TO();
+        try {
+            try {
+                String sql = "SELECT idcalificacion, calificacion, observacion, idpedido"
+                        + " FROM public.calificacion"
+                        + " WHERE idpedido = '" + pedido.getIdPedido() + "';";
+                ResultSet rs = null;
+                rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    nuevaCalificacion = new Calificacion_TO(rs.getInt(1), rs.getInt(2), rs.getString(3), new Pedido_TO(rs.getInt(4)));
+                }
+
+            } catch (Exception e) {
+                throw e;
+            }
+        } catch (Exception es) {
+            throw es;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaCalificacion;
     }
 
 }

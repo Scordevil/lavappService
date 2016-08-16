@@ -6,8 +6,11 @@
 package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
+import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
+import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Historico_TO;
 import co.com.lavapp.persistencia.dao.HistoricoDAO;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -26,6 +29,68 @@ public class HistoricoDAOImpl implements HistoricoDAO {
             try {
                 String sql = "INSERT INTO public.historico(idhistorico, iddescripcionpedido, idestado, fecha) "
                         + "VALUES (" + historico.getIdHistorico() + ", " + historico.getDescripcionPedido().getIdDescripcionPedido() + ", " + historico.getEstado().getIdEstado() + ", " + historico.getFecha() + ");";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevoHistorico = new Historico_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevoHistorico;
+    }
+
+    @Override
+    public Historico_TO consultarHistoricoDescripcion(DescripcionPedido_TO descripcion) throws Exception {
+        Historico_TO historico = new Historico_TO();
+        try {
+            try {
+                String sql = "SELECT idhistorico, iddescripcionpedido, idestado, fecha FROM public.historico "
+                        + "WHERE iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + "";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    historico = new Historico_TO(rs.getInt(1), new DescripcionPedido_TO(rs.getInt(2)), new Estado_TO(rs.getInt(3)), rs.getDate(4));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.conexion();
+        }
+        return historico;
+    }
+
+    @Override
+    public Historico_TO consultarHistorico(Historico_TO historico) throws Exception {
+        Historico_TO nuevohistorico = new Historico_TO();
+        try {
+            try {
+                String sql = "SELECT idhistorico, iddescripcionpedido, idestado, fecha FROM public.historico "
+                        + "WHERE idhistorico = " + historico.getIdHistorico() + "";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevohistorico = new Historico_TO(rs.getInt(1), new DescripcionPedido_TO(rs.getInt(2)), new Estado_TO(rs.getInt(3)), rs.getDate(4));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return nuevohistorico;
+    }
+
+    @Override
+    public Historico_TO eliminarHistorico(Historico_TO historico) throws Exception {
+        Historico_TO nuevoHistorico = new Historico_TO();
+        try {
+            try {
+                String sql = "DELETE FROM public.historico"
+                        + " WHERE idhistorico = " + historico.getIdHistorico() + "";
                 st.execute(sql);
             } catch (SQLException e) {
                 nuevoHistorico = new Historico_TO();

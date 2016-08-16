@@ -25,6 +25,8 @@ public interface DescripcionPedidoDAO {
    
     public DescripcionPedido_TO consultarDescripcionPedidoSegunProducto(DescripcionPedido_TO descripcion) throws Exception;
 
+    public DescripcionPedido_TO consultarDescripcionPedido(DescripcionPedido_TO descripcion) throws Exception;
+        
     public DescripcionPedido_TO registrarDescripcion(DescripcionPedido_TO descripcion) throws Exception;
 
     public DescripcionPedido_TO editarDescripcion(DescripcionPedido_TO descripcion) throws Exception;

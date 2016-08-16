@@ -63,14 +63,14 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                 String sql = "SELECT dp.iddescripcionpedido, "
                         + " dp.idestado, dp.idsubproducto, dp.descripcion, "
                         + " dp.observacionasesor, dp.observacionadministrador, dp.foto1, "
-                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, e.nombre, sp.nombre"
+                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, dp.codigo, e.nombre, sp.nombre"
                         + " from public.descripcionpedido as dp, public.subproducto as sp, public.estado as e WHERE "
                         + " dp.idpedido = " + pedido.getIdPedido() + " and sp.idsubproducto = dp.idsubproducto and dp.idestado = e.idestado ";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     descripcionPedidos.add(new DescripcionPedido_TO(rs.getInt(1),
-                            new Estado_TO(rs.getInt(2), rs.getString(12)),
-                            new SubProducto_TO(rs.getInt(3), rs.getString(13)),
+                            new Estado_TO(rs.getInt(2), rs.getString(13)),
+                            new SubProducto_TO(rs.getInt(3), rs.getString(14)),
                             rs.getString(4),
                             rs.getString(5),
                             rs.getString(6),
@@ -78,7 +78,8 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                             rs.getByte(8),
                             rs.getByte(9),
                             new Color_TO(rs.getInt(10)),
-                            new Pedido_TO(rs.getInt(11))));
+                            new Pedido_TO(rs.getInt(11)),
+                            rs.getString(12)));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -90,23 +91,23 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
         }
         return descripcionPedidos;
     }
-    
-     @Override
+
+    @Override
     public DescripcionPedido_TO consultarDescripcionPedidoSegunProducto(DescripcionPedido_TO descripcion) throws Exception {
         DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO();
-        try {   
+        try {
             try {
                 String sql = "SELECT dp.iddescripcionpedido, "
                         + " dp.idestado, dp.idsubproducto, dp.descripcion, "
                         + " dp.observacionasesor, dp.observacionadministrador, dp.foto1, "
-                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, e.nombre, sp.nombre "
+                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, dp.codigo, e.nombre, sp.nombre "
                         + " from public.descripcionpedido as dp, public.subproducto as sp, public.estado as e WHERE "
-                        + " dp.iddescripcionpedido = " + descripcion.getIdDescripcionPedido()+ " and sp.idsubproducto = dp.idsubproducto and dp.idestado = e.idestado ";
+                        + " dp.iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + " and sp.idsubproducto = dp.idsubproducto and dp.idestado = e.idestado ";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     descripcionPedido = new DescripcionPedido_TO(rs.getInt(1),
-                            new Estado_TO(rs.getInt(2), rs.getString(12)),
-                            new SubProducto_TO(rs.getInt(3), rs.getString(13)),
+                            new Estado_TO(rs.getInt(2), rs.getString(13)),
+                            new SubProducto_TO(rs.getInt(3), rs.getString(14)),
                             rs.getString(4),
                             rs.getString(5),
                             rs.getString(6),
@@ -114,7 +115,8 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                             rs.getByte(8),
                             rs.getByte(9),
                             new Color_TO(rs.getInt(10)),
-                            new Pedido_TO(rs.getInt(11)));
+                            new Pedido_TO(rs.getInt(11)),
+                            rs.getString(12));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -212,7 +214,8 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                         + " foto3 = '" + descripcion.getFoto3() + "',"
                         + " idcolor = '" + descripcion.getColor().getIdColor() + "',"
                         + " idpedido = '" + descripcion.getPedido().getIdPedido() + "',"
-                        + " idsubproducto = '" + descripcion.getSubProducto().getIdSubProducto() + "'"
+                        + " idsubproducto = '" + descripcion.getSubProducto().getIdSubProducto() + "',"
+                        + " codigo = '" + descripcion.getCodigo() + "'"
                         + " WHERE descripcion.iddescripcionpedido = '" + descripcion.getIdDescripcionPedido() + "'";
                 ResultSet rs = st.executeQuery(sql);
             } catch (SQLException e) {
@@ -251,5 +254,42 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
             ConexionSQL.CerrarConexion();
         }
         return descPedi;
+    }
+
+    @Override
+    public DescripcionPedido_TO consultarDescripcionPedido(DescripcionPedido_TO descripcion) throws Exception {
+        DescripcionPedido_TO nuevaDescripcion = new DescripcionPedido_TO();
+        try {
+            try {
+                String sql = "SELECT dp.iddescripcionpedido, "
+                        + " dp.idestado, dp.idsubproducto, dp.descripcion, "
+                        + " dp.observacionasesor, dp.observacionadministrador, dp.foto1, "
+                        + " dp.foto2, dp.foto3, dp.idcolor, dp.idpedido, dp.codigo"
+                        + " from public.descripcionpedido as dp"
+                        + " WHERE dp.iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + "";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevaDescripcion = new DescripcionPedido_TO(rs.getInt(1),
+                            new Estado_TO(rs.getInt(2)),
+                            new SubProducto_TO(rs.getInt(3)),
+                            rs.getString(4),
+                            rs.getString(5),
+                            rs.getString(6),
+                            rs.getByte(7),
+                            rs.getByte(8),
+                            rs.getByte(9),
+                            new Color_TO(rs.getInt(10)),
+                            new Pedido_TO(rs.getInt(11)),
+                            rs.getString(12));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaDescripcion;
     }
 }

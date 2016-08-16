@@ -32,7 +32,7 @@ public class ConsultarCalificacionesImpl implements ConsultarCalificaciones{
         CalificacionDAOImpl caliDAO = new CalificacionDAOImpl();
         
         
-        return caliModelo = caliDAO.consultarCalificacion();
+        return caliModelo = caliDAO.consultarCalificaciones();
     }
     
 }

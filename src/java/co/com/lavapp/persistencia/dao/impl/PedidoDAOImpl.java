@@ -97,11 +97,9 @@ public class PedidoDAOImpl implements PedidoDAO {
 
                     String fechaInicioS = fechaInicio[0];
 
-
                     fechaEntrega = rs.getDate(3).toString().split("T");
 
                     String fechaEntregaS = fechaEntrega[0];
-
 
                     fechaRecogida = rs.getDate(3).toString().split("T");
 
@@ -112,7 +110,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                             fechaInicioS,
                             new Horario_TO(rs.getInt(4)),
                             new Horario_TO(rs.getInt(5)),
-                            new Estado_TO(rs.getInt(6),rs.getString(16)),
+                            new Estado_TO(rs.getInt(6), rs.getString(16)),
                             new Proveedor_TO(rs.getInt(7)),
                             fechaEntregaS,
                             rs.getString(9),
@@ -133,8 +131,8 @@ public class PedidoDAOImpl implements PedidoDAO {
         }
         return pedidos;
     }
-    
-     //Metodo consultar pedidos Asesor
+
+    //Metodo consultar pedidos Asesor
     @Override
     public List<Pedido_TO> consultarPedidosAsesor(Usuario_TO usuario) throws Exception {
         List<Pedido_TO> pedidos = new ArrayList<>();
@@ -157,11 +155,9 @@ public class PedidoDAOImpl implements PedidoDAO {
 
                     String fechaInicioS = fechaInicio[0];
 
-
                     fechaEntrega = rs.getDate(3).toString().split("T");
 
                     String fechaEntregaS = fechaEntrega[0];
-
 
                     fechaRecogida = rs.getDate(3).toString().split("T");
 
@@ -172,7 +168,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                             fechaInicioS,
                             new Horario_TO(rs.getInt(4)),
                             new Horario_TO(rs.getInt(5)),
-                            new Estado_TO(rs.getInt(6),rs.getString(16)),
+                            new Estado_TO(rs.getInt(6), rs.getString(16)),
                             new Proveedor_TO(rs.getInt(7)),
                             fechaEntregaS,
                             rs.getString(9),
@@ -193,7 +189,7 @@ public class PedidoDAOImpl implements PedidoDAO {
         }
         return pedidos;
     }
-    
+
     //Metodo consultar pedidos Asesor Entrega
     @Override
     public List<Pedido_TO> consultarPedidosAsesorEntrega(Usuario_TO usuario) throws Exception {
@@ -217,11 +213,9 @@ public class PedidoDAOImpl implements PedidoDAO {
 
                     String fechaInicioS = fechaInicio[0];
 
-
                     fechaEntrega = rs.getDate(8).toString().split("T");
 
                     String fechaEntregaS = fechaEntrega[0];
-
 
                     fechaRecogida = rs.getDate(11).toString().split("T");
 
@@ -232,7 +226,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                             fechaInicioS,
                             new Horario_TO(rs.getInt(4)),
                             new Horario_TO(rs.getInt(5)),
-                            new Estado_TO(rs.getInt(6),rs.getString(16)),
+                            new Estado_TO(rs.getInt(6), rs.getString(16)),
                             new Proveedor_TO(rs.getInt(7)),
                             fechaEntregaS,
                             rs.getString(9),
@@ -270,28 +264,25 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "p.idpedido = '" + pedido.getIdPedido() + "' and p.horarioinicio_idhorario = h.idhorario";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    
+
                     String[] fechaInicio = null, fechaEntrega = null, fechaRecogida = null;
 
                     fechaInicio = rs.getDate(3).toString().split("T");
 
                     String fechaInicioS = fechaInicio[0];
 
-
                     fechaEntrega = rs.getDate(8).toString().split("T");
 
                     String fechaEntregaS = fechaEntrega[0];
-
 
                     fechaRecogida = rs.getDate(11).toString().split("T");
 
                     String fechaRecogidaS = fechaRecogida[0];
 
-                    
                     nuevopedido = new Pedido_TO(rs.getInt(1),
                             new Usuario_TO(rs.getInt(2)),
                             fechaInicioS,
-                            new Horario_TO(rs.getInt(4),rs.getString(16)),
+                            new Horario_TO(rs.getInt(4), rs.getString(16)),
                             new Horario_TO(rs.getInt(5)),
                             new Estado_TO(rs.getInt(6)),
                             new Proveedor_TO(rs.getInt(7)),
@@ -520,6 +511,29 @@ public class PedidoDAOImpl implements PedidoDAO {
             ConexionSQL.CerrarConexion();
         }
         return nuevopedido;
+    }
+
+    @Override
+    public Pedido_TO asignarAsesorPedido(Usuario_TO usuario, Pedido_TO pedido) throws Exception {
+        Pedido_TO pedidoModelo = new Pedido_TO();
+        try {
+            try {
+                String sql = "UPDATE public.pedido "
+                        + " SET  idasesor = " + usuario.getIdUsuario() + " "
+                        + " WHERE idpedido = " + pedido.getIdPedido() + " ;";
+                st.execute(sql);
+            } catch (Exception e) {
+                pedidoModelo = new Pedido_TO();
+                throw e;
+            }
+        } catch (Exception es) {
+            pedidoModelo = new Pedido_TO();
+            throw es;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return pedidoModelo;
     }
 
 }
