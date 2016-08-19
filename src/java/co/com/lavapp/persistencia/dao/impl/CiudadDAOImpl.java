@@ -175,4 +175,33 @@ public class CiudadDAOImpl implements CiudadDAO {
         return ciudades;
     }
 
+    @Override
+    public List<Ciudad_TO> buscarCiudades(String valor) throws Exception {
+        List<Ciudad_TO> ciudades = new ArrayList<>();
+        try {
+            try {
+
+                String sql = "SELECT c.idciudad, c.nombre, c.iddepartamento  FROM public.ciudad as c, public.departamento as d"
+                        + " WHERE c.iddepartamento = d.iddepartamento and"
+                        + " (c.idciudad LIKE '%" + valor + "%' or c.nombre LIKE '%" + valor + "%' or d.nombre LIKE '%" + valor + "%')";
+
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    ciudades.add(new Ciudad_TO(rs.getInt(1), rs.getString(2), new Departamento_TO(rs.getInt(3))));
+
+                }
+
+            } catch (SQLException r) {
+                throw r;
+            }
+
+            ConexionSQL.CerrarConexion();
+
+        } catch (Exception e) {
+            throw e;
+        }
+        return ciudades;
+    }
+
 }

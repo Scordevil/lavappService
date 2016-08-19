@@ -30,6 +30,19 @@ public class ApplicationConfig extends Application {
      */
      private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.com.lavapp.servicio.impl.AsignarAsesorPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarBarriosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarCiudadesImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarDepartamentosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarEstratosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarHorariosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarJornadasImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarLocalidadesImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarProductosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarProveedoresImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarServiciosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarSubProductosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarSubServicioImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarZonasImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarBarrioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarBarriosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarBarriosSegunLocalidadImpl.class);

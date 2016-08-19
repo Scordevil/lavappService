@@ -135,4 +135,31 @@ public class ProductoDAOImpl implements ProductoDAO {
         return nuevoProducto;
     }
 
+    @Override
+    public List<Producto_TO> buscarProductos(String valor) throws Exception {
+        List<Producto_TO> productos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT p.idproducto, p.nombre, p.descripcion, p.idsubservicio, p.rutaimagen "
+                        + "FROM public.producto as p, public.subservicio as s "
+                        + "WHERE p.idsubservicio = s.idsubservicio and "
+                        + "(p.idproducto LIKE '" + valor + "' or p.nombre LIKE '%" + valor + "%' or "
+                        + "p.descripcion LIKE '%" + valor + "%' or p.idsubservicio LIKE '%" + valor + "%' or "
+                        + "s.nombre LIKE '%" + valor + "%')";
+
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    productos.add(new Producto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new SubServicio_TO(rs.getInt(4)), rs.getString(5)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return productos;
+    }
+
 }

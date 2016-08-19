@@ -17,6 +17,8 @@ import java.util.List;
  * @author SISTEMAS
  */
 public interface CiudadDAO {
+    
+    public List<Ciudad_TO> buscarCiudades(String valor) throws Exception;
 
     public List<Ciudad_TO> consultarCiudades() throws Exception;
 

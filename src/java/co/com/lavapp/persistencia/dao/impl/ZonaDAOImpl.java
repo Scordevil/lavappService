@@ -124,4 +124,27 @@ public class ZonaDAOImpl implements ZonaDAO {
         }
         return nuevaZona;
     }
+
+    @Override
+    public List<Zona_TO> buscarZonas(String valor) throws Exception {
+        List<Zona_TO> zonas = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idzona, nombre, descripcion FROM public.zona "
+                        + "WHERE idzona LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%' or "
+                        + "descripcion LIKE '%" + valor + "%'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    zonas.add(new Zona_TO(rs.getInt(1), rs.getString(2), rs.getString(3)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return zonas;
+    }
 }

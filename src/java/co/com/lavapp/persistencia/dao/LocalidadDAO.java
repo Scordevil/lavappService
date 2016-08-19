@@ -22,6 +22,8 @@ public interface LocalidadDAO {
     
     public List<Localidad_TO> consultarLocalidadesSegunCiudad(Ciudad_TO ciudad) throws Exception;
     
+    public List<Localidad_TO> buscarLocalidades(String valor) throws Exception;
+    
     public Localidad_TO consultarLocalidad(Localidad_TO localidad) throws Exception;
      
     public Localidad_TO registrarLocalidad(Localidad_TO localidad) throws Exception;
@@ -29,6 +31,5 @@ public interface LocalidadDAO {
     public Localidad_TO modificarLocalidad(Localidad_TO localidad) throws Exception;
     
     public Localidad_TO eliminarLocalidad(Localidad_TO localidad) throws Exception;
-    
-    
+        
 }

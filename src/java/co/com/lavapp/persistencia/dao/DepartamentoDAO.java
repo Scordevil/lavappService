@@ -16,6 +16,8 @@ public interface DepartamentoDAO {
     
     public List<Departamento_TO> consultarDepartamentos() throws Exception;
     
+    public List<Departamento_TO> buscarDepartamentos(String valor) throws Exception;
+    
     public Departamento_TO consultarDepartamento(Departamento_TO departamento) throws Exception;
     
     public Departamento_TO registrarDepartamento(Departamento_TO departamento) throws Exception;

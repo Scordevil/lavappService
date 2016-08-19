@@ -18,6 +18,7 @@ public interface SubServicioDAO {
     public SubServicio_TO consultarSubServicio(SubServicio_TO subservicio) throws Exception;
     public List<SubServicio_TO> consultarSubServicios(Servicio_TO servicio) throws Exception;
     public List<SubServicio_TO> consultarSubServicios() throws Exception;
+    public List<SubServicio_TO> buscarSubServicios(String valor) throws Exception;
     public SubServicio_TO registrarSubServicio(SubServicio_TO subServi) throws Exception;
     public SubServicio_TO modificarSubServicio(SubServicio_TO subServi) throws Exception;
     public SubServicio_TO eliminarSubServicio(SubServicio_TO subServi) throws Exception;

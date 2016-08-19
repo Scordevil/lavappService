@@ -14,17 +14,19 @@ import java.util.List;
  * @author Desarrollo_Planit
  */
 public interface BarrioDAO {
-   
+
+    public List<Barrio_TO> buscarBarrios(String valor) throws Exception;
+                
     public List<Barrio_TO> consultarBarriosSegunLocalidad(Localidad_TO localidad) throws Exception;
-    
+
     public List<Barrio_TO> consultarBarrios() throws Exception;
-    
+
     public Barrio_TO consultarBarrio(Barrio_TO barrio) throws Exception;
-    
+
     public Barrio_TO registrarBarrio(Barrio_TO barrio) throws Exception;
-    
+
     public Barrio_TO modificarBarrio(Barrio_TO barrio) throws Exception;
-    
+
     public Barrio_TO eliminarBarrio(Barrio_TO barrio) throws Exception;
-           
+
 }

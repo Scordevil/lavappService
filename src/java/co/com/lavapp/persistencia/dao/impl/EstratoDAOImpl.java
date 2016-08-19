@@ -125,4 +125,26 @@ public class EstratoDAOImpl implements EstratoDAO {
         return nuevoEstrato;
     }
 
+    @Override
+    public List<Estrato_TO> buscarEstratos(String valor) throws Exception {
+        List<Estrato_TO> estratos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idestrato, nombre FROM public.estrato "
+                        + "WHERE idestrato LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    estratos.add(new Estrato_TO(rs.getInt(1), rs.getString(2)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return estratos;
+    }
+
 }

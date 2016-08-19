@@ -186,4 +186,31 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         return nuevoSub;
     }
 
+    @Override
+    public List<SubProducto_TO> buscarSubProductos(String valor) throws Exception {
+        List<SubProducto_TO> subProductos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT sp.idsubproducto, sp.nombre, sp.descripcion, sp.idproducto, sp.rutaimagen"
+                        + " FROM public.subproducto as sp, public.productos as p"
+                        + " WHERE sp.idproducto = p.idproducto and"
+                        + " (sp.idsubproducto LIKE '%" + valor + "%' or sp.nombre LIKE '%" + valor + "%' or"
+                        + " sp.descripcion LIKE '%" + valor + "%' or sp.idproducto LIKE '%" + valor + "%' or"
+                        + " p.nombre LIKE '%" + valor + "%');";
+
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    subProductos.add(new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4)), rs.getString(5)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return subProductos;
+    }
+
 }

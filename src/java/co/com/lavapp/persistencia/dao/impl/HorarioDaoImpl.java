@@ -45,7 +45,6 @@ public class HorarioDaoImpl implements HorarioDAO {
         }
         return horarios;
     }
-      
 
     @Override
     public Horario_TO consultarHorario(Horario_TO horario) throws Exception {
@@ -140,6 +139,31 @@ public class HorarioDaoImpl implements HorarioDAO {
         try {
             try {
                 String sql = "SELECT idhorario, horaInicio, horaFinal, idjornada, horario from public.horario";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    horarios.add(new Horario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Jornada_TO(rs.getInt(4)), rs.getString(5)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return horarios;
+    }
+
+    @Override
+    public List<Horario_TO> buscarHorarios(String valor) throws Exception {
+        List<Horario_TO> horarios = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT h.idhorario, h.horaInicio, h.horaFinal, h.idjornada, h.horario "
+                        + "FROM public.horario as h, public.jornada as j "
+                        + "WHERE h.idjornada = j.idjornada and "
+                        + "(h.idhorario LIKE '%" + valor + "%' or h.horarioInicio LIKE '%" + valor + "%' or h.horaFinal LIKE '%" + valor + "%' or "
+                        + "h.idjornada LIKE '%" + valor + "%' or h.horario LIKE '%" + valor + "%' or j.nombre LIKE '%" + valor + "%')";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     horarios.add(new Horario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Jornada_TO(rs.getInt(4)), rs.getString(5)));

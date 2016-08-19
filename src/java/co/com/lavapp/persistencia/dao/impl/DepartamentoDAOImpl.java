@@ -126,4 +126,27 @@ public class DepartamentoDAOImpl implements DepartamentoDAO {
         return nuevodepartamento;
     }
 
+    @Override
+    public List<Departamento_TO> buscarDepartamentos(String valor) throws Exception {
+        List<Departamento_TO> departamentos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT d.iddepartamento, d.nombre, d.idpais FROM public.departamento as d, public.pais as p "
+                        + "WHERE d.idpais = p.idpais and (d.iddepartamento LIKE '%" + valor + "%' or "
+                        + "d.nombre LIKE '%" + valor + "%' or idpais LIKE '%" + valor + "%')";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    departamentos.add(new Departamento_TO(rs.getInt(1), rs.getString(2), new Pais_TO(rs.getInt(3))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return departamentos;
+    }
+
 }

@@ -50,7 +50,7 @@ public class JornadaDAOImpl implements JornadaDAO {
         try {
             try {
                 String sql = "SELECT idjornada, nombre FROM public.jornada "
-                        + "WHERE idjornada = '" + jornada.getIdJornada() + "' or nombre = '"+jornada.getNombre()+"'";
+                        + "WHERE idjornada = '" + jornada.getIdJornada() + "' or nombre = '" + jornada.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     jornadas = new Jornada_TO(rs.getInt(1), rs.getString(2));
@@ -124,5 +124,27 @@ public class JornadaDAOImpl implements JornadaDAO {
             ConexionSQL.CerrarConexion();
         }
         return nuevajornada;
+    }
+
+    @Override
+    public List<Jornada_TO> buscarJornadas(String valor) throws Exception {
+        List<Jornada_TO> jornadas = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idjornada, nombre FROM public.jornada "
+                        + "WHERE idjornada LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    jornadas.add(new Jornada_TO(rs.getInt(1), rs.getString(2)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return jornadas;
     }
 }

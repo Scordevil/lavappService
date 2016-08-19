@@ -18,6 +18,8 @@ public interface EstratoDAO {
     
     public List<Estrato_TO> consultarEstratos() throws Exception;
     
+    public List<Estrato_TO> buscarEstratos(String valor) throws Exception;
+    
     public Estrato_TO registrarEstrato(Estrato_TO estrato) throws Exception;
     
     public Estrato_TO editarEstrato(Estrato_TO estrato) throws Exception;

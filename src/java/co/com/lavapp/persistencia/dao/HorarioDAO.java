@@ -18,6 +18,8 @@ public interface HorarioDAO {
     public List<Horario_TO> consultarHorariosSegunJornada(Jornada_TO jornada) throws Exception;
     
     public List<Horario_TO> consultarHorarios() throws Exception;
+    
+    public List<Horario_TO> buscarHorarios(String valor) throws Exception;
 
     public Horario_TO consultarHorario(Horario_TO horario) throws Exception;
 

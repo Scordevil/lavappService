@@ -170,4 +170,34 @@ public class SubServicioDAOImpl implements SubServicioDAO {
         return nuevoSubservicio;
     }
 
+    @Override
+    public List<SubServicio_TO> buscarSubServicios(String valor) throws Exception {
+        List<SubServicio_TO> subservicios = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT ss.idsubservicio, ss.nombre, ss.idservicio "
+                        + "FROM public.subservicio as ss, public.servicio as s "
+                        + "WHERE ss.idservicio = s.idservicio and "
+                        + "(ss.idsubservicio LIKE '%" + valor + "%' or ss.nombre LIKE '%" + valor + "%' or "
+                        + "ss.idservicio LIKE '%" + valor + "%' or s.nombre LIKE '%" + valor + "%');";
+
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    subservicios.add(new SubServicio_TO(rs.getInt(1), rs.getString(2), new Servicio_TO(rs.getInt(3))));
+                }
+
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+
+        }
+        return subservicios;
+    }
+
 }

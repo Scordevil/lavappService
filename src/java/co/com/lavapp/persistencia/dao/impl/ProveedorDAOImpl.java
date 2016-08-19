@@ -155,4 +155,41 @@ public class ProveedorDAOImpl implements ProveedorDAO {
         }
         return nuevoProveedor;
     }
+
+    @Override
+    public List<Proveedor_TO> BuscarProveedores(String valor) throws Exception {
+        List<Proveedor_TO> proveedores = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT p.idproveedor, p.razonsocial, p.nit, p.telefono, p.direccion, p.idusuario, p.cupo, p.idzona "
+                        + "FROM public.proveedor as p, public.usuario as us, public.zona as z "
+                        + "WHERE p.idusuario.idusuario = us.idusuario AND p.idzona = z.idzona AND "
+                        + "(p.idproveedor LIKE '%" + valor + "%' OR  p.razonsocial LIKE '%" + valor + "%' OR "
+                        + "p.nit LIKE '%" + valor + "%' OR p.telefono LIKE '%" + valor + "%' OR "
+                        + "p.direccion LIKE '%" + valor + "%' OR p.idusuario LIKE '%" + valor + "%' OR "
+                        + "p.cupo LIKE '%" + valor + "%' OR z.nombre LIKE '%" + valor + "%' OR "
+                        + "us.nombre LIKE '%" + valor + "%' OR us.telefono LIKE '%" + valor + "%' OR "
+                        + "us.email LIKE '%" + valor + "%' OR us.apellido LIKE '%" + valor + "%' OR "
+                        + "us.movil LIKE '%" + valor + "%')";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    proveedores.add(new Proveedor_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
+                            new Usuario_TO(rs.getInt(6)),
+                            rs.getInt(7),
+                            new Zona_TO(rs.getInt(8))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return proveedores;
+    }
 }

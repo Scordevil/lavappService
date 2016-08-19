@@ -16,6 +16,8 @@ public interface ProveedorDAO {
     
     public List<Proveedor_TO> consultarProveedores() throws Exception;
     
+    public List<Proveedor_TO> BuscarProveedores(String valor) throws Exception;
+    
     public Proveedor_TO consultarProveedor(Proveedor_TO proveedor) throws Exception;
     
     public Proveedor_TO registrarProveedor(Proveedor_TO proveedor_TO) throws Exception;

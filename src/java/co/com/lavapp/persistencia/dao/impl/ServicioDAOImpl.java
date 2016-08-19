@@ -93,11 +93,11 @@ public class ServicioDAOImpl implements ServicioDAO {
 
     @Override
     public Servicio_TO eliminarServicio(Servicio_TO serv) throws Exception {
-         Servicio_TO servicioModelo;
+        Servicio_TO servicioModelo;
         try {
             try {
                 String sql = "DELETE FROM public.servicio "
-                        + " WHERE idservicio="+ serv.getIdServicio() +";";
+                        + " WHERE idservicio=" + serv.getIdServicio() + ";";
                 st.execute(sql);
                 servicioModelo = new Servicio_TO();
             } catch (Exception e) {
@@ -117,7 +117,7 @@ public class ServicioDAOImpl implements ServicioDAO {
         try {
             try {
                 String sql = "SELECT idservicio, nombre FROM servicio "
-                        + "WHERE idservicio = '"+servicio.getIdServicio()+"' or nombre = '"+servicio.getNombre()+"'";
+                        + "WHERE idservicio = '" + servicio.getIdServicio() + "' or nombre = '" + servicio.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevoservicio = new Servicio_TO(rs.getInt(1), rs.getString(2));
@@ -132,6 +132,28 @@ public class ServicioDAOImpl implements ServicioDAO {
 
         }
         return nuevoservicio;
+    }
+
+    @Override
+    public List<Servicio_TO> buscarServicios(String valor) throws Exception {
+        List<Servicio_TO> servicios = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idservicio, nombre FROM servicio "
+                        + "WHERE idservicio LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%';";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    servicios.add(new Servicio_TO(rs.getInt(1), rs.getString(2)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return servicios;
     }
 
 }

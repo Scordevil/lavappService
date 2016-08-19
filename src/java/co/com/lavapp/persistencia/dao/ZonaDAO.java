@@ -16,6 +16,8 @@ public interface ZonaDAO {
 
     public List<Zona_TO> consultarZonas() throws Exception;
 
+    public List<Zona_TO> buscarZonas(String valor) throws Exception;
+    
     public Zona_TO consultarZona(Zona_TO zona) throws Exception;
 
     public Zona_TO registraZona(Zona_TO zona) throws Exception;

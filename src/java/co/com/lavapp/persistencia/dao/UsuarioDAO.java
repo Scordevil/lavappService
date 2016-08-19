@@ -32,7 +32,7 @@ public interface UsuarioDAO {
     
     public Usuario_TO consultarUsuarioPorLogin(Usuario_TO usuario) throws Exception;
     
-    public Usuario_TO consultarUsuarioPorIdentificacion(Usuario_TO usuario) throws Exception;
+    public Usuario_TO consultarUsuarioPorIdentificacion(Usuario_TO usuario) throws Exception;   
     
     public List<Usuario_TO> consultarUsuariosPorRol(Rol_TO rol) throws Exception;
 
