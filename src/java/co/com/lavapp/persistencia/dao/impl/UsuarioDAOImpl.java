@@ -335,4 +335,139 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         return user;
     }
+
+    @Override
+    public List<Usuario_TO> BuscarAsesores(String valor) throws Exception {
+        List<Usuario_TO> listaAsesoresModel = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT us.idusuario, us.nombre, us.telefono, us.idbarrios, us.idrol, us.idestado, us.email, "
+                        + "us.contrasena, us.apellido, us.genero, us.movil, us.direccion, us.idciudad, us.identificacion, us.rutaimagen "
+                        + "FROM public.usuario as us, public.barrio as b, public.ciudad as c "
+                        + "WHERE us.idrol = 3 AND us.idbarrios = b.idbarrios AND us.idciudad = c.idciudad AND (us.nombre LIKE '%" + valor + "%' OR us.telefono LIKE '%" + valor + "%' OR "
+                        + "b.nombre LIKE '%" + valor + "%' OR us.email LIKE '%" + valor + "%' OR c.nombre LIKE '%" + valor + "%' OR "
+                        + "us.apellido LIKE '%" + valor + "%' OR us.movil LIKE '%" + valor + "%' OR us.direccion LIKE '%" + valor + "%' OR "
+                        + "us.identificacion LIKE '%" + valor + "%')";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    listaAsesoresModel.add(new Usuario_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            new Barrio_TO(rs.getInt(4)),
+                            new Rol_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            new Ciudad_TO(rs.getInt(13)),
+                            rs.getString(14),
+                            rs.getString(15)));
+                }
+
+            } catch (Exception e) {
+                listaAsesoresModel = new ArrayList<>();
+                System.out.println("Error en sentencia SQL o en insercion de datos en lista Modelo: " + e.getMessage());
+                throw e;
+            }
+        } catch (Exception ef) {
+            throw ef;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return listaAsesoresModel;
+    }
+
+    @Override
+    public List<Usuario_TO> BuscarClientes(String valor) throws Exception {
+         List<Usuario_TO> listaClientesModel = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT us.idusuario, us.nombre, us.telefono, us.idbarrios, us.idrol, us.idestado, us.email, "
+                        + "us.contrasena, us.apellido, us.genero, us.movil, us.direccion, us.idciudad, us.identificacion, us.rutaimagen "
+                        + "FROM public.usuario as us, public.barrio as b, public.ciudad as c "
+                        + "WHERE us.idrol = 4 AND us.idbarrios = b.idbarrios AND us.idciudad = c.idciudad AND (us.nombre LIKE '%" + valor + "%' OR us.telefono LIKE '%" + valor + "%' OR "
+                        + "b.nombre LIKE '%" + valor + "%' OR us.email LIKE '%" + valor + "%' OR c.nombre LIKE '%" + valor + "%' OR "
+                        + "us.apellido LIKE '%" + valor + "%' OR us.movil LIKE '%" + valor + "%' OR us.direccion LIKE '%" + valor + "%' OR "
+                        + "us.identificacion LIKE '%" + valor + "%')";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    listaClientesModel.add(new Usuario_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            new Barrio_TO(rs.getInt(4)),
+                            new Rol_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            new Ciudad_TO(rs.getInt(13)),
+                            rs.getString(14),
+                            rs.getString(15)));
+                }
+
+            } catch (Exception e) {
+                listaClientesModel = new ArrayList<>();
+                System.out.println("Error en sentencia SQL o en insercion de datos en lista Modelo: " + e.getMessage());
+                throw e;
+            }
+        } catch (Exception ef) {
+            throw ef;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return listaClientesModel;
+    }
+
+    @Override
+    public List<Usuario_TO> BuscarAdministradores(String valor) throws Exception {
+        List<Usuario_TO> listaAdministradoresModel = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT us.idusuario, us.nombre, us.telefono, us.idbarrios, us.idrol, us.idestado, us.email, "
+                        + "us.contrasena, us.apellido, us.genero, us.movil, us.direccion, us.idciudad, us.identificacion, us.rutaimagen "
+                        + "FROM public.usuario as us, public.barrio as b, public.ciudad as c "
+                        + "WHERE us.idrol = 1 AND us.idbarrios = b.idbarrios AND us.idciudad = c.idciudad AND (us.nombre LIKE '%" + valor + "%' OR us.telefono LIKE '%" + valor + "%' OR "
+                        + "b.nombre LIKE '%" + valor + "%' OR us.email LIKE '%" + valor + "%' OR c.nombre LIKE '%" + valor + "%' OR "
+                        + "us.apellido LIKE '%" + valor + "%' OR us.movil LIKE '%" + valor + "%' OR us.direccion LIKE '%" + valor + "%' OR "
+                        + "us.identificacion LIKE '%" + valor + "%')";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    listaAdministradoresModel.add(new Usuario_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            new Barrio_TO(rs.getInt(4)),
+                            new Rol_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            new Ciudad_TO(rs.getInt(13)),
+                            rs.getString(14),
+                            rs.getString(15)));
+                }
+
+            } catch (Exception e) {
+                listaAdministradoresModel = new ArrayList<>();
+                System.out.println("Error en sentencia SQL o en insercion de datos en lista Modelo: " + e.getMessage());
+                throw e;
+            }
+        } catch (Exception ef) {
+            throw ef;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return listaAdministradoresModel;
+    }
 }

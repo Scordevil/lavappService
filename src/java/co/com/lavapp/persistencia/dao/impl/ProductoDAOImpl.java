@@ -143,8 +143,7 @@ public class ProductoDAOImpl implements ProductoDAO {
                 String sql = "SELECT p.idproducto, p.nombre, p.descripcion, p.idsubservicio, p.rutaimagen "
                         + "FROM public.producto as p, public.subservicio as s "
                         + "WHERE p.idsubservicio = s.idsubservicio and "
-                        + "(p.idproducto LIKE '" + valor + "' or p.nombre LIKE '%" + valor + "%' or "
-                        + "p.descripcion LIKE '%" + valor + "%' or p.idsubservicio LIKE '%" + valor + "%' or "
+                        + "(p.nombre LIKE '%" + valor + "%' or p.descripcion LIKE '%" + valor + "%' or "
                         + "s.nombre LIKE '%" + valor + "%')";
 
                 ResultSet rs = st.executeQuery(sql);

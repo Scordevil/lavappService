@@ -181,9 +181,9 @@ public class CiudadDAOImpl implements CiudadDAO {
         try {
             try {
 
-                String sql = "SELECT c.idciudad, c.nombre, c.iddepartamento  FROM public.ciudad as c, public.departamento as d"
-                        + " WHERE c.iddepartamento = d.iddepartamento and"
-                        + " (c.idciudad LIKE '%" + valor + "%' or c.nombre LIKE '%" + valor + "%' or d.nombre LIKE '%" + valor + "%')";
+                String sql = "SELECT c.idciudad, c.nombre, c.iddepartamento  FROM public.ciudad as c, public.departamento as d "
+                        + "WHERE c.iddepartamento = d.iddepartamento and "
+                        + "(c.nombre LIKE '%" + valor + "%' or d.nombre LIKE '%" + valor + "%')";
 
                 ResultSet rs = st.executeQuery(sql);
 

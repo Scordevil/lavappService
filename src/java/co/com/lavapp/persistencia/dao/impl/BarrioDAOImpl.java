@@ -162,14 +162,10 @@ public class BarrioDAOImpl implements BarrioDAO {
         List<Barrio_TO> barrios = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT b.idbarrios, b.nombre, b.idlocalidad, b.idzona, b.idestrato FROM public.barrio as b, "
-                        + "public.localidad as l, "
-                        + "public.zona as z, "
-                        + "public.estrato as e "
+                String sql = "SELECT b.idbarrios, b.nombre, b.idlocalidad, b.idzona, b.idestrato "
+                        + "FROM public.barrio as b, public.localidad as l, public.zona as z, public.estrato as e "
                         + "WHERE b.idlocalidad = l.idlocalidad and b.idzona = z.idzona and b.idestrato = e.idestrato and "
-                        + "(b.idbarrios LIKE '%" + valor + "%' or b.nombre LIKE '%" + valor + "%' or "
-                        + "b.idlocalidad LIKE '%" + valor + "%' or b.idzona LIKE '%" + valor + "%' or b.idestrato LIKE '%" + valor + "%' or "
-                        + "l.nombre LIKE '%" + valor + "%' or z.nombre LIKE '%" + valor + "%' or e.nombre LIKE '%" + valor + "%')";
+                        + "(b.nombre LIKE '%" + valor + "%' or l.nombre LIKE '%" + valor + "%' or z.nombre LIKE '%" + valor + "%' or e.nombre LIKE '%" + valor + "%')";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     barrios.add(new Barrio_TO(rs.getInt(1), rs.getString(2), new Localidad_TO(rs.getInt(3)), new Zona_TO(rs.getInt(4)), new Estrato_TO(rs.getInt(5))));

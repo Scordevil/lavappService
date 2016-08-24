@@ -132,8 +132,8 @@ public class DepartamentoDAOImpl implements DepartamentoDAO {
         try {
             try {
                 String sql = "SELECT d.iddepartamento, d.nombre, d.idpais FROM public.departamento as d, public.pais as p "
-                        + "WHERE d.idpais = p.idpais and (d.iddepartamento LIKE '%" + valor + "%' or "
-                        + "d.nombre LIKE '%" + valor + "%' or idpais LIKE '%" + valor + "%')";
+                        + "WHERE d.idpais = p.idpais and "
+                        + "(d.nombre LIKE '%" + valor + "%' or p.nombre LIKE '%" + valor + "%')";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     departamentos.add(new Departamento_TO(rs.getInt(1), rs.getString(2), new Pais_TO(rs.getInt(3))));

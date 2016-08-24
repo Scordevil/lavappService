@@ -178,8 +178,8 @@ public class SubServicioDAOImpl implements SubServicioDAO {
                 String sql = "SELECT ss.idsubservicio, ss.nombre, ss.idservicio "
                         + "FROM public.subservicio as ss, public.servicio as s "
                         + "WHERE ss.idservicio = s.idservicio and "
-                        + "(ss.idsubservicio LIKE '%" + valor + "%' or ss.nombre LIKE '%" + valor + "%' or "
-                        + "ss.idservicio LIKE '%" + valor + "%' or s.nombre LIKE '%" + valor + "%');";
+                        + "(ss.nombre LIKE '%" + valor + "%' or "
+                        + "s.nombre LIKE '%" + valor + "%');";
 
                 ResultSet rs = st.executeQuery(sql);
 

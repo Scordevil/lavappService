@@ -168,8 +168,8 @@ public class LocalidadDAOImpl implements LocalidadDAO {
                 String sql = "SELECT l.idlocalidad, l.nombre, l.idciudad "
                         + "FROM public.localidad as l, public.ciudad as c "
                         + "WHERE l.idciudad = c.idciudad and "
-                        + "(l.idlocalidad LIKE '%" + valor + "%' or l.nombre LIKE '%" + valor + "%' or "
-                        + "l.idciudad LIKE '%" + valor + "%' or c.nombre LIKE '%" + valor + "%')";
+                        + "(l.nombre LIKE '%" + valor + "%' or "
+                        + "c.nombre LIKE '%" + valor + "%')";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     localidades.add(new Localidad_TO(rs.getInt(1), rs.getString(2), new Ciudad_TO(rs.getInt(3))));

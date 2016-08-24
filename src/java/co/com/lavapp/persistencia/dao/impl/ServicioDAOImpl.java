@@ -140,7 +140,7 @@ public class ServicioDAOImpl implements ServicioDAO {
         try {
             try {
                 String sql = "SELECT idservicio, nombre FROM servicio "
-                        + "WHERE idservicio LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%';";
+                        + "WHERE nombre LIKE '%" + valor + "%';";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     servicios.add(new Servicio_TO(rs.getInt(1), rs.getString(2)));

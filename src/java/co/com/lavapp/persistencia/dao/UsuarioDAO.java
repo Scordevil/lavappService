@@ -35,5 +35,11 @@ public interface UsuarioDAO {
     public Usuario_TO consultarUsuarioPorIdentificacion(Usuario_TO usuario) throws Exception;   
     
     public List<Usuario_TO> consultarUsuariosPorRol(Rol_TO rol) throws Exception;
+    
+    public List<Usuario_TO> BuscarAsesores(String valor) throws Exception;
+    
+    public List<Usuario_TO> BuscarClientes(String valor) throws Exception;
+    
+    public List<Usuario_TO> BuscarAdministradores(String valor) throws Exception;   
 
 }

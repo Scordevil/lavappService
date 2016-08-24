@@ -131,7 +131,7 @@ public class EstratoDAOImpl implements EstratoDAO {
         try {
             try {
                 String sql = "SELECT idestrato, nombre FROM public.estrato "
-                        + "WHERE idestrato LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%'";
+                        + "WHERE nombre LIKE '%" + valor + "%'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     estratos.add(new Estrato_TO(rs.getInt(1), rs.getString(2)));

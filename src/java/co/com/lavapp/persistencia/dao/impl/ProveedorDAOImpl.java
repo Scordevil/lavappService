@@ -163,11 +163,10 @@ public class ProveedorDAOImpl implements ProveedorDAO {
             try {
                 String sql = "SELECT p.idproveedor, p.razonsocial, p.nit, p.telefono, p.direccion, p.idusuario, p.cupo, p.idzona "
                         + "FROM public.proveedor as p, public.usuario as us, public.zona as z "
-                        + "WHERE p.idusuario.idusuario = us.idusuario AND p.idzona = z.idzona AND "
-                        + "(p.idproveedor LIKE '%" + valor + "%' OR  p.razonsocial LIKE '%" + valor + "%' OR "
+                        + "WHERE p.idusuario = us.idusuario AND p.idzona = z.idzona AND "
+                        + "(p.razonsocial LIKE '%" + valor + "%' OR "
                         + "p.nit LIKE '%" + valor + "%' OR p.telefono LIKE '%" + valor + "%' OR "
-                        + "p.direccion LIKE '%" + valor + "%' OR p.idusuario LIKE '%" + valor + "%' OR "
-                        + "p.cupo LIKE '%" + valor + "%' OR z.nombre LIKE '%" + valor + "%' OR "
+                        + "p.direccion LIKE '%" + valor + "%' OR z.nombre LIKE '%" + valor + "%' OR "
                         + "us.nombre LIKE '%" + valor + "%' OR us.telefono LIKE '%" + valor + "%' OR "
                         + "us.email LIKE '%" + valor + "%' OR us.apellido LIKE '%" + valor + "%' OR "
                         + "us.movil LIKE '%" + valor + "%')";

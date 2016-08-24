@@ -131,7 +131,7 @@ public class ZonaDAOImpl implements ZonaDAO {
         try {
             try {
                 String sql = "SELECT idzona, nombre, descripcion FROM public.zona "
-                        + "WHERE idzona LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%' or "
+                        + "WHERE nombre LIKE '%" + valor + "%' or "
                         + "descripcion LIKE '%" + valor + "%'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {

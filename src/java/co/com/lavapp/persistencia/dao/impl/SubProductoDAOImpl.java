@@ -192,10 +192,10 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         try {
             try {
                 String sql = "SELECT sp.idsubproducto, sp.nombre, sp.descripcion, sp.idproducto, sp.rutaimagen"
-                        + " FROM public.subproducto as sp, public.productos as p"
+                        + " FROM public.subproducto as sp, public.producto as p"
                         + " WHERE sp.idproducto = p.idproducto and"
-                        + " (sp.idsubproducto LIKE '%" + valor + "%' or sp.nombre LIKE '%" + valor + "%' or"
-                        + " sp.descripcion LIKE '%" + valor + "%' or sp.idproducto LIKE '%" + valor + "%' or"
+                        + " (sp.nombre LIKE '%" + valor + "%' or"
+                        + " sp.descripcion LIKE '%" + valor + "%' or "
                         + " p.nombre LIKE '%" + valor + "%');";
 
                 ResultSet rs = st.executeQuery(sql);

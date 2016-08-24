@@ -132,7 +132,7 @@ public class JornadaDAOImpl implements JornadaDAO {
         try {
             try {
                 String sql = "SELECT idjornada, nombre FROM public.jornada "
-                        + "WHERE idjornada LIKE '%" + valor + "%' or nombre LIKE '%" + valor + "%'";
+                        + "WHERE nombre LIKE '%" + valor + "%'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     jornadas.add(new Jornada_TO(rs.getInt(1), rs.getString(2)));

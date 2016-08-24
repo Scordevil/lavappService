@@ -162,8 +162,7 @@ public class HorarioDaoImpl implements HorarioDAO {
                 String sql = "SELECT h.idhorario, h.horaInicio, h.horaFinal, h.idjornada, h.horario "
                         + "FROM public.horario as h, public.jornada as j "
                         + "WHERE h.idjornada = j.idjornada and "
-                        + "(h.idhorario LIKE '%" + valor + "%' or h.horarioInicio LIKE '%" + valor + "%' or h.horaFinal LIKE '%" + valor + "%' or "
-                        + "h.idjornada LIKE '%" + valor + "%' or h.horario LIKE '%" + valor + "%' or j.nombre LIKE '%" + valor + "%')";
+                        + "(h.horario LIKE '%" + valor + "%' or j.nombre LIKE '%" + valor + "%')";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     horarios.add(new Horario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Jornada_TO(rs.getInt(4)), rs.getString(5)));
