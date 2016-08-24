@@ -34,13 +34,8 @@ public class ConsultarLocalidadesSegunCiudadImpl implements ConsultarLocalidades
         Ciudad_TO ciudad = new Ciudad_TO(idCiudad);
         LocalidadDAOImpl locDAO = new LocalidadDAOImpl();
         List<Localidad_TO> localidades = new ArrayList<>();
-        try {
+        localidades = locDAO.consultarLocalidadesSegunCiudad(ciudad);
 
-            localidades = locDAO.consultarLocalidadesSegunCiudad(ciudad);
-
-        } catch (Exception e) {
-            throw e;
-        }
         return localidades;
     }
 

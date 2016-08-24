@@ -22,22 +22,17 @@ import javax.ws.rs.Produces;
  */
 @Stateless
 @Path("/consultarProductos")
-public class ConsultarProductosImpl implements ConsultarProductos{
+public class ConsultarProductosImpl implements ConsultarProductos {
 
     @GET
     @Produces({"application/json"})
     @Override
-    
+
     public List<Producto_TO> consultarProductos() throws Exception {
         List<Producto_TO> listaModelo = new ArrayList<>();
         ProductoDAO productoDao = new ProductoDAOImpl();
-        try {
-            listaModelo = productoDao.consultarProductos();
-        } catch (Exception e) {
-            throw e;
-        }
-                
+        listaModelo = productoDao.consultarProductos();
         return listaModelo;
     }
-    
+
 }
