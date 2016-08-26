@@ -13,10 +13,14 @@ import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Proveedor_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.PedidoDAO;
+import static com.sun.xml.bind.util.CalendarConv.formatter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -245,6 +249,136 @@ public class PedidoDAOImpl implements PedidoDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
+        return pedidos;
+    }
+
+    //Metodo consultar todos los pedidos del asesor por dia
+    @Override
+    public List<Pedido_TO> consultarPedidosPorDiaAsesor(Usuario_TO usuario) throws Exception {
+
+        Calendar C = Calendar.getInstance();
+        int sAnio = C.get(Calendar.YEAR);
+        int sMes = C.get(Calendar.MONTH);
+        sMes = sMes + 1;
+       int sDia = C.get(Calendar.DAY_OF_MONTH);
+        String hoy = sAnio + "-" + sMes + "-" + sDia;
+//
+//        Date dt = new Date();
+//
+//        SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss E");
+//        String fecha = formato.format(new Date());
+//        System.out.print("dia de hoy nuevo "+fecha);
+//
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //Para declarar valores en nuevos objetos date, usa el mismo formato date que usaste al crear las fechas 
+//        // Date dHoy = sdf.parse(); //date1 es el 23 de febrero de 1995
+//        Date dInicio = sdf.parse("2001-10-31"); //date2 es el 31 de octubre de 2001
+//        Date date3 = sdf.parse("1995-02-23"); //date3 es el 23 de febrero de 1995
+
+        List<Pedido_TO> pedidos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, p.idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega, e.nombre "
+                        + "from public.pedido as p, public.estado as e WHERE "
+                        + "p.idasesor = " + usuario.getIdUsuario() + " and p.idestado in (3,7) and e.idestado = p.idestado and "
+                        + "fecharecogida = '" + hoy + "'  "
+                        + "order by e.idestado asc;";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+
+                    String[] fechaInicio = null, fechaEntrega = null, fechaRecogida = null;
+
+                    fechaInicio = rs.getDate(3).toString().split("T");
+
+                    String fechaInicioS = fechaInicio[0];
+
+                    fechaEntrega = rs.getDate(8).toString().split("T");
+
+                    String fechaEntregaS = fechaEntrega[0];
+
+                    fechaRecogida = rs.getDate(11).toString().split("T");
+
+                    String fechaRecogidaS = fechaRecogida[0];
+
+                    pedidos.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            fechaInicioS,
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6), rs.getString(16)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            fechaEntregaS,
+                            rs.getString(9),
+                            rs.getString(10),
+                            fechaRecogidaS,
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
+                }
+                
+                            try {
+                String sql2 = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, p.idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega, e.nombre "
+                        + "from public.pedido as p, public.estado as e WHERE "
+                        + "p.idasesor = " + usuario.getIdUsuario() + " and p.idestado in (3,7) and e.idestado = p.idestado and "
+                        + "fechaentrega = '" + hoy + "'  "
+                        + "order by e.idestado asc;";
+                ResultSet rs2 = st.executeQuery(sql2);
+                while (rs2.next()) {
+
+                    String[] fechaInicio = null, fechaEntrega = null, fechaRecogida = null;
+
+                    fechaInicio = rs2.getDate(3).toString().split("T");
+
+                    String fechaInicioS = fechaInicio[0];
+
+                    fechaEntrega = rs2.getDate(8).toString().split("T");
+
+                    String fechaEntregaS = fechaEntrega[0];
+
+                    fechaRecogida = rs2.getDate(11).toString().split("T");
+
+                    String fechaRecogidaS = fechaRecogida[0];
+
+                    pedidos.add(new Pedido_TO(rs2.getInt(1),
+                            new Usuario_TO(rs2.getInt(2)),
+                            fechaInicioS,
+                            new Horario_TO(rs2.getInt(4)),
+                            new Horario_TO(rs2.getInt(5)),
+                            new Estado_TO(rs2.getInt(6), rs2.getString(16)),
+                            new Proveedor_TO(rs2.getInt(7)),
+                            fechaEntregaS,
+                            rs2.getString(9),
+                            rs2.getString(10),
+                            fechaRecogidaS,
+                            rs2.getString(12),
+                            rs2.getString(13),
+                            new Barrio_TO(rs2.getInt(14)),
+                            new Barrio_TO(rs2.getInt(15))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+                
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        
+        
         return pedidos;
     }
 

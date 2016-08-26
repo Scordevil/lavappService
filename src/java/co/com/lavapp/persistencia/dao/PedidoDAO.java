@@ -27,6 +27,8 @@ public interface PedidoDAO {
     
     public List<Pedido_TO> consultarPedidosAsesor(Usuario_TO usuario) throws Exception;
     
+    public List<Pedido_TO> consultarPedidosPorDiaAsesor(Usuario_TO usuario) throws Exception;
+    
      public List<Pedido_TO> consultarPedidosAsesorEntrega(Usuario_TO usuario) throws Exception;
 
     public Pedido_TO consultarPedido(Pedido_TO pedido) throws Exception;
