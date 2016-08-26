@@ -26,7 +26,7 @@ import javax.ws.rs.QueryParam;
 public class EditarCostoImpl implements EditarCosto{
 
     @GET
-    @Produces
+    @Produces("application/json")
     @Override
     public Costo_TO editarCosto(@QueryParam("idCosto") int idCosto,
             @QueryParam("valor") int valor,
