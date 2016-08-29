@@ -5,8 +5,8 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
 import co.com.lavapp.modelo.dto.Historico_TO;
+import java.util.List;
 
 /**
  *
@@ -14,5 +14,5 @@ import co.com.lavapp.modelo.dto.Historico_TO;
  */
 public interface ConsultarHistoricoDescripcion {
  
-    public Historico_TO consultarHistoricoDescripcion(int idDescripcionPedido) throws Exception;
+    public List<Historico_TO> consultarHistoricoDescripcion(int idDescripcionPedido) throws Exception;
 }

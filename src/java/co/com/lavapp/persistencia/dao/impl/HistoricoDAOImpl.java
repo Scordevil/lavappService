@@ -13,6 +13,8 @@ import co.com.lavapp.persistencia.dao.HistoricoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -43,15 +45,15 @@ public class HistoricoDAOImpl implements HistoricoDAO {
     }
 
     @Override
-    public Historico_TO consultarHistoricoDescripcion(DescripcionPedido_TO descripcion) throws Exception {
-        Historico_TO historico = new Historico_TO();
+    public List<Historico_TO> consultarHistoricoDescripcion(DescripcionPedido_TO descripcion) throws Exception {
+        List<Historico_TO> historico = new ArrayList<>();
         try {
             try {
                 String sql = "SELECT idhistorico, iddescripcionpedido, idestado, fecha FROM public.historico "
                         + "WHERE iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + "";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    historico = new Historico_TO(rs.getInt(1), new DescripcionPedido_TO(rs.getInt(2)), new Estado_TO(rs.getInt(3)), rs.getDate(4));
+                    historico.add(new Historico_TO(rs.getInt(1), new DescripcionPedido_TO(rs.getInt(2)), new Estado_TO(rs.getInt(3)), rs.getDate(4)));
                 }
             } catch (SQLException e) {
                 throw e;

@@ -10,6 +10,7 @@ import co.com.lavapp.modelo.dto.Historico_TO;
 import co.com.lavapp.persistencia.dao.HistoricoDAO;
 import co.com.lavapp.persistencia.dao.impl.HistoricoDAOImpl;
 import co.com.lavapp.servicio.ConsultarHistoricoDescripcion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -27,7 +28,7 @@ public class ConsultarHistoricoDescripcionImpl implements ConsultarHistoricoDesc
     @GET
     @Produces({"application/json"})
     @Override
-    public Historico_TO consultarHistoricoDescripcion(@QueryParam("idDescripcionPedido") int idDescripcionPedido) throws Exception {
+    public List<Historico_TO> consultarHistoricoDescripcion(@QueryParam("idDescripcionPedido") int idDescripcionPedido) throws Exception {
         DescripcionPedido_TO descripcion = new DescripcionPedido_TO(idDescripcionPedido);
         HistoricoDAO historicoDao = new HistoricoDAOImpl();
         return historicoDao.consultarHistoricoDescripcion(descripcion);
