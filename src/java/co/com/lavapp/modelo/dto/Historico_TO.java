@@ -43,28 +43,41 @@ public class Historico_TO {
      */
     private Date fecha;
 
+    /**
+     *
+     * Columna fecha
+     */
+    private String fechaString;
+
     //Constructores
     public Historico_TO() {
     }
 
     public Historico_TO(int idHistorico) {
         this.idHistorico = idHistorico;
-    }    
+    }
 
     public Historico_TO(DescripcionPedido_TO descripcionPedido, Estado_TO estado, Date fecha) {
         this.descripcionPedido = descripcionPedido;
         this.estado = estado;
         this.fecha = fecha;
     }
-    
-        //Constructor General
+
+    //Constructor General
     public Historico_TO(int idHistorico, DescripcionPedido_TO descripcionPedido, Estado_TO estado, Date fecha) {
         this.idHistorico = idHistorico;
         this.descripcionPedido = descripcionPedido;
         this.estado = estado;
         this.fecha = fecha;
     }
-       
+
+    public Historico_TO(int idHistorico, DescripcionPedido_TO descripcionPedido, Estado_TO estado, String fechaString) {
+        this.idHistorico = idHistorico;
+        this.descripcionPedido = descripcionPedido;
+        this.estado = estado;
+        this.fechaString = fechaString;
+    }
+    
     //Getter and Setter
     public int getIdHistorico() {
         return idHistorico;
@@ -81,7 +94,7 @@ public class Historico_TO {
     public void setDescripcionPedido(DescripcionPedido_TO descripcionPedido) {
         this.descripcionPedido = descripcionPedido;
     }
-    
+
     public Estado_TO getEstado() {
         return estado;
     }
@@ -89,7 +102,7 @@ public class Historico_TO {
     public void setEstado(Estado_TO estado) {
         this.estado = estado;
     }
-  
+
     public Date getFecha() {
         return fecha;
     }
@@ -98,9 +111,17 @@ public class Historico_TO {
         this.fecha = fecha;
     }
 
+    public String getFechaString() {
+        return fechaString;
+    }
+
+    public void setFechaString(String fechaString) {
+        this.fechaString = fechaString;
+    }
+
     @Override
     public String toString() {
-        return "Historico_TO{" + "idHistorico=" + idHistorico + ", descripcionPedido=" + descripcionPedido + ", estado=" + estado + ", fecha=" + fecha + '}';
+        return "Historico_TO{" + "idHistorico=" + idHistorico + ", descripcionPedido=" + descripcionPedido + ", estado=" + estado + ", fecha=" + fecha + ", fechaString=" + fechaString + '}';
     }
 
 }

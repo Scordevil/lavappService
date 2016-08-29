@@ -49,11 +49,19 @@ public class HistoricoDAOImpl implements HistoricoDAO {
         List<Historico_TO> historico = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idhistorico, iddescripcionpedido, idestado, fecha FROM public.historico "
-                        + "WHERE iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + "";
+                String sql = "SELECT h.idhistorico, h.iddescripcionpedido, h.idestado, h.fecha, e.nombre FROM public.historico as h, public.estado as e "
+                        + "WHERE h.iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + " and h.idestado = e.idestado";
                 ResultSet rs = st.executeQuery(sql);
+
                 while (rs.next()) {
-                    historico.add(new Historico_TO(rs.getInt(1), new DescripcionPedido_TO(rs.getInt(2)), new Estado_TO(rs.getInt(3)), rs.getDate(4)));
+
+                    String[] fechaInicio = null;
+
+                    fechaInicio = rs.getDate(4).toString().split("T");
+
+                    String fechaInicioS = fechaInicio[0];
+
+                    historico.add(new Historico_TO(rs.getInt(1), new DescripcionPedido_TO(rs.getInt(2)), new Estado_TO(rs.getInt(3), rs.getString(5)), fechaInicioS));
                 }
             } catch (SQLException e) {
                 throw e;
