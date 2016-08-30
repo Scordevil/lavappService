@@ -13,6 +13,6 @@ import co.com.lavapp.modelo.dto.Color_TO;
  */
 public interface ConsultarColor {
     
-    public Color_TO consultarColor(int idColor) throws Exception;
+    public Color_TO consultarColor(int idColor, String nombre) throws Exception;
     
 }

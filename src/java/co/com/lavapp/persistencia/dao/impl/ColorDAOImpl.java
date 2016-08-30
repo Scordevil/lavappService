@@ -18,21 +18,21 @@ import java.util.List;
  *
  * @author VaioDevelopment
  */
-public class ColorDAOImpl implements ColorDAO{
-    
-        private final Statement st = ConexionSQL.conexion();
+public class ColorDAOImpl implements ColorDAO {
+
+    private final Statement st = ConexionSQL.conexion();
 
     @Override
     public Color_TO consultarColor(Color_TO color) throws Exception {
-       
+
         Color_TO col = new Color_TO();
-        
+
         try {
-             
+
             try {
-                String sql = "SELECT idcolor, nombre " +
-                            "  FROM public.color as c "
-                        + "WHERE c.idcolor = " + color.getIdColor()+ " ;";
+                String sql = "SELECT idcolor, nombre "
+                        + "  FROM public.color as c "
+                        + "WHERE c.idcolor = " + color.getIdColor() + " or c.nombre = " + color.getNombre() + ";";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     col = new Color_TO(rs.getInt(1), rs.getString(2));
@@ -47,17 +47,17 @@ public class ColorDAOImpl implements ColorDAO{
         }
         return col;
     }
-    
+
     @Override
     public List<Color_TO> consultarColores() throws Exception {
-       
+
         List<Color_TO> colores = new ArrayList<>();
-        
+
         try {
-             
+
             try {
-                String sql = "SELECT idcolor, nombre " +
-                            "  FROM public.color as c ;";
+                String sql = "SELECT idcolor, nombre "
+                        + "  FROM public.color as c ;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     colores.add(new Color_TO(rs.getInt(1), rs.getString(2)));
@@ -72,7 +72,5 @@ public class ColorDAOImpl implements ColorDAO{
         }
         return colores;
     }
-    
-    
-    
+
 }

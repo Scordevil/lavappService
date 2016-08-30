@@ -154,9 +154,11 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     public DescripcionPedido_TO registrarDescripcion(DescripcionPedido_TO descP) throws Exception {
         DescripcionPedido_TO descModelo = new DescripcionPedido_TO();
         try {
-            try {
+            try {           
                 String sql = "INSERT INTO public.descripcionpedido(idestado, idpedido, idsubproducto) "
-                        + " VALUES ( " + descP.getEstado().getIdEstado() + ", " + descP.getPedido().getIdPedido() + ", " + descP.getSubProducto().getIdSubProducto() + ") ";
+                        + " VALUES ( " + descP.getEstado().getIdEstado() + ", "
+                        + "" + descP.getPedido().getIdPedido() + ", "
+                        + "" + descP.getSubProducto().getIdSubProducto() + ") ";
 
                 st.execute(sql);
                 descModelo = new DescripcionPedido_TO();

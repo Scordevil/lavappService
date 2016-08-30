@@ -19,16 +19,15 @@ import javax.ws.rs.QueryParam;
  *
  * @author VaioDevelopment
  */
-
 @Stateless
 @Path("/consultarColor")
-public class ConsultarColorImpl implements ConsultarColor{
+public class ConsultarColorImpl implements ConsultarColor {
 
     @GET
     @Produces({"application/json"})
     @Override
-    public Color_TO consultarColor(@QueryParam("idColor") int idColor) throws Exception {
-        Color_TO color = new Color_TO(idColor);
+    public Color_TO consultarColor(@QueryParam("idColor") int idColor, @QueryParam("nombre") String nombre) throws Exception {
+        Color_TO color = new Color_TO(idColor, nombre);
         ColorDAO colorDao = new ColorDAOImpl();
         return colorDao.consultarColor(color);
     }
