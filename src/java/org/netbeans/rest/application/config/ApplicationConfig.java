@@ -99,6 +99,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarRolesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarServicioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarServiciosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductoConCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarSubProductosMasCostoImpl.class);

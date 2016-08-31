@@ -169,8 +169,8 @@ public class SubProductoDAOImpl implements SubProductoDAO {
         SubProducto_TO nuevoSub = new SubProducto_TO();
         try {
             try {
-                String sql = "SELECT idsubproducto, nombre, descripcion, idproducto , rutaimagen FROM public.subproducto "
-                        + "WHERE idsubproducto = '" + subProducto.getIdSubProducto() + "' or nombre = '" + subProducto.getNombre() + "'";
+                String sql = "SELECT sp.idsubproducto, sp.nombre, sp.descripcion, sp.idproducto, sp.rutaimagen "
+                        + "FROM public.subproducto as sp where sp.idsubproducto = '" + subProducto.getIdSubProducto() + "' or sp.nombre = '" + subProducto.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevoSub = new SubProducto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Producto_TO(rs.getInt(4)), rs.getString(5));
@@ -211,6 +211,33 @@ public class SubProductoDAOImpl implements SubProductoDAO {
             ConexionSQL.CerrarConexion();
         }
         return subProductos;
+    }
+
+    @Override
+    public SubProducto_TO consultarSubProductoConCosto(SubProducto_TO subProducto) throws Exception {
+        SubProducto_TO nuevoSub = new SubProducto_TO();
+        try {
+            try {
+                String sql = "SELECT sp.idsubproducto, sp.nombre, sp.descripcion, sp.idproducto, sp.rutaimagen, c.idcosto,  c.valor,  c.idzona "
+                        + "FROM public.subproducto as sp, public.costo c where c.idsubproducto = sp.idsubproducto AND (sp.idsubproducto = '" + subProducto.getIdSubProducto() + "' or sp.nombre = '" + subProducto.getNombre() + "')";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevoSub = new SubProducto_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            new Producto_TO(rs.getInt(4)),
+                            rs.getString(5),
+                            new Costo_TO(rs.getInt(6), rs.getInt(7), new SubProducto_TO(rs.getInt(1)), new Zona_TO(rs.getInt(8))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevoSub;
     }
 
 }
