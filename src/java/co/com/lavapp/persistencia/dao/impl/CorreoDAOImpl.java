@@ -36,26 +36,27 @@ public class CorreoDAOImpl implements CorreoDAO {
         properties.setProperty("mail.smtp.host", "smtp.gmail.com");
         properties.setProperty("mail.smtp.starttls.enable", "true");
         properties.setProperty("mail.smtp.port", "587");
-        properties.put("mail.smtp.user", "smsrenta@gmail.com"); //Correo desde donde se enviaran lo mails
+        properties.put("mail.smtp.user", "soportelavaapp@gmail.com"); //Correo desde donde se enviaran lo mails
         properties.put("mail.smtp.auth", "true");
         session = Session.getDefaultInstance(properties);
     }
 
     @Override
-    public void enviarMensajeBienvenido() {
+    public int enviarMensajeBienvenido() {
+        init();
         try {
             MimeMessage message = new MimeMessage(session);
             //quien envia
-            message.setFrom(new InternetAddress("smsrenta@gmail.com"));
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
             // a donde se envia
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress(""));
+                    new InternetAddress("cardenasg66@gmail.com"));
             message.setSubject("SMSRenta informe de su reservacion"); //asunto
             String mensajehtml = ""; //Mensaje
             message.setContent(mensajehtml, "text/html");
             Transport t = session.getTransport("smtp");
-            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "Smsrenta2016"); //Datos de conexion del correo de envio
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
             t.sendMessage(message, message.getAllRecipients());
             t.close();
         } catch (MessagingException me) {
@@ -64,6 +65,7 @@ public class CorreoDAOImpl implements CorreoDAO {
             //de no hacer nada con la excepcion, lanzarla para que el modulo
             //superior la capture y avise al usuario con un popup, por ejemplo.           
         }
+        return 0;
     }
 
     @Override

@@ -11,7 +11,7 @@ package co.com.lavapp.persistencia.dao;
  */
 public interface CorreoDAO {
     
-    public void enviarMensajeBienvenido();
+    public int enviarMensajeBienvenido();
     
     public void enviarMensajeNuevaContraseña();
     
