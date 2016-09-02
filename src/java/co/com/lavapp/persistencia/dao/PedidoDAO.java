@@ -34,6 +34,8 @@ public interface PedidoDAO {
     public List<Pedido_TO> buscarPedido(String valor) throws Exception;
 
     public Pedido_TO consultarPedido(Pedido_TO pedido) throws Exception;
+    
+    public Pedido_TO consultarPedidoWeb(Pedido_TO pedido) throws Exception;
 
     public Pedido_TO editarEstadoPedido(Pedido_TO pedido, Estado_TO estado) throws Exception;
 

@@ -721,4 +721,48 @@ public class PedidoDAOImpl implements PedidoDAO {
         return pedidos;
     }
 
+    @Override
+    public Pedido_TO consultarPedidoWeb(Pedido_TO pedido) throws Exception {
+        Pedido_TO nuevopedido = new Pedido_TO();
+        try {
+            try {
+                String sql = "SELECT p.idpedido, p.idusuario, "
+                        + "p.fechaInicio, p.horarioinicio_idhorario, "
+                        + "p.horariofinal_idhorario, p.idestado, p.idproveedor, "
+                        + "p.fechaentrega, p.direccionrecogida, p.direccionentrega, "
+                        + "p.fecharecogida, p.quienentrega, p.quienrecibe, "
+                        + "p.idbarrios_recogida, p.idbarrios_entrega, h.horario "
+                        + "from public.pedido as p, public.horario as h WHERE "
+                        + "p.idpedido = '" + pedido.getIdPedido() + "' and p.horarioinicio_idhorario = h.idhorario";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                   
+                    nuevopedido = new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4), rs.getString(16)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15)));
+                }
+            } catch (SQLException e) {
+                System.out.println("error en sentencia de SQL y en insercion de datos del SQL al objeto List: " + e.getMessage());
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevopedido;
+    }
+
 }
