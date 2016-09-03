@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
      private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.com.lavapp.servicio.impl.AsignarAsesorPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.AsociarAsesorZonaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarAdministradoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarAsesoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarBarriosImpl.class);

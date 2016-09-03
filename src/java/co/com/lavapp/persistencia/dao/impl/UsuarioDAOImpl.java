@@ -12,6 +12,7 @@ import co.com.lavapp.modelo.dto.Ciudad_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Rol_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
+import co.com.lavapp.modelo.dto.Zona_TO;
 import co.com.lavapp.persistencia.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -383,7 +384,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public List<Usuario_TO> BuscarClientes(String valor) throws Exception {
-         List<Usuario_TO> listaClientesModel = new ArrayList<>();
+        List<Usuario_TO> listaClientesModel = new ArrayList<>();
         try {
             try {
                 String sql = "SELECT us.idusuario, us.nombre, us.telefono, us.idbarrios, us.idrol, us.idestado, us.email, "
@@ -469,5 +470,25 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ConexionSQL.CerrarConexion();
         }
         return listaAdministradoresModel;
+    }
+
+    @Override
+    public Usuario_TO AsociarAsesorZona(Usuario_TO usuario, Zona_TO zona) throws Exception {
+        Usuario_TO user = new Usuario_TO();
+        try {          
+            try {
+                String sql = "INSERT INTO public.usuario_zona (idusuario, idzona) "
+                        + "VALUES('" + usuario.getIdUsuario() + "','" + zona.getIdZona() + "')";
+                st.execute(sql);
+            } catch (Exception e) {
+                user = new Usuario_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return user;
     }
 }
