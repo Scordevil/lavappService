@@ -29,7 +29,7 @@ public class ProductoDAOImpl implements ProductoDAO {
         try {
             try {
                 String sql = "SELECT idproducto, nombre, descripcion, idsubservicio, rutaimagen "
-                        + "  FROM public.producto;";
+                        + " FROM public.producto;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     productos.add(new Producto_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new SubServicio_TO(rs.getInt(4)), rs.getString(5)));

@@ -19,14 +19,12 @@ import java.util.logging.Logger;
 public class ConexionSQL {
 
     static String clave = "yU7eywfXILoZjtaD";
- //   static String clave = "root";
-    static Statement ST = null;
+    // static String clave = "root";
+    static Statement st = null;
     static Connection cn = null;
 
     public static Statement conexion() {
-
         try {
-
             try {
                 // CLASE USADA PARA EL DRIVER
                 Class.forName("org.postgresql.Driver").newInstance();
@@ -35,38 +33,32 @@ public class ConexionSQL {
             } catch (IllegalAccessException ex) {
                 Logger.getLogger(ConexionSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             // RUTA DE LA BASE DE DATOS
-          //  149.56.93.6
-          //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
-          //  String url = "jdbc:postgresql://localhost:5432/lavapp";
+            //  149.56.93.6
+            //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
+            //  String url = "jdbc:postgresql://localhost:5432/lavapp";
+            
             String url = "jdbc:postgresql://192.168.100.251:5432/lavapp";
             // CONECCION A LA BASE DE DATOS
             cn = DriverManager.getConnection(url, "postgres", clave);
             // TRAE LOS DATOS
-            Statement st = cn.createStatement();
-
-            ST = st;
-
-            System.out.print("-------------------consulta BD:" + ST);
-
+            //Statement st = cn.createStatement();
+            st = cn.createStatement();
+            System.out.print("-------------------consulta BD:" + st);
+            
         } catch (ClassNotFoundException ex) {
             System.out.print("Error en el Driver");
         } catch (SQLException e) {
             System.out.print(e.getMessage());
         }
-//		finally {
-//			cerrarConexion();
-//		   }
-        return ST;
-
+        return st;
     }
 
     public static Connection CerrarConexion() throws SQLException {
-
         cn.close();
-        cn = null;
+        st.close();
         return cn;
-
     }
 
 }
