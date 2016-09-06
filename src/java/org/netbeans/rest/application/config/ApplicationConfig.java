@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
      private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.com.lavapp.servicio.impl.AsignarAsesorPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.AsociarAsesorZonaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarAdministradoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarAsesoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarBarriosImpl.class);
@@ -40,6 +41,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.BuscarHorariosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarJornadasImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarLocalidadesImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.BuscarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarProductosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarProveedoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarServiciosImpl.class);
@@ -85,6 +87,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarPaisImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPaisesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarPedidoWebImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidosAsesorEntregaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidosAsesorImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidosClienteImpl.class);

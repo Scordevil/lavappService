@@ -7,6 +7,7 @@ package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Rol_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
+import co.com.lavapp.modelo.dto.Zona_TO;
 import java.util.List;
 
 /**
@@ -41,5 +42,7 @@ public interface UsuarioDAO {
     public List<Usuario_TO> BuscarClientes(String valor) throws Exception;
     
     public List<Usuario_TO> BuscarAdministradores(String valor) throws Exception;   
+    
+    public Usuario_TO AsociarAsesorZona(Usuario_TO usuario, Zona_TO zona) throws Exception;
 
 }
