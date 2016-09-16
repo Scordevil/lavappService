@@ -11,8 +11,10 @@ import co.com.lavapp.modelo.dto.Estado_TO;
 import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Proveedor_TO;
+import co.com.lavapp.modelo.dto.Rol_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.PedidoDAO;
+import co.com.lavapp.persistencia.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -88,7 +90,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "fecharecogida, quienentrega, quienrecibe, "
                         + "idbarrios_recogida, idbarrios_entrega, e.nombre "
                         + "from public.pedido as p, public.estado as e WHERE "
-                        + "p.idusuario = " + usuario.getIdUsuario() + " and e.idestado = p.idestado"
+                        + "p.idusuario = " + usuario.getIdUsuario() + " and e.idestado = p.idestado "
                         + "ORDER BY fechaentrega DESC, fecharecogida DESC;";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
@@ -599,12 +601,11 @@ public class PedidoDAOImpl implements PedidoDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
-
         return pedidoModelo;
     }
 
     @Override
-    public Pedido_TO registrarPedidoWeb(Pedido_TO pedido) throws Exception {
+    public Pedido_TO registrarPedidoCompleto(Pedido_TO pedido) throws Exception {
         Pedido_TO nuevopedido = new Pedido_TO();
         try {
             try {
@@ -614,8 +615,8 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + " horariofinal_idhorario,"
                         + " idestado,"
                         + " fechaentrega,"
-                        + " direccionrecogida,"
                         + " direccionentrega,"
+                        + " direccionrecogida,"
                         + " fecharecogida,"
                         + " quienentrega,"
                         + " quienrecibe,"
@@ -627,8 +628,8 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + " '" + pedido.getHoraFinal().getIdHorario() + "',"
                         + " '" + pedido.getEstado().getIdEstado() + "',"
                         + " '" + pedido.getFechaEntrega() + "',"
-                        + " '" + pedido.getDireccionRecogida() + "',"
                         + " '" + pedido.getDireccionEntrega() + "',"
+                        + " '" + pedido.getDireccionRecogida() + "',"
                         + " '" + pedido.getFechaRecogida() + "',"
                         + " '" + pedido.getQuienEntrega() + "',"
                         + " '" + pedido.getQuienRecibe() + "',"
@@ -667,30 +668,72 @@ public class PedidoDAOImpl implements PedidoDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
-
         return pedidoModelo;
     }
 
     @Override
-    public List<Pedido_TO> buscarPedido(String valor) throws Exception {
+    public List<Pedido_TO> buscarPedido(String valor, Usuario_TO usuario) throws Exception {
         List<Pedido_TO> pedidos = new ArrayList<>();
+        UsuarioDAO usuarioDao = new UsuarioDAOImpl();
+        usuario = usuarioDao.consultarUsuario(usuario);
         try {
             try {
-                String sql = "SELECT p.idpedido, p.idusuario, "
-                        + "p.fechaInicio, p.horarioinicio_idhorario, "
-                        + "p.horariofinal_idhorario, p.idestado, p.idproveedor, "
-                        + "p.fechaentrega, p.direccionrecogida, p.direccionentrega, "
-                        + "p.fecharecogida, p.quienentrega, p.quienrecibe, "
-                        + "p.idbarrios_recogida, p.idbarrios_entrega "
-                        + "FROM public.pedido as p, public.usuario as u, public.barrio as b "
-                        + "WHERE p.idusuario = u.idusuario and (p.idbarrios_recogida = b.idbarrios or p.idbarrios_entrega = b.idbarrios) AND "
-                        + "(p.direccionrecogida LIKE '%" + valor + "%' or p.direccionentrega LIKE '" + valor + "' or "
-                        + "p.quienentrega LIKE '%" + valor + "%' or p.quienrecibe LIKE '%" + valor + "%' or "
-                        + "b.nombre LIKE '%" + valor + "%'or u.nombre LIKE '%" + valor + "%' or "
-                        + "u.apellido LIKE '%" + valor + "%' or u.telefono LIKE '%" + valor + "%' or "
-                        + "u.movil LIKE '%" + valor + "%' or u.direccion LIKE '%" + valor + "%' or "
-                        + "u.identificacion LIKE '%" + valor + "%') "
-                        + "ORDER BY fechaentrega DESC, fecharecogida DESC";
+
+                String sql = "";
+                if (usuario.getRol().getIdRol() == 1) {
+
+                    sql = "SELECT p.idpedido, p.idusuario, "
+                            + "p.fechaInicio, p.horarioinicio_idhorario, "
+                            + "p.horariofinal_idhorario, p.idestado, p.idproveedor, "
+                            + "p.fechaentrega, p.direccionrecogida, p.direccionentrega, "
+                            + "p.fecharecogida, p.quienentrega, p.quienrecibe, "
+                            + "p.idbarrios_recogida, p.idbarrios_entrega "
+                            + "FROM public.pedido as p, public.usuario as u, public.barrio as b "
+                            + "WHERE p.idusuario = u.idusuario and (p.idbarrios_recogida = b.idbarrios or p.idbarrios_entrega = b.idbarrios) AND "
+                            + "(p.direccionrecogida LIKE '%" + valor + "%' or p.direccionentrega LIKE '" + valor + "' or "
+                            + "p.quienentrega LIKE '%" + valor + "%' or p.quienrecibe LIKE '%" + valor + "%' or "
+                            + "b.nombre LIKE '%" + valor + "%'or u.nombre LIKE '%" + valor + "%' or "
+                            + "u.apellido LIKE '%" + valor + "%' or u.telefono LIKE '%" + valor + "%' or "
+                            + "u.movil LIKE '%" + valor + "%' or u.direccion LIKE '%" + valor + "%' or "
+                            + "u.identificacion LIKE '%" + valor + "%') "
+                            + "ORDER BY fechaentrega DESC, fecharecogida DESC";
+
+                } else if (usuario.getRol().getIdRol() == 2) {
+
+                    sql = "SELECT p.idpedido, p.idusuario, "
+                            + "p.fechaInicio, p.horarioinicio_idhorario, "
+                            + "p.horariofinal_idhorario, p.idestado, p.idproveedor, "
+                            + "p.fechaentrega, p.direccionrecogida, p.direccionentrega, "
+                            + "p.fecharecogida, p.quienentrega, p.quienrecibe, "
+                            + "p.idbarrios_recogida, p.idbarrios_entrega "
+                            + "FROM public.pedido as p, public.usuario as u, public.barrio as b "
+                            + "WHERE p.idusuario = u.idusuario and (p.idbarrios_recogida = b.idbarrios or p.idbarrios_entrega = b.idbarrios) AND "
+                            + "(p.direccionrecogida LIKE '%" + valor + "%' or p.direccionentrega LIKE '" + valor + "' or "
+                            + "p.quienentrega LIKE '%" + valor + "%' or p.quienrecibe LIKE '%" + valor + "%' or "
+                            + "b.nombre LIKE '%" + valor + "%'or u.nombre LIKE '%" + valor + "%' or "
+                            + "u.apellido LIKE '%" + valor + "%' or u.telefono LIKE '%" + valor + "%' or "
+                            + "u.movil LIKE '%" + valor + "%' or u.direccion LIKE '%" + valor + "%' or "
+                            + "u.identificacion LIKE '%" + valor + "%') AND p.idproveedor = (SELECT pr.idproveedor FROM public.proveedor as pr WHERE pr.idusuario = " + usuario.getIdUsuario() + ") "
+                            + "ORDER BY fechaentrega DESC, fecharecogida DESC";
+
+                } else if (usuario.getRol().getIdRol() == 4) {
+
+                    sql = "SELECT p.idpedido, p.idusuario, "
+                            + "p.fechaInicio, p.horarioinicio_idhorario, "
+                            + "p.horariofinal_idhorario, p.idestado, p.idproveedor, "
+                            + "p.fechaentrega, p.direccionrecogida, p.direccionentrega, "
+                            + "p.fecharecogida, p.quienentrega, p.quienrecibe, "
+                            + "p.idbarrios_recogida, p.idbarrios_entrega "
+                            + "FROM public.pedido as p, public.usuario as u, public.barrio as b "
+                            + "WHERE p.idusuario = u.idusuario and (p.idbarrios_recogida = b.idbarrios or p.idbarrios_entrega = b.idbarrios) AND "
+                            + "(p.direccionrecogida LIKE '%" + valor + "%' or p.direccionentrega LIKE '" + valor + "' or "
+                            + "p.quienentrega LIKE '%" + valor + "%' or p.quienrecibe LIKE '%" + valor + "%' or "
+                            + "b.nombre LIKE '%" + valor + "%'or u.nombre LIKE '%" + valor + "%' or "
+                            + "u.apellido LIKE '%" + valor + "%' or u.telefono LIKE '%" + valor + "%' or "
+                            + "u.movil LIKE '%" + valor + "%' or u.direccion LIKE '%" + valor + "%' or "
+                            + "u.identificacion LIKE '%" + valor + "%') AND p.idusuario = " + usuario.getIdUsuario() + " "
+                            + "ORDER BY fechaentrega DESC, fecharecogida DESC";
+                }
 
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
@@ -736,7 +779,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "p.idpedido = '" + pedido.getIdPedido() + "' and p.horarioinicio_idhorario = h.idhorario";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                   
+
                     nuevopedido = new Pedido_TO(rs.getInt(1),
                             new Usuario_TO(rs.getInt(2)),
                             rs.getDate(3),

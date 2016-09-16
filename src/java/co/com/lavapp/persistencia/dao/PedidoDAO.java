@@ -19,7 +19,7 @@ public interface PedidoDAO {
 
     public Pedido_TO registrarPedido(Pedido_TO pedido) throws Exception;
 
-    public Pedido_TO registrarPedidoWeb(Pedido_TO pedido) throws Exception;
+    public Pedido_TO registrarPedidoCompleto(Pedido_TO pedido) throws Exception;
 
     public Pedido_TO eliminarPedido(Pedido_TO pedido) throws Exception;
 
@@ -31,7 +31,7 @@ public interface PedidoDAO {
 
     public List<Pedido_TO> consultarPedidosAsesorEntrega(Usuario_TO usuario) throws Exception;
 
-    public List<Pedido_TO> buscarPedido(String valor) throws Exception;
+    public List<Pedido_TO> buscarPedido(String valor, Usuario_TO usuario) throws Exception;
 
     public Pedido_TO consultarPedido(Pedido_TO pedido) throws Exception;
     

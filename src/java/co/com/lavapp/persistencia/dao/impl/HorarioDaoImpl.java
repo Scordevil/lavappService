@@ -30,7 +30,7 @@ public class HorarioDaoImpl implements HorarioDAO {
         try {
             try {
                 String sql = "SELECT idhorario, horaInicio, horaFinal, idjornada, horario from public.horario as horario "
-                        + "where horario.idjornada = '" + jornada.getIdJornada() + "'";
+                        + "where horario.idjornada = '" + jornada.getIdJornada() + "' ORDER BY horainicio ASC";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     horarios.add(new Horario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Jornada_TO(rs.getInt(4)), rs.getString(5)));
@@ -138,7 +138,7 @@ public class HorarioDaoImpl implements HorarioDAO {
         List<Horario_TO> horarios = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idhorario, horaInicio, horaFinal, idjornada, horario from public.horario";
+                String sql = "SELECT idhorario, horaInicio, horaFinal, idjornada, horario from public.horario ORDER BY horainicio ASC";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     horarios.add(new Horario_TO(rs.getInt(1), rs.getString(2), rs.getString(3), new Jornada_TO(rs.getInt(4)), rs.getString(5)));

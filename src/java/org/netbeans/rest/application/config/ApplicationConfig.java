@@ -97,6 +97,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProductosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProveedorImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarProveedorSegunUsuarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProveedoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarRolImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarRolesImpl.class);
@@ -179,8 +180,8 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.RegistrarJornadaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarLocalidadImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarPaisImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoCompletoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoImpl.class);
-        resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoWebImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarProveedorImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarRolImpl.class);

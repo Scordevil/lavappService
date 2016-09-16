@@ -6,6 +6,7 @@
 package co.com.lavapp.servicio.impl;
 
 import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.PedidoDAO;
 import co.com.lavapp.persistencia.dao.impl.PedidoDAOImpl;
 import co.com.lavapp.servicio.BuscarPedido;
@@ -27,8 +28,9 @@ public class BuscarPedidoImpl implements BuscarPedido {
     @GET
     @Produces({"application/json"})
     @Override
-    public List<Pedido_TO> buscarPedido(@QueryParam("valor") String valor) throws Exception {
+    public List<Pedido_TO> buscarPedido(@QueryParam("valor") String valor, @QueryParam("idusuario") int idusuario) throws Exception {
         PedidoDAO pedidoDao = new PedidoDAOImpl();
-        return pedidoDao.buscarPedido(valor);
+        Usuario_TO usuario = new Usuario_TO(idusuario);
+        return pedidoDao.buscarPedido(valor, usuario);
     }
 }

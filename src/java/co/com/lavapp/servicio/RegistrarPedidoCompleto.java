@@ -11,10 +11,9 @@ import co.com.lavapp.modelo.dto.Pedido_TO;
  *
  * @author Desarrollo_Planit
  */
-public interface RegistrarPedidoWeb {
+public interface RegistrarPedidoCompleto {
     
-    public Pedido_TO registrarPedidoWeb(int idUsuario, 
-            String fechaInicio, 
+    public Pedido_TO registrarPedidoCompleto(int idUsuario,           
             int idHoraInicio,
             int idHoraFinal,
             int idEstado,            

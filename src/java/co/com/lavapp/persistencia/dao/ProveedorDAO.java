@@ -6,6 +6,7 @@
 package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Proveedor_TO;
+import co.com.lavapp.modelo.dto.Usuario_TO;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 public interface ProveedorDAO {
     
     public List<Proveedor_TO> consultarProveedores() throws Exception;
-    
+            
     public List<Proveedor_TO> BuscarProveedores(String valor) throws Exception;
     
     public Proveedor_TO consultarProveedor(Proveedor_TO proveedor) throws Exception;
@@ -25,5 +26,7 @@ public interface ProveedorDAO {
     public Proveedor_TO editarProveedor(Proveedor_TO proveedor_TO) throws Exception;
     
     public Proveedor_TO eliminarProveedor(Proveedor_TO proveedor_TO) throws Exception;
-        
+    
+    public Proveedor_TO consultarProveedorSegunUsuario(Usuario_TO usuario) throws Exception;
+    
 }

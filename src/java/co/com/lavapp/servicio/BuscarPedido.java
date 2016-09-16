@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface BuscarPedido {
  
-    public List<Pedido_TO> buscarPedido(String valor) throws Exception;
+    public List<Pedido_TO> buscarPedido(String valor, int idusuario) throws Exception;
     
 }

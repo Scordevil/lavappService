@@ -11,7 +11,7 @@ import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.impl.PedidoDAOImpl;
-import co.com.lavapp.servicio.RegistrarPedidoWeb;
+import co.com.lavapp.servicio.RegistrarPedidoCompleto;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,16 +27,15 @@ import javax.ws.rs.QueryParam;
  */
 @Stateless
 @Path("/registrarPedidoCompleto")
-public class RegistrarPedidoWebImpl implements RegistrarPedidoWeb {
+public class RegistrarPedidoCompletoImpl implements RegistrarPedidoCompleto {
 
     @GET
     @Produces({"application/json"})
     @Override
-    public Pedido_TO registrarPedidoWeb(@QueryParam("idUsuario") int idUsuario,
-            @QueryParam("fechaInicio") String fechaInicio,
+    public Pedido_TO registrarPedidoCompleto(@QueryParam("idUsuario") int idUsuario,
             @QueryParam("idHoraInicio") int idHoraInicio,
             @QueryParam("idHoraFinal") int idHoraFinal,
-            @QueryParam("idEstado") int idEstado,            
+            @QueryParam("idEstado") int idEstado,
             @QueryParam("fechaEntrega") String fechaEntrega,
             @QueryParam("direccionEntrega") String direccionEntrega,
             @QueryParam("direccionRecogida") String direccionRecogida,
@@ -50,8 +49,7 @@ public class RegistrarPedidoWebImpl implements RegistrarPedidoWeb {
         Date fecha = new Date();
         Date fecharecogida = new Date();
         Date fechaentrega = new Date();
-        try {
-            fecha = formato.parse(fechaInicio);
+        try {            
             fecharecogida = formato.parse(fechaRecogida);
             fechaentrega = formato.parse(fechaEntrega);
         } catch (ParseException e) {
@@ -62,7 +60,7 @@ public class RegistrarPedidoWebImpl implements RegistrarPedidoWeb {
                 fecha,
                 new Horario_TO(idHoraInicio),
                 new Horario_TO(idHoraFinal),
-                new Estado_TO(idEstado),               
+                new Estado_TO(idEstado),
                 fechaentrega,
                 direccionEntrega,
                 direccionRecogida,
@@ -71,6 +69,6 @@ public class RegistrarPedidoWebImpl implements RegistrarPedidoWeb {
                 quienRecibe,
                 new Barrio_TO(idBarrioRecogida),
                 new Barrio_TO(idBarrioEntrega));
-        return pedidoDAO.registrarPedidoWeb(pedido);
+        return pedidoDAO.registrarPedidoCompleto(pedido);
     }
 }

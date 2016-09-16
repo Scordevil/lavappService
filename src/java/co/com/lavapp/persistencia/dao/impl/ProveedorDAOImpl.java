@@ -191,4 +191,34 @@ public class ProveedorDAOImpl implements ProveedorDAO {
         }
         return proveedores;
     }
+
+    @Override
+    public Proveedor_TO consultarProveedorSegunUsuario(Usuario_TO usuario) throws Exception {
+        Proveedor_TO nuevoProveedor = new Proveedor_TO();
+        try {
+            try {
+                String sql = "SELECT idproveedor, razonsocial, nit, telefono, direccion, idusuario, cupo, idzona "
+                        + "FROM public.proveedor "
+                        + "WHERE idusuario = '" + usuario.getIdUsuario() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    nuevoProveedor = new Proveedor_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
+                            new Usuario_TO(rs.getInt(6)),
+                            rs.getInt(7),
+                            new Zona_TO(rs.getInt(8)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevoProveedor;
+    }
 }
