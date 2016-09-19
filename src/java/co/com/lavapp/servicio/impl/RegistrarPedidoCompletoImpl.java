@@ -46,29 +46,27 @@ public class RegistrarPedidoCompletoImpl implements RegistrarPedidoCompleto {
             @QueryParam("idBarrioEntrega") int idBarrioEntrega) throws Exception {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         PedidoDAOImpl pedidoDAO = new PedidoDAOImpl();
-        Date fecha = new Date();
-        Date fecharecogida = new Date();
-        Date fechaentrega = new Date();
-        try {            
-            fecharecogida = formato.parse(fechaRecogida);
-            fechaentrega = formato.parse(fechaEntrega);
-        } catch (ParseException e) {
-            e.getMessage();
-        }
-
-        Pedido_TO pedido = new Pedido_TO(new Usuario_TO(idUsuario),
+        Date fecha = new Date();       
+        
+        Pedido_TO pedido = new Pedido_TO();
+        try{
+        pedido = new Pedido_TO(new Usuario_TO(idUsuario),
                 fecha,
                 new Horario_TO(idHoraInicio),
                 new Horario_TO(idHoraFinal),
                 new Estado_TO(idEstado),
-                fechaentrega,
+                formato.parse(fechaEntrega),
                 direccionEntrega,
                 direccionRecogida,
-                fecharecogida,
+                formato.parse(fechaRecogida),
                 quienEntrega,
                 quienRecibe,
                 new Barrio_TO(idBarrioRecogida),
                 new Barrio_TO(idBarrioEntrega));
+        } catch (ParseException e) {
+            e.getMessage();
+        }
+        
         return pedidoDAO.registrarPedidoCompleto(pedido);
     }
 }

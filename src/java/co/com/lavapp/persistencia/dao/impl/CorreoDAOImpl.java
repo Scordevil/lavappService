@@ -51,7 +51,7 @@ public class CorreoDAOImpl implements CorreoDAO {
             // a donde se envia
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress("cardenasg66@gmail.com"));
+                    new InternetAddress("camilorevenant@gmail.com"));
             message.setSubject("SMSRenta informe de su reservacion"); //asunto
             String mensajehtml = ""; //Mensaje
             message.setContent(mensajehtml, "text/html");

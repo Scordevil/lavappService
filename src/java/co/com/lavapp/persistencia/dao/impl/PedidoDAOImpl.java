@@ -101,11 +101,11 @@ public class PedidoDAOImpl implements PedidoDAO {
 
                     String fechaInicioS = fechaInicio[0];
 
-                    fechaEntrega = rs.getDate(3).toString().split("T");
+                    fechaEntrega = rs.getDate(8).toString().split("T");
 
                     String fechaEntregaS = fechaEntrega[0];
 
-                    fechaRecogida = rs.getDate(3).toString().split("T");
+                    fechaRecogida = rs.getDate(11).toString().split("T");
 
                     String fechaRecogidaS = fechaRecogida[0];
 
@@ -160,11 +160,11 @@ public class PedidoDAOImpl implements PedidoDAO {
 
                     String fechaInicioS = fechaInicio[0];
 
-                    fechaEntrega = rs.getDate(3).toString().split("T");
+                    fechaEntrega = rs.getDate(8).toString().split("T");
 
                     String fechaEntregaS = fechaEntrega[0];
 
-                    fechaRecogida = rs.getDate(3).toString().split("T");
+                    fechaRecogida = rs.getDate(11).toString().split("T");
 
                     String fechaRecogidaS = fechaRecogida[0];
 
