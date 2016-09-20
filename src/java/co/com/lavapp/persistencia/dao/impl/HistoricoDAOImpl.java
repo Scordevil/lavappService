@@ -29,8 +29,8 @@ public class HistoricoDAOImpl implements HistoricoDAO {
         Historico_TO nuevoHistorico = new Historico_TO();
         try {
             try {
-                String sql = "INSERT INTO public.historico(idhistorico, iddescripcionpedido, idestado, fecha) "
-                        + "VALUES (" + historico.getIdHistorico() + ", " + historico.getDescripcionPedido().getIdDescripcionPedido() + ", " + historico.getEstado().getIdEstado() + ", " + historico.getFecha() + ");";
+                String sql = "INSERT INTO public.historico(iddescripcionpedido, idestado, fecha) "
+                        + "VALUES ('" + historico.getDescripcionPedido().getIdDescripcionPedido() + "', '" + historico.getEstado().getIdEstado() + "', '" + historico.getFecha() + "');";
                 st.execute(sql);
             } catch (SQLException e) {
                 nuevoHistorico = new Historico_TO();
