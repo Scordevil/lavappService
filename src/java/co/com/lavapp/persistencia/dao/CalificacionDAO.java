@@ -7,6 +7,7 @@ package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Calificacion_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.Proveedor_TO;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public interface CalificacionDAO {
     
     public Calificacion_TO registrarCalificacion(Calificacion_TO calificacion) throws Exception;
     public List<Calificacion_TO> consultarCalificaciones() throws Exception;
+    public List<Calificacion_TO> consultarCalificacionesSegunPlantaPedidos(Proveedor_TO proveedor) throws Exception;
     public Calificacion_TO consultarCalificacionPorPedido(Pedido_TO pedido) throws Exception;
     public Calificacion_TO modificarCalificacion(Calificacion_TO cali) throws Exception;
     public Calificacion_TO eliminarCalificacion(Calificacion_TO cali) throws Exception;

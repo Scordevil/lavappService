@@ -8,6 +8,7 @@ package co.com.lavapp.persistencia.dao.impl;
 import co.com.lavapp.conexion.ConexionSQL;
 import co.com.lavapp.modelo.dto.Calificacion_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
+import co.com.lavapp.modelo.dto.Proveedor_TO;
 import co.com.lavapp.persistencia.dao.CalificacionDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -139,6 +140,33 @@ public class CalificacionDAOImpl implements CalificacionDAO {
             ConexionSQL.CerrarConexion();
         }
         return nuevaCalificacion;
+    }
+
+    @Override
+    public List<Calificacion_TO> consultarCalificacionesSegunPlantaPedidos(Proveedor_TO proveedor) throws Exception {
+        List<Calificacion_TO> califications = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT c.idcalificacion, c.calificacion, c.observacion, c.idpedido "
+                        + " FROM public.calificacion as c, public.proveedor as pr, public.pedido as p "
+                        + " WHERE c.idpedido = p.idpedido AND p.idproveedor = pr.idproveedor AND pr.idproveedor = '" + proveedor.getIdProveedor() + "';";
+
+                ResultSet rs = null;
+                rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    califications.add(new Calificacion_TO(rs.getInt(1), rs.getInt(2), rs.getString(3), new Pedido_TO(rs.getInt(4))));
+                }
+
+            } catch (Exception e) {
+                throw e;
+            }
+        } catch (Exception es) {
+            throw es;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return califications;
     }
 
 }
