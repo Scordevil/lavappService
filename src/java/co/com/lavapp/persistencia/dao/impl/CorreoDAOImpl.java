@@ -5,6 +5,7 @@
  */
 package co.com.lavapp.persistencia.dao.impl;
 
+import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.CorreoDAO;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
@@ -42,7 +43,8 @@ public class CorreoDAOImpl implements CorreoDAO {
     }
 
     @Override
-    public int enviarMensajeBienvenido() {
+    public int enviarMensajeBienvenido(Usuario_TO usuario) {
+        int valor = 0;
         init();
         try {
             MimeMessage message = new MimeMessage(session);
@@ -51,31 +53,237 @@ public class CorreoDAOImpl implements CorreoDAO {
             // a donde se envia
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress("camilorevenant@gmail.com"));
-            message.setSubject("SMSRenta informe de su reservacion"); //asunto
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Bienvenid@ a LavaApp"); //asunto
+            String mensajehtml = "Te damos la bienvenida a LavaApp, desde hoy podrá contar con nuestro excelente servicio y calidad en el lavado de sus prendas y articulos de hogar.\n"
+                    + "Agenda desde nuestra APP las 24 horas, acumula puntos y goza de nuestras promociones"; //Mensaje
+            message.setContent(mensajehtml, "text/html");
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
+    }
+
+    @Override
+    public int enviarMensajeNuevaContraseña(Usuario_TO usuario) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Bienvenid@ a LavaApp"); //asunto
+            String mensajehtml = "Te damos la bienvenida a LavaApp, desde hoy podrá contar con nuestro excelente servicio y calidad en el lavado de sus prendas y articulos de hogar.\n"
+                    + "Agenda desde nuestra APP las 24 horas, acumula puntos y goza de nuestras promociones"; //Mensaje
+            message.setContent(mensajehtml, "text/html");
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
+    }
+
+    @Override
+    public int enviarMensajeMalaCalificacion(Usuario_TO usuario) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Mala Calificación"); //asunto
             String mensajehtml = ""; //Mensaje
             message.setContent(mensajehtml, "text/html");
             Transport t = session.getTransport("smtp");
             t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
             t.sendMessage(message, message.getAllRecipients());
             t.close();
+            valor = 1;
         } catch (MessagingException me) {
+            valor = 0;
             me.getMessage();
             //Aqui se deberia o mostrar un mensaje de error o en lugar
             //de no hacer nada con la excepcion, lanzarla para que el modulo
             //superior la capture y avise al usuario con un popup, por ejemplo.           
         }
-        return 0;
+        return valor;
     }
 
     @Override
-    public void enviarMensajeNuevaContraseña() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int enviarMensajeAgendamiento(Usuario_TO usuario) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Confirmacion de agendamiento"); //asunto
+            String mensajehtml = "Su agendamiento ha sido procesado con éxito, nuestro asesor recibirá sus prendas a la mayor brevedad.\n"
+                    + " No olvide calificar nuestro servicio para que nos ayude a mejorar día a día."; //Mensaje
+            message.setContent(mensajehtml, "text/html");
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
     }
 
     @Override
-    public void enviarMensajeMalaCalificacion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int enviarMensajeRecibidoAlCliente(Usuario_TO usuario) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Confirmacion de recibido"); //asunto
+            String mensajehtml = "Hemos procesado su orden y estará disponible a partir de 24 horas, adjuntamos su recibo en PDF adjunto.\n"
+                    + "Contribuimos con el ambiente cero papel."; //Mensaje
+            message.setContent(mensajehtml, "text/html");
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
+    }
+
+    @Override
+    public int enviarMensajeRecibidoALaPlanta(Usuario_TO usuario) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Confirmacion de entrenga en plata de lavado"); //asunto
+            String mensajehtml = "Orden en traslado para procesamiento."; //Mensaje
+            message.setContent(mensajehtml, "text/html");
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
+    }
+
+    @Override
+    public int enviarMensajeRecibidoDePlanta(Usuario_TO usuario) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Confirmacion de entrenga en plata de lavado"); //asunto
+            String mensajehtml = "Hemos recibido el pedido de la planta."; //Mensaje
+            message.setContent(mensajehtml, "text/html");
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
+    }
+
+    @Override
+    public int enviarMensajeRecibidoDelCliente(Usuario_TO usuario) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Confirmacion de entrega del pedido"); //asunto
+            String mensajehtml = "Hemos entregado su orden de servicio adjunta, no olvide calificar nuestro servicio para que no ayude a mejorar a día a día."; //Mensaje
+            message.setContent(mensajehtml, "text/html");
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
     }
 
 }

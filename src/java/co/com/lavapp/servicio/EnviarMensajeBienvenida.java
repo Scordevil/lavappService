@@ -6,12 +6,14 @@
  */
 package co.com.lavapp.servicio;
 
+import co.com.lavapp.modelo.dto.Usuario_TO;
+
 /**
  *
  * @author Jose
  */
-public interface EnviarMensajeBienvenido {
+public interface EnviarMensajeBienvenida {
     
-    public int enviarMensajeBienvenido()throws Exception;
+    public int enviarMensajeBienvenido(String email) throws Exception;
     
 }

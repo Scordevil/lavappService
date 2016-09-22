@@ -5,16 +5,28 @@
  */
 package co.com.lavapp.persistencia.dao;
 
+import co.com.lavapp.modelo.dto.Usuario_TO;
+
 /**
  *
  * @author Desarrollo_Planit
  */
 public interface CorreoDAO {
+
+    public int enviarMensajeBienvenido(Usuario_TO usuario);
+
+    public int enviarMensajeNuevaContraseña(Usuario_TO usuario);
+
+    public int enviarMensajeMalaCalificacion(Usuario_TO usuario);
+
+    public int enviarMensajeAgendamiento(Usuario_TO usuario);
+
+    public int enviarMensajeRecibidoAlCliente(Usuario_TO usuario);
     
-    public int enviarMensajeBienvenido();
-    
-    public void enviarMensajeNuevaContraseña();
-    
-    public void enviarMensajeMalaCalificacion();
+    public int enviarMensajeRecibidoALaPlanta(Usuario_TO usuario);
+
+    public int enviarMensajeRecibidoDePlanta(Usuario_TO usuario);
+
+    public int enviarMensajeRecibidoDelCliente(Usuario_TO usuario);
     
 }
