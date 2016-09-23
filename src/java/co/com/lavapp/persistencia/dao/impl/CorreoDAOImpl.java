@@ -85,9 +85,9 @@ public class CorreoDAOImpl implements CorreoDAO {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(usuario.getEmail()));
-            message.setSubject("Bienvenid@ a LavaApp"); //asunto
-            String mensajehtml = "Te damos la bienvenida a LavaApp, desde hoy podrá contar con nuestro excelente servicio y calidad en el lavado de sus prendas y articulos de hogar.\n"
-                    + "Agenda desde nuestra APP las 24 horas, acumula puntos y goza de nuestras promociones"; //Mensaje
+            message.setSubject("Nueva contraseña para ingreso a sistema LavaApp"); //asunto
+            String mensajehtml = "Hemos recibido una solicitud para generar una contraseña provisional al sistema.\n"
+                    + "La contraseña es "+usuario.getContrasena()+", por favor ingrese al sistema e inmediatamente modifique esta contraseña por una personal."; //Mensaje
             message.setContent(mensajehtml, "text/html");
             Transport t = session.getTransport("smtp");
             t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
