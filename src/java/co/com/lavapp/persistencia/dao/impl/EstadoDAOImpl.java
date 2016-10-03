@@ -85,18 +85,45 @@ public class EstadoDAOImpl implements EstadoDAO {
             try {
                 String sql = "SELECT idestado, nombre "
                         + "  FROM public.estado "
-                        + "  WHERE idestado >= 3 " ;
+                        + "  WHERE idestado >= 3 ";
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
                     estadoModelo.add(new Estado_TO(rs.getInt(1), rs.getString(2)));
                 }
             } catch (Exception e) {
-               estadoModelo = new ArrayList<Estado_TO>();
+                estadoModelo = new ArrayList<Estado_TO>();
                 throw e;
             }
         } catch (Exception es) {
-           estadoModelo = new ArrayList<Estado_TO>();
+            estadoModelo = new ArrayList<Estado_TO>();
+            throw es;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return estadoModelo;
+    }
+
+    @Override
+    public List<Estado_TO> consultarEstadosPlanta() throws Exception {
+        List<Estado_TO> estadoModelo = new ArrayList<Estado_TO>();
+        try {
+            try {
+                String sql = "SELECT idestado, nombre "
+                        + "  FROM public.estado "
+                        + "  WHERE idestado >= 4 ";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    estadoModelo.add(new Estado_TO(rs.getInt(1), rs.getString(2)));
+                }
+            } catch (Exception e) {
+                estadoModelo = new ArrayList<Estado_TO>();
+                throw e;
+            }
+        } catch (Exception es) {
+            estadoModelo = new ArrayList<Estado_TO>();
             throw es;
         } finally {
             ConexionSQL.CerrarConexion();

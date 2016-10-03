@@ -18,8 +18,10 @@ import co.com.lavapp.persistencia.dao.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -808,4 +810,175 @@ public class PedidoDAOImpl implements PedidoDAO {
         return nuevopedido;
     }
 
+    @Override
+    public List<Pedido_TO> consultarPedidosPorDiaEntrega() throws Exception {
+        List<Pedido_TO> pedidosEntrega = new ArrayList<>();
+        Date fechaActual = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
+                        + "FROM public.pedido as pedido "
+                        + "WHERE fecharecogida = '" + sdf.format(fechaActual) + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    pedidosEntrega.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return pedidosEntrega;
+    }
+
+    @Override
+    public List<Pedido_TO> consultarPedidosPorDiaRecogida() throws Exception {
+        List<Pedido_TO> pedidosRecogida = new ArrayList<>();
+        Date fechaActual = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
+                        + "FROM public.pedido as pedido "
+                        + "WHERE fechaentrega = '" + sdf.format(fechaActual) + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    pedidosRecogida.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return pedidosRecogida;
+    }
+
+    @Override
+    public List<Pedido_TO> consultarPedidosEnPlantaSegunCliente(Usuario_TO usuario) throws Exception {
+        List<Pedido_TO> pedidosEnPlanta = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
+                        + "FROM public.pedido as pedido "
+                        + "WHERE idusuario = '" + usuario.getIdUsuario() + "' AND idestado = 5";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    pedidosEnPlanta.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return pedidosEnPlanta;
+    }
+
+    @Override
+    public List<Pedido_TO> consultarPedidosPorRecibirSegunCliente(Usuario_TO usuario) throws Exception {
+        List<Pedido_TO> pedidosParaEntrega = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT idpedido, idusuario, "
+                        + "fechaInicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, idestado, idproveedor, "
+                        + "fechaentrega, direccionrecogida, direccionentrega, "
+                        + "fecharecogida, quienentrega, quienrecibe, "
+                        + "idbarrios_recogida, idbarrios_entrega "
+                        + "FROM public.pedido as pedido "
+                        + "WHERE idusuario = '" + usuario.getIdUsuario() + "' AND idestado = 7";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    pedidosParaEntrega.add(new Pedido_TO(rs.getInt(1),
+                            new Usuario_TO(rs.getInt(2)),
+                            rs.getDate(3),
+                            new Horario_TO(rs.getInt(4)),
+                            new Horario_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            new Proveedor_TO(rs.getInt(7)),
+                            rs.getDate(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getDate(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            new Barrio_TO(rs.getInt(14)),
+                            new Barrio_TO(rs.getInt(15))));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return pedidosParaEntrega;
+    }  
 }

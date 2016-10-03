@@ -45,8 +45,16 @@ public interface PedidoDAO {
 
     public Pedido_TO consultarUltimoPedido(Usuario_TO usuario) throws Exception;
 
-    public Pedido_TO modificarPedido(Pedido_TO pedido) throws Exception;
-
+    public Pedido_TO modificarPedido(Pedido_TO pedido) throws Exception;  
+  
     public Pedido_TO asignarAsesorPedido(Usuario_TO usuario, Pedido_TO pedido) throws Exception;
+    
+    public List<Pedido_TO> consultarPedidosPorDiaEntrega() throws Exception;
 
+    public List<Pedido_TO> consultarPedidosPorDiaRecogida() throws Exception;
+    
+    public List<Pedido_TO> consultarPedidosEnPlantaSegunCliente(Usuario_TO usuario) throws Exception;
+
+    public List<Pedido_TO> consultarPedidosPorRecibirSegunCliente(Usuario_TO usuario) throws Exception;
+    
 }

@@ -21,6 +21,8 @@ public interface EstadoDAO {
     
     public List<Estado_TO> consultarEstadosProducto() throws Exception;
     
+    public List<Estado_TO> consultarEstadosPlanta() throws Exception;
+    
     public  Estado_TO consultarEstado(Estado_TO estado) throws Exception;
     
 }
