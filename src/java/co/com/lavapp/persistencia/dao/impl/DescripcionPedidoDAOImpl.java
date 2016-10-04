@@ -130,14 +130,14 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     }
 
     @Override
-    public DescripcionPedido_TO editarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception {
+    public DescripcionPedido_TO editarEstadoDescripcionPedido(DescripcionPedido_TO descripcion) throws Exception {
         DescripcionPedido_TO nuevaDescripcion = new DescripcionPedido_TO();
         try {
             try {
                 String sql = "UPDATE public.descripcionpedido as descripcion"
-                        + " SET idestado= '" + estado.getIdEstado() + "'"
-                        + " WHERE descripcion.iddescripcion = '" + descripcion.getIdDescripcionPedido() + "';";
-                ResultSet rs = st.executeQuery(sql);
+                        + " SET idestado = '" + descripcion.getEstado().getIdEstado() + "'"
+                        + " WHERE descripcion.iddescripcionpedido = '" + descripcion.getIdDescripcionPedido() + "';";
+                st.execute(sql);
             } catch (SQLException e) {
                 nuevaDescripcion = new DescripcionPedido_TO();
                 throw e;

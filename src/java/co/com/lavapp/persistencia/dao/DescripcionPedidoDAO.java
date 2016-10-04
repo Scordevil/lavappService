@@ -21,7 +21,7 @@ public interface DescripcionPedidoDAO {
 
     public List<DescripcionPedido_TO> consultarDescripcionPedidoSegunPedido(Pedido_TO pedido) throws Exception;
 
-    public DescripcionPedido_TO editarEstadoDescripcionPedido(DescripcionPedido_TO descripcion, Estado_TO estado) throws Exception;
+    public DescripcionPedido_TO editarEstadoDescripcionPedido(DescripcionPedido_TO descripcion) throws Exception;
 
     public DescripcionPedido_TO consultarDescripcionPedidoSegunProducto(DescripcionPedido_TO descripcion) throws Exception;
 

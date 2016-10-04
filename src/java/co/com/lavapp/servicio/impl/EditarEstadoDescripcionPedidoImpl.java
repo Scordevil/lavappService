@@ -30,8 +30,9 @@ public class EditarEstadoDescripcionPedidoImpl implements EditarEstadoDescripcio
     public DescripcionPedido_TO EditarEstadoDescripcionPedido(@QueryParam("idDescripcionPedido") int idDescripcionPedido, @QueryParam("idEstado") int idEstado) throws Exception {
         DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(idDescripcionPedido);
         Estado_TO estado = new Estado_TO(idEstado);
+        descripcionPedido.setEstado(estado);
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
-        return descripcionDao.editarEstadoDescripcionPedido(descripcionPedido, estado);
+        return descripcionDao.editarEstadoDescripcionPedido(descripcionPedido);
     }
 
 }
