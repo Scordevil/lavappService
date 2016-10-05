@@ -6,6 +6,7 @@
 package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
+import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.modelo.dto.Zona_TO;
 import co.com.lavapp.persistencia.dao.ZonaDAO;
 import java.sql.ResultSet;
@@ -146,5 +147,50 @@ public class ZonaDAOImpl implements ZonaDAO {
             ConexionSQL.CerrarConexion();
         }
         return zonas;
+    }
+
+    @Override
+    public List<Zona_TO> consultarZonasAsesor(Usuario_TO asesor) throws Exception {
+        List<Zona_TO> zonas = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT z.idzona, z.nombre, z.descripcion FROM public.zona as z, public.usuario_zona as uz "
+                        + "WHERE uz.idzona = z.idzona AND uz.idusuario = '" + asesor.getIdUsuario() + "' ";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    zonas.add(new Zona_TO(rs.getInt(1), rs.getString(2), rs.getString(3)));
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return zonas;
+    }
+
+    @Override
+    public int consultarZonaYaAsociada(Usuario_TO asesor, Zona_TO zona) throws Exception {
+        Integer resultado = 0;
+        try {
+            try {
+                String sql = "SELECT idusuario, idzona FROM public.usuario_zona "
+                        + "WHERE idzona = '" + zona.getIdZona() + "' AND idusuario = '" + asesor.getIdUsuario() + "' ";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    resultado = 1;
+                    break;
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return resultado;
     }
 }

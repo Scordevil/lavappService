@@ -5,6 +5,7 @@
  */
 package co.com.lavapp.persistencia.dao;
 
+import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.modelo.dto.Zona_TO;
 import java.util.List;
 
@@ -19,6 +20,10 @@ public interface ZonaDAO {
     public List<Zona_TO> buscarZonas(String valor) throws Exception;
     
     public Zona_TO consultarZona(Zona_TO zona) throws Exception;
+    
+    public List<Zona_TO> consultarZonasAsesor(Usuario_TO asesor) throws Exception;
+    
+    public int consultarZonaYaAsociada(Usuario_TO asesor, Zona_TO zona) throws Exception;
 
     public Zona_TO registraZona(Zona_TO zona) throws Exception;
 
