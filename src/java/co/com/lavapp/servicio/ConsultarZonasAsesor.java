@@ -5,7 +5,6 @@
  */
 package co.com.lavapp.servicio;
 
-import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.modelo.dto.Zona_TO;
 import java.util.List;
 

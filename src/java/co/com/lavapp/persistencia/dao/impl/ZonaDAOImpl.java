@@ -193,4 +193,25 @@ public class ZonaDAOImpl implements ZonaDAO {
         }
         return resultado;
     }
+
+    @Override
+    public int eliminarAsociacionZona(Usuario_TO usuario, Zona_TO zona) throws Exception {
+        int resultado = 0;
+        try {
+            try {
+                String sql = "DELETE FROM public.usuario_zona "
+                        + "WHERE idzona = '" + zona.getIdZona() + "' AND idusuario = '" + usuario.getIdUsuario() + "' ";
+                st.execute(sql);
+                resultado = 1;
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return resultado;
+
+    }
 }

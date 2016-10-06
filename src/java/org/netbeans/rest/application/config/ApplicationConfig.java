@@ -144,6 +144,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EditarRolImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarUsuarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarZonaImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarAsociacionZonaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarBarrioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarCalificacionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarCiudadImpl.class);

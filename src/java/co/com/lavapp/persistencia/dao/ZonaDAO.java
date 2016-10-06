@@ -30,4 +30,6 @@ public interface ZonaDAO {
     public Zona_TO editarZona(Zona_TO zona) throws Exception;
 
     public Zona_TO eliminarZona(Zona_TO zona) throws Exception;
+
+    public int eliminarAsociacionZona(Usuario_TO usuario, Zona_TO zona) throws Exception;
 }
