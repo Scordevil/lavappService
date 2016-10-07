@@ -475,12 +475,49 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public Usuario_TO AsociarAsesorZona(Usuario_TO usuario, Zona_TO zona) throws Exception {
         Usuario_TO user = new Usuario_TO();
-        try {          
+        try {
             try {
                 String sql = "INSERT INTO public.usuario_zona (idusuario, idzona) "
                         + "VALUES('" + usuario.getIdUsuario() + "','" + zona.getIdZona() + "')";
                 st.execute(sql);
             } catch (Exception e) {
+                user = new Usuario_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return user;
+    }
+
+    @Override
+    public Usuario_TO ConsultarAsesorZona(Zona_TO zona) throws Exception {
+        Usuario_TO user = new Usuario_TO();
+        try {
+            try {
+                String sql = "SELECT u.idusuario, u.nombre, u.telefono, u.idBarrios, u.idrol, u.idestado, u.email, u.contrasena, u.apellido, u.genero, u.movil, u.direccion, u.idciudad, u.identificacion, u.rutaimagen"
+                        + " FROM public.usuario as u, public.usuario_zona as az where u.idusuario = az.idusuario and az.idzona = '" + zona.getIdZona() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    user = new Usuario_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            new Barrio_TO(rs.getInt(4)),
+                            new Rol_TO(rs.getInt(5)),
+                            new Estado_TO(rs.getInt(6)),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            new Ciudad_TO(rs.getInt(13)),
+                            rs.getString(14),
+                            rs.getString(15));
+                }
+            } catch (SQLException e) {
                 user = new Usuario_TO();
                 throw e;
             }

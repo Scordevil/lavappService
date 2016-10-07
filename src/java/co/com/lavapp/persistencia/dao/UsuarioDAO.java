@@ -44,5 +44,7 @@ public interface UsuarioDAO {
     public List<Usuario_TO> BuscarAdministradores(String valor) throws Exception;   
     
     public Usuario_TO AsociarAsesorZona(Usuario_TO usuario, Zona_TO zona) throws Exception;
+    
+    public Usuario_TO ConsultarAsesorZona(Zona_TO zona) throws Exception;
 
 }

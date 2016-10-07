@@ -158,9 +158,70 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
     }
-    
-    // Constructor con fecha en String
-        public Pedido_TO(int idPedido, Usuario_TO usuario, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
+
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
+        this.idPedido = idPedido;
+        this.usuario = usuario;
+        this.fechaInicio = fechaInicio;
+        this.fechaInicioString = fechaInicioString;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
+        this.proveedor = proveedor;
+        this.fechaEntrega = fechaEntrega;
+        this.fechaEntregaString = fechaEntregaString;
+        this.direccionEntrega = direccionEntrega;
+        this.direccionRecogida = direccionRecogida;
+        this.fechaRecogidaString = fechaRecogidaString;
+        this.fechaRecogida = fechaRecogida;
+        this.quienEntrega = quienEntrega;
+        this.quienRecibe = quienRecibe;
+        this.barrioRecogida = barrioRecogida;
+        this.barrioEntrega = barrioEntrega;
+        this.asesor = asesor;
+    }
+
+    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
+        this.usuario = usuario;
+        this.fechaInicio = fechaInicio;
+        this.fechaInicioString = fechaInicioString;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
+        this.proveedor = proveedor;
+        this.fechaEntrega = fechaEntrega;
+        this.fechaEntregaString = fechaEntregaString;
+        this.direccionEntrega = direccionEntrega;
+        this.direccionRecogida = direccionRecogida;
+        this.fechaRecogidaString = fechaRecogidaString;
+        this.fechaRecogida = fechaRecogida;
+        this.quienEntrega = quienEntrega;
+        this.quienRecibe = quienRecibe;
+        this.barrioRecogida = barrioRecogida;
+        this.barrioEntrega = barrioEntrega;
+        this.asesor = asesor;
+    }   
+
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
+        this.idPedido = idPedido;
+        this.usuario = usuario;
+        this.fechaInicio = fechaInicio;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.estado = estado;
+        this.proveedor = proveedor;
+        this.fechaEntrega = fechaEntrega;
+        this.direccionEntrega = direccionEntrega;
+        this.direccionRecogida = direccionRecogida;     
+        this.fechaRecogida = fechaRecogida;
+        this.quienEntrega = quienEntrega;
+        this.quienRecibe = quienRecibe;
+        this.barrioRecogida = barrioRecogida;
+        this.barrioEntrega = barrioEntrega;
+        this.asesor = asesor;
+    }
+
+    public Pedido_TO(int idPedido, Usuario_TO usuario, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicioString = fechaInicioString;
@@ -176,24 +237,8 @@ public class Pedido_TO {
         this.quienRecibe = quienRecibe;
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
-    }
-               
-    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
-        this.usuario = usuario;
-        this.fechaInicio = fechaInicio;
-        this.horaInicio = horaInicio;
-        this.horaFinal = horaFinal;
-        this.estado = estado;
-        this.proveedor = proveedor;
-        this.fechaEntrega = fechaEntrega;
-        this.direccionEntrega = direccionEntrega;
-        this.direccionRecogida = direccionRecogida;
-        this.fechaRecogida = fechaRecogida;
-        this.quienEntrega = quienEntrega;
-        this.quienRecibe = quienRecibe;
-        this.barrioRecogida = barrioRecogida;
-        this.barrioEntrega = barrioEntrega;
-    }
+        this.asesor = asesor;
+    } 
 
     public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
         this.usuario = usuario;
@@ -210,7 +255,9 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
     }
-
+    
+    
+    
     //Getter and Setter
     public int getIdPedido() {
         return idPedido;
@@ -355,6 +402,16 @@ public class Pedido_TO {
     public void setFechaRecogidaString(String fechaRecogidaString) {
         this.fechaRecogidaString = fechaRecogidaString;
     }
+
+    public Usuario_TO getAsesor() {
+        return asesor;
+    }
+
+    public void setAsesor(Usuario_TO asesor) {
+        this.asesor = asesor;
+    }
+    
+    
     
     
 
