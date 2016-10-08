@@ -146,7 +146,7 @@ public class CorreoDAOImpl implements CorreoDAO {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(usuario.getEmail()));
-            message.setSubject("Confirmacion de agendamiento"); //asunto
+            message.setSubject("Confirmacion de servicio"); //asunto
             String mensajehtml = "Su agendamiento ha sido procesado con éxito, nuestro asesor recibirá sus prendas a la mayor brevedad.\n"
                     + " No olvide calificar nuestro servicio para que nos ayude a mejorar día a día."; //Mensaje
             message.setContent(mensajehtml, "text/html");
