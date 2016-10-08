@@ -55,6 +55,16 @@ public class ConexionSQL {
         return st;
     }
 
+    public static Connection getCn() {
+        return cn;
+    }
+
+    public static void setCn(Connection cn) {
+        ConexionSQL.cn = cn;
+    }
+
+    
+    
     public static Connection CerrarConexion() throws SQLException {
         cn.close();
         st.close();
