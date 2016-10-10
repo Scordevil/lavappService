@@ -7,6 +7,7 @@ package co.com.lavapp.servicio.impl;
 
 import co.com.lavapp.modelo.dto.Barrio_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
+import co.com.lavapp.modelo.dto.FormaPago_TO;
 import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
@@ -43,7 +44,8 @@ public class RegistrarPedidoCompletoImpl implements RegistrarPedidoCompleto {
             @QueryParam("quienEntrega") String quienEntrega,
             @QueryParam("quienRecibe") String quienRecibe,
             @QueryParam("idBarrioRecogida") int idBarrioRecogida,
-            @QueryParam("idBarrioEntrega") int idBarrioEntrega) throws Exception {
+            @QueryParam("idBarrioEntrega") int idBarrioEntrega,
+            @QueryParam("idFormaPago") int idFormaPago) throws Exception {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         PedidoDAOImpl pedidoDAO = new PedidoDAOImpl();
         Date fecha = new Date();       
@@ -62,7 +64,8 @@ public class RegistrarPedidoCompletoImpl implements RegistrarPedidoCompleto {
                 quienEntrega,
                 quienRecibe,
                 new Barrio_TO(idBarrioRecogida),
-                new Barrio_TO(idBarrioEntrega));
+                new Barrio_TO(idBarrioEntrega),
+                new FormaPago_TO(idFormaPago));
         } catch (ParseException e) {
             e.getMessage();
         }

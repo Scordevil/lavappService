@@ -7,6 +7,7 @@ package co.com.lavapp.servicio.impl;
 
 import co.com.lavapp.modelo.dto.Barrio_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
+import co.com.lavapp.modelo.dto.FormaPago_TO;
 import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Proveedor_TO;
@@ -47,7 +48,8 @@ public class ModificarPedidoImpl implements ModificarPedido {
             @QueryParam("quienEntrega") String quienEntrega,
             @QueryParam("quienRecibe") String quienRecibe,
             @QueryParam("idBarrios_recogida") int idBarriosRecogida,
-            @QueryParam("idBarrios_entrega") int idBarriosEntrega
+            @QueryParam("idBarrios_entrega") int idBarriosEntrega,
+            @QueryParam("idFormaPago") int idFormaPago
     ) throws Exception {
         
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -77,7 +79,8 @@ public class ModificarPedidoImpl implements ModificarPedido {
                 quienEntrega,
                 quienRecibe,
                 new Barrio_TO(idBarriosRecogida),
-                new Barrio_TO(idBarriosEntrega));
+                new Barrio_TO(idBarriosEntrega),
+                new FormaPago_TO(idFormaPago));
         
         return pedidoDAO.modificarPedido(pedidoModelo);
         

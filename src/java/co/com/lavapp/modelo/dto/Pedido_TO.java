@@ -132,6 +132,11 @@ public class Pedido_TO {
      * Columna idasesor
      */
     private Usuario_TO asesor;
+     /**
+     *
+     * Columna idasesor
+     */
+    private FormaPago_TO formaPago;
     //Constructores
     public Pedido_TO() {
     }
@@ -141,7 +146,7 @@ public class Pedido_TO {
         this.idPedido = idPedido;
     }
 
-    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, FormaPago_TO formaPago) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
@@ -157,9 +162,10 @@ public class Pedido_TO {
         this.quienRecibe = quienRecibe;
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
+        this.formaPago = formaPago;
     }
 
-    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor, FormaPago_TO formaPago) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
@@ -179,9 +185,10 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
         this.asesor = asesor;
+        this.formaPago = formaPago;
     }
 
-    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
+    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor, FormaPago_TO formaPago) {
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
         this.fechaInicioString = fechaInicioString;
@@ -200,9 +207,10 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
         this.asesor = asesor;
+        this.formaPago = formaPago;
     }   
 
-    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor, FormaPago_TO formaPago) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
@@ -219,9 +227,10 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
         this.asesor = asesor;
+        this.formaPago = formaPago;
     }
 
-    public Pedido_TO(int idPedido, Usuario_TO usuario, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor) {
+    public Pedido_TO(int idPedido, Usuario_TO usuario, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor, FormaPago_TO formaPago) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicioString = fechaInicioString;
@@ -238,9 +247,10 @@ public class Pedido_TO {
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
         this.asesor = asesor;
+        this.formaPago = formaPago;
     } 
 
-    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega) {
+    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, FormaPago_TO formaPago) {
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
         this.horaInicio = horaInicio;
@@ -254,6 +264,7 @@ public class Pedido_TO {
         this.quienRecibe = quienRecibe;
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
+        this.formaPago = formaPago;
     }
     
     
@@ -410,18 +421,18 @@ public class Pedido_TO {
     public void setAsesor(Usuario_TO asesor) {
         this.asesor = asesor;
     }
-    
-    
-    
-    
+
+    public FormaPago_TO getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(FormaPago_TO formaPago) {
+        this.formaPago = formaPago;
+    }
 
     @Override
     public String toString() {
-        return "Pedido_TO{" + "idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", fechaInicioString=" + fechaInicioString + ", horaInicio=" + horaInicio + ", horaFinal=" + horaFinal + ", estado=" + estado + ", proveedor=" + proveedor + ", fechaEntrega=" + fechaEntrega + ", fechaEntregaString=" + fechaEntregaString + ", direccionEntrega=" + direccionEntrega + ", direccionRecogida=" + direccionRecogida + ", fechaRecogidaString=" + fechaRecogidaString + ", fechaRecogida=" + fechaRecogida + ", quienEntrega=" + quienEntrega + ", quienRecibe=" + quienRecibe + ", barrioRecogida=" + barrioRecogida + ", barrioEntrega=" + barrioEntrega + '}';
+        return "Pedido_TO{" + "idPedido=" + idPedido + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", fechaInicioString=" + fechaInicioString + ", horaInicio=" + horaInicio + ", horaFinal=" + horaFinal + ", estado=" + estado + ", proveedor=" + proveedor + ", fechaEntrega=" + fechaEntrega + ", fechaEntregaString=" + fechaEntregaString + ", direccionEntrega=" + direccionEntrega + ", direccionRecogida=" + direccionRecogida + ", fechaRecogidaString=" + fechaRecogidaString + ", fechaRecogida=" + fechaRecogida + ", quienEntrega=" + quienEntrega + ", quienRecibe=" + quienRecibe + ", barrioRecogida=" + barrioRecogida + ", barrioEntrega=" + barrioEntrega + ", asesor=" + asesor + ", formaPago=" + formaPago + '}';
     }
     
-    
-
-
-
 }
