@@ -44,7 +44,7 @@ public class RegistrarPedidoCompletoImpl implements RegistrarPedidoCompleto {
             @QueryParam("quienEntrega") String quienEntrega,
             @QueryParam("quienRecibe") String quienRecibe,
             @QueryParam("idBarrioRecogida") int idBarrioRecogida,
-            @QueryParam("idBarrioEntrega") int idBarrioEntrega,
+            @QueryParam("idBarrioEntrega") int idBarrioEntrega,            
             @QueryParam("idFormaPago") int idFormaPago) throws Exception {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         PedidoDAOImpl pedidoDAO = new PedidoDAOImpl();
@@ -65,6 +65,7 @@ public class RegistrarPedidoCompletoImpl implements RegistrarPedidoCompleto {
                 quienRecibe,
                 new Barrio_TO(idBarrioRecogida),
                 new Barrio_TO(idBarrioEntrega),
+                new Usuario_TO(),
                 new FormaPago_TO(idFormaPago));
         } catch (ParseException e) {
             e.getMessage();

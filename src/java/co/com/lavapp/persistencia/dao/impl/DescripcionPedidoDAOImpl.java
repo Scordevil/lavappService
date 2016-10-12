@@ -154,7 +154,7 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     public DescripcionPedido_TO registrarDescripcion(DescripcionPedido_TO descP) throws Exception {
         DescripcionPedido_TO descModelo = new DescripcionPedido_TO();
         try {
-            try {           
+            try {
                 String sql = "INSERT INTO public.descripcionpedido(idestado, idpedido, idsubproducto) "
                         + " VALUES ( " + descP.getEstado().getIdEstado() + ", "
                         + "" + descP.getPedido().getIdPedido() + ", "
@@ -211,15 +211,12 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                         + " descripcion = '" + descripcion.getDescripcion() + "',"
                         + " observacionasesor = '" + descripcion.getObservacionAsesor() + "',"
                         + " observacionadministrador = '" + descripcion.getObservacionAdministrador() + "',"
-                        + " foto1 = '" + descripcion.getFoto1() + "',"
-                        + " foto2 = '" + descripcion.getFoto2() + "',"
-                        + " foto3 = '" + descripcion.getFoto3() + "',"
                         + " idcolor = '" + descripcion.getColor().getIdColor() + "',"
                         + " idpedido = '" + descripcion.getPedido().getIdPedido() + "',"
                         + " idsubproducto = '" + descripcion.getSubProducto().getIdSubProducto() + "',"
                         + " codigo = '" + descripcion.getCodigo() + "'"
-                        + " WHERE descripcion.iddescripcionpedido = '" + descripcion.getIdDescripcionPedido() + "'";
-                ResultSet rs = st.executeQuery(sql);
+                        + " WHERE iddescripcionpedido = '" + descripcion.getIdDescripcionPedido() + "'";
+                st.execute(sql);
             } catch (SQLException e) {
                 nuevaDescripcion = new DescripcionPedido_TO();
                 throw e;

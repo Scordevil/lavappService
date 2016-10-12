@@ -28,6 +28,7 @@ public interface ModificarPedido {
             String quienrecibe, 
             int idBarriosRecogida, 
             int idBarriosEntrega,
+            int idAsesor,
             int idFormaPago) throws Exception;
     
 }

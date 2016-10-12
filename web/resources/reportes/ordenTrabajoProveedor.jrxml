@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16c74deb-ba7f-4264-b0fa-603cf1af1533">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ordenTrabajoProveedor" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16c74deb-ba7f-4264-b0fa-603cf1af1533">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idpedido" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[$F{idpedido}]]></defaultValueExpression>
 	</parameter>
@@ -11,11 +11,10 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select 
-p.idpedido, p.fechainicio, p.fechaentrega, p.direccionrecogida, p.direccionentrega, p.fecharecogida, p.quienentrega, p.quienrecibe, h.horario as horarioinicio, h1.horario as horariofinal, b.nombre as barriorecogida, b1.nombre as barrioentrega, u.nombre, u.apellido, sum(c.valor) as costo
-from public.pedido as p, public.horario as h, public.horario as h1, public.barrio as b, public.barrio as b1, public.usuario as u, public.costo as c, public.descripcionpedido as d, public.subproducto as sp  
-where p.horarioinicio_idhorario = h.idhorario and p.horariofinal_idhorario = h1.idhorario and p.idbarrios_recogida = b.idbarrios and p.idbarrios_entrega = b1.idbarrios and p.idusuario = u.idusuario and p.idpedido = $P{idpedido} and d.idPedido = p.idPedido and 
-d.idsubproducto = sp.idsubproducto and c.idsubproducto = sp.idsubproducto 
-GROUP BY p.idpedido, h.horario, h1.horario, b.nombre, b1.nombre, u.nombre, u.apellido]]>
+p.idpedido, p.fechainicio, p.fechaentrega, p.direccionrecogida, p.direccionentrega, p.fecharecogida, p.quienentrega, p.quienrecibe, h.horario as horarioinicio, h1.horario as horariofinal, b.nombre as barriorecogida, b1.nombre as barrioentrega, u.nombre, u.apellido, pr.razonsocial as razonsocial
+from public.pedido as p, public.horario as h, public.horario as h1, public.barrio as b, public.barrio as b1, public.usuario as u, public.proveedor as pr  
+where p.horarioinicio_idhorario = h.idhorario and p.horariofinal_idhorario = h1.idhorario and p.idbarrios_recogida = b.idbarrios and p.idbarrios_entrega = b1.idbarrios and p.idusuario = u.idusuario and p.idpedido = $P{idpedido}  and  p.idproveedor = pr.idproveedor
+GROUP BY p.idpedido, h.horario, h1.horario, b.nombre, b1.nombre, u.nombre, u.apellido, pr.razonsocial]]>
 	</queryString>
 	<field name="idpedido" class="java.lang.Integer"/>
 	<field name="fechainicio" class="java.sql.Date"/>
@@ -31,7 +30,7 @@ GROUP BY p.idpedido, h.horario, h1.horario, b.nombre, b1.nombre, u.nombre, u.ape
 	<field name="barrioentrega" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
-	<field name="costo" class="java.lang.Integer"/>
+	<field name="razonsocial" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -184,9 +183,9 @@ GROUP BY p.idpedido, h.horario, h1.horario, b.nombre, b1.nombre, u.nombre, u.ape
 				<textFieldExpression><![CDATA[$F{horariofinal}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="115">
+		<band height="142">
 			<staticText>
-				<reportElement x="0" y="33" width="555" height="30" uuid="42359135-09f6-4341-bbe4-7e19cb84eb9b"/>
+				<reportElement x="0" y="60" width="555" height="30" uuid="42359135-09f6-4341-bbe4-7e19cb84eb9b"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -207,17 +206,15 @@ GROUP BY p.idpedido, h.horario, h1.horario, b.nombre, b1.nombre, u.nombre, u.ape
 				<text><![CDATA[Servicio de recogida, lavado y entrega de prendas]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="0" y="62" width="555" height="53" uuid="7b7088a4-70d9-497c-9cc1-16e8ecf321e9"/>
+				<reportElement x="0" y="90" width="555" height="52" uuid="89ca9877-18ee-44cd-9be0-66217174b713"/>
 				<subreportParameter name="idpedido">
 					<subreportParameterExpression><![CDATA[$P{idpedido}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ordenTrabajo_prendas.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ordenTrabajo_prendasProveedor.jasper"]]></subreportExpression>
 			</subreport>
-		</band>
-		<band height="26">
 			<staticText>
-				<reportElement x="0" y="0" width="274" height="26" uuid="39602a09-a70a-4b92-8960-44e3e693f462"/>
+				<reportElement x="0" y="33" width="208" height="27" uuid="161338f4-8ca2-4601-aa6a-f1f5eee97b1f"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -228,10 +225,10 @@ GROUP BY p.idpedido, h.horario, h1.horario, b.nombre, b1.nombre, u.nombre, u.ape
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[VALOR TOTAL:]]></text>
+				<text><![CDATA[Planta:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="0" width="281" height="26" uuid="77c7090b-3a7d-4f9c-926b-f8d8c6b5c7bf"/>
+				<reportElement x="208" y="33" width="347" height="27" uuid="db437288-ab4f-4978-90ca-d7b7b0e743c3"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -240,50 +237,22 @@ GROUP BY p.idpedido, h.horario, h1.horario, b.nombre, b1.nombre, u.nombre, u.ape
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{costo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{razonsocial}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="86">
+		<band height="62">
 			<staticText>
-				<reportElement x="0" y="0" width="274" height="26" uuid="e7b4b4e4-ffd6-4dc1-bc0b-fbb87577c6c6"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Forma de pago]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="26" width="274" height="60" uuid="5ad5906f-43e6-4087-bde4-8e22b03fd46f"/>
+				<reportElement x="0" y="1" width="274" height="61" uuid="5ad5906f-43e6-4087-bde4-8e22b03fd46f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Firma:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="297" y="61" width="234" height="1" uuid="87241693-f3d1-4c76-92f3-1a1ee0001c3d"/>
+				<reportElement x="300" y="34" width="234" height="1" uuid="87241693-f3d1-4c76-92f3-1a1ee0001c3d"/>
 			</line>
-			<staticText>
-				<reportElement x="274" y="0" width="281" height="26" uuid="67b743ad-fa95-443c-98d2-200ba7bb02fb"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Transferencia Electronica]]></text>
-			</staticText>
 		</band>
 	</detail>
 	<summary>

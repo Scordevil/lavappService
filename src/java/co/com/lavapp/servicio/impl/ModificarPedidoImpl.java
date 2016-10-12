@@ -49,6 +49,7 @@ public class ModificarPedidoImpl implements ModificarPedido {
             @QueryParam("quienRecibe") String quienRecibe,
             @QueryParam("idBarrios_recogida") int idBarriosRecogida,
             @QueryParam("idBarrios_entrega") int idBarriosEntrega,
+            @QueryParam("idAsesor") int idAsesor,
             @QueryParam("idFormaPago") int idFormaPago
     ) throws Exception {
         
@@ -80,6 +81,7 @@ public class ModificarPedidoImpl implements ModificarPedido {
                 quienRecibe,
                 new Barrio_TO(idBarriosRecogida),
                 new Barrio_TO(idBarriosEntrega),
+                new Usuario_TO(idAsesor),
                 new FormaPago_TO(idFormaPago));
         
         return pedidoDAO.modificarPedido(pedidoModelo);

@@ -24,7 +24,7 @@ public interface RegistrarPedidoCompleto {
             String quienEntrega,
             String quienRecibe,
             int idBarrioRecogida,
-            int idBarrioEntrega,
+            int idBarrioEntrega,          
             int idFormaPago) throws Exception;
     
 }

@@ -30,19 +30,17 @@ public class EditarDescripcionPedidoImpl implements EditarDescripcionPedido{
     @GET
     @Produces({"application/json"})
     @Override
-    public DescripcionPedido_TO editarDescripcionPedido(@QueryParam("idEstado") int idEstado, 
+    public DescripcionPedido_TO editarDescripcionPedido(@QueryParam("idDescripcionPedido") int idDescripcionPedido,
+            @QueryParam("idEstado") int idEstado, 
             @QueryParam("descripcion") String descripcion, 
             @QueryParam("observacionAsesor") String observacionAsesor,
-            @QueryParam("observaciobn") String observacionAdministrador,
-            @QueryParam("foto1") byte foto1,
-            @QueryParam("foto2") byte foto2,
-            @QueryParam("foto3") byte foto3,
+            @QueryParam("observaciobn") String observacionAdministrador,           
             @QueryParam("idColor") int idColor,
             @QueryParam("idPedido") int idPedido,
             @QueryParam("idSubProducto") int idSubProducto,
             @QueryParam("codigo") String codigo) throws Exception {
         
-        DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(new Estado_TO(idEstado), new SubProducto_TO(idSubProducto), descripcion, observacionAsesor, observacionAdministrador, foto1, foto2, foto3, new Color_TO(idColor), new Pedido_TO(idPedido), codigo);
+        DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(idDescripcionPedido, new Estado_TO(idEstado), new SubProducto_TO(idSubProducto), descripcion, observacionAsesor, observacionAdministrador, new Color_TO(idColor), new Pedido_TO(idPedido), codigo);
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
         return descripcionDao.editarDescripcion(descripcionPedido);
     }

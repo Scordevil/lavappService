@@ -146,7 +146,7 @@ public class Pedido_TO {
         this.idPedido = idPedido;
     }
 
-    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, FormaPago_TO formaPago) {
+    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor, FormaPago_TO formaPago) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
@@ -162,6 +162,7 @@ public class Pedido_TO {
         this.quienRecibe = quienRecibe;
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
+        this.asesor = asesor;
         this.formaPago = formaPago;
     }
 
@@ -208,28 +209,8 @@ public class Pedido_TO {
         this.barrioEntrega = barrioEntrega;
         this.asesor = asesor;
         this.formaPago = formaPago;
-    }   
-
-    public Pedido_TO(int idPedido, Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor, FormaPago_TO formaPago) {
-        this.idPedido = idPedido;
-        this.usuario = usuario;
-        this.fechaInicio = fechaInicio;
-        this.horaInicio = horaInicio;
-        this.horaFinal = horaFinal;
-        this.estado = estado;
-        this.proveedor = proveedor;
-        this.fechaEntrega = fechaEntrega;
-        this.direccionEntrega = direccionEntrega;
-        this.direccionRecogida = direccionRecogida;     
-        this.fechaRecogida = fechaRecogida;
-        this.quienEntrega = quienEntrega;
-        this.quienRecibe = quienRecibe;
-        this.barrioRecogida = barrioRecogida;
-        this.barrioEntrega = barrioEntrega;
-        this.asesor = asesor;
-        this.formaPago = formaPago;
-    }
-
+    }  
+   
     public Pedido_TO(int idPedido, Usuario_TO usuario, String fechaInicioString, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Proveedor_TO proveedor, String fechaEntregaString, String direccionEntrega, String direccionRecogida, String fechaRecogidaString, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, Usuario_TO asesor, FormaPago_TO formaPago) {
         this.idPedido = idPedido;
         this.usuario = usuario;
@@ -250,7 +231,7 @@ public class Pedido_TO {
         this.formaPago = formaPago;
     } 
 
-    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega, FormaPago_TO formaPago) {
+    public Pedido_TO(Usuario_TO usuario, Date fechaInicio, Horario_TO horaInicio, Horario_TO horaFinal, Estado_TO estado, Date fechaEntrega, String direccionEntrega, String direccionRecogida, Date fechaRecogida, String quienEntrega, String quienRecibe, Barrio_TO barrioRecogida, Barrio_TO barrioEntrega,Usuario_TO asesor, FormaPago_TO formaPago) {
         this.usuario = usuario;
         this.fechaInicio = fechaInicio;
         this.horaInicio = horaInicio;
@@ -264,6 +245,7 @@ public class Pedido_TO {
         this.quienRecibe = quienRecibe;
         this.barrioRecogida = barrioRecogida;
         this.barrioEntrega = barrioEntrega;
+        this.asesor = asesor;
         this.formaPago = formaPago;
     }
     
