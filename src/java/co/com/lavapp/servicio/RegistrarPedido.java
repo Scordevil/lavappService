@@ -13,5 +13,5 @@ import co.com.lavapp.modelo.dto.Pedido_TO;
  */
 public interface RegistrarPedido {
     
-    public Pedido_TO registrarPedido(String fechaInicio, int idHorarioInicio, int idHorarioFinal, int idEstado) throws Exception;
+    public Pedido_TO registrarPedido(String fechaInicio, int idHorarioInicio, int idHorarioFinal, int idEstado, int idFormaPago, int idEstadoPago ) throws Exception;
 }

@@ -27,14 +27,14 @@ import net.sf.jasperreports.engine.JasperPrint;
  */
 public class GenerarReportes {
 
-    public static String rutaDocumento;
+    public String rutaDocumento;
 
-    public static String getRutaDocumento() {
+    public String getRutaDocumento() {
         return rutaDocumento;
     }
 
-    public static void setRutaDocumento(String rutaDocumento) {
-        GenerarReportes.rutaDocumento = rutaDocumento;
+    public void setRutaDocumento(String rutaDocumento) {
+       this.rutaDocumento = rutaDocumento;
     }
 
     //Metodos
@@ -62,7 +62,6 @@ public class GenerarReportes {
     }
 
     public void generarOrdenTrabajo(Pedido_TO pedido) throws JRException, IOException {
-
         ConexionSQL conexion = new ConexionSQL();
         Map parametro = new HashMap();
         parametro.put("idpedido", pedido.getIdPedido());
@@ -80,9 +79,27 @@ public class GenerarReportes {
         stream.close();
         FacesContext.getCurrentInstance().responseComplete();
     }
+    
+    public void generarOrdenTrabajoProveedor(Pedido_TO pedido) throws JRException, IOException {
+        ConexionSQL conexion = new ConexionSQL();
+        Map parametro = new HashMap();
+        parametro.put("idpedido", pedido.getIdPedido());
+
+        File jasper = new File(getPath() + "/resources/reportes/ordenTrabajoProveedor.jasper");
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, getCn());
+
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=Orden de trabajo planta N°" + pedido.getIdPedido() + ".pdf");
+        ServletOutputStream stream = response.getOutputStream();
+
+        JasperExportManager.exportReportToPdfStream(jp, stream);
+
+        stream.flush();
+        stream.close();
+        FacesContext.getCurrentInstance().responseComplete();
+    }
 
     public void generarOrdenTrabajoEnContexto(Pedido_TO pedido) {
-
         try {
             String path = getPathDocumentos() + "Orden de trabajo N°" + pedido.getIdPedido() + ".pdf";
             ConexionSQL conexion = new ConexionSQL();
@@ -96,5 +113,40 @@ public class GenerarReportes {
         } catch (JRException e) {
             e.getMessage();
         }
+    }
+    
+    public void generarOrdenTrabajoProveedorEnContexto(Pedido_TO pedido) {
+        try {
+            String path = getPathDocumentos() + "Orden de trabajo proveedor N°" + pedido.getIdPedido() + ".pdf";
+            ConexionSQL conexion = new ConexionSQL();
+            Map parametro = new HashMap();
+            parametro.put("idpedido", pedido.getIdPedido());
+
+            File jasper = new File(getPath() + "/resources/reportes/ordenTrabajoProveedor.jasper");
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, getCn());
+
+            JasperExportManager.exportReportToPdfFile(jp, path);
+        } catch (JRException e) {
+            e.getMessage();
+        }
+    }
+    
+    //Metodos para generar el reporte
+    public void generarOrdenTrabajoParaCorreo(Pedido_TO pedido) {
+        String ruta = getPathDocumentos() + "Orden de trabajo N°" + pedido.getIdPedido() + ".pdf";
+        File fichero = new File(ruta);
+        if (!fichero.exists()) {
+            generarOrdenTrabajoEnContexto(pedido);
+        }
+        rutaDocumento = getPathDocumentos() + "Orden de trabajo N°" + pedido.getIdPedido() + ".pdf";
+    }
+    
+    public void generarOrdenTrabajoProveedorParaCorreo(Pedido_TO pedido) {       
+        String ruta = getPathDocumentos() + "Orden de trabajo planta N°" + pedido.getIdPedido() + ".pdf";
+        File fichero = new File(ruta);
+        if (!fichero.exists()) {
+            generarOrdenTrabajoProveedorEnContexto(pedido);
+        }
+        rutaDocumento = getPathDocumentos() + "Orden de trabajo planta N°" + pedido.getIdPedido() + ".pdf";
     }
 }

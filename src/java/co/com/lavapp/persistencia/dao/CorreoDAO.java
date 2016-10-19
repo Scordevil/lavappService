@@ -5,6 +5,7 @@
  */
 package co.com.lavapp.persistencia.dao;
 
+import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 
 /**
@@ -20,10 +21,12 @@ public interface CorreoDAO {
     public int enviarMensajeMalaCalificacion(Usuario_TO usuario);
 
     public int enviarMensajeAgendamiento(Usuario_TO usuario);
-
-    public int enviarMensajeRecibidoAlCliente(Usuario_TO usuario);
     
-    public int enviarMensajeRecibidoALaPlanta(Usuario_TO usuario);
+    public int enviarOrdenServicioAsesor(Usuario_TO usuario, Pedido_TO pedido, String rutaArchivo);
+
+    public int enviarMensajeRecibidoAlCliente(Usuario_TO usuario, Pedido_TO pedido, String rutaArchivo);
+    
+    public int enviarOrdenServicioAPlanta(Usuario_TO usuario, Pedido_TO pedido, String rutaArchivo);
 
     public int enviarMensajeRecibidoDePlanta(Usuario_TO usuario);
 

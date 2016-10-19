@@ -5,6 +5,7 @@
  */
 package co.com.lavapp.persistencia.dao.impl;
 
+import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Usuario_TO;
 import co.com.lavapp.persistencia.dao.CorreoDAO;
 import java.text.SimpleDateFormat;
@@ -87,7 +88,7 @@ public class CorreoDAOImpl implements CorreoDAO {
                     new InternetAddress(usuario.getEmail()));
             message.setSubject("Nueva contraseña para ingreso a sistema LavaApp"); //asunto
             String mensajehtml = "Hemos recibido una solicitud para generar una contraseña provisional al sistema.\n"
-                    + "La contraseña es "+usuario.getContrasena()+", por favor ingrese al sistema e inmediatamente modifique esta contraseña por una personal."; //Mensaje
+                    + "La contraseña es " + usuario.getContrasena() + ", por favor ingrese al sistema e inmediatamente modifique esta contraseña por una personal."; //Mensaje
             message.setContent(mensajehtml, "text/html");
             Transport t = session.getTransport("smtp");
             t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
@@ -166,7 +167,7 @@ public class CorreoDAOImpl implements CorreoDAO {
     }
 
     @Override
-    public int enviarMensajeRecibidoAlCliente(Usuario_TO usuario) {
+    public int enviarOrdenServicioAsesor(Usuario_TO usuario, Pedido_TO pedido, String rutaArchivo) {
         int valor = 0;
         init();
         try {
@@ -177,10 +178,23 @@ public class CorreoDAOImpl implements CorreoDAO {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(usuario.getEmail()));
-            message.setSubject("Confirmacion de recibido"); //asunto
-            String mensajehtml = "Hemos procesado su orden y estará disponible a partir de 24 horas, adjuntamos su recibo en PDF adjunto.\n"
-                    + "Contribuimos con el ambiente cero papel."; //Mensaje
-            message.setContent(mensajehtml, "text/html");
+            message.setSubject("Confirmacion de servicio"); //asunto
+
+            BodyPart texto = new MimeBodyPart();
+
+            String mensajehtml = "Tiene una orden de servicio asignada, se adjunta orden de servicio."; //Mensaje
+
+            texto.setContent(mensajehtml, "text/html");
+
+            BodyPart adjunto = new MimeBodyPart();
+            adjunto.setDataHandler(new DataHandler(new FileDataSource(rutaArchivo)));
+            adjunto.setFileName("Orden trabajo N°" + pedido.getIdPedido() + ".pdf");
+
+            MimeMultipart multipart = new MimeMultipart();
+            multipart.addBodyPart(texto);
+            multipart.addBodyPart(adjunto);
+
+            message.setContent(multipart);
             Transport t = session.getTransport("smtp");
             t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
             t.sendMessage(message, message.getAllRecipients());
@@ -197,7 +211,7 @@ public class CorreoDAOImpl implements CorreoDAO {
     }
 
     @Override
-    public int enviarMensajeRecibidoALaPlanta(Usuario_TO usuario) {
+    public int enviarMensajeRecibidoAlCliente(Usuario_TO usuario, Pedido_TO pedido, String rutaArchivo) {
         int valor = 0;
         init();
         try {
@@ -208,9 +222,66 @@ public class CorreoDAOImpl implements CorreoDAO {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(usuario.getEmail()));
-            message.setSubject("Confirmacion de entrenga en plata de lavado"); //asunto
-            String mensajehtml = "Orden en traslado para procesamiento."; //Mensaje
-            message.setContent(mensajehtml, "text/html");
+            message.setSubject("Confirmacion de recibido"); //asunto
+
+            BodyPart texto = new MimeBodyPart();
+
+            String mensajehtml = "Hemos procesado su orden y estará disponible a partir de 24 horas, adjuntamos su recibo en PDF adjunto.\n"
+                    + "Contribuimos con el ambiente cero papel."; //Mensaje
+            texto.setContent(mensajehtml, "text/html");
+
+            BodyPart adjunto = new MimeBodyPart();
+            adjunto.setDataHandler(new DataHandler(new FileDataSource(rutaArchivo)));
+            adjunto.setFileName("Orden trabajo N°" + pedido.getIdPedido() + ".pdf");
+
+            MimeMultipart multipart = new MimeMultipart();
+            multipart.addBodyPart(texto);
+            multipart.addBodyPart(adjunto);
+
+            message.setContent(multipart);
+            Transport t = session.getTransport("smtp");
+            t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
+            t.sendMessage(message, message.getAllRecipients());
+            t.close();
+            valor = 1;
+        } catch (MessagingException me) {
+            valor = 0;
+            me.getMessage();
+            //Aqui se deberia o mostrar un mensaje de error o en lugar
+            //de no hacer nada con la excepcion, lanzarla para que el modulo
+            //superior la capture y avise al usuario con un popup, por ejemplo.           
+        }
+        return valor;
+    }
+
+    @Override
+    public int enviarOrdenServicioAPlanta(Usuario_TO usuario, Pedido_TO pedido, String rutaArchivo) {
+        int valor = 0;
+        init();
+        try {
+            MimeMessage message = new MimeMessage(session);
+            //quien envia
+            message.setFrom(new InternetAddress("soportelavaapp@gmail.com"));
+            // a donde se envia
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(usuario.getEmail()));
+            message.setSubject("Confirmacion de entrenga en planta de lavado"); //asunto
+            BodyPart texto = new MimeBodyPart();
+
+            String mensajehtml = "Un pedido ha sido asignado a su planta, se envia Orden en servicio para procesamiento."; //Mensaje
+
+            texto.setContent(mensajehtml, "text/html");
+
+            BodyPart adjunto = new MimeBodyPart();
+            adjunto.setDataHandler(new DataHandler(new FileDataSource(rutaArchivo)));
+            adjunto.setFileName("Orden trabajo planta N°" + pedido.getIdPedido() + ".pdf");
+
+            MimeMultipart multipart = new MimeMultipart();
+            multipart.addBodyPart(texto);
+            multipart.addBodyPart(adjunto);
+
+            message.setContent(multipart);
             Transport t = session.getTransport("smtp");
             t.connect("smtp.gmail.com", (String) properties.get("mail.smtp.user"), "lavaapp2016"); //Datos de conexion del correo de envio
             t.sendMessage(message, message.getAllRecipients());
@@ -238,7 +309,7 @@ public class CorreoDAOImpl implements CorreoDAO {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(usuario.getEmail()));
-            message.setSubject("Confirmacion de entrenga en plata de lavado"); //asunto
+            message.setSubject("Confirmacion de entrega en planta de lavado"); //asunto
             String mensajehtml = "Hemos recibido el pedido de la planta."; //Mensaje
             message.setContent(mensajehtml, "text/html");
             Transport t = session.getTransport("smtp");

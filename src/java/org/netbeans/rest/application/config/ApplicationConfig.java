@@ -70,6 +70,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarDescripcionPedidoSegunPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarDescripcionPedidoSegunProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstadoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarEstadoPagoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstadoPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstadosPlantaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarEstadosProductoImpl.class);
@@ -173,6 +174,9 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EnviarMensajeAgendamientoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EnviarMensajeBienvenidaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EnviarMensajeNuevaContraseñaImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EnviarMensajeRecibidoAlClienteImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EnviarOrdenServicioAPlantaImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EnviarOrdenServicioAsesorImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarCalificacionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarProductoImpl.class);

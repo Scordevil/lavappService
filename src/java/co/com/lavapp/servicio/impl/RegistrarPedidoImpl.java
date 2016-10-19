@@ -5,7 +5,9 @@
  */
 package co.com.lavapp.servicio.impl;
 
+import co.com.lavapp.modelo.dto.EstadoPago_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
+import co.com.lavapp.modelo.dto.FormaPago_TO;
 import co.com.lavapp.modelo.dto.Horario_TO;
 import co.com.lavapp.modelo.dto.Pedido_TO;
 import co.com.lavapp.modelo.dto.Proveedor_TO;
@@ -37,7 +39,9 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
             @QueryParam("fechaInicio") String fechaInicio,
             @QueryParam("idHorario") int idHorarioInicio,
             @QueryParam("idHorarioFinal") int idHorarioFinal,
-            @QueryParam("idEstado") int idEstado) throws Exception {
+            @QueryParam("idEstado") int idEstado,
+            @QueryParam("idFormaPago") int idFormaPago,
+            @QueryParam("idEstadoPago") int idEstadoPago) throws Exception {
 
         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
         Date f = new Date();
@@ -52,6 +56,8 @@ public class RegistrarPedidoImpl implements RegistrarPedido {
         pedido.setHoraInicio(new Horario_TO(idHorarioInicio));
         pedido.setHoraFinal(new Horario_TO(idHorarioFinal));
         pedido.setEstado(new Estado_TO(idEstado));
+        pedido.setEstadoPago(new EstadoPago_TO(idEstadoPago));
+        pedido.setFormaPago(new FormaPago_TO(idFormaPago));
 
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         return pedidoDao.registrarPedido(pedido);
