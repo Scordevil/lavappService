@@ -30,6 +30,8 @@ public interface DescripcionPedidoDAO {
     public DescripcionPedido_TO registrarDescripcion(DescripcionPedido_TO descripcion) throws Exception;
 
     public DescripcionPedido_TO editarDescripcion(DescripcionPedido_TO descripcion) throws Exception;
+    
+    public DescripcionPedido_TO editarDescripcionAsesor(DescripcionPedido_TO descripcion) throws Exception;
 
     public DescripcionPedido_TO eliminarDescripcion(DescripcionPedido_TO descripcion) throws Exception;
 

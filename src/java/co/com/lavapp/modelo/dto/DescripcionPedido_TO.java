@@ -58,19 +58,19 @@ public class DescripcionPedido_TO {
      *
      * Columna foto1
      */
-    private byte foto1;
+    private String foto1;
 
     /**
      *
      * Columna foto2
      */
-    private byte foto2;
+    private String foto2;
 
     /**
      *
      * Columna foto3
      */
-    private byte foto3;
+    private String foto3;
 
     /**
      *
@@ -83,7 +83,7 @@ public class DescripcionPedido_TO {
      * Columna idPedido
      */
     private Pedido_TO pedido;
-    
+
     /**
      *
      * Columna idPedido
@@ -112,8 +112,7 @@ public class DescripcionPedido_TO {
     }
 
     //Constructor General
-
-    public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, SubProducto_TO subProducto, String descripcion, String observacionAsesor, String observacionAdministrador, byte foto1, byte foto2, byte foto3, Color_TO color, Pedido_TO pedido, String codigo) {
+    public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, SubProducto_TO subProducto, String descripcion, String observacionAsesor, String observacionAdministrador, String foto1, String foto2, String foto3, Color_TO color, Pedido_TO pedido, String codigo) {
         this.idDescripcionPedido = idDescripcionPedido;
         this.estado = estado;
         this.subProducto = subProducto;
@@ -128,7 +127,7 @@ public class DescripcionPedido_TO {
         this.codigo = codigo;
     }
 
-    public DescripcionPedido_TO(Estado_TO estado, SubProducto_TO subProducto, String descripcion, String observacionAsesor, String observacionAdministrador, byte foto1, byte foto2, byte foto3, Color_TO color, Pedido_TO pedido, String codigo) {
+    public DescripcionPedido_TO(Estado_TO estado, SubProducto_TO subProducto, String descripcion, String observacionAsesor, String observacionAdministrador, String foto1, String foto2, String foto3, Color_TO color, Pedido_TO pedido, String codigo) {
         this.estado = estado;
         this.subProducto = subProducto;
         this.descripcion = descripcion;
@@ -153,10 +152,15 @@ public class DescripcionPedido_TO {
         this.pedido = pedido;
         this.codigo = codigo;
     }
-    
-    
- 
-    
+
+    public DescripcionPedido_TO(Estado_TO estado, String observacionAsesor, String foto1, String foto2, String foto3, Color_TO color) {
+        this.estado = estado;
+        this.observacionAsesor = observacionAsesor;
+        this.foto1 = foto1;
+        this.foto2 = foto2;
+        this.foto3 = foto3;
+        this.color = color;
+    }
 
     //Getter and Setter
     public int getIdDescripcionPedido() {
@@ -207,27 +211,27 @@ public class DescripcionPedido_TO {
         this.observacionAdministrador = observacionAdministrador;
     }
 
-    public byte getFoto1() {
+    public String getFoto1() {
         return foto1;
     }
 
-    public void setFoto1(byte foto1) {
+    public void setFoto1(String foto1) {
         this.foto1 = foto1;
     }
 
-    public byte getFoto2() {
+    public String getFoto2() {
         return foto2;
     }
 
-    public void setFoto2(byte foto2) {
+    public void setFoto2(String foto2) {
         this.foto2 = foto2;
     }
 
-    public byte getFoto3() {
+    public String getFoto3() {
         return foto3;
     }
 
-    public void setFoto3(byte foto3) {
+    public void setFoto3(String foto3) {
         this.foto3 = foto3;
     }
 
@@ -259,8 +263,5 @@ public class DescripcionPedido_TO {
     public String toString() {
         return "DescripcionPedido_TO{" + "idDescripcionPedido=" + idDescripcionPedido + ", estado=" + estado + ", subProducto=" + subProducto + ", descripcion=" + descripcion + ", observacionAsesor=" + observacionAsesor + ", observacionAdministrador=" + observacionAdministrador + ", foto1=" + foto1 + ", foto2=" + foto2 + ", foto3=" + foto3 + ", color=" + color + ", pedido=" + pedido + ", codigo=" + codigo + '}';
     }
-
-    
-    
 
 }

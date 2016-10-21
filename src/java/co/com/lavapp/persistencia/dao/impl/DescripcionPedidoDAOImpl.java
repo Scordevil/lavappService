@@ -74,9 +74,9 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                             rs.getString(4),
                             rs.getString(5),
                             rs.getString(6),
-                            rs.getByte(7),
-                            rs.getByte(8),
-                            rs.getByte(9),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
                             new Color_TO(rs.getInt(10)),
                             new Pedido_TO(rs.getInt(11)),
                             rs.getString(12)));
@@ -111,9 +111,9 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                             rs.getString(4),
                             rs.getString(5),
                             rs.getString(6),
-                            rs.getByte(7),
-                            rs.getByte(8),
-                            rs.getByte(9),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
                             new Color_TO(rs.getInt(10)),
                             new Pedido_TO(rs.getInt(11)),
                             rs.getString(12));
@@ -230,6 +230,33 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
     }
 
     @Override
+    public DescripcionPedido_TO editarDescripcionAsesor(DescripcionPedido_TO descripcion) throws Exception {
+        DescripcionPedido_TO nuevaDescripcion = new DescripcionPedido_TO();
+        try {
+            try {
+                String sql = "UPDATE public.descripcionpedido "
+                        + " SET idestado= " + descripcion.getEstado().getIdEstado() + ","
+                        + " observacionasesor = '" + descripcion.getObservacionAsesor() + "',"
+                        + " idcolor = " + descripcion.getColor().getIdColor() + ","
+                        + " foto1 = '" + descripcion.getFoto1() + "',"
+                        + " foto2 = '" + descripcion.getFoto2() + "',"
+                        + " foto3 = '" + descripcion.getFoto3() + "',"
+                        + " WHERE iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + "";
+                st.execute(sql);
+            } catch (SQLException e) {
+                nuevaDescripcion = new DescripcionPedido_TO();
+                throw e;
+            }
+        } catch (Exception e) {
+            nuevaDescripcion = new DescripcionPedido_TO();
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return nuevaDescripcion;
+    }
+
+    @Override
     public DescripcionPedido_TO eliminarDescripcionesSegunPedido(Pedido_TO pedido) throws Exception {
         DescripcionPedido_TO descPedi = new DescripcionPedido_TO();
         try {
@@ -274,9 +301,9 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                             rs.getString(4),
                             rs.getString(5),
                             rs.getString(6),
-                            rs.getByte(7),
-                            rs.getByte(8),
-                            rs.getByte(9),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
                             new Color_TO(rs.getInt(10)),
                             new Pedido_TO(rs.getInt(11)),
                             rs.getString(12));

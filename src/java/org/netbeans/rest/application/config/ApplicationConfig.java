@@ -135,6 +135,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EditarCorreoSesionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarCostoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarDepartamentoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EditarDescripcionPedidoAsesorImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoDescripcionPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarEstadoPedidoImpl.class);
