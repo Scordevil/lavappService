@@ -153,7 +153,8 @@ public class DescripcionPedido_TO {
         this.codigo = codigo;
     }
 
-    public DescripcionPedido_TO(Estado_TO estado, String observacionAsesor, String foto1, String foto2, String foto3, Color_TO color) {
+    public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, String observacionAsesor, String foto1, String foto2, String foto3, Color_TO color) {
+        this.idDescripcionPedido = idDescripcionPedido;
         this.estado = estado;
         this.observacionAsesor = observacionAsesor;
         this.foto1 = foto1;
@@ -161,6 +162,7 @@ public class DescripcionPedido_TO {
         this.foto3 = foto3;
         this.color = color;
     }
+
 
     //Getter and Setter
     public int getIdDescripcionPedido() {

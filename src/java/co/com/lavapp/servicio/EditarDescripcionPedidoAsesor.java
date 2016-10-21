@@ -13,6 +13,6 @@ import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
  */
 public interface EditarDescripcionPedidoAsesor {
     
-    public DescripcionPedido_TO editarDescripcionPedidoAsesor(int idEstado, 
+    public DescripcionPedido_TO editarDescripcionPedidoAsesor(int idDescripcionPedido, int idEstado, 
             String observacionAsesor,  int idColor, String foto1, String foto2, String foto3) throws Exception;
 }
