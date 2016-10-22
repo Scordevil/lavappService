@@ -32,6 +32,7 @@ public class EditarDescripcionPedidoAsesorImpl implements EditarDescripcionPedid
     @Produces({"application/json"})
     @Override
     public DescripcionPedido_TO editarDescripcionPedidoAsesor(
+            @QueryParam("idDescripcionPedido") int idDescripcionPedido,
             @QueryParam("idEstado") int idEstado, 
             @QueryParam("observacionAsesor") String observacionAsesor,       
             @QueryParam("idColor") int idColor,
@@ -39,9 +40,9 @@ public class EditarDescripcionPedidoAsesorImpl implements EditarDescripcionPedid
             @QueryParam("foto2") String foto2,
             @QueryParam("foto3") String foto3) throws Exception {
         
-        DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO( new Estado_TO(idEstado),observacionAsesor,foto1, foto2, foto3, new Color_TO(idColor));
+        DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(idDescripcionPedido, new Estado_TO(idEstado),observacionAsesor,foto1, foto2, foto3, new Color_TO(idColor));
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
-        return descripcionDao.editarDescripcion(descripcionPedido);
+        return descripcionDao.editarDescripcionAsesor(descripcionPedido);
     }
     
 }
