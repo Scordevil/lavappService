@@ -240,7 +240,7 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                         + " idcolor = " + descripcion.getColor().getIdColor() + ","
                         + " foto1 = '" + descripcion.getFoto1() + "',"
                         + " foto2 = '" + descripcion.getFoto2() + "',"
-                        + " foto3 = '" + descripcion.getFoto3() + "',"
+                        + " foto3 = '" + descripcion.getFoto3() + "'"
                         + " WHERE iddescripcionpedido = " + descripcion.getIdDescripcionPedido() + "";
                 st.execute(sql);
             } catch (SQLException e) {
