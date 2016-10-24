@@ -26,23 +26,27 @@ import javax.ws.rs.QueryParam;
  */
 @Stateless
 @Path("/editarDescripcionPedidoAsesor")
-public class EditarDescripcionPedidoAsesorImpl implements EditarDescripcionPedidoAsesor{
+public class EditarDescripcionPedidoAsesorImpl implements EditarDescripcionPedidoAsesor {
 
     @GET
     @Produces({"application/json"})
     @Override
     public DescripcionPedido_TO editarDescripcionPedidoAsesor(
             @QueryParam("idDescripcionPedido") int idDescripcionPedido,
-            @QueryParam("idEstado") int idEstado, 
-            @QueryParam("observacionAsesor") String observacionAsesor,       
+            @QueryParam("idEstado") int idEstado,
+            @QueryParam("observacionAsesor") String observacionAsesor,
             @QueryParam("idColor") int idColor,
             @QueryParam("foto1") String foto1,
             @QueryParam("foto2") String foto2,
-            @QueryParam("foto3") String foto3) throws Exception {
-        
-        DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(idDescripcionPedido, new Estado_TO(idEstado),observacionAsesor,foto1, foto2, foto3, new Color_TO(idColor));
+            @QueryParam("foto3") String foto3,
+            @QueryParam("codigo") String codigo,
+            @QueryParam("nombrefoto1") String nombrefoto1,
+            @QueryParam("nombrefoto2") String nombrefoto2,
+            @QueryParam("nombrefoto3") String nombrefoto3) throws Exception {
+
+        DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(idDescripcionPedido, new Estado_TO(idEstado), observacionAsesor, foto1, foto2, foto3, new Color_TO(idColor), codigo, nombrefoto1, nombrefoto2, nombrefoto3);
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
         return descripcionDao.editarDescripcionAsesor(descripcionPedido);
     }
-    
+
 }

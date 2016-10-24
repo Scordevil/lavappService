@@ -90,6 +90,24 @@ public class DescripcionPedido_TO {
      */
     private String codigo;
 
+    /**
+     *
+     * Columna nombrefoto1
+     */
+    private String nombrefoto1;
+
+    /**
+     *
+     * Columna nombrefoto2
+     */
+    private String nombrefoto2;
+
+    /**
+     *
+     * Columna nombrefoto3
+     */
+    private String nombrefoto3;
+
     //Constructores
     public DescripcionPedido_TO() {
     }
@@ -153,7 +171,7 @@ public class DescripcionPedido_TO {
         this.codigo = codigo;
     }
 
-    public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, String observacionAsesor, String foto1, String foto2, String foto3, Color_TO color) {
+    public DescripcionPedido_TO(int idDescripcionPedido, Estado_TO estado, String observacionAsesor, String foto1, String foto2, String foto3, Color_TO color, String codigo, String nombrefoto1, String nombrefoto2, String nombrefoto3) {
         this.idDescripcionPedido = idDescripcionPedido;
         this.estado = estado;
         this.observacionAsesor = observacionAsesor;
@@ -161,8 +179,13 @@ public class DescripcionPedido_TO {
         this.foto2 = foto2;
         this.foto3 = foto3;
         this.color = color;
+        this.codigo = codigo;
+        this.nombrefoto1 = nombrefoto1;
+        this.nombrefoto2 = nombrefoto2;
+        this.nombrefoto3 = nombrefoto3;
     }
-
+    
+    
 
     //Getter and Setter
     public int getIdDescripcionPedido() {
@@ -261,9 +284,33 @@ public class DescripcionPedido_TO {
         this.codigo = codigo;
     }
 
+    public String getNombrefoto1() {
+        return nombrefoto1;
+    }
+
+    public void setNombrefoto1(String nombrefoto1) {
+        this.nombrefoto1 = nombrefoto1;
+    }
+
+    public String getNombrefoto2() {
+        return nombrefoto2;
+    }
+
+    public void setNombrefoto2(String nombrefoto2) {
+        this.nombrefoto2 = nombrefoto2;
+    }
+
+    public String getNombrefoto3() {
+        return nombrefoto3;
+    }
+
+    public void setNombrefoto3(String nombrefoto3) {
+        this.nombrefoto3 = nombrefoto3;
+    }
+
     @Override
     public String toString() {
-        return "DescripcionPedido_TO{" + "idDescripcionPedido=" + idDescripcionPedido + ", estado=" + estado + ", subProducto=" + subProducto + ", descripcion=" + descripcion + ", observacionAsesor=" + observacionAsesor + ", observacionAdministrador=" + observacionAdministrador + ", foto1=" + foto1 + ", foto2=" + foto2 + ", foto3=" + foto3 + ", color=" + color + ", pedido=" + pedido + ", codigo=" + codigo + '}';
+        return "DescripcionPedido_TO{" + "idDescripcionPedido=" + idDescripcionPedido + ", estado=" + estado + ", subProducto=" + subProducto + ", descripcion=" + descripcion + ", observacionAsesor=" + observacionAsesor + ", observacionAdministrador=" + observacionAdministrador + ", foto1=" + foto1 + ", foto2=" + foto2 + ", foto3=" + foto3 + ", color=" + color + ", pedido=" + pedido + ", codigo=" + codigo + ", nombrefoto1=" + nombrefoto1 + ", nombrefoto2=" + nombrefoto2 + ", nombrefoto3=" + nombrefoto3 + '}';
     }
 
 }
