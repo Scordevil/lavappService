@@ -38,7 +38,7 @@ public class PromocionSubproductoDAOImpl implements PromocionSubproductoDAO {
     }
 
     @Override
-    public void eliminarPromocion(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception {
+    public void eliminarAsociacionPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception {
         try {
             try {
                 String sql = "DELETE FROM promocion_subproducto where idpromocion = '" + promocion.getIdPromocion() + "' "

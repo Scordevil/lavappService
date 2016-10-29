@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
      private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.com.lavapp.servicio.impl.AsignarAsesorPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.AsociarAsesorZonaImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.AsociarPromocionSubProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarAdministradoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarAsesoresImpl.class);
         resources.add(co.com.lavapp.servicio.impl.BuscarBarriosImpl.class);
@@ -105,6 +106,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ConsultarPedidosSegunPlantaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProductosImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ConsultarPromocionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarPromocionesImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProveedorImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ConsultarProveedorSegunUsuarioImpl.class);
@@ -149,6 +151,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EditarRolImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarUsuarioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EditarZonaImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarAsociacionPromocionSubProductoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarAsociacionZonaImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarBarrioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarCalificacionImpl.class);
@@ -166,6 +169,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.EliminarPaisImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarProductoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.EliminarPromocionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarProveedorImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarRolImpl.class);
         resources.add(co.com.lavapp.servicio.impl.EliminarServicioImpl.class);
@@ -182,6 +186,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.ModificarCalificacionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarProductoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.ModificarPromocionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarServicioImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarSubProdcutosImpl.class);
         resources.add(co.com.lavapp.servicio.impl.ModificarSubServicioImpl.class);
@@ -201,6 +206,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoCompletoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarPedidoImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarProductoImpl.class);
+        resources.add(co.com.lavapp.servicio.impl.RegistrarPromocionImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarProveedorImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarRolImpl.class);
         resources.add(co.com.lavapp.servicio.impl.RegistrarServiciosImpl.class);

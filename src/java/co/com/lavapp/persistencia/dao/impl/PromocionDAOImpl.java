@@ -56,7 +56,7 @@ public class PromocionDAOImpl implements PromocionDAO {
         try {
             try {
                 String sql = "SELECT idpromocion, fechainicio, fechafinal, porcentaje, horainicio, horafinal, nombre "
-                        + " FROM  public.promocion";
+                        + " FROM  public.promocion WHERE idpromocion = '" + promocion.getIdPromocion() + "' or nombre = '" + promocion.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     nuevaPromocion = new Promocion_TO(rs.getInt(1),
@@ -102,7 +102,7 @@ public class PromocionDAOImpl implements PromocionDAO {
     }
 
     @Override
-    public void editarPromocion(Promocion_TO promocion) throws Exception{
+    public void editarPromocion(Promocion_TO promocion) throws Exception {
         try {
             try {
                 String sql = "UPDATE public.promocion SET idpromocion = '" + promocion.getIdPromocion() + "',"
@@ -111,8 +111,8 @@ public class PromocionDAOImpl implements PromocionDAO {
                         + " porcentaje = '" + promocion.getPorcentaje() + "',"
                         + " horainicio = '" + promocion.getHoraInicio() + "',"
                         + " horafinal '" + promocion.getHorafinal() + "',"
-                        + " nombre = '" + promocion.getNombre() + "'"; 
-                       
+                        + " nombre = '" + promocion.getNombre() + "'";
+
                 st.execute(sql);
             } catch (SQLException e) {
                 throw e;
@@ -125,8 +125,8 @@ public class PromocionDAOImpl implements PromocionDAO {
     }
 
     @Override
-    public void eliminarPromocion(Promocion_TO promocion) throws Exception{
-          try {
+    public void eliminarPromocion(Promocion_TO promocion) throws Exception {
+        try {
             try {
                 String sql = "UPDATE public.promocion SET idpromocion = '" + promocion.getIdPromocion() + "',"
                         + " fechainicio = '" + promocion.getFechaInicio() + "',"
@@ -134,8 +134,8 @@ public class PromocionDAOImpl implements PromocionDAO {
                         + " porcentaje = '" + promocion.getPorcentaje() + "',"
                         + " horainicio = '" + promocion.getHoraInicio() + "',"
                         + " horafinal '" + promocion.getHorafinal() + "',"
-                        + " nombre = '" + promocion.getNombre() + "'"; 
-                       
+                        + " nombre = '" + promocion.getNombre() + "'";
+
                 st.execute(sql);
             } catch (SQLException e) {
                 throw e;

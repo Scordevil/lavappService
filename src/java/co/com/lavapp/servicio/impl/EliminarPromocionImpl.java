@@ -8,12 +8,12 @@ package co.com.lavapp.servicio.impl;
 import co.com.lavapp.modelo.dto.Promocion_TO;
 import co.com.lavapp.persistencia.dao.PromocionDAO;
 import co.com.lavapp.persistencia.dao.impl.PromocionDAOImpl;
-import co.com.lavapp.servicio.ConsultarPromociones;
-import java.util.List;
+import co.com.lavapp.servicio.EliminarPromocion;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -21,14 +21,16 @@ import javax.ws.rs.core.MediaType;
  * @author VaioDevelopment
  */
 @Stateless
-@Path("/consultarPromociones")
-public class ConsultarPromocionesImpl implements ConsultarPromociones {
+@Path("/eliminarPromocion")
+public class EliminarPromocionImpl implements EliminarPromocion{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public List<Promocion_TO> consultarPromociones() throws Exception {
+    public void eliminarPromocion(@QueryParam("idPromocion") int idPromocion) throws Exception {
+        Promocion_TO promocion = new Promocion_TO(idPromocion);
         PromocionDAO promocionDAO = new PromocionDAOImpl();
-        return promocionDAO.consultarPromociones();
+        promocionDAO.eliminarPromocion(promocion);
     }
+    
 }

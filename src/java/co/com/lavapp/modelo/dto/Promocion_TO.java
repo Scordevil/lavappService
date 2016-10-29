@@ -49,6 +49,17 @@ public class Promocion_TO {
         this.nombre = nombre;
     }
 
+    public Promocion_TO(Date fechaInicio, Date fechaFinal, int porcentaje, String horaInicio, String horafinal, String nombre) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.porcentaje = porcentaje;
+        this.horaInicio = horaInicio;
+        this.horafinal = horafinal;
+        this.nombre = nombre;
+    }
+    
+    
+
     public int getIdPromocion() {
         return idPromocion;
     }
