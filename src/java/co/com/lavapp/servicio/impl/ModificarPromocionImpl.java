@@ -33,6 +33,7 @@ public class ModificarPromocionImpl implements ModificarPromocion{
     public void modificarPromocion(@QueryParam("idPromocion") int idPromocion,
             @QueryParam("fechaInicio") String fechaInicio,
             @QueryParam("fechaFinal") String fechaFinal,
+            @QueryParam("porcentaje") int porcentaje,
             @QueryParam("horaInicio") String horaInicio,
             @QueryParam("horaFinal") String horaFinal,
             @QueryParam("nombre") String nombre) throws Exception {
@@ -47,7 +48,7 @@ public class ModificarPromocionImpl implements ModificarPromocion{
             e.printStackTrace();
         }
         
-        Promocion_TO promocion = new Promocion_TO(idPromocion, fi, ff, idPromocion, horaInicio, horaFinal, nombre);
+        Promocion_TO promocion = new Promocion_TO(idPromocion, fi, ff, porcentaje, horaInicio, horaFinal, nombre);
         PromocionDAO promocionDAO = new PromocionDAOImpl();
         promocionDAO.editarPromocion(promocion);
     }

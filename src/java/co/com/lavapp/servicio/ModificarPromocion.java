@@ -11,7 +11,7 @@ package co.com.lavapp.servicio;
  */
 public interface ModificarPromocion {
     
-    public void modificarPromocion(int idPromocion, String fechaInicio, String fechaFinal, String horaInicio, String horaFinal, String nombre) throws Exception;
+    public void modificarPromocion(int idPromocion, String fechaInicio, String fechaFinal, int porcentaje, String horaInicio, String horaFinal, String nombre) throws Exception;
             
     
 }
