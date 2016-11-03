@@ -16,7 +16,7 @@ public interface PromocionDAO {
     
     public List<Promocion_TO> consultarPromociones() throws Exception;
     public Promocion_TO consultarPromocion(Promocion_TO promocion) throws Exception;
-    public void registrarPromocion(Promocion_TO promocion) throws Exception;
-    public void editarPromocion(Promocion_TO promocion) throws Exception;
-    public void eliminarPromocion(Promocion_TO promocion) throws Exception;
+    public Promocion_TO registrarPromocion(Promocion_TO promocion) throws Exception;
+    public Promocion_TO modificarPromocion(Promocion_TO promocion) throws Exception;
+    public Promocion_TO eliminarPromocion(Promocion_TO promocion) throws Exception;
 }

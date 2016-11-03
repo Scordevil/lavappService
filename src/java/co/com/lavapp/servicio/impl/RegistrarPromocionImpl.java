@@ -30,7 +30,7 @@ public class RegistrarPromocionImpl implements RegistrarPromocion {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void registrarPromocion(@QueryParam("fechaInicio") String fechaInicio,
+    public Promocion_TO registrarPromocion(@QueryParam("fechaInicio") String fechaInicio,
             @QueryParam("fechaFinal") String fechaFinal,
             @QueryParam("porcentaje") int porcentaje,
             @QueryParam("horaInicio") String horaInicio,
@@ -48,6 +48,6 @@ public class RegistrarPromocionImpl implements RegistrarPromocion {
         }
         Promocion_TO promocion = new Promocion_TO(fi, ff, porcentaje, horaInicio, horaFinal, nombre);
         PromocionDAO promocionDAO = new PromocionDAOImpl();
-        promocionDAO.registrarPromocion(promocion);
+        return promocionDAO.registrarPromocion(promocion);
     }
 }

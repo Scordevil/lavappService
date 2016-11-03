@@ -24,13 +24,13 @@ import javax.ws.rs.core.MediaType;
  * @author VaioDevelopment
  */
 @Stateless
-@Path("/editarPromocion")
+@Path("/modificarPromocion")
 public class ModificarPromocionImpl implements ModificarPromocion{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void modificarPromocion(@QueryParam("idPromocion") int idPromocion,
+    public Promocion_TO modificarPromocion(@QueryParam("idPromocion") int idPromocion,
             @QueryParam("fechaInicio") String fechaInicio,
             @QueryParam("fechaFinal") String fechaFinal,
             @QueryParam("porcentaje") int porcentaje,
@@ -50,7 +50,7 @@ public class ModificarPromocionImpl implements ModificarPromocion{
         
         Promocion_TO promocion = new Promocion_TO(idPromocion, fi, ff, porcentaje, horaInicio, horaFinal, nombre);
         PromocionDAO promocionDAO = new PromocionDAOImpl();
-        promocionDAO.editarPromocion(promocion);
+        return promocionDAO.modificarPromocion(promocion);
     }
     
 }
