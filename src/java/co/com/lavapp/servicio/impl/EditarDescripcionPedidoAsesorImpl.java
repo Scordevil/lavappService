@@ -15,10 +15,16 @@ import co.com.lavapp.persistencia.dao.impl.DescripcionPedidoDAOImpl;
 import co.com.lavapp.servicio.EditarDescripcionPedido;
 import co.com.lavapp.servicio.EditarDescripcionPedidoAsesor;
 import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -28,25 +34,30 @@ import javax.ws.rs.QueryParam;
 @Path("/editarDescripcionPedidoAsesor")
 public class EditarDescripcionPedidoAsesorImpl implements EditarDescripcionPedidoAsesor {
 
-    @GET
-    @Produces({"application/json"})
+    @PUT
+//    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
     @Override
-    public DescripcionPedido_TO editarDescripcionPedidoAsesor(
-            @QueryParam("idDescripcionPedido") int idDescripcionPedido,
-            @QueryParam("idEstado") int idEstado,
-            @QueryParam("observacionAsesor") String observacionAsesor,
-            @QueryParam("idColor") int idColor,
-            @QueryParam("foto1") String foto1,
-            @QueryParam("foto2") String foto2,
-            @QueryParam("foto3") String foto3,
-            @QueryParam("codigo") String codigo,
-            @QueryParam("nombrefoto1") String nombrefoto1,
-            @QueryParam("nombrefoto2") String nombrefoto2,
-            @QueryParam("nombrefoto3") String nombrefoto3) throws Exception {
+    public String editarDescripcionPedidoAsesor(
+            @FormParam("idDescripcionPedido") int idDescripcionPedido,
+            @FormParam("idEstado") int idEstado,
+            @FormParam("observacionAsesor") String observacionAsesor,
+            @FormParam("idColor") int idColor,
+            @FormParam("foto1") String foto1,
+            @FormParam("foto2") String foto2,
+            @FormParam("foto3") String foto3,
+            @FormParam("codigo") String codigo,
+            @FormParam("nombrefoto1") String nombrefoto1,
+            @FormParam("nombrefoto2") String nombrefoto2,
+            @FormParam("nombrefoto3") String nombrefoto3) throws Exception {
+        
+        System.out.println("prueba--------------------"+observacionAsesor);
 
         DescripcionPedido_TO descripcionPedido = new DescripcionPedido_TO(idDescripcionPedido, new Estado_TO(idEstado), observacionAsesor, foto1, foto2, foto3, new Color_TO(idColor), codigo, nombrefoto1, nombrefoto2, nombrefoto3);
         DescripcionPedidoDAO descripcionDao = new DescripcionPedidoDAOImpl();
-        return descripcionDao.editarDescripcionAsesor(descripcionPedido);
+        descripcionDao.editarDescripcionAsesor(descripcionPedido);
+        
+        return "excelente";
     }
 
 }
