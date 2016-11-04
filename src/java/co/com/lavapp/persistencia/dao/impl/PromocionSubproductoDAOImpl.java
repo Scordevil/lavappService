@@ -22,12 +22,14 @@ public class PromocionSubproductoDAOImpl implements PromocionSubproductoDAO {
     private final Statement st = ConexionSQL.conexion();
 
     @Override
-    public void asociarPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subProducto) throws Exception {
+    public int asociarPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subProducto) throws Exception {
+        int resultado = 0;
         try {
             try {
                 String sql = "INSERT INTO promocion_subproducto (idpromocion, idsubproducto) "
                         + "VALUES('" + promocion.getIdPromocion() + "', '" + subProducto.getIdSubProducto() + "')";
                 st.execute(sql);
+                resultado = 1;
             } catch (SQLException e) {
                 throw e;
             }
@@ -36,15 +38,18 @@ public class PromocionSubproductoDAOImpl implements PromocionSubproductoDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
+        return resultado;
     }
 
     @Override
-    public void eliminarAsociacionPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception {
+    public int eliminarAsociacionPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception {
+        int resultado = 0;
         try {
             try {
                 String sql = "DELETE FROM promocion_subproducto where idpromocion = '" + promocion.getIdPromocion() + "' "
                         + "AND idsubproducto = '" + subproducto.getIdSubProducto() + "'";
                 st.execute(sql);
+                resultado = 1;
             } catch (SQLException e) {
                 throw e;
             }
@@ -53,6 +58,7 @@ public class PromocionSubproductoDAOImpl implements PromocionSubproductoDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
+        return resultado;
     }
 
     @Override

@@ -28,13 +28,13 @@ public class AsociarPromocionSubProductoImpl implements AsociarPromocionSubProdu
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void asociarPromocionSubProducto(@QueryParam("idPromocion") int idPromocion,
+    public int asociarPromocionSubProducto(@QueryParam("idPromocion") int idPromocion,
             @QueryParam("idSubProducto") int idSubProducto) throws Exception {
 
         Promocion_TO promocion = new Promocion_TO(idPromocion);
         SubProducto_TO subProducto = new SubProducto_TO(idSubProducto);
 
         PromocionSubproductoDAO promocionSubproductoDAO = new PromocionSubproductoDAOImpl();
-        promocionSubproductoDAO.asociarPromocionSubProducto(promocion, subProducto);
+        return promocionSubproductoDAO.asociarPromocionSubProducto(promocion, subProducto);
     }
 }

@@ -11,6 +11,6 @@ package co.com.lavapp.servicio;
  */
 public interface AsociarPromocionSubProducto {
     
-    public void asociarPromocionSubProducto(int idPromocion, int idSubProducto) throws Exception;
+    public int asociarPromocionSubProducto(int idPromocion, int idSubProducto) throws Exception;
     
 }

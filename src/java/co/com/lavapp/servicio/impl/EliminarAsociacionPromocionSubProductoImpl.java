@@ -28,13 +28,13 @@ public class EliminarAsociacionPromocionSubProductoImpl implements EliminarAsoci
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void eliminarAsociacionPromocionSubProducto(@QueryParam("idPromocion") int idPromocion,
+    public int eliminarAsociacionPromocionSubProducto(@QueryParam("idPromocion") int idPromocion,
             @QueryParam("idSubProducto") int idSubProducto) throws Exception {
         Promocion_TO promocion = new Promocion_TO(idPromocion);
         SubProducto_TO subProducto = new SubProducto_TO(idSubProducto);
         
         PromocionSubproductoDAO promocionSubproductoDAO = new PromocionSubproductoDAOImpl();
-        promocionSubproductoDAO.eliminarAsociacionPromocionSubProducto(promocion, subProducto);
+        return promocionSubproductoDAO.eliminarAsociacionPromocionSubProducto(promocion, subProducto);
     }
     
 }

@@ -11,6 +11,6 @@ package co.com.lavapp.servicio;
  */
 public interface EliminarAsociacionPromocionSubProducto {
     
-    public void eliminarAsociacionPromocionSubProducto(int idPromocion, int idSubProducto) throws Exception;
+    public int eliminarAsociacionPromocionSubProducto(int idPromocion, int idSubProducto) throws Exception;
     
 }
