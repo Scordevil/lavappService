@@ -5,13 +5,15 @@
  */
 package co.com.lavapp.servicio;
 
+import co.com.lavapp.modelo.dto.Promocion_TO;
+
 /**
  *
  * @author VaioDevelopment
  */
 public interface RegistrarPromocion {
     
-    public void registrarPromocion(String fechaInicio,
+    public Promocion_TO registrarPromocion(String fechaInicio,
             String fechaFinal,
             int porcentaje,
             String horaInicio,

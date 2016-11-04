@@ -5,13 +5,15 @@
  */
 package co.com.lavapp.servicio;
 
+import co.com.lavapp.modelo.dto.Promocion_TO;
+
 /**
  *
  * @author VaioDevelopment
  */
 public interface ModificarPromocion {
     
-    public void modificarPromocion(int idPromocion, String fechaInicio, String fechaFinal, int porcentaje, String horaInicio, String horaFinal, String nombre) throws Exception;
+    public Promocion_TO modificarPromocion(int idPromocion, String fechaInicio, String fechaFinal, int porcentaje, String horaInicio, String horaFinal, String nombre) throws Exception;
             
     
 }

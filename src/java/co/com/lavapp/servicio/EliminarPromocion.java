@@ -5,12 +5,14 @@
  */
 package co.com.lavapp.servicio;
 
+import co.com.lavapp.modelo.dto.Promocion_TO;
+
 /**
  *
  * @author VaioDevelopment
  */
 public interface EliminarPromocion {
     
-    public void eliminarPromocion(int idPromocion) throws Exception;
+    public Promocion_TO eliminarPromocion(int idPromocion) throws Exception;
     
 }

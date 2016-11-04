@@ -79,14 +79,15 @@ public class PromocionDAOImpl implements PromocionDAO {
     }
 
     @Override
-    public void registrarPromocion(Promocion_TO promocion) throws Exception {
+    public Promocion_TO registrarPromocion(Promocion_TO promocion) throws Exception {
+        Promocion_TO p = new Promocion_TO();
         try {
             try {
-                String sql = "INSERT INTO public.promocion (idpromocion, fechainicio, fechafinal, porcentaje, horainicio, horafinal, nombre) "
-                        + " values('" + promocion.getIdPromocion() + "',"
+                String sql = "INSERT INTO public.promocion (fechainicio, fechafinal, porcentaje, horainicio, horafinal, nombre) "
+                        + " values("
                         + " '" + promocion.getFechaInicio() + "',"
                         + " '" + promocion.getFechaFinal() + "',"
-                        + " '" + promocion.getPorcentaje() + ","
+                        + " " + promocion.getPorcentaje() + ","
                         + " '" + promocion.getHoraInicio() + "',"
                         + " '" + promocion.getHorafinal() + "',"
                         + " '" + promocion.getNombre() + "')";
@@ -99,19 +100,22 @@ public class PromocionDAOImpl implements PromocionDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
+        return p;
     }
 
     @Override
-    public void editarPromocion(Promocion_TO promocion) throws Exception {
+    public Promocion_TO modificarPromocion(Promocion_TO promocion) throws Exception {
+        Promocion_TO p = new Promocion_TO();
         try {
             try {
-                String sql = "UPDATE public.promocion SET idpromocion = '" + promocion.getIdPromocion() + "',"
+                String sql = "UPDATE public.promocion SET "
                         + " fechainicio = '" + promocion.getFechaInicio() + "',"
                         + " fechafinal = '" + promocion.getFechaFinal() + "',"
                         + " porcentaje = '" + promocion.getPorcentaje() + "',"
                         + " horainicio = '" + promocion.getHoraInicio() + "',"
                         + " horafinal '" + promocion.getHorafinal() + "',"
-                        + " nombre = '" + promocion.getNombre() + "'";
+                        + " nombre = '" + promocion.getNombre() + "' "
+                        + " WHERE idpromocion = '" + promocion.getIdPromocion() + "'";
 
                 st.execute(sql);
             } catch (SQLException e) {
@@ -122,20 +126,15 @@ public class PromocionDAOImpl implements PromocionDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
+        return p;
     }
 
     @Override
-    public void eliminarPromocion(Promocion_TO promocion) throws Exception {
+    public Promocion_TO eliminarPromocion(Promocion_TO promocion) throws Exception {
+        Promocion_TO p = new Promocion_TO();
         try {
             try {
-                String sql = "UPDATE public.promocion SET idpromocion = '" + promocion.getIdPromocion() + "',"
-                        + " fechainicio = '" + promocion.getFechaInicio() + "',"
-                        + " fechafinal = '" + promocion.getFechaFinal() + "',"
-                        + " porcentaje = '" + promocion.getPorcentaje() + "',"
-                        + " horainicio = '" + promocion.getHoraInicio() + "',"
-                        + " horafinal '" + promocion.getHorafinal() + "',"
-                        + " nombre = '" + promocion.getNombre() + "'";
-
+                String sql = "DELETE FROM public.promocion WHERE idpromocion = '" + promocion.getIdPromocion() + "'";
                 st.execute(sql);
             } catch (SQLException e) {
                 throw e;
@@ -145,6 +144,7 @@ public class PromocionDAOImpl implements PromocionDAO {
         } finally {
             ConexionSQL.CerrarConexion();
         }
+        return p;
     }
 
 }

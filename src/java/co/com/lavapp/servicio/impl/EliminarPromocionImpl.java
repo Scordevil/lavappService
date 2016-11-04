@@ -27,10 +27,9 @@ public class EliminarPromocionImpl implements EliminarPromocion{
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void eliminarPromocion(@QueryParam("idPromocion") int idPromocion) throws Exception {
+    public Promocion_TO eliminarPromocion(@QueryParam("idPromocion") int idPromocion) throws Exception {
         Promocion_TO promocion = new Promocion_TO(idPromocion);
         PromocionDAO promocionDAO = new PromocionDAOImpl();
-        promocionDAO.eliminarPromocion(promocion);
-    }
-    
+        return promocionDAO.eliminarPromocion(promocion);
+    }    
 }
