@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
 public class ConsultarPromocionSubProductoYaAsociadaImpl implements ConsultarPromocionSubProductoYaAsociada{
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Override
     public int consultarPromocionSubProductoYaAsociada(@QueryParam("idPromocion") int idPromocion,
             @QueryParam("idSubProducto") int idSubProducto) throws Exception {
