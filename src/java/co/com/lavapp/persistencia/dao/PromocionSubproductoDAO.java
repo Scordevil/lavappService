@@ -16,5 +16,6 @@ public interface PromocionSubproductoDAO {
     
     public void asociarPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subProducto) throws Exception;
     public void eliminarAsociacionPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception;
-    
+    public int consultarPromocionSubProductoYaAsociada(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception;
+
 }

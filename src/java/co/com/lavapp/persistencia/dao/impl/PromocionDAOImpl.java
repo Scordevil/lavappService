@@ -113,7 +113,7 @@ public class PromocionDAOImpl implements PromocionDAO {
                         + " fechafinal = '" + promocion.getFechaFinal() + "',"
                         + " porcentaje = '" + promocion.getPorcentaje() + "',"
                         + " horainicio = '" + promocion.getHoraInicio() + "',"
-                        + " horafinal '" + promocion.getHorafinal() + "',"
+                        + " horafinal = '" + promocion.getHorafinal() + "',"
                         + " nombre = '" + promocion.getNombre() + "' "
                         + " WHERE idpromocion = '" + promocion.getIdPromocion() + "'";
 

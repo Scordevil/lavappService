@@ -9,6 +9,7 @@ import co.com.lavapp.conexion.ConexionSQL;
 import co.com.lavapp.modelo.dto.Promocion_TO;
 import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.persistencia.dao.PromocionSubproductoDAO;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -54,4 +55,26 @@ public class PromocionSubproductoDAOImpl implements PromocionSubproductoDAO {
         }
     }
 
+    @Override
+    public int consultarPromocionSubProductoYaAsociada(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception {
+        int resultado = 0;
+        try {
+            try {
+                String sql = "SELECT idpromocion, idsubproducto FROM promocion_subproducto"
+                        + " WHERE idpromocion = '" + promocion.getIdPromocion() + "' AND idsubproducto = '" + subproducto.getIdSubProducto() + "'";
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next()){
+                    resultado = 1 ;
+                    break;
+                }                
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return resultado;
+    }
 }

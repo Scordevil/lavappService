@@ -416,7 +416,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         + "p.fechaentrega, p.direccionrecogida, p.direccionentrega, "
                         + "p.fecharecogida, p.quienentrega, p.quienrecibe, "
                         + "p.idbarrios_recogida, p.idbarrios_entrega, h.horario , h1.horario, p.idasesor, p.idformapago, p.idestadopago "
-                        + "from public.pedido as p, public.horario as h WHERE "
+                        + "from public.pedido as p, public.horario as h, public.horario as h1 WHERE "
                         + "p.idpedido = '" + pedido.getIdPedido() + "' and p.horarioinicio_idhorario = h.idhorario and p.horariofinal_idhorario = h1.idhorario";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
@@ -491,14 +491,10 @@ public class PedidoDAOImpl implements PedidoDAO {
         List<Pedido_TO> pedidos = new ArrayList<>();
         try {
             try {
-                String sql = "SELECT idpedido, idusuario, "
-                        + "fechainicio, horarioinicio_idhorario, "
-                        + "horariofinal_idhorario, idestado, idproveedor, "
-                        + "fechaentrega, direccionrecogida, direccionentrega, "
-                        + "fecharecogida, quienentrega, quienrecibe, "
-                        + "idbarrios_recogida, idbarrios_entrega, idasesor, idformapago, idestadopago "
-                        + "FROM public.pedido "
-                        + "ORDER BY fechaentrega DESC, fecharecogida DESC";
+                String sql = "SELECT idpedido, idusuario, fechainicio, horarioinicio_idhorario, "
+                        + "horariofinal_idhorario, idestado, idproveedor, fechaentrega, direccionrecogida, "
+                        + "direccionentrega,fecharecogida, quienentrega, quienrecibe, idbarrios_recogida, "
+                        + "idbarrios_entrega, idasesor, idformapago, idestadopago FROM public.pedido ORDER BY fechaentrega DESC, fecharecogida DESC";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     pedidos.add(new Pedido_TO(rs.getInt(1),
