@@ -6,12 +6,15 @@
 package co.com.lavapp.persistencia.dao.impl;
 
 import co.com.lavapp.conexion.ConexionSQL;
+import co.com.lavapp.modelo.dto.Producto_TO;
 import co.com.lavapp.modelo.dto.Promocion_TO;
 import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.persistencia.dao.PromocionSubproductoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -82,5 +85,31 @@ public class PromocionSubproductoDAOImpl implements PromocionSubproductoDAO {
             ConexionSQL.CerrarConexion();
         }
         return resultado;
+    }
+
+    @Override
+    public List<SubProducto_TO> consultarSubProductosSegunPromocion(Promocion_TO promocion) throws Exception {
+        List<SubProducto_TO> subproductos = new ArrayList<>();
+        try {
+            try {
+                String sql = "SELECT s.idsubproducto, s.nombre, s.descripcion, s.idproducto, s.rutaimagen FROM public.subproducto AS s, public.promocion_subproducto AS ps"
+                        + " WHERE ps.idpromocion = '" + promocion.getIdPromocion() + "' AND ps.idsubproducto = s.idsubproducto";
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next()){
+                    subproductos.add(new SubProducto_TO(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            new Producto_TO(rs.getInt(4)),
+                            rs.getString(5)));
+                }                
+            } catch (SQLException e) {
+                throw e;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+        return subproductos;
     }
 }

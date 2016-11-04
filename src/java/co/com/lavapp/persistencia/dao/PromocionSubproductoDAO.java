@@ -7,6 +7,7 @@ package co.com.lavapp.persistencia.dao;
 
 import co.com.lavapp.modelo.dto.Promocion_TO;
 import co.com.lavapp.modelo.dto.SubProducto_TO;
+import java.util.List;
 
 /**
  *
@@ -17,5 +18,7 @@ public interface PromocionSubproductoDAO {
     public int asociarPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subProducto) throws Exception;
     public int eliminarAsociacionPromocionSubProducto(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception;
     public int consultarPromocionSubProductoYaAsociada(Promocion_TO promocion, SubProducto_TO subproducto) throws Exception;
+    public List<SubProducto_TO> consultarSubProductosSegunPromocion(Promocion_TO promocion) throws Exception;
+            
 
 }
