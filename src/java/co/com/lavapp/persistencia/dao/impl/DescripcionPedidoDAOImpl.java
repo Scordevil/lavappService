@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -238,9 +239,9 @@ public class DescripcionPedidoDAOImpl implements DescripcionPedidoDAO {
                         + " SET idestado= " + descripcion.getEstado().getIdEstado() + ","
                         + " observacionasesor = '" + descripcion.getObservacionAsesor() + "',"
                         + " idcolor = " + descripcion.getColor().getIdColor() + ","
-                        + " foto1 = '" + descripcion.getFoto1() + "',"
-                        + " foto2 = '" + descripcion.getFoto2() + "',"
-                        + " foto3 = '" + descripcion.getFoto3() + "',"
+                        + " foto1 = " + descripcion.getFoto1() + ","
+                        + " foto2 = " + descripcion.getFoto2() + ","
+                        + " foto3 = " + descripcion.getFoto3() + ","
                         + " codigo = '" + descripcion.getCodigo() + "',"
                         + " nombrefoto1 = '" + descripcion.getNombrefoto1()+ "',"
                         + " nombrefoto2 = '" + descripcion.getNombrefoto2()+ "',"
