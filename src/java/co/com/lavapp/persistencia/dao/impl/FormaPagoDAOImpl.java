@@ -30,7 +30,7 @@ public class FormaPagoDAOImpl implements FormaPagoDAO {
                         + "WHERE idformapago = '" + formaPago.getIdFormaPago() + "' OR nombre = '" + formaPago.getNombre() + "'";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    formaPago = new FormaPago_TO(rs.getInt(1), rs.getString(2));
+                    formapago = new FormaPago_TO(rs.getInt(1), rs.getString(2));
                 }
             } catch (SQLException e) {
                 throw e;
@@ -40,6 +40,6 @@ public class FormaPagoDAOImpl implements FormaPagoDAO {
         } finally{
             ConexionSQL.CerrarConexion();
         }
-     return formaPago;
+     return formapago;
     }
 }

@@ -33,7 +33,8 @@ public class ConsultarAsesorZonaImpl implements ConsultarAsesorZona {
     public Usuario_TO consultarAsesorZona(@QueryParam("idZona") int idzona) throws Exception {
         Zona_TO zona = new Zona_TO(idzona);
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        return usuarioDAO.ConsultarAsesorZona(zona);
+        Usuario_TO asesor = usuarioDAO.ConsultarAsesorZona(zona);
+        return asesor;
     }
 
 }

@@ -8,22 +8,14 @@ package co.com.lavapp.servicio.impl;
 import co.com.lavapp.modelo.dto.Color_TO;
 import co.com.lavapp.modelo.dto.DescripcionPedido_TO;
 import co.com.lavapp.modelo.dto.Estado_TO;
-import co.com.lavapp.modelo.dto.Pedido_TO;
-import co.com.lavapp.modelo.dto.SubProducto_TO;
 import co.com.lavapp.persistencia.dao.DescripcionPedidoDAO;
 import co.com.lavapp.persistencia.dao.impl.DescripcionPedidoDAOImpl;
-import co.com.lavapp.servicio.EditarDescripcionPedido;
 import co.com.lavapp.servicio.EditarDescripcionPedidoAsesor;
 import javax.ejb.Stateless;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**

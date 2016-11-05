@@ -23,6 +23,18 @@ public class ConexionSQL {
     static Statement st = null;
     static Connection cn = null;
 
+    public ConexionSQL() {
+        conexion();
+    }    
+    
+    public Connection getCn() {
+        return cn;
+    }
+
+    public void setCn(Connection cn) {
+        ConexionSQL.cn = cn;
+    }  
+    
     public static Statement conexion() {
         try {
             try {
@@ -36,8 +48,8 @@ public class ConexionSQL {
             
             // RUTA DE LA BASE DE DATOS
             //  149.56.93.6
-            //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
-            //  String url = "jdbc:postgresql://localhost:5432/lavapp";
+//              String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
+//              String url = "jdbc:postgresql://localhost:5432/lavapp";
             
             String url = "jdbc:postgresql://192.168.100.251:5432/lavapp";
             // CONECCION A LA BASE DE DATOS
@@ -54,21 +66,11 @@ public class ConexionSQL {
         }
         return st;
     }
-
-    public static Connection getCn() {
-        return cn;
-    }
-
-    public static void setCn(Connection cn) {
-        ConexionSQL.cn = cn;
-    }
-
     
-    
+   
     public static Connection CerrarConexion() throws SQLException {
         cn.close();
         st.close();
         return cn;
     }
-
 }

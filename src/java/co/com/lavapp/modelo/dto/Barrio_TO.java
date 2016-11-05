@@ -75,7 +75,6 @@ public class Barrio_TO {
        
     
     // Getter and Setter
-
     public int getIdBarrios() {
         return idBarrios;
     }

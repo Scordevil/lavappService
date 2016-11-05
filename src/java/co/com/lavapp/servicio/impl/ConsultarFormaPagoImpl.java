@@ -10,7 +10,6 @@ import co.com.lavapp.persistencia.dao.FormaPagoDAO;
 import co.com.lavapp.persistencia.dao.impl.FormaPagoDAOImpl;
 import co.com.lavapp.servicio.ConsultarFormaPago;
 import javax.ejb.Stateless;
-import javax.inject.Qualifier;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;

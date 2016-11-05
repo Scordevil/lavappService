@@ -6,7 +6,6 @@
 package co.com.lavapp.metodos;
 
 import co.com.lavapp.conexion.ConexionSQL;
-import static co.com.lavapp.conexion.ConexionSQL.getCn;
 import co.com.lavapp.modelo.dto.Pedido_TO;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +27,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 public class GenerarReportes {
 
     public String rutaDocumento;
+    public ConexionSQL conexion = new ConexionSQL();
 
     public String getRutaDocumento() {
         return rutaDocumento;
@@ -61,13 +61,12 @@ public class GenerarReportes {
         return null;
     }
 
-    public void generarOrdenTrabajo(Pedido_TO pedido) throws JRException, IOException {
-        ConexionSQL conexion = new ConexionSQL();
+    public void generarOrdenTrabajo(Pedido_TO pedido) throws JRException, IOException {       
         Map parametro = new HashMap();
         parametro.put("idpedido", pedido.getIdPedido());
 
         File jasper = new File(getPath() + "/resources/reportes/ordenTrabajo.jasper");
-        JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, getCn());
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, conexion.getCn());
 
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         response.addHeader("Content-disposition", "attachment; filename=Orden de trabajo N°" + pedido.getIdPedido() + ".pdf");
@@ -81,12 +80,12 @@ public class GenerarReportes {
     }
     
     public void generarOrdenTrabajoProveedor(Pedido_TO pedido) throws JRException, IOException {
-        ConexionSQL conexion = new ConexionSQL();
+       
         Map parametro = new HashMap();
         parametro.put("idpedido", pedido.getIdPedido());
 
         File jasper = new File(getPath() + "/resources/reportes/ordenTrabajoProveedor.jasper");
-        JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, getCn());
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, conexion.getCn());
 
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         response.addHeader("Content-disposition", "attachment; filename=Orden de trabajo planta N°" + pedido.getIdPedido() + ".pdf");
@@ -101,13 +100,12 @@ public class GenerarReportes {
 
     public void generarOrdenTrabajoEnContexto(Pedido_TO pedido) {
         try {
-            String path = getPathDocumentos() + "Orden de trabajo N°" + pedido.getIdPedido() + ".pdf";
-            ConexionSQL conexion = new ConexionSQL();
+            String path = getPathDocumentos() + "Orden de trabajo N°" + pedido.getIdPedido() + ".pdf";          
             Map parametro = new HashMap();
             parametro.put("idpedido", pedido.getIdPedido());
 
             File jasper = new File(getPath() + "/resources/reportes/ordenTrabajo.jasper");
-            JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, getCn());
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, conexion.getCn());
 
             JasperExportManager.exportReportToPdfFile(jp, path);
         } catch (JRException e) {
@@ -117,13 +115,12 @@ public class GenerarReportes {
     
     public void generarOrdenTrabajoProveedorEnContexto(Pedido_TO pedido) {
         try {
-            String path = getPathDocumentos() + "Orden de trabajo proveedor N°" + pedido.getIdPedido() + ".pdf";
-            ConexionSQL conexion = new ConexionSQL();
+            String path = getPathDocumentos() + "Orden de trabajo proveedor N°" + pedido.getIdPedido() + ".pdf";           
             Map parametro = new HashMap();
             parametro.put("idpedido", pedido.getIdPedido());
 
             File jasper = new File(getPath() + "/resources/reportes/ordenTrabajoProveedor.jasper");
-            JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, getCn());
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getAbsolutePath(), parametro, conexion.getCn());
 
             JasperExportManager.exportReportToPdfFile(jp, path);
         } catch (JRException e) {
